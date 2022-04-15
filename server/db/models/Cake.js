@@ -22,6 +22,7 @@ const Cake = db.define('cake', {
   price: {
     type: INTEGER
   },
+
   message: {
     type: STRING
   }
