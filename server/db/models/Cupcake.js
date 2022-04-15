@@ -3,20 +3,16 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const {INTEGER, STRING, ENUM} = Sequelize
 
-const Cake = db.define('cake', {
+const Cupcake = db.define('cupcake', {
   name: {
-    type: ENUM(['vanilla', 'chocolate', 'red velvet', 'custom'])
+    type: STRING
   },
 
-  tiers: {
-    type: ENUM(['1', '2', '3'])
-  },
-
-  flavor: {
+  flavor:{
     type: ENUM(['vanilla', 'chocolate', 'strawberry'])
   },
 
-  frosting: {
+  frosting:{
     type: ENUM(['vanilla', 'chocolate', 'strawberry'])
   },
 
@@ -25,4 +21,4 @@ const Cake = db.define('cake', {
   }
 });
 
-module.exports = Cake;
+module.exports = Cupcake;

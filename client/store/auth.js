@@ -7,6 +7,7 @@ const TOKEN = 'token'
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH'
+const LOAD_CAKES = 'LOAD_CAKES'
 
 /**
  * ACTION CREATORS
@@ -44,6 +45,16 @@ export const logout = () => {
   return {
     type: SET_AUTH,
     auth: {}
+  }
+}
+
+export const loadCakes = () => {
+  return async (dispatch) => {
+    const cakes = await axios.get('/api/cakes')
+    dispatch({
+      type: LOAD_CAKES,
+      cakes
+    })
   }
 }
 
