@@ -1,4 +1,4 @@
-- [x] create cake and cupcake models
+[x] create cake and cupcake models
 - [] create home page with title
 - [] set up nav bar
 - [] create /api/cakes route
