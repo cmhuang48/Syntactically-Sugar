@@ -1,4 +1,20 @@
 - [x] create cake and cupcake models
 - [] create home page with title
 - [] set up nav bar
+- [] create /api/cakes route
+- [] create /api/cupcakes route
+- [] create page showing ALL CAKES
+- [] create page showing ALL CUPCAKES
+- [] create page showing SINGLE CAKE
+- [] create page showing SINGLE CUPCAKE
+- [] create /api/cakes/create route 
+- [] create CREATE CAKE FORM
+- [] create /api/cupcakes/create route
+- [] create CREATE CUPCAKES FORM
 
+- [] last one remaining notification
+- [] SOLD OUT notification
+- [] create cart popup
+
+- [] create ifAdmin trait on User model
+- [] give admin right to delete item
