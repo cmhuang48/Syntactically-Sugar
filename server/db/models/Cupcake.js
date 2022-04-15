@@ -1,4 +1,3 @@
-const { Model } = require('sequelize')
 const Sequelize = require('sequelize')
 const db = require('../db')
 const {INTEGER, STRING, ENUM} = Sequelize
@@ -14,6 +13,10 @@ const Cupcake = db.define('cupcake', {
 
   frosting:{
     type: ENUM(['vanilla', 'chocolate', 'strawberry'])
+  },
+
+  price: {
+    type: INTEGER
   },
 
   message: {
