@@ -1,6 +1,6 @@
 - [x] create cake and cupcake models
-- [] create home page with title
-- [] set up nav bar
+- [ ] create home page with title
+- [ ] set up nav bar
 - [] create /api/cakes route
 - [] create /api/cupcakes route
 - [] create page showing ALL CAKES
