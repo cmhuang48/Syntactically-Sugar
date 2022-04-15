@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me} from './store'
+import {me, loadCakes} from './store'
 import Cakes from './components/Cakes'
+import Cake from './components/Cake'
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ import Cakes from './components/Cakes'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.loadCakes()
   }
 
   render() {
@@ -22,7 +24,8 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/cakes" component={Cakes} />
+            <Route exact path="/cakes" component={Cakes} />
+            <Route path="/cakes/:id" component={Cake}/>
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -52,6 +55,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+    },
+    loadCakes: ()=>{
+      dispatch(loadCakes())
     }
   }
 }
