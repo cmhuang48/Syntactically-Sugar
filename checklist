@@ -12,9 +12,17 @@
 - [x] create /api/cupcakes/create route
 - [x] create CREATE CUPCAKES FORM
 
+- [] auth user can add item to cart
+- [] auth user can remove item from cart
+- [] auth user can transform cart to order
+- [] auth user can view orders
+
+
+- [] create ifAdmin trait on User model
+- [] auth admin can add new product
+- [] auth admin can delete product
+
+
 - [] last one remaining notification
 - [] SOLD OUT notification
 - [] create cart popup
-
-- [] create ifAdmin trait on User model
-- [] give admin right to delete item
