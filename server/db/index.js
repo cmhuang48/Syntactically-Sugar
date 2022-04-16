@@ -7,12 +7,16 @@ const Cake = require('./models/Cake')
 const Cupcake = require('./models/Cupcake')
 const LineItem = require('./models/LineItem')
 const Order = require('./models/Order')
+
+
 LineItem.belongsTo(Order)
 Order.hasMany(LineItem) 
 Order.belongsTo(User)
 User.hasMany(Order)
 Cake.belongsTo(LineItem)
 Cupcake.belongsTo(LineItem)
+Cake.hasMany(LineItem)
+Cupcake.hasMany(LineItem)
 
 //associations could go here!
 
