@@ -19,12 +19,12 @@ const Cake = db.define('cake', {
     type: ENUM(['vanilla', 'chocolate', 'strawberry'])
   },
 
-  price: {
-    type: INTEGER
-  },
-
   message: {
     type: STRING
+  },
+
+  price: {
+    type: INTEGER
   }
 });
 

@@ -10,3 +10,19 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    res.send(await Cake.findByPk(req.params.id))
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    res.status(201).send(await Cake.create(req.body))
+  } catch (err) {
+    next(err)
+  }
+})

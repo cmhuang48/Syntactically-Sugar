@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CreateCupcake from './CreateCupcake';
 
 const Cupcakes = ({ cupcakes }) => {
   return (
@@ -10,6 +11,7 @@ const Cupcakes = ({ cupcakes }) => {
         {cupcakes.map(cupcake => {
           return <li key={cupcake.id}><Link to = {`/cupcakes/${cupcake.id}`}>{cupcake.name}</Link></li>
         })}
+        <li key='custom'><CreateCupcake /></li>
       </ul>
     </div>
   );
