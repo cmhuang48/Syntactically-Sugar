@@ -4,7 +4,7 @@ const {INTEGER, STRING, ENUM} = Sequelize
 
 const Cupcake = db.define('cupcake', {
   name: {
-    type: STRING
+    type: ENUM(['vanilla', 'chocolate', 'red velvet', 'custom'])
   },
 
   flavor:{

@@ -15,9 +15,9 @@ export const loadCakes = () => {
   }
 }
 
-export const createCake = (tiers, flavor, frosting, message) => {
+export const createCake = (name, tiers, flavor, frosting, message) => {
   return async (dispatch) => {
-    const cake = (await axios.post('/api/cakes', { tiers, flavor, frosting, message })).data
+    const cake = (await axios.post('/api/cakes', { name, tiers, flavor, frosting, message })).data
     dispatch({
       type: CREATE_CAKE,
       cake
