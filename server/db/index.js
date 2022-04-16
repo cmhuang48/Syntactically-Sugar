@@ -11,6 +11,8 @@ LineItem.belongsTo(Order)
 Order.hasMany(LineItem) 
 Order.belongsTo(User)
 User.hasMany(Order)
+Cake.belongsTo(LineItem)
+Cupcake.belongsTo(LineItem)
 
 //associations could go here!
 
