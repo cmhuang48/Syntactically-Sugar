@@ -6,6 +6,7 @@ class CreateCupcake extends React.Component {
   constructor () {
     super();
     this.state = {
+      name: '',
       flavor: '', 
       frosting: '',
       message: ''
@@ -15,8 +16,8 @@ class CreateCupcake extends React.Component {
   }
   onSubmit (ev) {
     ev.preventDefault();
-    const { flavor, frosting, message } = this.state;
-    this.props.createCupcake(flavor, frosting, message);
+    const { name, flavor, frosting, message } = this.state;
+    this.props.createCupcake(name, flavor, frosting, message);
   }
   onChange (ev) {
     const change = {};
@@ -49,8 +50,8 @@ class CreateCupcake extends React.Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    createCupcake: (flavor, frosting, message) => {
-      dispatch(createCupcake(flavor, frosting, message))
+    createCupcake: (name, flavor, frosting, message) => {
+      dispatch(createCupcake(name, flavor, frosting, message))
     }
   };
 };
