@@ -7,10 +7,10 @@
 - [x] create page showing ALL CUPCAKES
 - [x] create page showing SINGLE CAKE
 - [x] create page showing SINGLE CUPCAKE
-- [] create /api/cakes/create route 
-- [] create CREATE CAKE FORM
-- [] create /api/cupcakes/create route
-- [] create CREATE CUPCAKES FORM
+- [x] create /api/cakes/create route 
+- [x] create CREATE CAKE FORM
+- [x] create /api/cupcakes/create route
+- [x] create CREATE CUPCAKES FORM
 
 - [] last one remaining notification
 - [] SOLD OUT notification
