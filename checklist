@@ -1,5 +1,5 @@
 - [x] create cake and cupcake models
-- [] create home page with title
+- [x] seed cake and cupcake products
 - [x] set up nav bar
 - [x] create /api/cakes route
 - [x] create /api/cupcakes route
@@ -26,6 +26,8 @@
 - [] add billing address
 - [] add credit card information
 
+
+- [] create home page with title
 - [] last one remaining notification
 - [] SOLD OUT notification
 - [] create cart popup
