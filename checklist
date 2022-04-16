@@ -1,12 +1,12 @@
 - [x] create cake and cupcake models
 - [] create home page with title
-- [] set up nav bar
-- [] create /api/cakes route
-- [] create /api/cupcakes route
-- [] create page showing ALL CAKES
-- [] create page showing ALL CUPCAKES
-- [] create page showing SINGLE CAKE
-- [] create page showing SINGLE CUPCAKE
+- [x] set up nav bar
+- [x] create /api/cakes route
+- [x] create /api/cupcakes route
+- [x] create page showing ALL CAKES
+- [x] create page showing ALL CUPCAKES
+- [x] create page showing SINGLE CAKE
+- [x] create page showing SINGLE CUPCAKE
 - [] create /api/cakes/create route 
 - [] create CREATE CAKE FORM
 - [] create /api/cupcakes/create route
