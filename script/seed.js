@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: { User, Cake, Cupcake } } = require('../server/db')
+const {db, models: { User, Cake, Cupcake, LineItem, Order } } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -31,6 +31,21 @@ async function seed() {
   ])
 
   console.log(`seeded ${cupcakes.length} cupcakes`)
+
+  const order = Order.create({ status: 'incomplete order' })
+
+  console.log('seeded order')
+
+  const lineItem = LineItem.create({ cakeId: cupcakes[0].id })
+
+  console.log('seeded line item')
+
+  
+  cakes[0].lineItemId = lineItem.id
+  lineItem.orderId = order.id
+
+  await cakes[0].save()
+  await lineItem.save()
 
   console.log(`seeded successfully`)
   

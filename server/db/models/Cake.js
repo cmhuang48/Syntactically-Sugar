@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {INTEGER, STRING, ENUM} = Sequelize
+const { INTEGER, STRING, ENUM } = Sequelize
 
 const Cake = db.define('cake', {
   name: {
