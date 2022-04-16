@@ -17,6 +17,7 @@ class CreateCake extends React.Component {
   onSubmit (ev) {
     ev.preventDefault();
     const { tiers, flavor, frosting, message } = this.state;
+    console.log(this.state)
     this.props.createCake(tiers, flavor, frosting, message);
   }
   onChange (ev) {

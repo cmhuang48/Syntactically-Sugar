@@ -12,6 +12,7 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+
   password: {
     type: Sequelize.STRING,
   }
@@ -22,6 +23,7 @@ module.exports = User
 /**
  * instanceMethods
  */
+
 User.prototype.correctPassword = function(candidatePwd) {
   //we need to compare the plain version to an encrypted version of the password
   return bcrypt.compare(candidatePwd, this.password);
