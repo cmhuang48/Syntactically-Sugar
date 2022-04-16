@@ -1,11 +1,13 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
-import {me, loadCakes} from './store'
+import { Login, Signup } from './components/AuthForm'
+import Home from './components/Home'
+import {me, loadCakes, loadCupcakes} from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
+import Cupcakes from './components/Cupcakes'
+import Cupcake from './components/Cupcake'
 
 /**
  * COMPONENT
@@ -13,7 +15,6 @@ import Cake from './components/Cake'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    this.props.loadCakes()
   }
 
   render() {
@@ -26,11 +27,13 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
             <Route path="/cakes/:id" component={Cake}/>
+            <Route exact path="/cupcakes" component={Cupcakes} />
+            <Route path="/cupcakes/:id" component={Cupcake} />
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
-            <Route path='/' exact component={ Login } />
+            <Route path='/' exact component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
@@ -55,9 +58,8 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-    },
-    loadCakes: ()=>{
       dispatch(loadCakes())
+      dispatch(loadCupcakes())
     }
   }
 }

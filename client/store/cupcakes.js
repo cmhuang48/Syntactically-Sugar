@@ -1,15 +1,15 @@
 import axios from 'axios'
 
 // ACTION TYPES
-const LOAD_CAKES = 'LOAD_CAKES'
+const LOAD_CUPCAKES = 'LOAD_CUPCAKES'
 
 // THUNK CREATORS
-export const loadCakes = () => {
+export const loadCupcakes = () => {
   return async (dispatch) => {
-    const cakes = (await axios.get('/api/cakes')).data
+    const cupcakes = (await axios.get('/api/cupcakes')).data
     dispatch({
-      type: LOAD_CAKES,
-      cakes
+      type: LOAD_CUPCAKES,
+      cupcakes
     })
   }
 }
@@ -17,8 +17,8 @@ export const loadCakes = () => {
 // REDUCER
 export default function(state = [], action) {
   switch (action.type) {
-    case LOAD_CAKES:
-      return action.cakes
+    case LOAD_CUPCAKES:
+      return action.cupcakes
     default:
       return state
   }
