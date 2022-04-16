@@ -8,8 +8,8 @@
 - [x] create page showing SINGLE CAKE
 - [x] create page showing SINGLE CUPCAKE
 - [x] create /api/cakes/create route 
-- [x] create CREATE CAKE FORM
 - [x] create /api/cupcakes/create route
+- [x] create CREATE CAKE FORM
 - [x] create CREATE CUPCAKES FORM
 
 - [] auth user can add item to cart
