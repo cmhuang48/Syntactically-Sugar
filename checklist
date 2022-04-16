@@ -13,7 +13,8 @@
 - [x] create CREATE CUPCAKES FORM
 
 - [] create lineItem model
-- [] create order model
+- [] create order model with isCart attribute
+
 
 - [] auth user can add item to cart
 - [] auth user can remove item from cart
