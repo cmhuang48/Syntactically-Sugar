@@ -5,6 +5,12 @@ const db = require('./db')
 const User = require('./models/User')
 const Cake = require('./models/Cake')
 const Cupcake = require('./models/Cupcake')
+const LineItem = require('./models/LineItem')
+const Order = require('./models/Order')
+LineItem.belongsTo(Order)
+Order.hasMany(LineItem) 
+Order.belongsTo(User)
+User.hasMany(Order)
 
 //associations could go here!
 
@@ -13,6 +19,8 @@ module.exports = {
   models: {
     User,
     Cake, 
-    Cupcake
+    Cupcake,
+    LineItem,
+    Order
   },
 }

@@ -6,6 +6,7 @@ class CreateCake extends React.Component {
   constructor () {
     super();
     this.state = {
+      name: 'custom',
       tiers: '', 
       flavor: '', 
       frosting: '',
@@ -16,9 +17,8 @@ class CreateCake extends React.Component {
   }
   onSubmit (ev) {
     ev.preventDefault();
-    const { tiers, flavor, frosting, message } = this.state;
-    console.log(this.state)
-    this.props.createCake(tiers, flavor, frosting, message);
+    const { name, tiers, flavor, frosting, message } = this.state;
+    this.props.createCake(name, tiers, flavor, frosting, message);
   }
   onChange (ev) {
     const change = {};
@@ -57,8 +57,8 @@ class CreateCake extends React.Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    createCake: (tiers, flavor, frosting, message) => {
-      dispatch(createCake(tiers, flavor, frosting, message))
+    createCake: (name, tiers, flavor, frosting, message) => {
+      dispatch(createCake(name, tiers, flavor, frosting, message))
     }
   };
 };
