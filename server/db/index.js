@@ -7,6 +7,8 @@ const Cake = require('./models/Cake')
 const Cupcake = require('./models/Cupcake')
 const LineItem = require('./models/LineItem')
 const Order = require('./models/Order')
+
+
 LineItem.belongsTo(Order)
 Order.hasMany(LineItem) 
 Order.belongsTo(User)
