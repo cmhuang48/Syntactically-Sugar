@@ -32,11 +32,11 @@ async function seed() {
 
   console.log(`seeded ${cupcakes.length} cupcakes`)
 
-  const order = Order.create({ status: 'incomplete order' })
+  const order = await Order.create({ status: 'incomplete order' })
 
   console.log('seeded order')
 
-  const lineItem = LineItem.create({ cakeId: cupcakes[0].id })
+  const lineItem = await LineItem.create({ cakeId: cupcakes[0].id })
 
   console.log('seeded line item')
 
