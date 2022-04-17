@@ -6,8 +6,9 @@ import auth from './auth'
 import cakes from './cakes'
 import cupcakes from './cupcakes'
 import orders from './orders'
+import lineItems from './lineItems'
 
-const reducer = combineReducers({ auth, cakes, cupcakes, orders })
+const reducer = combineReducers({ auth, cakes, cupcakes, orders, lineItems })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -18,3 +19,4 @@ export * from './auth'
 export * from './cakes'
 export * from './cupcakes'
 export * from './orders'
+export * from './lineItems'

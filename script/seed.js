@@ -36,13 +36,8 @@ async function seed() {
 
   console.log('seeded order')
 
-<<<<<<< HEAD
-  const lineItem = await LineItem.create({ cakeId: cupcakes[0].id })
-
-=======
-  const lineItem = LineItem.create({ cakeId: cupcakes[0].id })
+  const lineItem = await LineItem.create({ cakeId: cakes[0].id })
   
->>>>>>> c38c88d4dac8ffb4194a548de844c945eeddb175
   console.log('seeded line item')
 
   cakes[0].lineItemId = lineItem.id
