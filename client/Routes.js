@@ -18,7 +18,6 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.props.loadCakes()
     this.props.loadCupcakes()
-    if(window.localStorage.getItem('token')) this.props.loadOrders()
     this.props.loadLineItems()
   }
 
@@ -42,7 +41,7 @@ class Routes extends Component {
             <Route path='/' exact component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-			      <Route exact path="/cakes" component={Cakes} />
+			<Route exact path="/cakes" component={Cakes} />
             <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route path="/cupcakes/:id" component={Cupcake} />
@@ -75,9 +74,6 @@ const mapDispatch = dispatch => {
     },
     loadCupcakes() {
       dispatch(loadCupcakes())
-    },
-    loadOrders() {
-      dispatch(loadOrders())
     },
     loadLineItems() {
       dispatch(loadLineItems())

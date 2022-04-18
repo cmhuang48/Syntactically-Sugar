@@ -63,7 +63,6 @@ const mapDispatch = dispatch => {
       const username = evt.target.username.value
       const password = evt.target.password.value
       dispatch(authenticate(username, password, formName))
-      if(window.localStorage.getItem('token')) dispatch(loadOrders())
     }
   }
 }
