@@ -3,11 +3,18 @@ import axios from 'axios'
 // ACTION TYPES
 const LOAD_ORDERS = 'LOAD_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
+const TOKEN = 'token'
 
 // THUNK CREATORS
 export const loadOrders = () => {
+  const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
-    const orders = (await axios.get('/api/orders')).data
+    const orders = (await axios.get('/api/orders', {
+      headers: {
+        authorization: token
+      }
+    })).data
+    console.log(orders)
     dispatch({
       type: LOAD_ORDERS,
       orders
@@ -32,6 +39,8 @@ export default function(state = [], action) {
       return action.orders
     case CREATE_ORDER:
       return [...state, action.order]
+    case 'RESET_ORDERS':
+      return []
     default:
       return state
   }
