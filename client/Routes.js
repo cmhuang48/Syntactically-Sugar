@@ -18,7 +18,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.props.loadCakes()
     this.props.loadCupcakes()
-    this.props.loadOrders()
+    if(window.localStorage.getItem('token')) this.props.loadOrders()
     this.props.loadLineItems()
   }
 

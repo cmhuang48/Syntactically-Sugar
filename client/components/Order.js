@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const Order = (props) => {
   const {cakes, cupcakes, orders, lineItems} = props
-  if(!orders.length) return null
+  if(!orders.length) return <div>No Orders</div>
   return (
     <div>
       <h1>Orders</h1>
