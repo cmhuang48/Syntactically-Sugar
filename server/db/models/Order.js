@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const { UUID, UUIDV4, INTEGER, STRING, ENUM } = Sequelize
+const { UUID, UUIDV4, ENUM } = Sequelize
 
 const Order = db.define('order', {
   id: {
