@@ -1,10 +1,14 @@
 const router = require('express').Router()
-const { models: { Cupcake }} = require('../db')
+const { models: { Product }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const cupcakes = await Cupcake.findAll()
+    const cupcakes = await Product.findAll({
+      where: {
+        category: 'cupcake'
+      }
+    })
     res.json(cupcakes)
   } catch (err) {
     next(err)
@@ -13,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    res.send(await Cupcake.findByPk(req.params.id))
+    res.send(await Product.findByPk(req.params.id))
   } catch (err) {
     next(err)
   }
@@ -21,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    res.status(201).send(await Cupcake.create(req.body))
+    res.status(201).send(await Product.create(req.body))
   } catch (err) {
     next(err)
   }

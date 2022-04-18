@@ -7,6 +7,6 @@ const LineItem = db.define('line item', {
     type: INTEGER,
     defaultValue: 0
   }
-})
+});
 
 module.exports = LineItem;

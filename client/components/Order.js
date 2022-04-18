@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Order = (props) => {
-  const {cakes, cupcakes, orders, lineItems} = props
-  if(!orders.length) return null
-  console.log("cakes", cakes)
-  console.log("lineItems", lineItems)
+  const { products, orders, lineItems } = props;
+
+  if(!orders.length) return null;
+  console.log("products", products);
+  console.log("lineItems", lineItems);
 
   return (
     <div>
@@ -16,11 +17,12 @@ const Order = (props) => {
             <li>
               <div>
                 <h2>{order.id}</h2>
-                <ul>{lineItems.map(item=>{
+                <ul>{lineItems.map(lineItem=>{
                   return(
-                    <li>{cakes.find(cake=>item.cakeId === cake.id)} {item.quantity}</li>
+                    <li>{lineItem.productId} {lineItem.quantity}</li>
                   )
-                })}</ul>
+                })}
+                </ul>
               </div>
             </li>
           )
@@ -30,6 +32,6 @@ const Order = (props) => {
   );
 };
 
-const mapState = (state) => state
+const mapState = (state) => state;
 
 export default connect(mapState)(Order);

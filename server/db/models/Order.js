@@ -10,10 +10,10 @@ const Order = db.define('order', {
   },
 
   status: {
-    type: ENUM(['completed order', 'incomplete order']),
+    type: ENUM(['cart', 'order']),
     allowNull: false,
-    defaultValue: 'incomplete order'
+    defaultValue: 'cart'
   }
-})
+});
 
 module.exports = Order;
