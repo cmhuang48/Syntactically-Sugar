@@ -41,7 +41,7 @@ class Routes extends Component {
             <Route path='/' exact component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-			      <Route exact path="/cakes" component={Cakes} />
+			<Route exact path="/cakes" component={Cakes} />
             <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route path="/cupcakes/:id" component={Cupcake} />
@@ -72,11 +72,11 @@ const mapDispatch = dispatch => {
     loadProducts() {
       dispatch(loadProducts())
     },
-    loadOrders() {
-      dispatch(loadOrders())
-    },
     loadLineItems() {
       dispatch(loadLineItems())
+    },
+    loadOrders() {
+      dispatch(loadOrders())
     }
   }
 }

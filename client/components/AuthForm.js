@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {authenticate, loadOrders} from '../store'
+import {authenticate} from '../store'
 
 /**
  * COMPONENT
@@ -63,7 +63,6 @@ const mapDispatch = dispatch => {
       const username = evt.target.username.value
       const password = evt.target.password.value
       dispatch(authenticate(username, password, formName))
-      if(window.localStorage.getItem('token')) dispatch(loadOrders())
     }
   }
 }

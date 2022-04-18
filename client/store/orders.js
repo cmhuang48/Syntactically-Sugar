@@ -14,7 +14,6 @@ export const loadOrders = () => {
         authorization: token
       }
     })).data
-    console.log(orders)
     dispatch({
       type: LOAD_ORDERS,
       orders
