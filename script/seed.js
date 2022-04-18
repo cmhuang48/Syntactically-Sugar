@@ -32,18 +32,24 @@ async function seed() {
 
   console.log(`seeded ${cupcakes.length} cupcakes`)
 
-  const order = await Order.create()
 
-  console.log('seeded order')
+  const order = await Order.create({ status: 'incomplete order', userId:1})
+  const order2 = await Order.create({ status: 'incomplete order', userId:2})
+
+
+  console.log('seeded orders')
 
   const lineItem = await LineItem.create({ cakeId: cakes[0].id })
+  const lineItem2 = await LineItem.create({ cakeId: cakes[0].id , orderId : order2.id})
   
-  console.log('seeded line item')
+  console.log('seeded line items')
 
+  cakes[1].lineItemId = lineItem2.id
   cakes[0].lineItemId = lineItem.id
   lineItem.orderId = order.id
 
   await cakes[0].save()
+  await cakes[1].save()
   await lineItem.save()
 
   console.log(`seeded successfully`)

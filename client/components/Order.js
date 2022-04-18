@@ -2,24 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Order = (props) => {
-  const { products, orders, lineItems } = props;
-
-  if(!orders.length) return null;
-  console.log("products", products);
-  console.log("lineItems", lineItems);
-
+  const {cakes, cupcakes, orders, lineItems} = props
+  if(!orders.length) return <div>No Orders</div>
   return (
     <div>
       <h1>Orders</h1>
       <ul>
         {orders.map(order =>{
           return(
-            <li>
+            <li key = {order.id}>
               <div>
-                <h2>{order.id}</h2>
-                <ul>{lineItems.map(lineItem=>{
+                <h2>Order ID: {order.id}</h2>
+                <ul>{lineItems.map(item=>{
                   return(
-                    <li>{lineItem.productId} {lineItem.quantity}</li>
+                    <li key = {item.id}>{cakes.find(cake=>item.id === cake.lineItemId)?.name} ({item.quantity})</li>
                   )
                 })}
                 </ul>
