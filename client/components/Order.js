@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 const Order = (props) => {
   const {cakes, cupcakes, orders, lineItems} = props
   if(!orders.length) return <div>No Orders</div>
+  console.log('cakes', cakes)
+  console.log('cupcakes', cupcakes)
+  console.log('lineItems', lineItems)
   return (
     <div>
       <h1>Orders</h1>
