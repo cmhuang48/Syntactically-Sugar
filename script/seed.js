@@ -18,6 +18,7 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`)
 
+  // Creating Cakes
   const cakes = await Promise.all([
     Product.create({ category: 'cake', name: 'chocolate' }),
     Product.create({ category: 'cake', name: 'red velvet' })
@@ -25,6 +26,7 @@ async function seed() {
 
   console.log(`seeded ${cakes.length} cakes`)
 
+  // Creating Cupcakes
   const cupcakes = await Promise.all([
     Product.create({ category: 'cupcake', name: 'chocolate' }),
     Product.create({ category: 'cupcake', name: 'red velvet' })
@@ -32,25 +34,22 @@ async function seed() {
 
   console.log(`seeded ${cupcakes.length} cupcakes`)
 
+  // Creating Orders
+  const orders = await Promise.all([
+    Order.create({ status: 'cart', userId: 1 }),
+    Order.create({ status: 'order', userId: 2 })
+  ])
 
-  const order = await Order.create({ status: 'cart', userId:1})
-  const order2 = await Order.create({ status: 'cart', userId:2})
+  console.log(`seeded ${orders.length} orders`)
 
-
-  console.log('seeded orders')
-
-  const lineItem = await LineItem.create({ cakeId: cakes[0].id })
-  const lineItem2 = await LineItem.create({ cakeId: cakes[0].id , orderId : order2.id})
+  // Creating Line Items
+  const lineItems = await Promise.all([
+    LineItem.create({ quantity: 1, productId: cakes[0].id, orderId: orders[0].id }),
+    LineItem.create({ quantity: 2, productId: cakes[1].id, orderId : orders[1].id }),
+    LineItem.create({ quantity: 2, productId: cupcakes[0].id, orderId : orders[0].id })
+  ])
   
-  console.log('seeded line items')
-
-  cakes[1].lineItemId = lineItem2.id
-  cakes[0].lineItemId = lineItem.id
-  lineItem.orderId = order.id
-
-  await cakes[0].save()
-  await cakes[1].save()
-  await lineItem.save()
+  console.log(`seeded ${lineItems.length} line items`)
 
   console.log(`seeded successfully`)
   
@@ -59,14 +58,10 @@ async function seed() {
       cody: users[0],
       murphy: users[1]
     },
-    cakes: {
-      chocolate: cakes[0],
-      red_velvet: cakes[1]
-    },
-    cupcakes: {
-      chocolate: cupcakes[0],
-      red_velvet: cupcakes[1]
-    }
+    cakes,
+    cupcakes, 
+    orders,
+    lineItems
   }
 }
 
