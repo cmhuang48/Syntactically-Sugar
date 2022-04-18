@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const Cupcake = ({ cupcake }) => {
   if(!cupcake) return null;
+  
   return (
     <div>
       <h1>{cupcake.name} cupcake</h1>

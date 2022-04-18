@@ -17,7 +17,8 @@ const Order = (props) => {
                   return(
                     <li key = {item.id}>{cakes.find(cake=>item.id === cake.lineItemId)?.name} ({item.quantity})</li>
                   )
-                })}</ul>
+                })}
+                </ul>
               </div>
             </li>
           )
@@ -27,6 +28,6 @@ const Order = (props) => {
   );
 };
 
-const mapState = (state) => state
+const mapState = (state) => state;
 
 export default connect(mapState)(Order);
