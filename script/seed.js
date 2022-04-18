@@ -33,8 +33,8 @@ async function seed() {
   console.log(`seeded ${cupcakes.length} cupcakes`)
 
 
-  const order = await Order.create({ status: 'incomplete order', userId:1})
-  const order2 = await Order.create({ status: 'incomplete order', userId:2})
+  const order = await Order.create({ status: 'cart', userId:1})
+  const order2 = await Order.create({ status: 'cart', userId:2})
 
 
   console.log('seeded orders')
