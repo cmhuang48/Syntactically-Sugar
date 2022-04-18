@@ -74,6 +74,9 @@ const mapDispatch = dispatch => {
     },
     loadLineItems() {
       dispatch(loadLineItems())
+    },
+    loadOrders() {
+      dispatch(loadOrders())
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {authenticate, loadOrders} from '../store'
+import {authenticate} from '../store'
 
 /**
  * COMPONENT
