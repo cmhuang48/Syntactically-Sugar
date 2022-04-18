@@ -11,8 +11,8 @@ const Cupcake = ({ cupcake }) => {
   );
 };
 
-const mapState = ({ cupcakes }, { match: { params: { id } } })=>{
-  const cupcake = cupcakes.find(cupcake => cupcake.id === id*1);
+const mapState = ({ products }, { match: { params: { id } } })=>{
+  const cupcake = products.find(product => product.id === id*1);
   return {
     cupcake
   };

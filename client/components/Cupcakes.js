@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CreateCupcake from './CreateCupcake';
+import CreateProduct from './CreateProduct';
 
 const Cupcakes = ({ cupcakes }) => {
   return (
@@ -11,12 +11,17 @@ const Cupcakes = ({ cupcakes }) => {
         {cupcakes.map(cupcake => {
           return <li key={cupcake.id}><Link to = {`/cupcakes/${cupcake.id}`}>{cupcake.name}</Link></li>
         })}
-        <li key='custom'><CreateCupcake /></li>
+        <li key='custom'><CreateProduct category='cupcake' /></li>
       </ul>
     </div>
   );
 };
 
-const mapState = ({ cupcakes }) => ({ cupcakes });
+const mapState = ({ products }) => {
+  const cupcakes = products.filter(product => product.category === 'cupcake');
+  return {
+    cupcakes
+  };
+};
 
 export default connect(mapState)(Cupcakes);

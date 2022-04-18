@@ -3,12 +3,12 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
-import {me, loadCakes, loadCupcakes, loadOrders, loadLineItems} from './store'
+import {me, loadProducts, loadOrders, loadLineItems} from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
 import Cupcakes from './components/Cupcakes'
 import Cupcake from './components/Cupcake'
-import Order from './components/Order'
+import Orders from './components/Orders'
 
 /**
  * COMPONENT
@@ -16,8 +16,7 @@ import Order from './components/Order'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    this.props.loadCakes()
-    this.props.loadCupcakes()
+    this.props.loadProducts()
     if(window.localStorage.getItem('token')) this.props.loadOrders()
     this.props.loadLineItems()
   }
@@ -34,7 +33,7 @@ class Routes extends Component {
             <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route path="/cupcakes/:id" component={Cupcake} />
-            <Route path="/order" component={Order} />
+            <Route path="/orders" component={Orders} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -46,7 +45,7 @@ class Routes extends Component {
             <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route path="/cupcakes/:id" component={Cupcake} />
-            <Route path="/order" component={Order} />
+            <Route path="/orders" component={Orders} />
           </Switch>
         )}
       </div>
@@ -70,11 +69,8 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
     },
-    loadCakes() {
-      dispatch(loadCakes())
-    },
-    loadCupcakes() {
-      dispatch(loadCupcakes())
+    loadProducts() {
+      dispatch(loadProducts())
     },
     loadOrders() {
       dispatch(loadOrders())
