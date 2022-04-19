@@ -16,6 +16,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async(req, res, next) => {
+	try {
+		if(!req.user.isAdmin) { // check if user is admin
+			res.sendStatus(401)
+			throw 'Only admin can edit'
+		}
+		res.json(await Order.findByPk(req.params.orderId))
+	} catch (error) {
+		next(error)
+	}
+})
+
 router.post('/', async(req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
@@ -24,7 +36,7 @@ router.post('/', async(req, res, next) => {
 		}
 		//without customized cake
 		const { quantity, price, name, userId  } = req.body
-		const order = await Order.create({quantity, price, name, userId})
+		const order = await Order.create({ quantity, price, name, userId })
 		res.json(order)
 	} catch (error) {
 		next(error)
