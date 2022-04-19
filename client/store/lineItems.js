@@ -3,11 +3,13 @@ import axios from 'axios'
 // ACTION TYPES
 const LOAD_LINEITEMS = 'LOAD_LINEITEMS'
 const CREATE_LINEITEM = 'CREATE_LINEITEM'
+const UPDATE_LINEITEM = 'UPDATE_LINEITEM'
+const DESTROY_LINEITEM = 'DESTROY_LINEITEM'
 
 // THUNK CREATORS
 export const loadLineItems = () => {
   return async (dispatch) => {
-    const lineItems = (await axios.get('/api/lineitems')).data
+    const lineItems = (await axios.get('/api/lineItems')).data
     dispatch({
       type: LOAD_LINEITEMS,
       lineItems
@@ -15,11 +17,31 @@ export const loadLineItems = () => {
   }
 }
 
-export const createLineItem = (status) => {
+export const createLineItem = (productId, quantity) => {
   return async (dispatch) => {
-    const lineItem = (await axios.post('/api/lineitems', { quantity })).data
+    const lineItem = (await axios.post('/api/lineItems', { quantity })).data
     dispatch({
       type: CREATE_LINEITEM,
+      lineItem
+    })
+  }
+}
+
+export const updateLineItem = (id, quantity) => {
+  return async (dispatch) => {
+    const lineItem = (await axios.put(`/api/lineItems/${id}`, { quantity })).data
+    dispatch({
+      type: UPDATE_LINEITEM,
+      lineItem
+    })
+  }
+}
+
+export const deleteLineItem = (lineItem) => {
+  return async (dispatch) => {
+    await axios.delete(`/api/campuses/${lineItem.id}`);
+    dispatch({
+      type: DESTROY_LINEITEM,
       lineItem
     })
   }
@@ -32,6 +54,10 @@ export default function(state = [], action) {
       return action.lineItems
     case CREATE_LINEITEM:
       return [...state, action.lineItem]
+    case UPDATE_LINEITEM:
+      return state.map(lineItem => lineItem.id !== action.lineItem.id ? lineItem : action.lineItem)
+    case DESTROY_LINEITEM:
+      return state.filter(lineItem => lineItem.id !== action.lineItem.id)
     default:
       return state
   }

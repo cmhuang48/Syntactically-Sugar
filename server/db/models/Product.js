@@ -30,6 +30,10 @@ const Product = db.define('product', {
   price: {
     type: INTEGER
   },
+
+  quantityInStock: {
+    type: INTEGER
+  },
   
   image: {
 	type: STRING,
