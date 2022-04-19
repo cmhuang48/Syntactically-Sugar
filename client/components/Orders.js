@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Orders = ({ orders, lineItems, products }) => {
-  if(!orders.length) return <div>No Orders</div>
-  console.log('lineItems', lineItems)
-  console.log('products', products)
-  
+  if(!orders.length) return <div>No Orders</div> 
   return (
     <div>
       <h1>Orders</h1>
@@ -15,13 +12,20 @@ const Orders = ({ orders, lineItems, products }) => {
             <li key = {order.id}>
               <div>
                 <h2>Order ID: {order.id}</h2>
-                <ul>{lineItems.map(lineItem => {
+                {/* find the line items associated to order */}
+                <ul>{lineItems.filter(lineItem => {
                   return (
-                    <li key={lineItem.id}>
-                      {products.find(product => product.id === lineItem.productId).category} ({lineItem.quantity})
-                    </li>
+                    lineItem.orderId === order.id
                   )
-                })}
+                  // map through the line items to see what the products are
+                  }).map(lineItem=>{
+                    return(
+                      <li key={lineItem.id}>
+                        {products.find(product => product.id === lineItem.productId)?.name} cake 
+                        ({lineItem.quantity})
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </li>

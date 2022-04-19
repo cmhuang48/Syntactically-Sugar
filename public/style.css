@@ -19,3 +19,86 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  background-size: cover;
+  object-fit: cover;
+}
+
+li {
+	list-style-type: none;
+}
+
+.product-title {
+	display: block;
+	font-size: 20px;
+}
+
+.cakeContainer {
+	display: flex;
+	padding: 35px;
+	margin: 0 auto 20px;
+	justify-content: space-around;
+	text-align: center;
+	flex-wrap: wrap;
+
+}
+
+.cakeBox {
+	flex-direction: column;
+}
+
+.cakeImage {
+	width: 40vw;
+	height: 40vw;
+	margin-bottom: 15px;
+}
+
+.cake-details {
+	display: flex;
+	margin: 0 auto;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.cake-details > img {
+	width: 80%;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+.cake-add-to-cart {
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+}
+
+@media (min-width: 767px) {
+	.cakeImage {
+		width: 20vw;
+		height: 20vw;
+		margin-bottom: 15px;
+	}
+
+	.cake-details {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+
+	.cake-details > img {
+		width: 40%;
+	}
+
+	.cake-add-to-cart {
+		width: 40%;
+		justify-content: center;
+		align-items: center;
+	}
+
+}
