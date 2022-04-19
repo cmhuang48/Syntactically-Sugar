@@ -18,7 +18,7 @@
 - [x] show orders on front end with the listed line item - NEED TO UPDATE CODE A BIT TO SHOW THE LISTED ITEMS
 
 - [x] guest can view items
-- [] guest have to loggin then add items to cart
+- [] guest have to log in then add items to cart
 
 - [] auth user can add item to cart
 - [] auth user can remove item from cart
