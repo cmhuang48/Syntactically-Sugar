@@ -7,12 +7,21 @@ const Cakes = ({ cakes }) => {
   return (
     <div>
       <h1>Cakes</h1>
-      <ul>
+	  <li key='custom'><CreateProduct category='cake' /></li>
+      <ul className='cakeContainer'>
         {cakes.map(cake => {
-          return <li key={cake.id}><Link to = {`/cakes/${cake.id}`}>{cake.name}</Link></li>
-        })}
-        <li key='custom'><CreateProduct category='cake' /></li>
+          return(
+			<Link to = {`/cakes/${cake.id}`}>
+				<div className='cakeBox'>
+					<img className='cakeImage' src={cake.image}/>
+					<li key={cake.id}>
+						<span className='product-title'>{cake.name}</span>
+					</li>
+				</div>
+			</Link>
+		)})}
       </ul>
+		
     </div>
   );
 };

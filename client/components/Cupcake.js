@@ -5,8 +5,14 @@ const Cupcake = ({ cupcake }) => {
   if(!cupcake) return null;
   
   return (
-    <div>
+    <div className='cake-details'>
       <h1>{cupcake.name} cupcake</h1>
+	  <img src={cupcake.image}/>
+	  <div className='cake-add-to-cart'>
+		<p>Price: ${cupcake.price}</p>
+		<p>Quantity: <input type='number' min='1' max='10'/></p>
+		<button>Add to Cart</button>
+	  </div>
     </div>
   );
 };
