@@ -19,3 +19,56 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  background-size: cover;
+  object-fit: cover;
+}
+
+li {
+	list-style-type: none;
+}
+
+.product-title {
+	display: block;
+	font-size: 20px;
+}
+
+.cakeContainer {
+	display: flex;
+	padding: 35px;
+	margin: 0 auto;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.cakeBox {
+	flex-direction: column;
+}
+
+.cakeImage {
+	width: 20vw;
+	height: 20vw;
+	margin-bottom: 15px;
+}
+
+.cake-details {
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+.cake-add-to-cart {
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
