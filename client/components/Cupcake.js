@@ -6,9 +6,9 @@ const Cupcake = ({ cupcake }) => {
   
   return (
     <div className='cake-details'>
-      <h1>{cupcake.name} cupcake</h1>
 	  <img src={cupcake.image}/>
 	  <div className='cake-add-to-cart'>
+		<h1>{cupcake.name} cupcake</h1>
 		<p>Price: ${cupcake.price}</p>
 		<p>Quantity: <input type='number' min='1' max='10'/></p>
 		<button>Add to Cart</button>
