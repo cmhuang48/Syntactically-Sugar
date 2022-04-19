@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    res.send(await Product.findByPk(req.params.id))
+    res.json(await Product.findByPk(req.params.id))
   } catch (err) {
     next(err)
   }
@@ -21,7 +21,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    res.status(201).send(await Product.create(req.body))
+    res.status(201).json(await Product.create(req.body))
   } catch (err) {
     next(err)
   }

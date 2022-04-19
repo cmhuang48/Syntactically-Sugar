@@ -1,20 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createLineItem } from '../store/lineItems';
 
-const Cake = ({ cake }) => {
+const Cake = ({ cake, createLineItem }) => {
   if(!cake) return null;
   
   return (
     <div className='cake-details'>
-		
-	  		<img src={cake.image}/>
-		
-	  <div className='cake-add-to-cart'>
-		<h1>{cake.name} cake</h1>
-		<p>Price: ${cake.price}</p>
-		<p>Quantity: <input type='number' min='1' max='10' /></p>
-		<button>Add to Cart</button>
-	  </div>
+	  	<img src={cake.image}/>
+      <div className='cake-add-to-cart'>
+        <h1>{cake.name} cake</h1>
+        <p>Price: ${cake.price}</p>
+        <p>Quantity: <input type='number' min='1' max='10' /></p>
+        <button onClick={() => createLineItem(1)}>Add to Cart</button>
+      </div>
     </div>
   );
 };
@@ -26,4 +25,12 @@ const mapState = ({ products }, { match: { params: { id } } })=>{
   };
 };
 
-export default connect(mapState)(Cake);
+const mapDispatch = (dispatch) => {
+  return {
+    createLineItem: (quantity) => {
+      dispatch(createLineItem(quantity));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(Cake);

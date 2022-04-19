@@ -7,19 +7,21 @@ const Cakes = ({ cakes }) => {
   return (
     <div>
       <h1>Cakes</h1>
-	  <li key='custom'><CreateProduct category='cake' /></li>
+	    <CreateProduct category='cake' />
       <ul className='cakeContainer'>
         {cakes.map(cake => {
-          return(
-			<Link to = {`/cakes/${cake.id}`}>
-				<div className='cakeBox'>
-					<img className='cakeImage' src={cake.image}/>
-					<li key={cake.id}>
-						<span className='product-title'>{cake.name}</span>
-					</li>
-				</div>
-			</Link>
-		)})}
+          return (
+            <Link to={`/cakes/${cake.id}`}>
+              <div className='cakeBox'>
+                <img className='cakeImage' src={cake.image}/>
+                <li key={cake.id}>
+                  <span className='product-title'>{cake.name}</span>
+                </li>
+                <button>Add to Cart</button>
+              </div>
+            </Link>
+          )
+        })}
       </ul>
 		
     </div>
@@ -32,5 +34,9 @@ const mapState = ({ products }) => {
     cakes
   };
 };
+
+const mapDispatch = (dispatch) => {
+
+}
 
 export default connect(mapState)(Cakes);

@@ -7,19 +7,18 @@ const Cupcakes = ({ cupcakes }) => {
   return (
     <div>
       <h1>Cupcakes</h1>
-	  <li key='custom'><CreateProduct category='cupcake' /></li>
+	    <CreateProduct category='cupcake' />
       <ul className='cakeContainer'>
         {cupcakes.map(cupcake => {
           return ( 
-				<Link to = {`/cupcakes/${cupcake.id}`}>
-					<li key={cupcake.id}>
-						<img className='cakeImage' src={cupcake.image}/>
-						<span className='product-title'>{cupcake.name}</span>
-					</li>
-				</Link>
-			)
+            <Link to = {`/cupcakes/${cupcake.id}`}>
+              <li key={cupcake.id}>
+                <img className='cakeImage' src={cupcake.image}/>
+                <span className='product-title'>{cupcake.name}</span>
+              </li>
+            </Link>
+          )
         })}
-        
       </ul>
     </div>
   );
