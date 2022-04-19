@@ -7,15 +7,13 @@ const Cake = ({ cake, createLineItem }) => {
   
   return (
     <div className='cake-details'>
-		
-	  		<img src={cake.image}/>
-		
-	  <div className='cake-add-to-cart'>
-		<h1>{cake.name} cake</h1>
-		<p>Price: ${cake.price}</p>
-		<p>Quantity: <input type='number' min='1' max='10' /></p>
-		<button onClick={() => createLineItem(1)}>Add to Cart</button>
-	  </div>
+	  	<img src={cake.image}/>
+      <div className='cake-add-to-cart'>
+        <h1>{cake.name} cake</h1>
+        <p>Price: ${cake.price}</p>
+        <p>Quantity: <input type='number' min='1' max='10' /></p>
+        <button onClick={() => createLineItem(1)}>Add to Cart</button>
+      </div>
     </div>
   );
 };

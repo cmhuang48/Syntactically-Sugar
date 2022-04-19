@@ -17,9 +17,9 @@ export const loadLineItems = () => {
   }
 }
 
-export const createLineItem = (productId, quantity) => {
+export const createLineItem = (quantity, productId, orderId) => {
   return async (dispatch) => {
-    const lineItem = (await axios.post('/api/lineItems', { quantity })).data
+    const lineItem = (await axios.post('/api/lineItems', { quantity, productId, orderId })).data
     dispatch({
       type: CREATE_LINEITEM,
       lineItem
@@ -27,9 +27,9 @@ export const createLineItem = (productId, quantity) => {
   }
 }
 
-export const updateLineItem = (id, quantity) => {
+export const updateLineItem = (id, quantity, productId, orderId) => {
   return async (dispatch) => {
-    const lineItem = (await axios.put(`/api/lineItems/${id}`, { quantity })).data
+    const lineItem = (await axios.put(`/api/lineItems/${id}`, { quantity, productId, orderId })).data
     dispatch({
       type: UPDATE_LINEITEM,
       lineItem

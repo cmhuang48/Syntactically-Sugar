@@ -14,7 +14,7 @@ const Cart = ({ orders, lineItems, products }) => {
         {associatedLineItems.map(lineItem => {
           const product = products.find(product => product.id === lineItem.productId)
           return (
-            <li key={lineItem.id}>
+            <li key={product.id}>
               {product.name} {product.category} ({lineItem.quantity})
             </li>
           )
