@@ -23,7 +23,7 @@ async function seed() {
     Product.create({ category: 'cake', name: 'chocolate' }),
     Product.create({ category: 'cake', name: 'red velvet' }),
 	Product.create({ category: 'cake', name: 'chocolate', price: 60.00, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1578&q=80'}),
-	Product.create({ category: 'cake', name: 'vanilla', price: 45.00, image: 'https://images.unsplash.com/photo-1618482542898-30db28ca4bb5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'})
+	Product.create({ category: 'cake', name: 'vanilla', price: 45.00, image: 'https://cdn.pixabay.com/photo/2020/04/20/16/59/cake-5069043_1280.jpg'})
   ])
 
   console.log(`seeded ${cakes.length} cakes`)
