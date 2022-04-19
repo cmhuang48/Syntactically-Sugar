@@ -4,6 +4,7 @@ const { models: { Order, User }} = require('../db')
 
 module.exports = router
 
+//get all orders
 router.get('/', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization) // loggedIn
@@ -16,6 +17,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//edit order
 router.get('/:id', async(req, res, next) => {
 	try {
 		if(!req.user.isAdmin) { // check if user is admin
@@ -28,6 +30,7 @@ router.get('/:id', async(req, res, next) => {
 	}
 })
 
+//add to cart
 router.post('/', async(req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
