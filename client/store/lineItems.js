@@ -40,7 +40,7 @@ export const updateLineItem = (id, quantity, productId, orderId) => {
 
 export const deleteLineItem = (lineItem) => {
   return async (dispatch) => {
-    await axios.delete(`/api/campuses/${lineItem.id}`);
+    await axios.delete(`/api/lineItems/${lineItem.id}`);
     dispatch({
       type: DESTROY_LINEITEM,
       lineItem
