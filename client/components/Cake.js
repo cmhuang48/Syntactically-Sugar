@@ -16,7 +16,6 @@ class Cake extends React.Component {
     ev.preventDefault();
     const { cake, order, createLineItem } = this.props;
     const { quantity } = this.state;
-    console.log(cake.id, order.id, quantity)
     createLineItem(quantity, cake.id, order.id);
   }
 
