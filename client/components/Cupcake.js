@@ -32,9 +32,9 @@ class Cupcake extends React.Component {
     if(!cupcake) return null;
 
     return (
-      <div className='cupcake-details'>
+      <div className='cake-details'>
         <img src={cupcake.image}/>
-        <div className='cupcake-add-to-cart'>
+        <div className='cake-add-to-cart'>
           <h1>{cupcake.name} cupcake</h1>
           <p>Price: ${cupcake.price}</p>
           <form onSubmit={onSubmit}>
