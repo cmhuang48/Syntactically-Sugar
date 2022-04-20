@@ -3,6 +3,7 @@ import axios from 'axios'
 // ACTION TYPES
 const LOAD_ORDERS = 'LOAD_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
+const RESET_ORDER = 'RESET_ORDER'
 const TOKEN = 'token'
 
 // THUNK CREATORS
@@ -38,7 +39,7 @@ export default function(state = [], action) {
       return action.orders
     case CREATE_ORDER:
       return [...state, action.order]
-    case 'RESET_ORDERS':
+    case RESET_ORDER:
       return []
     default:
       return state
