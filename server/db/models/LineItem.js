@@ -5,7 +5,7 @@ const { INTEGER } = Sequelize
 const LineItem = db.define('lineItem', {
   quantity: {
     type: INTEGER,
-    defaultValue: 0
+    defaultValue: 1
   }
 });
 
