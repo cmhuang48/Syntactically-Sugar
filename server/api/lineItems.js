@@ -27,7 +27,6 @@ router.post('/', async (req, res, next) => {
         orderId: req.body.orderId
       }
     })
-    console.log(lineItem.quantity)
     if (lineItem) {
       let updatedQuantity = lineItem.quantity + req.body.quantity*1
       res.json(await lineItem.update({ quantity: updatedQuantity }))

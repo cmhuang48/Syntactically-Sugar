@@ -41,7 +41,8 @@ async function seed() {
   // Creating Orders
   const orders = await Promise.all([
     Order.create({ status: 'cart', userId: 1 }),
-    Order.create({ status: 'order', userId: 2 })
+    Order.create({ status: 'order', userId: 2 }),
+    Order.create({ status: 'cart', userId: 2 })
   ])
 
   console.log(`seeded ${orders.length} orders`)
