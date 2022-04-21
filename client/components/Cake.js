@@ -54,10 +54,7 @@ class Cake extends React.Component {
 const mapState = ({ products, orders, lineItems }, { match: { params: { id } } }) => {
   const cake = products.find(product => product.id === id*1);
   const order = orders.find(order => order.status === 'cart');
-<<<<<<< HEAD
-=======
   const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order.id);
->>>>>>> 03493994dc477227adc0bb4bb619ec82bad53249
   return {
     cake,
     order,
