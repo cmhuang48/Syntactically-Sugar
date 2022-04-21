@@ -16,6 +16,7 @@ const Orders = ({ orders, lineItems, products }) => {
                 <h2>Order ID: {order.id}</h2>
                 <ul>
                   {associatedLineItems.map(lineItem => {
+                    console.log(lineItem)
                     const product = products.find(product => product.id === lineItem.productId)
                     return (
                       <li key={lineItem.id}>
