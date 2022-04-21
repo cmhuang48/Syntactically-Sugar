@@ -1,23 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import LineItemInCart from './LineItemInCart';
 
-const Cart = ({ orders, lineItems, products }) => {
+const Cart = ({ orders, lineItems }) => {
   const cart = orders.find(order => order.status === 'cart')
+  console.log(cart)
   if(!cart) return <div>Empty Cart</div> 
 
-  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId !== cart.id)
+  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart.id)
+  console.log(associatedLineItems)
 
   return (
     <div>
       <h1>Cart</h1>
       <ul>
         {associatedLineItems.map(lineItem => {
-          const product = products.find(product => product.id === lineItem.productId)
-          return (
-            <li key={product.id}>
-              {product.name} {product.category} ({lineItem.quantity})
-            </li>
-          )
+          <LineItemInCart lineItem={lineItem} />
         })}
       </ul>
     </div>

@@ -19,7 +19,6 @@ export const loadLineItems = () => {
 
 export const createLineItem = (quantity, productId, orderId) => {
   return async (dispatch) => {
-    console.log(quantity, productId, orderId)
     const lineItem = (await axios.post('/api/lineItems', { quantity, productId, orderId })).data
     dispatch({
       type: CREATE_LINEITEM,
@@ -40,7 +39,7 @@ export const updateLineItem = (id, quantity, productId, orderId) => {
 
 export const deleteLineItem = (lineItem) => {
   return async (dispatch) => {
-    await axios.delete(`/api/campuses/${lineItem.id}`);
+    await axios.delete(`/api/lineItems/${lineItem.id}`);
     dispatch({
       type: DESTROY_LINEITEM,
       lineItem
