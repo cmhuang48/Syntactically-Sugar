@@ -50,7 +50,6 @@ class Cupcake extends React.Component {
 const mapState = ({ products, orders }, { match: { params: { id } } })=>{
   const cupcake = products.find(product => product.id === id*1);
   const order = orders.find(order => order.status === 'cart');
-  console.log(order)
   return {
     cupcake,
     order

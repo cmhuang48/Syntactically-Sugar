@@ -19,7 +19,18 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+
+// Create or update line item on Product or Cart pages
 router.post('/', async (req, res, next) => {
+  try {
+    res.status(201).json(await LineItem.create(req.body))
+  } catch (err) {
+    next(err)
+  }
+})
+
+
+router.put('/:id', async (req, res, next) => {
   try {
     const lineItem = await LineItem.findOne({
       where: {
@@ -27,22 +38,8 @@ router.post('/', async (req, res, next) => {
         orderId: req.body.orderId
       }
     })
-    if (lineItem) {
-      let updatedQuantity = lineItem.quantity + req.body.quantity*1
-      res.json(await lineItem.update({ quantity: updatedQuantity }))
-    }
-    else {
-      res.status(201).json(await LineItem.create(req.body))
-    }
-  } catch (err) {
-    next(err)
-  }
-})
-
-router.put('/:id', async (req, res, next) => {
-  try {
-    const lineItem = await LineItem.findByPk(req.params.id)
-    res.json(await lineItem.update(req.body))
+    let updatedQuantity = lineItem.quantity + req.body.quantity*1
+    res.json(await lineItem.update({ quantity: updatedQuantity }))
   }
   catch(err) {
     next(err)

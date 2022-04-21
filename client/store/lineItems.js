@@ -19,7 +19,6 @@ export const loadLineItems = () => {
 
 export const createLineItem = (quantity, productId, orderId) => {
   return async (dispatch) => {
-    console.log(quantity, productId, orderId)
     const lineItem = (await axios.post('/api/lineItems', { quantity, productId, orderId })).data
     dispatch({
       type: CREATE_LINEITEM,
