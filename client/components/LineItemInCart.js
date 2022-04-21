@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { updateLineItem, deleteLineItem } from '../store/lineItems';
 
 class LineItemInCart extends React.Component {
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       quantity: 0
     };
@@ -26,10 +26,12 @@ class LineItemInCart extends React.Component {
   }
 
   render () {
-    const { product, lineItem, deleteLineItem } = this.props;
+    const { products, lineItem, deleteLineItem } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
 
+    const product = products.find(product => product.id === lineItem.productId)
+    
     return (
       <li key={product.id}>
         {product.name} {product.category} ({lineItem.quantity})
@@ -37,21 +39,13 @@ class LineItemInCart extends React.Component {
           <p>Quantity: <input name='quantity' value={quantity} type='number' min='1' max='10' onChange={onChange} /></p>
           <button>Update</button>
         </form>
-        <button onClick={() => deleteLineItem(lineItem)}></button>
+        <button onClick={() => deleteLineItem(lineItem)}>Remove Item</button>
       </li>
     )
   }
 };
 
-const mapState = ({ products }) => {
-  const lineItem = this.props;
-  console.log(lineItem);
-  const product = products.find(product => product.id === lineItem.productId);
-  console.log(product)
-  return {
-    product
-  }
-};
+const mapState = ({ products }) => ({ products });
 
 const mapDispatch = (dispatch) => {
   return {
