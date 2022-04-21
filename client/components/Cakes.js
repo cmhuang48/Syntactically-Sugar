@@ -12,7 +12,7 @@ const Cakes = ({ cakes }) => {
         {cakes.map(cake => {
           return (
             <Link to={`/cakes/${cake.id}`}>
-              <div className='cakeBox'>
+              <div className='cakeBox' key={cake.id}>
                 <img className='cakeImage' src={cake.image}/>
                 <li key={cake.id}>
                   <span className='product-title'>{cake.name}</span>
