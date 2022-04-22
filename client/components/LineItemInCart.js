@@ -6,7 +6,7 @@ class LineItemInCart extends React.Component {
   constructor () {
     super();
     this.state = {
-      quantity: 0
+      totalQuantity: 0
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -15,8 +15,8 @@ class LineItemInCart extends React.Component {
   onSubmit (ev) {
     ev.preventDefault();
     const { updateLineItem, lineItem } = this.props;
-    const { quantity } = this.state;
-    updateLineItem(lineItem.id, quantity, lineItem.productId, lineItem.orderId);
+    const { totalQuantity } = this.state;
+    updateLineItem(lineItem.id, null, lineItem.productId, lineItem.orderId, totalQuantity);
   }
 
   onChange (ev) {
@@ -27,7 +27,7 @@ class LineItemInCart extends React.Component {
 
   render () {
     const { products, lineItem, deleteLineItem } = this.props;
-    const { quantity } = this.state;
+    const { totalQuantity } = this.state;
     const { onChange, onSubmit } = this;
 
     const product = products.find(product => product.id === lineItem.productId)
@@ -36,7 +36,7 @@ class LineItemInCart extends React.Component {
       <li key={product.id}>
         {product.name} {product.category} ({lineItem.quantity})
         <form onSubmit={onSubmit}>
-          <p>Quantity: <input name='quantity' value={quantity} type='number' min='1' max='10' onChange={onChange} /></p>
+          <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
           <button>Update</button>
         </form>
         <button onClick={() => deleteLineItem(lineItem)}>Remove Item</button>
@@ -49,8 +49,8 @@ const mapState = ({ products }) => ({ products });
 
 const mapDispatch = (dispatch) => {
   return {
-    updateLineItem: (id, quantity, productId, orderId) => {
-      dispatch(updateLineItem(id, quantity, productId, orderId));
+    updateLineItem: (id, quantity, productId, orderId, totalQuantity) => {
+      dispatch(updateLineItem(id, quantity, productId, orderId, totalQuantity));
     },
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));

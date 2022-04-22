@@ -38,8 +38,11 @@ router.put('/:id', async (req, res, next) => {
         orderId: req.body.orderId
       }
     })
-    let updatedQuantity = lineItem.quantity + req.body.quantity*1
-    res.json(await lineItem.update({ quantity: updatedQuantity }))
+    if(req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
+    else{
+      let updatedQuantity = lineItem.quantity + req.body.quantity*1
+      res.json(await lineItem.update({ quantity: updatedQuantity }))
+    }
   }
   catch(err) {
     next(err)

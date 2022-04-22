@@ -4,11 +4,10 @@ import LineItemInCart from './LineItemInCart';
 
 const Cart = ({ orders, lineItems }) => {
   const cart = orders.find(order => order.status === 'cart')
-  //console.log(cart)
   if(!cart) return <div>Empty Cart</div> 
 
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart.id)
-  //console.log(associatedLineItems)
+  if(!associatedLineItems.length) return <div>Empty Cart</div> 
 
   return (
     <div>
@@ -20,6 +19,7 @@ const Cart = ({ orders, lineItems }) => {
           )
         })}
       </ul>
+      <button>Checkout</button>
     </div>
   );
 };
