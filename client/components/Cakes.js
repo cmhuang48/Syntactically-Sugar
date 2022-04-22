@@ -11,8 +11,10 @@ const Cakes = ({ cakes }) => {
       <ul className='cakeContainer'>
         {cakes.map(cake => {
           return (
+
             <Link to={`/cakes/${cake.id}`} key={cake.id}>
               <div className='cakeBox'>
+
                 <img className='cakeImage' src={cake.image}/>
                 <li>
                   <span className='product-title'>{cake.name}</span>
