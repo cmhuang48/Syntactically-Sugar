@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { updateLineItem, deleteLineItem } from '../store/lineItems';
 
 class LineItemInCart extends React.Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
-      totalQuantity: 0
+      totalQuantity: this.props.lineItem.quantity ? this.props.lineItem.quantity : 0
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);

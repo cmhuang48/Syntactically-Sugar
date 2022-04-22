@@ -6,7 +6,7 @@ class Cake extends React.Component {
   constructor () {
     super();
     this.state = {
-      quantity: 0
+      quantity: 1
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -14,13 +14,24 @@ class Cake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
-    const { cake, order, lineItem, createLineItem, updateLineItem } = this.props;
+    const { auth, cake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
-    if (!lineItem) {
-      createLineItem(quantity, cake.id, order.id);
+    if (auth.username) {
+      if (!lineItem) {
+        createLineItem(+quantity, cake.id, order.id);
+      } else {
+        updateLineItem(lineItem.id, +quantity, cake.id, order.id);
+      }
     } else {
-      updateLineItem(lineItem.id, quantity, cake.id, order.id);
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      if (existingCart[cake.id]) {
+        existingCart[cake.id] += +quantity;
+      } else {
+        existingCart[cake.id] = +quantity;
+      }
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
+    window.alert('Added to cart!');
   }
 
   onChange (ev) {
@@ -51,11 +62,12 @@ class Cake extends React.Component {
   }
 };
 
-const mapState = ({ products, orders, lineItems }, { match: { params: { id } } }) => {
-  const cake = products.find(product => product.id === id*1 && product.category === "cake");
+const mapState = ({ auth, products, orders, lineItems }, { match: { params: { id } } }) => {
+  const cake = products.find(product => product.id === id*1);
   const order = orders.find(order => order.status === 'cart');
   const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order?.id);
   return {
+    auth,
     cake,
     order,
     lineItem

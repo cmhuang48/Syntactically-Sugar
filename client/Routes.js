@@ -18,7 +18,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.loadProducts()
-    if(window.localStorage.getItem('token')) this.props.loadOrders()
+    this.props.loadOrders()
     this.props.loadLineItems()
   }
 
