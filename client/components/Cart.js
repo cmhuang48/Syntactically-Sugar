@@ -7,6 +7,7 @@ const Cart = ({ orders, lineItems }) => {
   if(!cart) return <div>Empty Cart</div> 
 
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart.id)
+
   if(!associatedLineItems.length) return <div>Empty Cart</div> 
 
   return (

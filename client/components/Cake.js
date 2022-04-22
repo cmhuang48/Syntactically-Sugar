@@ -6,7 +6,7 @@ class Cake extends React.Component {
   constructor () {
     super();
     this.state = {
-      quantity: 0
+      quantity: 1
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -54,7 +54,7 @@ class Cake extends React.Component {
 const mapState = ({ products, orders, lineItems }, { match: { params: { id } } }) => {
   const cake = products.find(product => product.id === id*1);
   const order = orders.find(order => order.status === 'cart');
-  const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order.id);
+  const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order?.id);
   return {
     cake,
     order,

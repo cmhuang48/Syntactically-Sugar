@@ -19,8 +19,6 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-
-// Create or update line item on Product or Cart pages
 router.post('/', async (req, res, next) => {
   try {
     res.status(201).json(await LineItem.create(req.body))
@@ -28,7 +26,6 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-
 
 router.put('/:id', async (req, res, next) => {
   try {
