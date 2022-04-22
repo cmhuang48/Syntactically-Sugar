@@ -17,7 +17,6 @@ const Cakes = ({ cakes }) => {
                 <li>
                   <span className='product-title'>{cake.name}</span>
                 </li>
-                <button>Add to Cart</button>
               </div>
             </Link>
           )
@@ -34,9 +33,5 @@ const mapState = ({ products }) => {
     cakes
   };
 };
-
-const mapDispatch = (dispatch) => {
-
-}
 
 export default connect(mapState)(Cakes);
