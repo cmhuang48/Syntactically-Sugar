@@ -25,4 +25,17 @@ describe('Product routes', () => {
 			expect(res.body.name).to.equal('chocolate')
 		})
 	})
+
+	describe('POST /api/products', () => {
+		it('inserts the product', async() => {
+			const foo = await Product.create({
+				productId: 1,
+				orderId: 1,
+				name: 'chocolate',
+				quantity: 1
+			})
+			const res = await app.post('/api/products')
+			expect(res.status).to.equal(201)
+		})
+	})
 })
