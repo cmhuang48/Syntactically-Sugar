@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLineItem } from '../store/lineItems';
+import { createLineItem, updateLineItem } from '../store/lineItems';
 
 class Cake extends React.Component {
   constructor () {
     super();
     this.state = {
-      quantity: 0
+      quantity: 1
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -14,9 +14,13 @@ class Cake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
-    const { cake, order, createLineItem } = this.props;
+    const { cake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
-    createLineItem(quantity, cake.id, order.id);
+    if (!lineItem) {
+      createLineItem(quantity, cake.id, order.id);
+    } else {
+      updateLineItem(lineItem.id, quantity, cake.id, order.id);
+    }
   }
 
   onChange (ev) {
@@ -47,13 +51,14 @@ class Cake extends React.Component {
   }
 };
 
-const mapState = ({ products, orders }, { match: { params: { id } } })=>{
+const mapState = ({ products, orders, lineItems }, { match: { params: { id } } }) => {
   const cake = products.find(product => product.id === id*1);
   const order = orders.find(order => order.status === 'cart');
-console.log(orders)
+  const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order?.id);
   return {
     cake,
-    order
+    order,
+    lineItem
   };
 };
 
@@ -61,6 +66,9 @@ const mapDispatch = (dispatch) => {
   return {
     createLineItem: (quantity, productId, orderId) => {
       dispatch(createLineItem(quantity, productId, orderId));
+    },
+    updateLineItem: (id, quantity, productId, orderId) => {
+      dispatch(updateLineItem(id, quantity, productId, orderId));
     }
   };
 };

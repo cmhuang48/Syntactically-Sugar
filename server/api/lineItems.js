@@ -21,19 +21,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const lineItem = await LineItem.findOne({
-      where: {
-        productId: req.body.productId,
-        orderId: req.body.orderId
-      }
-    })
-    if (lineItem) {
-      let updatedQuantity = lineItem.quantity + req.body.quantity*1
-      res.json(await lineItem.update({ quantity: updatedQuantity }))
-    }
-    else {
-      res.status(201).json(await LineItem.create(req.body))
-    }
+    res.status(201).json(await LineItem.create(req.body))
   } catch (err) {
     next(err)
   }
@@ -41,8 +29,17 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const lineItem = await LineItem.findByPk(req.params.id)
-    res.json(await lineItem.update(req.body))
+    const lineItem = await LineItem.findOne({
+      where: {
+        productId: req.body.productId,
+        orderId: req.body.orderId
+      }
+    })
+    if(req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
+    else{
+      let updatedQuantity = lineItem.quantity + req.body.quantity*1
+      res.json(await lineItem.update({ quantity: updatedQuantity }))
+    }
   }
   catch(err) {
     next(err)

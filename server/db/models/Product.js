@@ -41,9 +41,4 @@ const Product = db.define('product', {
   }
 });
 
-const test = ()=>console.log(Object.values(Product.tableAttributes.name.type)[0])
-
-test()
-
-
 module.exports = Product;
