@@ -8,6 +8,8 @@ const Cart = ({ orders, lineItems }) => {
 
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart.id)
 
+  if(!associatedLineItems.length) return <div>Empty Cart</div> 
+
   return (
     <div>
       <h1>Cart</h1>
@@ -18,6 +20,7 @@ const Cart = ({ orders, lineItems }) => {
           )
         })}
       </ul>
+      <button>Checkout</button>
     </div>
   );
 };

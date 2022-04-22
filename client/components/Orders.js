@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Orders = ({ orders, lineItems, products }) => {
-  if(!orders.length) return <div>No Orders</div> 
+const Orders = ({ complete, lineItems, products }) => {
+  if(!complete.length) return <div>No Orders</div> 
   
   return (
     <div>
       <h1>Orders</h1>
       <ul>
-        {orders.map(order => {
+        {complete.map(order => {
           const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === order.id)
           return (
             <li key = {order.id}>
@@ -33,6 +33,13 @@ const Orders = ({ orders, lineItems, products }) => {
   );
 };
 
-const mapState = (state) => state;
+const mapState = ({orders, lineItems, products}) => {
+  const complete = orders.filter(order => order.status === "order")
+  return{
+    complete,
+    lineItems,
+    products
+  }
+};
 
 export default connect(mapState)(Orders);
