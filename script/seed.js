@@ -27,7 +27,6 @@ async function seed() {
   ])
 
   console.log(`seeded ${cakes.length} cakes`)
-  console.log(cakes[0], cakes[1], cakes[2], cakes[3])
 
   // Creating Cupcakes
   const cupcakes = await Promise.all([
