@@ -10,7 +10,7 @@ class Cart extends React.Component{
     super(props)
   }
 
-  componentDidMount(){
+  componentDidUpdate(){
     let existingCart = JSON.parse(window.localStorage.getItem('cart'));
     if(!auth.username && Object.keys(existingCart).length){
       for (const productId in existingCart) {
@@ -19,6 +19,7 @@ class Cart extends React.Component{
         else this.props.createLineItem(existingCart[productId], productId, null);
       }
     }
+    console.log('updated')
   }
 
   render(){
@@ -51,15 +52,19 @@ class Cart extends React.Component{
 
       if(!Object.keys(existingCart).length) return <div>Empty Cart</div>
 
-      const associatedLineItems = lineItems.filter(lineItem => !lineItem.orderId)
+      const associatedLineItems = [];
+      for (let productId in existingCart) {
+        associatedLineItems.push({'productId': productId, 'quantity': existingCart[productId]})
+      }
 
       return (
         <div>
           <h1>Cart</h1>
           <ul>
             {associatedLineItems.map(lineItem => {
+              console.log(lineItem)
               return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
               )
             })}
           </ul>

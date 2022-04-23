@@ -1,22 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import auth from '../store/auth';
 import { updateLineItem, deleteLineItem } from '../store/lineItems';
 
 class LineItemInCart extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      totalQuantity: this.props.lineItem.quantity ? this.props.lineItem.quantity : 0
+      totalQuantity: this.props.lineItem.quantity ? this.props.lineItem.quantity : 0,
+      test: true
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.lineItem !== this.props.lineItem) {
+      this.setState({test: !test})
+      console.log(window.localStorage);
+    }
+  }
+
   onSubmit (ev) {
     ev.preventDefault();
-    const { updateLineItem, lineItem } = this.props;
+    const { auth, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
-    updateLineItem(lineItem.id, null, lineItem.productId, lineItem.orderId, totalQuantity);
+    if (auth.username) {
+      updateLineItem(lineItem.id, null, lineItem.productId, lineItem.orderId, totalQuantity);
+    } else {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'))
+      
+    }
   }
 
   onChange (ev) {
@@ -26,28 +40,48 @@ class LineItemInCart extends React.Component {
   }
 
   render () {
+    console.log(window.localStorage);
     const { products, lineItem, deleteLineItem } = this.props;
     const { totalQuantity } = this.state;
     const { onChange, onSubmit } = this;
-    console.log('products',products)
-    console.log('line item', lineItem)
-    const product = products.find(product => product.id === lineItem.productId)
 
-    console.log('product', product)
-    return (
-      <li key={product.id}>
-        {product.name} {product.category} ({lineItem.quantity})
-        <form onSubmit={onSubmit}>
-          <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
-          <button>Update</button>
-        </form>
-        <button onClick={() => deleteLineItem(lineItem)}>Remove Item</button>
-      </li>
-    )
+    const product = products.find(product => product.id === lineItem.productId*1)
+    console.log(product)
+
+    if (auth.username) {  
+      return (
+        <li key={product.id}>
+          {product.name} {product.category} ({lineItem.quantity})
+          <form onSubmit={onSubmit}>
+            <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
+            <button>Update</button>
+          </form>
+          <button onClick={() => deleteLineItem(lineItem)}>Remove Item</button>
+        </li>
+      )
+      } else {
+        return (
+          <li key={product.id}>
+            {product.name} {product.category} ({lineItem.quantity})
+            <form onSubmit={onSubmit}>
+              <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
+              <button>Update</button>
+            </form>
+            <button onClick={() => { 
+              let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+              console.log(existingCart)
+              delete existingCart[lineItem.productId]
+              window.localStorage.setItem('cart', JSON.stringify(existingCart));
+              console.log(window.localStorage);
+              window.location.reload();
+            }}>Remove Item</button>
+          </li>
+        )
+      }
   }
 };
 
-const mapState = ({ products }) => ({ products });
+const mapState = ({ auth, products }) => ({ auth, products });
 
 const mapDispatch = (dispatch) => {
   return {
