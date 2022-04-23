@@ -18,16 +18,16 @@ class Cake extends React.Component {
     const { quantity } = this.state;
     if (auth.username) {
       if (!lineItem) {
-        createLineItem(+quantity, cake.id, order.id);
+        createLineItem(quantity, cake.id, order.id);
       } else {
-        updateLineItem(lineItem.id, +quantity, cake.id, order.id);
+        updateLineItem(lineItem.id, quantity, cake.id, order.id);
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart[cake.id]) {
-        existingCart[cake.id] += +quantity;
+        existingCart[cake.id] += quantity;
       } else {
-        existingCart[cake.id] = +quantity;
+        existingCart[cake.id] = quantity;
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
