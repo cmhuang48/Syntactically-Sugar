@@ -8,20 +8,33 @@ import auth from '../store/auth';
 class Cart extends React.Component{
   constructor(props){
     super(props)
+    this.state = this.props.auth.username?{}:
+      {
+        cart:[JSON.parse(window.localStorage.getItem('cart'))]
+      }
   }
 
-  componentDidMount(){
-    let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-    if(!auth.username && Object.keys(existingCart).length){
-      for (const productId in existingCart) {
-        const myItem = this.props.lineItems.find(item => item.productId === productId)
-        if(myItem) this.props.updateLineItem(existingCart[productId], productId, null)
-        else this.props.createLineItem(existingCart[productId], productId, null);
-      }
-    }
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   if(prevState.cart !== this.state.cart){
+  //     console.log('hi')
+  //   }
+  // }
+
+  // componentDidUpdate(){
+  //   let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+  //   if(!auth.username && Object.keys(existingCart).length){
+  //     for (const productId in existingCart) {
+  //       const myItem = this.props.lineItems.find(item => item.productId === productId)
+  //       if(myItem) this.props.updateLineItem(existingCart[productId], productId, null)
+  //       else this.props.createLineItem(existingCart[productId], productId, null);
+  //     }
+  //   }
+  //   console.log('updated')
+  // }
 
   render(){
+    console.log(this.state)
+    console.log(this.props)
     const { auth, orders, lineItems, createLineItem, createOrder } = this.props
     if (auth.username) {
       const cart = orders.find(order => order.status === 'cart')
@@ -37,7 +50,7 @@ class Cart extends React.Component{
           <ul>
             {associatedLineItems.map(lineItem => {
               return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                <LineItemInCart lineItem={lineItem} key={lineItem.id}/>
               )
             })}
           </ul>
@@ -51,7 +64,10 @@ class Cart extends React.Component{
 
       if(!Object.keys(existingCart).length) return <div>Empty Cart</div>
 
-      const associatedLineItems = lineItems.filter(lineItem => !lineItem.orderId)
+      const associatedLineItems = [];
+      for (let productId in existingCart) {
+        associatedLineItems.push({'productId': productId, 'quantity': existingCart[productId]})
+      }
 
       return (
         <div>
@@ -59,7 +75,7 @@ class Cart extends React.Component{
           <ul>
             {associatedLineItems.map(lineItem => {
               return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                <LineItemInCart lineItem={lineItem} key={lineItem.productId}/>
               )
             })}
           </ul>
