@@ -25,7 +25,7 @@ class Cake extends React.Component {
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart[cake.id]) {
-        existingCart[cake.id] = existingCart[cake.id]*1 + quantity*1;
+        existingCart[cake.id] = existingCart[cake.id]*1 + quantity;
       } else {
         existingCart[cake.id] = quantity;
       }
