@@ -5,7 +5,7 @@ import { logout } from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>FS-App-Template</h1>
+      <img src="https://64.media.tumblr.com/b55b9c1b10e916e71d8707885cafa7ff/35499bb7ee39e5a9-a6/s1280x1920/46444ca3af7cb09553c43d43bb57d41414e970e7.pnj" alt="logo" />
     <nav>
       {isLoggedIn ? (
         <div>
