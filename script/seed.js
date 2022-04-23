@@ -21,7 +21,7 @@ async function seed() {
   // Creating Cakes
   const cakes = await Promise.all([
     Product.create({ category: 'cake', name: 'chocolate' }),
-    Product.create({ category: 'cake', name: 'red velvet' }),
+    Product.create({ category: 'cake', name: 'red velvet', price: 50.00, image: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/10/11/0/FNK_Red-Velvet-Strawberry-Cake_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1633966924587.jpeg'  }),
     Product.create({ category: 'cake', name: 'chocolate', price: 60.00, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1578&q=80'}),
     Product.create({ category: 'cake', name: 'vanilla', price: 45.00, image: 'https://cdn.pixabay.com/photo/2020/04/20/16/59/cake-5069043_1280.jpg'})
   ])
@@ -31,7 +31,7 @@ async function seed() {
   // Creating Cupcakes
   const cupcakes = await Promise.all([
     Product.create({ category: 'cupcake', name: 'chocolate' }),
-    Product.create({ category: 'cupcake', name: 'red velvet' }),
+    Product.create({ category: 'cupcake', name: 'red velvet', price: 20, image: 'https://ofbatteranddough.com/wp-content/uploads/2017/02/Red-velvet-cupcakes-cream-cheese-buttercream-12.jpg'}),
     Product.create({ category: 'cupcake', name: 'vanilla', price: 20, image: 'https://images.unsplash.com/photo-1607478900766-efe13248b125?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80' }),
     Product.create({ category: 'cupcake', name: 'chocolate', price: 20, image: 'https://images.unsplash.com/photo-1567022405855-fc2ce6befe33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80' }),
   ])
