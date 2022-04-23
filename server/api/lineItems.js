@@ -19,16 +19,13 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-
-// Create or update line item on Product or Cart pages
 router.post('/', async (req, res, next) => {
   try {
-    res.status(201).json(await LineItem.create(req.body))
+   res.status(201).json(await LineItem.create(req.body))
   } catch (err) {
     next(err)
   }
 })
-
 
 router.put('/:id', async (req, res, next) => {
   try {
@@ -38,8 +35,11 @@ router.put('/:id', async (req, res, next) => {
         orderId: req.body.orderId
       }
     })
-    let updatedQuantity = lineItem.quantity + req.body.quantity*1
-    res.json(await lineItem.update({ quantity: updatedQuantity }))
+    if(req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
+    else{
+      let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
+      res.json(await lineItem.update({ quantity: updatedQuantity }))
+    }
   }
   catch(err) {
     next(err)
