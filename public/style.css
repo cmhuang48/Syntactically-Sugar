@@ -7,8 +7,23 @@ body {
 a {
   text-decoration: none;
   font-family: 'sofia';
+  color: #6b5049;
 }
-
+h3{
+	  font-family: 'barrio';
+  color: #6b5049;
+  font-size: 25px;
+}
+h1 {
+	  font-family: 'barrio';
+  color: #f58d72;
+  font-size: 45px;
+}
+p{
+	  font-family: 'crafty girls';
+  color: #357045;
+  font-size: 20px;
+}
 label {
   display: block;
 }

@@ -8,7 +8,7 @@ const Product = db.define('product', {
   },
   
   name: {
-    type: ENUM(['vanilla', 'chocolate', 'red velvet', 'custom'])
+    type: ENUM(['vanilla', 'chocolate', 'red velvet', 'custom', 'rainbow', 'funfetti', "strawberry"])
   },
 
   tiers: {
