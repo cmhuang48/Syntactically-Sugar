@@ -3,11 +3,19 @@ body {
   background: #FFF4EE;
   
 }
-
+p{
+	  font-size: 1.2em;
+	  font-family: 'Crafty Girls';
+  color: #367042;
+}
+h1 {
+	font-family: "barrio";
+	color: #6b5049
+}
 a {
   text-decoration: none;
   font-family: 'sofia';
-  color: #6b5049;
+  color: #f58d72;
 }
 h3{
 	  font-family: 'barrio';
@@ -16,7 +24,7 @@ h3{
 }
 h1 {
 	  font-family: 'barrio';
-  color: #f58d72;
+  color: #6b5049;
   font-size: 45px;
 }
 p{
