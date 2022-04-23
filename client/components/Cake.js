@@ -16,6 +16,7 @@ class Cake extends React.Component {
     ev.preventDefault();
     const { auth, cake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
+    // console.log(typeof(quantity))
     if (auth.username) {
       if (!lineItem) {
         createLineItem(quantity, cake.id, order.id);
@@ -23,9 +24,10 @@ class Cake extends React.Component {
         updateLineItem(lineItem.id, quantity, cake.id, order.id);
       }
     } else {
+      // console.log(typeof(quantity))
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart[cake.id]) {
-        existingCart[cake.id] = existingCart[cake.id]*1 + quantity;
+        existingCart[cake.id] = existingCart[cake.id]*1 + quantity*1;
       } else {
         existingCart[cake.id] = quantity;
       }

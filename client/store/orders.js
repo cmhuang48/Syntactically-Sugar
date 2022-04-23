@@ -8,17 +8,19 @@ const TOKEN = 'token'
 
 // THUNK CREATORS
 export const loadOrders = () => {
-  const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
-    const orders = (await axios.get('/api/orders', {
-      headers: {
-        authorization: token
-      }
-    })).data
-    dispatch({
-      type: LOAD_ORDERS,
-      orders
-    })
+    const token = window.localStorage.getItem(TOKEN)
+    if(token){
+      const orders = (await axios.get('/api/orders', {
+        headers: {
+          authorization: token
+        }
+      })).data
+      dispatch({
+        type: LOAD_ORDERS,
+        orders
+      })
+    }
   }
 }
 
