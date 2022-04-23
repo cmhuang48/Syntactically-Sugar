@@ -29,9 +29,11 @@ class LineItemInCart extends React.Component {
     const { products, lineItem, deleteLineItem } = this.props;
     const { totalQuantity } = this.state;
     const { onChange, onSubmit } = this;
-
+    console.log('products',products)
+    console.log('line item', lineItem)
     const product = products.find(product => product.id === lineItem.productId)
-    
+
+    console.log('product', product)
     return (
       <li key={product.id}>
         {product.name} {product.category} ({lineItem.quantity})
