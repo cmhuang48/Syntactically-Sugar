@@ -8,7 +8,7 @@ import auth from '../store/auth';
 class Cart extends React.Component{
   constructor(props){
     super(props)
-    this.state = this.props.auth.username?{}:
+    this.state = this.props.auth.username ? {} :
       {
         cart:[JSON.parse(window.localStorage.getItem('cart'))]
       }
@@ -32,6 +32,13 @@ class Cart extends React.Component{
   //   console.log('updated')
   // }
 
+  onClick () {
+    const { auth } = this.props;
+    if (auth.username) {
+      createOrder('cart', )
+    }
+  }
+
   render(){
     console.log(this.state)
     console.log(this.props)
@@ -54,7 +61,7 @@ class Cart extends React.Component{
               )
             })}
           </ul>
-          <button>Checkout</button>
+          <button onClick={onClick}>Checkout</button>
         </div>
       );
     }
