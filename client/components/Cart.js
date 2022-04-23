@@ -8,7 +8,17 @@ import auth from '../store/auth';
 class Cart extends React.Component{
   constructor(props){
     super(props)
+    this.state = this.props.auth.username?{}:
+      {
+        cart:[JSON.parse(window.localStorage.getItem('cart'))]
+      }
   }
+
+  // componentDidUpdate(prevProps, prevState){
+  //   if(prevState.cart !== this.state.cart){
+  //     console.log('hi')
+  //   }
+  // }
 
   // componentDidUpdate(){
   //   let existingCart = JSON.parse(window.localStorage.getItem('cart'));
@@ -23,6 +33,7 @@ class Cart extends React.Component{
   // }
 
   render(){
+    console.log(this.state)
     console.log(this.props)
     const { auth, orders, lineItems, createLineItem, createOrder } = this.props
     if (auth.username) {
@@ -63,9 +74,8 @@ class Cart extends React.Component{
           <h1>Cart</h1>
           <ul>
             {associatedLineItems.map(lineItem => {
-              console.log(lineItem)
               return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
+                <LineItemInCart lineItem={lineItem} key={lineItem.productId}/>
               )
             })}
           </ul>

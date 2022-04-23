@@ -38,7 +38,7 @@ class LineItemInCart extends React.Component {
       delete existingCart[this.props.lineItem.productId]
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       this.setState({lineItem:{}})
-      console.log(this.state)
+      window.location.reload()
   }
 
   onChange (ev) {
@@ -55,6 +55,7 @@ class LineItemInCart extends React.Component {
 
     const product = products.find(product => product?.id === lineItem.productId*1)
     // console.log(product)
+    if(!product) return null
 
     if (auth.username) {  
       return (
@@ -69,8 +70,8 @@ class LineItemInCart extends React.Component {
       )
       } else {
         return (
-          <li key={product?.id}>
-            {product?.name} {product?.category} ({lineItem.quantity})
+          <li key={product.id}>
+            {product.name} {product.category} ({lineItem.quantity})
             <form onSubmit={onSubmit}>
               <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
               <button>Update</button>
