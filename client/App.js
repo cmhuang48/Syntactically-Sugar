@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import Routes from './Routes'
 
 const App = () => {
-  window.localStorage.setItem('cart', '{}');
+  if (window.localStorage.getItem('cart')) window.localStorage.setItem('cart', '{}');
 
   return (
     <div>
