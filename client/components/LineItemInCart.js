@@ -7,8 +7,7 @@ class LineItemInCart extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      totalQuantity: this.props.lineItem.quantity ? this.props.lineItem.quantity : 0,
-      lineItem: this.props.lineItem? this.props.lineItem: {}
+      totalQuantity: this.props.lineItem.quantity ? this.props.lineItem.quantity : 0
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,7 +28,9 @@ class LineItemInCart extends React.Component {
       updateLineItem(lineItem.id, null, lineItem.productId, lineItem.orderId, totalQuantity);
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'))
-      
+      existingCart[lineItem.productId] = totalQuantity;
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+      window.location.reload()
     }
   }
 
@@ -37,7 +38,6 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       delete existingCart[this.props.lineItem.productId]
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.setState({lineItem:{}})
       window.location.reload()
   }
 
@@ -76,7 +76,7 @@ class LineItemInCart extends React.Component {
               <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
               <button>Update</button>
             </form>
-            <button onClick={ onClick }>Remove Item</button>
+            <button onClick={onClick}>Remove Item</button>
           </li>
         )
       }

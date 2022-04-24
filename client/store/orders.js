@@ -3,7 +3,7 @@ import axios from 'axios'
 // ACTION TYPES
 const LOAD_ORDERS = 'LOAD_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
-const RESET_ORDER = 'RESET_ORDER'
+const UPDATE_ORDER = 'UPDATE_ORDER'
 const TOKEN = 'token'
 
 // THUNK CREATORS
@@ -24,11 +24,22 @@ export const loadOrders = () => {
   }
 }
 
-export const createOrder = (status) => {
+export const createOrder = (status, userId) => {
   return async (dispatch) => {
-    const order = (await axios.post('/api/orders', { status })).data
+    const order = (await axios.post('/api/orders', { status, userId })).data
     dispatch({
       type: CREATE_ORDER,
+      order
+    })
+  }
+}
+
+// submit order (status 'cart' => 'order')
+export const updateOrder = (id, status, userId) => {
+  return async (dispatch) => {
+    const order = (await axios.put(`/api/orders/${id}`, { status, userId })).data;
+    dispatch({
+      type: UPDATE_ORDER,
       order
     })
   }
@@ -41,8 +52,8 @@ export default function(state = [], action) {
       return action.orders
     case CREATE_ORDER:
       return [...state, action.order]
-    case RESET_ORDER:
-      return []
+    case UPDATE_ORDER:
+      return state.map(order => order.id !== action.order.id ? order : action.order)
     default:
       return state
   }
