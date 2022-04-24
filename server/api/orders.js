@@ -44,6 +44,10 @@ router.put('/:id', async(req, res, next) => {
 	try {
 		const order = await Order.findByPk(req.params.id)
 		const updated = await Order.update(order)
+		if (req.params.status === 'order') {
+			const updated = await order.update({status: 'order'});
+			Order.create({userId: order.userId})
+		}
 		res.json(updated)
 	} catch (error) {
 		next(error)
