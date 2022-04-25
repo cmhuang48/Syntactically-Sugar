@@ -16,7 +16,6 @@ import Cart from './components/Cart'
  */
 class Routes extends Component {
   componentDidMount() {
-   // console.log(window.localStorage.getItem('cart'))
     this.props.loadInitialData()
     this.props.loadProducts()
     this.props.loadOrders()
@@ -62,6 +61,7 @@ class Routes extends Component {
  */
 const mapState = state => {
   return {
+    state,
     // Being 'logged in' for our purposes will be defined as having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id
@@ -81,6 +81,9 @@ const mapDispatch = dispatch => {
     },
     loadOrders() {
       dispatch(loadOrders())
+    },
+    loadLineItems(){
+      dispatch(loadLineItems())
     }
   }
 }

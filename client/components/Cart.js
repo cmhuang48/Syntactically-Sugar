@@ -3,46 +3,14 @@ import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
 import { createLineItem } from '../store/lineItems';
 import { createOrder } from '../store/orders';
-import auth from '../store/auth';
 
 class Cart extends React.Component{
   constructor(props){
     super(props)
-    this.state = this.props.auth.username ? {} :
-      {
-        cart:[JSON.parse(window.localStorage.getItem('cart'))]
-      }
-  }
-
-  // componentDidUpdate(prevProps, prevState){
-  //   if(prevState.cart !== this.state.cart){
-  //     console.log('hi')
-  //   }
-  // }
-
-  // componentDidUpdate(){
-  //   let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-  //   if(!auth.username && Object.keys(existingCart).length){
-  //     for (const productId in existingCart) {
-  //       const myItem = this.props.lineItems.find(item => item.productId === productId)
-  //       if(myItem) this.props.updateLineItem(existingCart[productId], productId, null)
-  //       else this.props.createLineItem(existingCart[productId], productId, null);
-  //     }
-  //   }
-  //   console.log('updated')
-  // }
-
-  onClick () {
-    const { auth } = this.props;
-    if (auth.username) {
-      createOrder('cart', )
-    }
   }
 
   render(){
-    //console.log(this.state)
-    //console.log(this.props)
-    const { auth, orders, lineItems, createLineItem, createOrder } = this.props
+    const { auth, orders, lineItems } = this.props
     if (auth.username) {
       const cart = orders.find(order => order.status === 'cart')
       if(!cart) return <div>Empty Cart</div>
@@ -61,13 +29,13 @@ class Cart extends React.Component{
               )
             })}
           </ul>
-          <button className='cartCheckout' onClick={onClick}>Checkout</button>
+          <button className='cartCheckout'>Checkout</button>
         </div>
       );
     }
 
     else {
-      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      let existingCart = this.props.lineItems[0]? this.props.lineItems[0]: {};
 
       if(!Object.keys(existingCart).length) return <div>Empty Cart</div>
 

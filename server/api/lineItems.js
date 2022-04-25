@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { LineItem, Order }} = require('../db')
+const { models: { LineItem }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -21,6 +21,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+  
    res.status(201).json(await LineItem.create(req.body))
   } catch (err) {
     next(err)

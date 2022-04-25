@@ -1,13 +1,13 @@
 import axios from 'axios'
 import history from '../history'
+import { loadLineItems } from './lineItems'
 import { loadOrders } from './orders'
-
-const TOKEN = 'token'
 
 /**
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH'
+const TOKEN = 'token'
 
 /**
  * ACTION CREATORS
@@ -29,12 +29,13 @@ export const me = () => async dispatch => {
   }
 }
 
-export const authenticate = (username, password, method) => async dispatch => {
+export const authenticate = (username, password, method, localCart) => async dispatch => {
   try {
     const res = await axios.post(`/auth/${method}`, {username, password})
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
     dispatch(loadOrders())
+    dispatch(loadLineItems())
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
   }
