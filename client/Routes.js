@@ -3,14 +3,13 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
-import {me, loadProducts, loadOrders, loadLineItems, loadLocalOrders} from './store'
+import {me, loadProducts, loadOrders, loadLineItems, loadLocalLineItems} from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
 import Cupcakes from './components/Cupcakes'
 import Cupcake from './components/Cupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
-import auth from './store/auth'
 
 /**
  * COMPONENT
@@ -19,8 +18,8 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.loadProducts()
-    window.localStorage.getItem('token')? this.props.loadOrders(): this.props.loadLocalOrders()
-    this.props.loadLineItems()
+    this.props.loadOrders()
+    window.localStorage.getItem('token')? this.props.loadLineItems():this.props.loadLocalLineItems()
   }
 
   render() {
@@ -83,8 +82,8 @@ const mapDispatch = dispatch => {
     loadOrders() {
       dispatch(loadOrders())
     },
-    loadLocalOrders(){
-      dispatch(loadLocalOrders())
+    loadLocalLineItems(){
+      dispatch(loadLocalLineItems())
     }
   }
 }

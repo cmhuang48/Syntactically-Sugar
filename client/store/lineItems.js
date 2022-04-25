@@ -5,6 +5,7 @@ const LOAD_LINEITEMS = 'LOAD_LINEITEMS'
 const CREATE_LINEITEM = 'CREATE_LINEITEM'
 const UPDATE_LINEITEM = 'UPDATE_LINEITEM'
 const DESTROY_LINEITEM = 'DESTROY_LINEITEM'
+const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 
 // THUNK CREATORS
 export const loadLineItems = () => {
@@ -13,6 +14,16 @@ export const loadLineItems = () => {
     dispatch({
       type: LOAD_LINEITEMS,
       lineItems
+    })
+  }
+}
+
+export const loadLocalLineItems = () =>{
+  const localStorage = JSON.parse(window.localStorage.getItem('cart'))
+  return async(dispatch)=>{
+    dispatch({
+      type:LOAD_LOCAL_LINEITEMS,
+      localStorage
     })
   }
 }
@@ -58,6 +69,8 @@ export default function(state = [], action) {
       return state.map(lineItem => lineItem.id !== action.lineItem.id ? lineItem : action.lineItem)
     case DESTROY_LINEITEM:
       return state.filter(lineItem => lineItem.id !== action.lineItem.id)
+    case LOAD_LOCAL_LINEITEMS:
+      return [action.localStorage]
     default:
       return state
   }

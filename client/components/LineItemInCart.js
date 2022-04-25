@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import auth from '../store/auth';
-import { updateLineItem, deleteLineItem } from '../store/lineItems';
-import {loadLocalOrders} from '../store/orders'
+import { updateLineItem, deleteLineItem } from '../store';
+import {loadLocalLineItems} from '../store'
 
 class LineItemInCart extends React.Component {
   constructor (props) {
@@ -15,12 +14,6 @@ class LineItemInCart extends React.Component {
     this.onClick = this.onClick.bind(this)
   }
 
-  // componentDidUpdate (prevProps) {
-  //   if (prevProps.lineItem !== this.props.lineItem) {
-  //     this.setState({lineItem:this.props.lineItem})
-  //   }
-  // }
-
   onSubmit (ev) {
     ev.preventDefault();
     const { auth, updateLineItem, lineItem } = this.props;
@@ -31,7 +24,7 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'))
       existingCart[lineItem.productId] = totalQuantity;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.props.loadLocalOrders()
+      this.props.loadLocalLineItems()
     }
   }
 
@@ -43,7 +36,7 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       delete existingCart[this.props.lineItem.productId]
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.props.loadLocalOrders()
+      this.props.loadLocalLineItems()
     }
   }
 
@@ -99,8 +92,8 @@ const mapDispatch = (dispatch) => {
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
     },
-    loadLocalOrders: ()=>{
-      dispatch(loadLocalOrders())
+    loadLocalLineItems: ()=>{
+      dispatch(loadLocalLineItems())
     }
   };
 };
