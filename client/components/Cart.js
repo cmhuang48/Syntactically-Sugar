@@ -54,7 +54,7 @@ class Cart extends React.Component{
     }
 
     else {
-      let existingCart = this.props.orders[0]? this.props.orders[0]: {};
+      let existingCart = this.props.lineItems[0]? this.props.lineItems[0]: {};
 
       if(!Object.keys(existingCart).length) return <div>Empty Cart</div>
 

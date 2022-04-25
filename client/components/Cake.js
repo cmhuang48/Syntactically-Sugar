@@ -18,7 +18,6 @@ class Cake extends React.Component {
     const { quantity } = this.state;
     // console.log(typeof(quantity))
     if (auth.username) {
-      console.log(this.props)
       if (!lineItem) {
         createLineItem(quantity, cake.id, order.id);
       } else {
