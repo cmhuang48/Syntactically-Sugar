@@ -1,6 +1,7 @@
 const router = require('express').Router()
-const { models: { LineItem }} = require('../db')
+const { models: { LineItem, User, Order }} = require('../db')
 module.exports = router
+const axios = require( "axios")
 
 router.get('/', async (req, res, next) => {
   try {
@@ -21,7 +22,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-  
    res.status(201).json(await LineItem.create(req.body))
   } catch (err) {
     next(err)
@@ -30,16 +30,49 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const lineItem = await LineItem.findOne({
-      where: {
-        productId: req.body.productId,
-        orderId: req.body.orderId
+    const {localStorage} = req.body
+    if(localStorage){
+      const user = await User.findByToken(req.headers.authorization)
+      const order = await Order.findOne({
+        where: {
+          status:'cart',
+          userId: user.id
+        }
+      })
+      const lineItems = await LineItem.findAll({
+        where: {
+          orderId: order.id
+        }
+      })
+
+      for(let key in localStorage){
+        let change = false
+        for(let i = 0; i < lineItems.length; i++){
+          const item = lineItems[i]
+          if(key*1 === item.productId) {
+            item.quantity += localStorage[key] * 1
+            change = true
+          }
+        }
+        if(!change){
+          const newItem = await LineItem.create({quantity:localStorage[key], orderId:order.id, productId:key})
+          lineItems.push(newItem)
+        }
       }
-    })
-    if(req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
-    else{
-      let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
-      res.json(await lineItem.update({ quantity: updatedQuantity }))
+
+      res.json(lineItems)
+    }else{
+      const lineItem = await LineItem.findOne({
+        where: {
+          productId: req.body.productId,
+          orderId: req.body.orderId
+        }
+      })
+      if(req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
+      else{
+        let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
+        res.json(await lineItem.update({ quantity: updatedQuantity }))
+      }
     }
   }
   catch(err) {
