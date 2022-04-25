@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 const Orders = ({ complete, lineItems, products }) => {
   if(!complete.length) return <div>No Orders</div> 
-  
   return (
     <div>
       <h1>Orders</h1>

@@ -24,7 +24,6 @@ class Cake extends React.Component {
         updateLineItem(lineItem.id, quantity, cake.id, order.id);
       }
     } else {
-      // console.log(typeof(quantity))
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart[cake.id]) {
         existingCart[cake.id] = existingCart[cake.id]*1 + quantity*1;

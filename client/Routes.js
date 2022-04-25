@@ -16,7 +16,7 @@ import Cart from './components/Cart'
  */
 class Routes extends Component {
   componentDidMount() {
-    console.log(window.localStorage.getItem('cart'))
+   // console.log(window.localStorage.getItem('cart'))
     this.props.loadInitialData()
     this.props.loadProducts()
     this.props.loadOrders()

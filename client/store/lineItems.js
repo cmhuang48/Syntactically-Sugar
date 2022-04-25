@@ -6,6 +6,7 @@ const CREATE_LINEITEM = 'CREATE_LINEITEM'
 const UPDATE_LINEITEM = 'UPDATE_LINEITEM'
 const DESTROY_LINEITEM = 'DESTROY_LINEITEM'
 
+
 // THUNK CREATORS
 export const loadLineItems = () => {
   return async (dispatch) => {
@@ -29,11 +30,11 @@ export const createLineItem = (quantity, productId, orderId) => {
 
 export const updateLineItem = (id, quantity, productId, orderId, totalQuantity) => {
   return async (dispatch) => {
-    const lineItem = (await axios.put(`/api/lineItems/${id}`, { quantity, productId, orderId, totalQuantity })).data
-    dispatch({
-      type: UPDATE_LINEITEM,
-      lineItem
-    })
+      const lineItem = (await axios.put(`/api/lineItems/${id}`, { quantity, productId, orderId, totalQuantity })).data
+      dispatch({
+        type: UPDATE_LINEITEM,
+        lineItem
+      })
   }
 }
 
