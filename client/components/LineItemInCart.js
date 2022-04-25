@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import auth from '../store/auth';
 import { updateLineItem, deleteLineItem } from '../store/lineItems';
+import {loadLocalOrders} from '../store/orders'
 
 class LineItemInCart extends React.Component {
   constructor (props) {
@@ -30,15 +31,20 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'))
       existingCart[lineItem.productId] = totalQuantity;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      window.location.reload()
+      this.props.loadLocalOrders()
     }
   }
 
   onClick(){
+    const { auth } = this.props 
+    if(auth.username){
+
+    }else{
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       delete existingCart[this.props.lineItem.productId]
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      window.location.reload()
+      this.props.loadLocalOrders()
+    }
   }
 
   onChange (ev) {
@@ -49,7 +55,7 @@ class LineItemInCart extends React.Component {
 
   render () {
     // console.log(window.localStorage);
-    const { products, lineItem, deleteLineItem } = this.props;
+    const { products, lineItem, deleteLineItem, auth } = this.props;
     const { totalQuantity } = this.state;
     const { onChange, onSubmit, onClick } = this;
 
@@ -65,7 +71,7 @@ class LineItemInCart extends React.Component {
             <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
             <button>Update</button>
           </form>
-          <button onClick={() => deleteLineItem(lineItem)}>Remove Item</button>
+          <button onClick={() => {deleteLineItem(lineItem)}}>Remove Item</button>
         </li>
       )
       } else {
@@ -92,6 +98,9 @@ const mapDispatch = (dispatch) => {
     },
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
+    },
+    loadLocalOrders: ()=>{
+      dispatch(loadLocalOrders())
     }
   };
 };

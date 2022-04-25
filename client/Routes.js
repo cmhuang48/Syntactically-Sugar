@@ -3,23 +3,23 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
-import {me, loadProducts, loadOrders, loadLineItems} from './store'
+import {me, loadProducts, loadOrders, loadLineItems, loadLocalOrders} from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
 import Cupcakes from './components/Cupcakes'
 import Cupcake from './components/Cupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
+import auth from './store/auth'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
-    console.log(window.localStorage.getItem('cart'))
     this.props.loadInitialData()
     this.props.loadProducts()
-    this.props.loadOrders()
+    window.localStorage.getItem('token')? this.props.loadOrders(): this.props.loadLocalOrders()
     this.props.loadLineItems()
   }
 
@@ -62,6 +62,7 @@ class Routes extends Component {
  */
 const mapState = state => {
   return {
+    state,
     // Being 'logged in' for our purposes will be defined as having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id
@@ -81,6 +82,9 @@ const mapDispatch = dispatch => {
     },
     loadOrders() {
       dispatch(loadOrders())
+    },
+    loadLocalOrders(){
+      dispatch(loadLocalOrders())
     }
   }
 }

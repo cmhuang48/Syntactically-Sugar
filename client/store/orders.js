@@ -5,6 +5,7 @@ const LOAD_ORDERS = 'LOAD_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
 const UPDATE_ORDER = 'UPDATE_ORDER'
 const TOKEN = 'token'
+const LOAD_LOCAL_ORDERS = 'LOAD_LOCAL_ORDERS'
 
 // THUNK CREATORS
 export const loadOrders = () => {
@@ -21,6 +22,16 @@ export const loadOrders = () => {
         orders
       })
     }
+  }
+}
+
+export const loadLocalOrders = () =>{
+  const localStorage = JSON.parse(window.localStorage.getItem('cart'))
+  return async(dispatch)=>{
+    dispatch({
+      type:LOAD_LOCAL_ORDERS,
+      localStorage
+    })
   }
 }
 
@@ -54,6 +65,8 @@ export default function(state = [], action) {
       return [...state, action.order]
     case UPDATE_ORDER:
       return state.map(order => order.id !== action.order.id ? order : action.order)
+    case LOAD_LOCAL_ORDERS:
+      return [action.localStorage]
     default:
       return state
   }

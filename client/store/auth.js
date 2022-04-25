@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import { loadOrders } from './orders'
+import { loadLocalOrders, loadOrders } from './orders'
 
 const TOKEN = 'token'
 
@@ -43,6 +43,7 @@ export const authenticate = (username, password, method) => async dispatch => {
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)
   history.push('/login')
+  loadLocalOrders()
   return {
     type: SET_AUTH,
     auth: {},
