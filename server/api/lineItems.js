@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const { models: { LineItem, User, Order }} = require('../db')
 module.exports = router
-const axios = require( "axios")
 
 router.get('/', async (req, res, next) => {
   try {
@@ -61,6 +60,7 @@ router.put('/:id', async (req, res, next) => {
       }
 
       res.json(lineItems)
+
     }else{
       const lineItem = await LineItem.findOne({
         where: {
