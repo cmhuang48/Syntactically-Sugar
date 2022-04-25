@@ -16,20 +16,22 @@ class Cake extends React.Component {
     ev.preventDefault();
     const { auth, cake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
-    // console.log(typeof(quantity))
     if (auth.username) {
       if (!lineItem) {
-        createLineItem(quantity, cake.id, order.id);
+        const newItem = {quantity:quantity, productId: cake.id, orderId: order.id}
+        createLineItem(newItem);
       } else {
-        updateLineItem(lineItem.id, quantity, cake.id, order.id);
+        const updatedItem = {id:lineItem.id, quantity:quantity, productId:cake.id, orderId: order.id}
+        updateLineItem(updatedItem);
       }
     } else {
-      // console.log(typeof(quantity))
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart[cake.id]) {
         existingCart[cake.id] = existingCart[cake.id]*1 + quantity*1;
+        updateLineItem(existingCart)
       } else {
         existingCart[cake.id] = quantity;
+        createLineItem(existingCart)
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
@@ -78,11 +80,11 @@ const mapState = ({ auth, products, orders, lineItems }, { match: { params: { id
 
 const mapDispatch = (dispatch) => {
   return {
-    createLineItem: (quantity, productId, orderId) => {
-      dispatch(createLineItem(quantity, productId, orderId));
+    createLineItem: (item) => {
+      dispatch(createLineItem(item));
     },
-    updateLineItem: (id, quantity, productId, orderId) => {
-      dispatch(updateLineItem(id, quantity, productId, orderId));
+    updateLineItem: (item) => {
+      dispatch(updateLineItem(item));
     }
   };
 };

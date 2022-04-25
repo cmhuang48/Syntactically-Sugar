@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
-import {me, loadProducts, loadOrders, loadLineItems, loadLocalLineItems} from './store'
+import {me, loadProducts, loadOrders, loadLineItems} from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
 import Cupcakes from './components/Cupcakes'
@@ -19,7 +19,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.props.loadProducts()
     this.props.loadOrders()
-    window.localStorage.getItem('token')? this.props.loadLineItems():this.props.loadLocalLineItems()
+    this.props.loadLineItems()
   }
 
   render() {
@@ -82,8 +82,8 @@ const mapDispatch = dispatch => {
     loadOrders() {
       dispatch(loadOrders())
     },
-    loadLocalLineItems(){
-      dispatch(loadLocalLineItems())
+    loadLineItems(){
+      dispatch(loadLineItems())
     }
   }
 }
