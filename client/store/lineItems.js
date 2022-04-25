@@ -11,20 +11,19 @@ const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
+  window.localStorage.setItem('cart', '{}')
   if(token){
     return async (dispatch) => {
-      const lineItems = (await axios.get('/api/lineItems')).data
-      // if(Object.keys(localStorage).length !== 0){
-      //   for(let key in localStorage){
-      //     lineItems.map(item => async()=>{
-      //     if(key*1 === item.productId) item.quantity += localStorage[key]*1
-      //     else {
-      //       const lineItem = (await axios.post('/api/lineItems', {productId:key, quantity:localStorage[key]})).data
-      //       lineItems.push(lineItem)
-      //     }
-      //     })
-      //   }
-      // }
+      let lineItems
+      if(Object.keys(localStorage).length === 0) {
+        lineItems = (await axios.get('/api/lineItems')).data
+      }else{
+        lineItems = (await axios.put('/api/lineItems/1', {localStorage:localStorage}, {
+          headers: {
+            authorization: token
+          }
+        })).data
+      }
       dispatch({
         type: LOAD_LINEITEMS,
         lineItems
