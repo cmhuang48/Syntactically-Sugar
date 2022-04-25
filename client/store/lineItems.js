@@ -9,42 +9,74 @@ const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 
 // THUNK CREATORS
 export const loadLineItems = () => {
-  return async (dispatch) => {
-    const lineItems = (await axios.get('/api/lineItems')).data
-    dispatch({
-      type: LOAD_LINEITEMS,
-      lineItems
-    })
-  }
-}
-
-export const loadLocalLineItems = () =>{
+  const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
-  return async(dispatch)=>{
-    dispatch({
-      type:LOAD_LOCAL_LINEITEMS,
-      localStorage
-    })
+  if(token){
+    return async (dispatch) => {
+      const lineItems = (await axios.get('/api/lineItems')).data
+      // if(Object.keys(localStorage).length !== 0){
+      //   for(let key in localStorage){
+      //     lineItems.map(item => async()=>{
+      //     if(key*1 === item.productId) item.quantity += localStorage[key]*1
+      //     else {
+      //       const lineItem = (await axios.post('/api/lineItems', {productId:key, quantity:localStorage[key]})).data
+      //       lineItems.push(lineItem)
+      //     }
+      //     })
+      //   }
+      // }
+      dispatch({
+        type: LOAD_LINEITEMS,
+        lineItems
+      })
+    }
+  }else{
+    return async(dispatch)=>{
+      dispatch({
+        type:LOAD_LOCAL_LINEITEMS,
+        localStorage
+      })
+    }
   }
 }
 
-export const createLineItem = (quantity, productId, orderId) => {
-  return async (dispatch) => {
-    const lineItem = (await axios.post('/api/lineItems', { quantity, productId, orderId })).data
-    dispatch({
-      type: CREATE_LINEITEM,
-      lineItem
-    })
+export const createLineItem = (item) => {
+  const token = window.localStorage.getItem('token')
+  if(token){
+    return async (dispatch) => {
+      const lineItem = (await axios.post('/api/lineItems', item)).data
+      dispatch({
+        type: CREATE_LINEITEM,
+        lineItem
+      })
+    }
+  }else{
+    return async(dispatch) => {
+      dispatch({
+        type:CREATE_LINEITEM,
+        lineItem: item
+      })
+    }
   }
 }
 
-export const updateLineItem = (id, quantity, productId, orderId, totalQuantity) => {
-  return async (dispatch) => {
-    const lineItem = (await axios.put(`/api/lineItems/${id}`, { quantity, productId, orderId, totalQuantity })).data
-    dispatch({
-      type: UPDATE_LINEITEM,
-      lineItem
-    })
+export const updateLineItem = (lineItem) => {
+  const token = window.localStorage.getItem('token')
+  if(token){
+    return async (dispatch) => {
+      const updatedlineItem = (await axios.put(`/api/lineItems/${lineItem.id}`, lineItem)).data
+      dispatch({
+        type: UPDATE_LINEITEM,
+        lineItem: updatedlineItem
+      })
+    }
+  }else{
+    return (dispatch) => {
+      dispatch({
+        type: UPDATE_LINEITEM,
+        lineItem
+      })
+    }
   }
 }
 
@@ -64,9 +96,14 @@ export default function(state = [], action) {
     case LOAD_LINEITEMS:
       return action.lineItems
     case CREATE_LINEITEM:
-      return [...state, action.lineItem]
+      if(action.lineItem.id) return [...state, action.lineItem]
+      else return [action.lineItem]
     case UPDATE_LINEITEM:
-      return state.map(lineItem => lineItem.id !== action.lineItem.id ? lineItem : action.lineItem)
+      if(action.lineItem.id){
+        return state.map(lineItem => lineItem.id === action.lineItem.id ? action.lineItem : lineItem)
+      }else{
+        return [action.lineItem]
+      }
     case DESTROY_LINEITEM:
       return state.filter(lineItem => lineItem.id !== action.lineItem.id)
     case LOAD_LOCAL_LINEITEMS:

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import history from '../history'
+import { loadLineItems } from './lineItems'
 import { loadOrders } from './orders'
-
 
 /**
  * ACTION TYPES
@@ -34,7 +34,8 @@ export const authenticate = (username, password, method, localCart) => async dis
     const res = await axios.post(`/auth/${method}`, {username, password})
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
-    dispatch(loadOrders(localCart))
+    dispatch(loadOrders())
+    dispatch(loadLineItems())
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
   }

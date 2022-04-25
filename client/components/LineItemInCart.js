@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateLineItem, deleteLineItem } from '../store';
-import {loadLocalLineItems} from '../store'
+import {loadLineItems} from '../store'
 
 class LineItemInCart extends React.Component {
   constructor (props) {
@@ -19,12 +19,13 @@ class LineItemInCart extends React.Component {
     const { auth, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
     if (auth.username) {
-      updateLineItem(lineItem.id, null, lineItem.productId, lineItem.orderId, totalQuantity);
+      const updatedItem = {id:lineItem.id, productId:lineItem.productId, orderId:lineItem.orderId, totalQuantity:totalQuantity}
+      updateLineItem(updatedItem);
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'))
       existingCart[lineItem.productId] = totalQuantity;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.props.loadLocalLineItems()
+      updateLineItem(existingCart)
     }
   }
 
@@ -36,7 +37,7 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       delete existingCart[this.props.lineItem.productId]
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.props.loadLocalLineItems()
+      this.props.loadLineItems()
     }
   }
 
@@ -47,13 +48,11 @@ class LineItemInCart extends React.Component {
   }
 
   render () {
-    // console.log(window.localStorage);
     const { products, lineItem, deleteLineItem, auth } = this.props;
     const { totalQuantity } = this.state;
     const { onChange, onSubmit, onClick } = this;
 
     const product = products.find(product => product?.id === lineItem.productId*1)
-    // console.log(product)
     if(!product) return null
 
     if (auth.username) {  
@@ -86,14 +85,14 @@ const mapState = ({ auth, products }) => ({ auth, products });
 
 const mapDispatch = (dispatch) => {
   return {
-    updateLineItem: (id, quantity, productId, orderId, totalQuantity) => {
-      dispatch(updateLineItem(id, quantity, productId, orderId, totalQuantity));
+    updateLineItem: (item) => {
+      dispatch(updateLineItem(item));
     },
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
     },
-    loadLocalLineItems: ()=>{
-      dispatch(loadLocalLineItems())
+    loadLineItems: ()=>{
+      dispatch(loadLineItems())
     }
   };
 };

@@ -9,27 +9,8 @@ class Cart extends React.Component{
     super(props)
   }
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if(prevState.cart !== this.state.cart){
-  //     console.log('hi')
-  //   }
-  // }
-
-  // componentDidUpdate(){
-  //   let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-  //   if(!auth.username && Object.keys(existingCart).length){
-  //     for (const productId in existingCart) {
-  //       const myItem = this.props.lineItems.find(item => item.productId === productId)
-  //       if(myItem) this.props.updateLineItem(existingCart[productId], productId, null)
-  //       else this.props.createLineItem(existingCart[productId], productId, null);
-  //     }
-  //   }
-  //   console.log('updated')
-  // }
-
-
   render(){
-    const { auth, orders, lineItems, createLineItem, createOrder } = this.props
+    const { auth, orders, lineItems } = this.props
     if (auth.username) {
       const cart = orders.find(order => order.status === 'cart')
       if(!cart) return <div>Empty Cart</div>
