@@ -10,7 +10,7 @@ const TOKEN = 'token'
 export const loadOrders = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN)
-    if(token){
+    if (token) {
       const orders = (await axios.get('/api/orders', {
         headers: {
           authorization: token
@@ -26,10 +26,10 @@ export const loadOrders = () => {
 
 export const createOrder = (order) => {
   return async (dispatch) => {
-    const order = (await axios.post('/api/orders', order)).data
+    const newOrder = (await axios.post('/api/orders', order)).data
     dispatch({
       type: CREATE_ORDER,
-      order
+      order: newOrder
     })
   }
 }
@@ -37,10 +37,10 @@ export const createOrder = (order) => {
 // submit order (status 'cart' => 'order')
 export const updateOrder = (order) => {
   return async (dispatch) => {
-    const order = (await axios.put(`/api/orders/${order.id}`, order)).data;
+    const updatedOrder = (await axios.put(`/api/orders/${order.id}`, order)).data;
     dispatch({
       type: UPDATE_ORDER,
-      order
+      order: updatedOrder
     })
   }
 }

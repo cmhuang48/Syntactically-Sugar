@@ -31,11 +31,9 @@ class Cupcake extends React.Component {
       if (existingLineItem) {
         existingLineItem.quantity = existingLineItem.productId*1 + quantity*1;
         existingCart[idx] = existingLineItem;
-        // updateLineItem(existingLineItem);
       } else {
-        existingLineItem = { productId: cake.id, quantity: quantity };
+        existingLineItem = { productId: cupcake.id, quantity: quantity };
         existingCart.push(existingLineItem);
-        // createLineItem(existingLineItem);
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }

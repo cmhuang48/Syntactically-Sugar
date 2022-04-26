@@ -20,7 +20,7 @@ const Cakes = ({ cakes }) => {
           )
         })}
         <li>
-          <Link to={'/cakes/custom'}>
+          <Link to={'/cakes/cake/custom'}>
             <div className='cakeBox'>
               <img className='cakeImage' src='https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg' />
               <span className='product-title'>Create A Custom Cake</span>

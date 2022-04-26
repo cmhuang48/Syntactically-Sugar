@@ -9,16 +9,17 @@ class Cart extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  async onClick () {
+  onClick () {
     const { auth, cart, updateOrder, createOrder, createLineItem } = this.props;
     if (auth.username) {
       // const token = window.localStorage.getItem('token');
       updateOrder({ id: cart.id, status: 'order', userId: token });
     } else {
-      const order = await createOrder({ status: 'order' });
+      const id = Math.floor(Math.random());
+      createOrder({ id, status: 'order' });
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       for (const lineItem of existingCart) {
-        createLineItem({ ...lineItem, orderId: order.id });
+        createLineItem({ ...lineItem, orderId: id });
       }
     }
   }
