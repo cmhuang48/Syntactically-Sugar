@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadLineItems, updateLineItem, deleteLineItem } from '../store';
 
+
 class LineItemInCart extends React.Component {
   constructor (props) {
     super(props);
@@ -12,7 +13,7 @@ class LineItemInCart extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
   }
-
+  
   onSubmit (ev) {
     ev.preventDefault();
     const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
@@ -57,35 +58,74 @@ class LineItemInCart extends React.Component {
     const product = products.find(product => product?.id === lineItem.productId*1);
     if(!product) return null;
 
+    const increase = () => {
+      this.setState({totalQuantity: totalQuantity*1 + 1});
+    };
+
+    const decrease = () => {
+      if(totalQuantity === 1) return;
+      this.setState({totalQuantity: totalQuantity*1 - 1});
+    };
+
     if (auth.username) {  
       return (
-        <li key={product.id}>
-          {product.name} {product.category} ({lineItem.quantity})
-          <form onSubmit={onSubmit}>
-            <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
-            <button>Update</button>
-          </form>
-          <button onClick={onClick}>Remove Item</button>
-        </li>
-      )
+        <>
+          <tr key={product.id}>
+            <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+            <td>{product.name}</td>
+            <td>{product.category}</td>
+            <td>{lineItem.quantity}</td>
+            <td>
+              <button className='increaseBtn' onClick={decrease}>-</button>
+              {totalQuantity}
+              <button className='decreaseBtn' onClick={increase}>+</button>
+            </td>
+            <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
+            <td>
+              <button className='deleteBtn' onClick={onClick}>Remove Item</button>
+            </td>
+            <td>${product.price * totalQuantity}</td>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+        </>
+      );
     } 
     
     else {
-      return (
-        <li key={product.id}>
-          {product.name} {product.category} ({lineItem.quantity})
-          <form onSubmit={onSubmit}>
-            <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
-            <button>Update</button>
-          </form>
-          <button onClick={onClick}>Remove Item</button>
-        </li>
-      )
-    }
+        return (
+            <>
+              <tr key={product.id}>
+                <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+                <td>{product.name}</td>
+                <td>{product.category}</td>
+                <td>{lineItem.quantity}</td>
+                <td>
+                  <button className='increaseBtn' onClick={decrease}>-</button>
+                  {totalQuantity}
+                  <button className='decreaseBtn' onClick={increase}>+</button>
+                </td>
+                <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
+                <td><button className='deleteBtn' onClick={onClick}>Remove Item</button></td>
+                <td>${product.price * totalQuantity}</td>
+              </tr>
+              <tr>
+              </tr>
+              <tr>
+              </tr>
+              <tr>
+              </tr>
+            </>     
+        );
+     }
   }
 };
 
-const mapState = ({ auth, products }) => ({ auth, products });
+const mapState = ({ auth, products, orders }) => ({ auth, products, orders});
 
 const mapDispatch = (dispatch) => {
   return {

@@ -1,0 +1,60 @@
+.cartBox {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	text-align: center;
+}
+
+.cartImage {
+	width: 50px;
+	height: auto;
+}
+
+thead th {
+	padding: 4px 0;
+}
+
+tbody td {
+	padding: 0.5rem 0.9rem;
+}
+.cartCheckout {
+	display: block;
+	margin-top: 20px;
+}
+
+table button {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.cartCheckout {
+	background-color: #f58d72;
+	padding: 0.3rem 1.5rem;
+	color: #fff;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border: none;
+	float: right;
+	cursor: pointer;
+}
+
+.deleteBtn {
+	color: red;
+}
+.updateBtn {
+	color: #6b5049;	
+}
+
+.increaseBtn,
+.decreaseBtn {
+	display: inline-flex;
+	width: 20px;
+	height: 20px;
+	font-size: 16px;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+	border: 1px solid #000;
+	border-radius: 50%;
+}

@@ -42,7 +42,7 @@ class Cart extends React.Component {
               )
             })}
           </ul>
-          <button onClick={onClick}>Checkout</button>
+          <button className='cartCheckout' onClick={onClick}>Checkout</button>
         </div>
       );
     }
@@ -52,16 +52,40 @@ class Cart extends React.Component {
       if(!existingCart.length) return <div>Empty Cart</div>;
 
       return (
-        <div>
+        <div style={{marginBottom: '100%'}}>
           <h1>Cart</h1>
-          <ul>
-            {existingCart.map(lineItem => {
-              return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
-              )
-            })}
-          </ul>
-          <button onClick={onClick}>Checkout</button>
+          <div className='cartBox'>
+            <table>
+              <tbody>
+                <tr>
+                  <th style={{width: "150px"}}>Product Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th style={{width: "50px"}}>Price</th>
+                </tr>
+                {existingCart.map(lineItem => {
+                  return (
+                    <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
+                  )
+                })}
+               <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td>$</td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+           <button className='cartCheckout' onClick={onClick}>Checkout</button>
         </div>
       );
     }
