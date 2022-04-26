@@ -7,6 +7,7 @@ const UPDATE_LINEITEM = 'UPDATE_LINEITEM'
 const DESTROY_LINEITEM = 'DESTROY_LINEITEM'
 const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 
+
 // THUNK CREATORS
 export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
