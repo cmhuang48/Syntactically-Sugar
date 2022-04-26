@@ -97,31 +97,31 @@ class LineItemInCart extends React.Component {
     } 
     
     else {
-        return (
-            <>
-              <tr key={product.id}>
-                <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
-                <td>{product.name}</td>
-                <td>{product.category}</td>
-                <td>{lineItem.quantity}</td>
-                <td>
-                  <button className='increaseBtn' onClick={decrease}>-</button>
-                  {totalQuantity}
-                  <button className='decreaseBtn' onClick={increase}>+</button>
-                </td>
-                <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
-                <td><button className='deleteBtn' onClick={onClick}>Remove Item</button></td>
-                <td>${product.price * totalQuantity}</td>
-              </tr>
-              <tr>
-              </tr>
-              <tr>
-              </tr>
-              <tr>
-              </tr>
-            </>     
-        );
-     }
+      return (
+        <>
+          <tr key={product.id}>
+            <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+            <td>{product.name}</td>
+            <td>{product.category}</td>
+            <td>{lineItem.quantity}</td>
+            <td>
+              <button className='increaseBtn' onClick={decrease}>-</button>
+              {totalQuantity}
+              <button className='decreaseBtn' onClick={increase}>+</button>
+            </td>
+            <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
+            <td><button className='deleteBtn' onClick={onClick}>Remove Item</button></td>
+            <td>${product.price * totalQuantity}</td>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+        </>     
+      );
+    }
   }
 };
 
