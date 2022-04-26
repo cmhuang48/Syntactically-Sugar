@@ -8,6 +8,21 @@ p{
 	  font-family: 'Crafty Girls';
   color: #367042;
 }
+.homepic{
+	width: 100%;
+	height: 100%;
+
+}
+
+.headerpic{
+    background-size:cover;
+  max-width:750px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+  margin:0 auto;
+}
 h1 {
 	font-family: "barrio";
 	color: #6b5049
