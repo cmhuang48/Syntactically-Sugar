@@ -54,11 +54,11 @@ class LineItemInCart extends React.Component {
     const { onChange, onSubmit, onClick } = this;
     const product = products.find(product => product?.id === lineItem.productId*1)
     const increase = () => {
-      this.setState({totalQuantity: totalQuantity*1 - 1})
+      this.setState({totalQuantity: totalQuantity*1 + 1})
     }
 
     const decrease = () => {
-      this.setState({totalQuantity: totalQuantity*1 + 1})
+      this.setState({totalQuantity: totalQuantity*1 - 1})
     }
 
     // console.log(product)
@@ -78,8 +78,10 @@ class LineItemInCart extends React.Component {
               <button className='decreaseBtn' onClick={increase}>+</button>
             </td>
             <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
-                <td><button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)>Delete</button></td>
-                <td>${product.price * totalQuantity}</td>
+            <td>
+              <button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}>Delete</button>
+            </td>
+            <td>${product.price * totalQuantity}</td>
           </tr>
           <tr>
           </tr>
@@ -103,7 +105,7 @@ class LineItemInCart extends React.Component {
                   <button className='decreaseBtn' onClick={increase}>+</button>
                 </td>
                 <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
-                <td><button className='deleteBtn' onClick={onClick}>Delete</button></td>
+                <td><button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}>Delete</button></td>
                 <td>${product.price * totalQuantity}</td>
               </tr>
               <tr>
