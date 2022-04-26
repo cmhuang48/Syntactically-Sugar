@@ -11,14 +11,14 @@ const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
-  if(token){
+  if (token) {
     window.localStorage.setItem('cart', '{}')
     return async (dispatch) => {
       let lineItems
-      if(Object.keys(localStorage).length === 0) {
+      if (Object.keys(localStorage).length === 0) {
         lineItems = (await axios.get('/api/lineItems')).data
-      }else{
-        lineItems = (await axios.put('/api/lineItems/1', {localStorage:localStorage}, {
+      } else {
+        lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
           headers: {
             authorization: token
           }
@@ -29,10 +29,10 @@ export const loadLineItems = () => {
         lineItems
       })
     }
-  }else{
-    return async(dispatch)=>{
+  } else {
+    return async (dispatch) => {
       dispatch({
-        type:LOAD_LOCAL_LINEITEMS,
+        type: LOAD_LOCAL_LINEITEMS,
         localStorage
       })
     }
@@ -41,7 +41,7 @@ export const loadLineItems = () => {
 
 export const createLineItem = (item) => {
   const token = window.localStorage.getItem('token')
-  if(token){
+  if (token) {
     return async (dispatch) => {
       const lineItem = (await axios.post('/api/lineItems', item)).data
       dispatch({
@@ -49,8 +49,8 @@ export const createLineItem = (item) => {
         lineItem
       })
     }
-  }else{
-    return async(dispatch) => {
+  } else {
+    return async (dispatch) => {
       dispatch({
         type:CREATE_LINEITEM,
         lineItem: item
@@ -61,7 +61,7 @@ export const createLineItem = (item) => {
 
 export const updateLineItem = (lineItem) => {
   const token = window.localStorage.getItem('token')
-  if(token){
+  if (token) {
     return async (dispatch) => {
       const updatedlineItem = (await axios.put(`/api/lineItems/${lineItem.id}`, lineItem)).data
       dispatch({
@@ -69,7 +69,7 @@ export const updateLineItem = (lineItem) => {
         lineItem: updatedlineItem
       })
     }
-  }else{
+  } else {
     return (dispatch) => {
       dispatch({
         type: UPDATE_LINEITEM,
@@ -95,12 +95,15 @@ export default function(state = [], action) {
     case LOAD_LINEITEMS:
       return action.lineItems
     case CREATE_LINEITEM:
-      if(action.lineItem.id) return [...state, action.lineItem]
-      else return [action.lineItem]
+      if (action.lineItem.id) {
+        return [...state, action.lineItem]
+      } else { 
+        return [action.lineItem]
+      }
     case UPDATE_LINEITEM:
-      if(action.lineItem.id){
+      if (action.lineItem.id) {
         return state.map(lineItem => lineItem.id === action.lineItem.id ? action.lineItem : lineItem)
-      }else{
+      } else {
         return [action.lineItem]
       }
     case DESTROY_LINEITEM:
