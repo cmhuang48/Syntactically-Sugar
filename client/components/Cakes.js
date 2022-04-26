@@ -1,30 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CreateProduct from './CreateProduct';
 
 const Cakes = ({ cakes }) => {
   return (
     <div>
       <h1>Cakes</h1>
-	    <CreateProduct category='cake' />
       <ul className='cakeContainer'>
         {cakes.map(cake => {
           return (
-
-            <Link to={`/cakes/${cake.id}`} key={cake.id}>
-              <div className='cakeBox'>
-
-                <img className='cakeImage' src={cake.image}/>
-                <li>
+            <li key={cake.id}>
+              <Link to={`/cakes/${cake.id}`}>
+                <div className='cakeBox'>
+                  <img className='cakeImage' src={cake.image} />
                   <span className='product-title'>{cake.name}</span>
-                </li>
-              </div>
-            </Link>
+                </div>
+              </Link>
+            </li>
           )
         })}
+        <li>
+          <Link to='/cakes/custom'>
+            <div className='cakeBox'>
+              <img className='cakeImage' src='https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg' />
+              <span className='product-title'>Create A Custom Cake</span>
+            </div>
+          </Link>
+        </li>
       </ul>
-		
     </div>
   );
 };

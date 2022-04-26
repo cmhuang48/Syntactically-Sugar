@@ -61,7 +61,7 @@ router.put('/:id', async (req, res, next) => {
 
       res.json(lineItems)
 
-    }else{
+    } else {
       const lineItem = await LineItem.findOne({
         where: {
           productId: req.body.productId,
@@ -75,7 +75,7 @@ router.put('/:id', async (req, res, next) => {
       }
     }
   }
-  catch(err) {
+  catch (err) {
     next(err)
   }
 })
@@ -86,7 +86,7 @@ router.delete('/:id', async (req, res, next) => {
     await lineItem.destroy()
     res.sendStatus(204)
   }
-  catch(err) {
+  catch (err) {
     next(err)
   }
 })

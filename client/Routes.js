@@ -3,11 +3,13 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
-import {me, loadProducts, loadOrders, loadLineItems} from './store'
+import { me, loadProducts, loadLineItems, loadOrders } from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
+import CreateCake from './components/CreateCake'
 import Cupcakes from './components/Cupcakes'
 import Cupcake from './components/Cupcake'
+import CreateCupcake from './components/CreateCupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
 
@@ -18,8 +20,8 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.loadProducts()
-    this.props.loadOrders()
     this.props.loadLineItems()
+    this.props.loadOrders()
   }
 
   render() {
@@ -31,8 +33,10 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
-            <Route path="/cakes/:id" component={Cake}/>
+            <Route exact path='/cakes/custom' component={CreateCake} />
+            <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
+            <Route exact path='/cupcakes/custom' component={CreateCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
@@ -44,8 +48,10 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
 			      <Route exact path="/cakes" component={Cakes} />
+            <Route exact path='/cakes/custom' component={CreateCake} />
             <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
+            <Route exact path='/cupcakes/custom' component={CreateCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
@@ -81,9 +87,6 @@ const mapDispatch = dispatch => {
     },
     loadOrders() {
       dispatch(loadOrders())
-    },
-    loadLineItems(){
-      dispatch(loadLineItems())
     }
   }
 }

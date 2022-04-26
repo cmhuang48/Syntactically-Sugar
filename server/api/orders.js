@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const { models: { Order, User }} = require('../db')
-
 module.exports = router
 
 //get all orders
@@ -8,7 +7,9 @@ router.get('/', async (req, res, next) => {
   try {
 		const user = await User.findByToken(req.headers.authorization) // loggedIn
 		const orders = await Order.findAll({
-			where: {userId : user.dataValues.id}
+			where: {
+				userId : user.dataValues.id
+			}
 		})
 		res.json(orders)
   } catch (err) {
@@ -24,8 +25,8 @@ router.get('/:id', async(req, res, next) => {
 			throw 'Only admin can edit'
 		}
 		res.json(await Order.findByPk(req.params.id))
-	} catch (error) {
-		next(error)
+	} catch (err) {
+		next(err)
 	}
 })
 
@@ -34,8 +35,8 @@ router.post('/', async(req, res, next) => {
 	try {
 		const order = await Order.create(req.body)
 		res.status(201).json(order)
-	} catch (error) {
-		next(error)
+	} catch (err) {
+		next(err)
 	}
 })
 
@@ -43,13 +44,12 @@ router.post('/', async(req, res, next) => {
 router.put('/:id', async(req, res, next) => {
 	try {
 		const order = await Order.findByPk(req.params.id)
-		const updated = await Order.update(order)
 		if (req.params.status === 'order') {
-			const updated = await order.update({status: 'order'});
-			Order.create({userId: order.userId})
+			const updated = await order.update({ status: 'order' });
+			Order.create({ userId: order.userId })
 		}
 		res.json(updated)
-	} catch (error) {
-		next(error)
+	} catch (err) {
+		next(err)
 	}
 })

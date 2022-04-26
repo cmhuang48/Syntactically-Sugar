@@ -3,7 +3,7 @@
 const {expect} = require('chai')
 const request = require('supertest')
 const { db, models: { User } } = require('../db')
-const seed = require('../../script/seed');
+const seed = require('../../script/seed')
 const app = require('../app')
 
 describe('User routes', () => {

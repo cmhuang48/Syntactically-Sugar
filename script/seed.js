@@ -12,32 +12,36 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
+    User.create({ username: 'chanelle', password: '123', isAdmin: true }),
+    User.create({ username: 'jiayu', password: '123', isAdmin: true }),
+    User.create({ username: 'lauren', password: '123', isAdmin: true }),
+    User.create({ username: 'savannah', password: '123', isAdmin: true }),
     User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+    User.create({ username: 'murphy', password: '123' })
   ])
 
   console.log(`seeded ${users.length} users`)
 
   // Creating Cakes
   const cakes = await Promise.all([
-    Product.create({ category: 'cake', name: 'funfetti', price: 50.00, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
-    Product.create({ category: 'cake', name: 'red velvet', price: 50.00, image: 'https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg'  }),
-    Product.create({ category: 'cake', name: 'chocolate', price: 60.00, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1578&q=80'}),
-    Product.create({ category: 'cake', name: 'vanilla', price: 45.00, image: 'https://cdn.pixabay.com/photo/2020/04/20/16/59/cake-5069043_1280.jpg'}),
-    Product.create({ category: 'cake', name: 'strawberry', price: 40.00, image: "https://tatyanaseverydayfood.com/wp-content/uploads/2014/04/Strawberries-and-Cream-Cake-869x1024.jpg" }),
-    Product.create({ category: 'cake', name: 'rainbow', price: 60.00, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
+    Product.create({ category: 'cake', name: 'Vanilla', price: 45.00, image: 'https://cdn.pixabay.com/photo/2020/04/20/16/59/cake-5069043_1280.jpg' }),
+    Product.create({ category: 'cake', name: 'Chocolate', price: 60.00, image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1578&q=80' }),
+    Product.create({ category: 'cake', name: 'Strawberry', price: 40.00, image: "https://tatyanaseverydayfood.com/wp-content/uploads/2014/04/Strawberries-and-Cream-Cake-869x1024.jpg" }),
+    Product.create({ category: 'cake', name: 'Red Velvet', price: 50.00, image: 'https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg' }),
+    Product.create({ category: 'cake', name: 'Rainbow', price: 60.00, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
+    Product.create({ category: 'cake', name: 'Funfetti', price: 50.00, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" })
   ])
 
   console.log(`seeded ${cakes.length} cakes`)
 
   // Creating Cupcakes
   const cupcakes = await Promise.all([
-    Product.create({ category: 'cupcake', name: 'rainbow', price: 20, image: "https://64.media.tumblr.com/ebad3e769425d9afee3e769526f614fe/d439913b40336189-a0/s1280x1920/97ce1e01353a2de19e3ecc18202ae8a739167e33.pnj" }),
-    Product.create({ category: 'cupcake', name: 'red velvet', price: 20, image: 'https://ofbatteranddough.com/wp-content/uploads/2017/02/Red-velvet-cupcakes-cream-cheese-buttercream-12.jpg'}),
-    Product.create({ category: 'cupcake', name: 'vanilla', price: 20, image: 'https://images.unsplash.com/photo-1607478900766-efe13248b125?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80' }),
-    Product.create({ category: 'cupcake', name: 'chocolate', price: 20, image: 'https://images.unsplash.com/photo-1567022405855-fc2ce6befe33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80' }),
-    Product.create({ category: 'cupcake', name: 'strawberry', price: 20, image: 'https://static.toiimg.com/thumb/55599531.cms?imgsize=92701&width=800&height=800' }),
-    Product.create({ category: 'cupcake', name: 'funfetti', price: 20, image: 'https://www.crazyforcrust.com/wp-content/uploads/2019/05/Easy-Funfetti-Cupcakes-3.jpg' })
+    Product.create({ category: 'cupcake', name: 'Vanilla', price: 20, image: 'https://images.unsplash.com/photo-1607478900766-efe13248b125?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80' }),
+    Product.create({ category: 'cupcake', name: 'Chocolate', price: 20, image: 'https://images.unsplash.com/photo-1567022405855-fc2ce6befe33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80' }),
+    Product.create({ category: 'cupcake', name: 'Strawberry', price: 20, image: 'https://static.toiimg.com/thumb/55599531.cms?imgsize=92701&width=800&height=800' }),
+    Product.create({ category: 'cupcake', name: 'Red Velvet', price: 20, image: 'https://ofbatteranddough.com/wp-content/uploads/2017/02/Red-velvet-cupcakes-cream-cheese-buttercream-12.jpg' }),
+    Product.create({ category: 'cupcake', name: 'Rainbow', price: 20, image: "https://64.media.tumblr.com/ebad3e769425d9afee3e769526f614fe/d439913b40336189-a0/s1280x1920/97ce1e01353a2de19e3ecc18202ae8a739167e33.pnj" }),
+    Product.create({ category: 'cupcake', name: 'Funfetti', price: 20, image: 'https://www.crazyforcrust.com/wp-content/uploads/2019/05/Easy-Funfetti-Cupcakes-3.jpg' })
   ])
 
   console.log(`seeded ${cupcakes.length} cupcakes`)
