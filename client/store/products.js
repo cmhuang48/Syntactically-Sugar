@@ -16,12 +16,12 @@ export const loadProducts = () => {
   }
 }
 
-export const createProduct = (category, name, tiers, flavor, frosting, message) => {
+export const createProduct = (product) => {
   return async (dispatch) => {
-    const product = (await axios.post('/api/products', { category, name, tiers, flavor, frosting, message })).data
+    const newProduct = (await axios.post('/api/products', product)).data
     dispatch({
       type: CREATE_PRODUCT,
-      product
+      product: newProduct
     })
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLineItem, updateLineItem } from '../store/lineItems';
+import { createLineItem, updateLineItem } from '../store';
 
 class Cake extends React.Component {
   constructor () {
@@ -17,21 +17,23 @@ class Cake extends React.Component {
     const { auth, cake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
     if (auth.username) {
-      if (!lineItem) {
-        const newItem = {quantity:quantity, productId: cake.id, orderId: order.id}
-        createLineItem(newItem);
+      if (lineItem) {
+        const updatedLineItem = { id: lineItem.id, quantity: quantity, productId: cake.id, orderId: order.id };
+        updateLineItem(updatedLineItem);
       } else {
-        const updatedItem = {id:lineItem.id, quantity:quantity, productId:cake.id, orderId: order.id}
-        updateLineItem(updatedItem);
+        const newLineItem = { quantity: quantity, productId: cake.id, orderId: order.id };
+        createLineItem(newLineItem);
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      if (existingCart[cake.id]) {
-        existingCart[cake.id] = existingCart[cake.id]*1 + quantity*1;
-        updateLineItem(existingCart)
+      let existingLineItem = existingCart.find(obj => obj.productId === cake.id);
+      const idx = existingCart.indexOf(existingLineItem);
+      if (existingLineItem) {
+        existingLineItem.quantity = existingLineItem.productId*1 + quantity*1;
+        existingCart[idx] = existingLineItem;
       } else {
-        existingCart[cake.id] = quantity;
-        createLineItem(existingCart)
+        existingLineItem = { productId: cake.id, quantity: quantity };
+        existingCart.push(existingLineItem);
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
@@ -48,6 +50,7 @@ class Cake extends React.Component {
     const { cake } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
+    
     if(!cake) return null;
 
     return (
@@ -80,11 +83,11 @@ const mapState = ({ auth, products, orders, lineItems }, { match: { params: { id
 
 const mapDispatch = (dispatch) => {
   return {
-    createLineItem: (item) => {
-      dispatch(createLineItem(item));
+    createLineItem: (lineItem) => {
+      dispatch(createLineItem(lineItem));
     },
-    updateLineItem: (item) => {
-      dispatch(updateLineItem(item));
+    updateLineItem: (lineItem) => {
+      dispatch(updateLineItem(lineItem));
     }
   };
 };

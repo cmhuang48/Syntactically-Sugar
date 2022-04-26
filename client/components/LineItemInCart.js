@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateLineItem, deleteLineItem } from '../store';
-import {loadLineItems} from '../store'
+import { loadLineItems, updateLineItem, deleteLineItem } from '../store';
 
 
 class LineItemInCart extends React.Component {
@@ -12,33 +11,24 @@ class LineItemInCart extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onClick = this.onClick.bind(this)
+    this.onClick = this.onClick.bind(this);
   }
   
   onSubmit (ev) {
     ev.preventDefault();
-    const { auth, updateLineItem, lineItem} = this.props;
+    const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
     if (auth.username) {
-      const updatedItem = {id:lineItem.id, productId:lineItem.productId, orderId:lineItem.orderId, totalQuantity:totalQuantity}
+      const updatedItem = { id: lineItem.id, totalQuantity: totalQuantity, productId: lineItem.productId, orderId: lineItem.orderId };
       updateLineItem(updatedItem);
     } else {
-      let existingCart = JSON.parse(window.localStorage.getItem('cart'))
-      existingCart[lineItem.productId] = totalQuantity;
-      window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      updateLineItem(existingCart)
-    }
-  }
-
-  onClick(){
-    const { auth } = this.props 
-    if(auth.username){
-
-    }else{
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      delete existingCart[this.props.lineItem.productId]
+      let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
+      const idx = existingCart.indexOf(existingLineItem);
+      existingLineItem.quantity = totalQuantity*1;
+      existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.props.loadLineItems()
+      loadLineItems();
     }
   }
 
@@ -48,22 +38,34 @@ class LineItemInCart extends React.Component {
     this.setState(change);
   }
 
+  onClick () {
+    const { auth, loadLineItems, deleteLineItem, lineItem } = this.props;
+    if (auth.username) {
+      deleteLineItem(lineItem);
+    } else {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      existingCart = existingCart.filter(obj => obj.productId !== lineItem.productId);
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+      loadLineItems();
+    }
+  }
+
   render () {
-    const { products, lineItem, deleteLineItem, auth } = this.props;
+    const { products, lineItem, auth } = this.props;
     const { totalQuantity } = this.state;
     const { onChange, onSubmit, onClick } = this;
-    const product = products.find(product => product?.id === lineItem.productId*1)
+
+    const product = products.find(product => product?.id === lineItem.productId*1);
+    if(!product) return null;
+
     const increase = () => {
-      this.setState({totalQuantity: totalQuantity*1 + 1})
-    }
+      this.setState({totalQuantity: totalQuantity*1 + 1});
+    };
 
     const decrease = () => {
-      if(totalQuantity === 1) return
-      this.setState({totalQuantity: totalQuantity*1 - 1})
-    }
-
-    // console.log(product)
-    if(!product) return null
+      if(totalQuantity === 1) return;
+      this.setState({totalQuantity: totalQuantity*1 - 1});
+    };
 
     if (auth.username) {  
       return (
@@ -80,7 +82,7 @@ class LineItemInCart extends React.Component {
             </td>
             <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
             <td>
-              <button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}}>Delete</button>
+              <button className='deleteBtn' onClick={onClick}>Remove Item</button>
             </td>
             <td>${product.price * totalQuantity}</td>
           </tr>
@@ -91,33 +93,35 @@ class LineItemInCart extends React.Component {
           <tr>
           </tr>
         </>
-      )
-      } else {
-        return (
-            <>
-              <tr key={product.id}>
-                <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
-                <td>{product.name}</td>
-                <td>{product.category}</td>
-                <td>{lineItem.quantity}</td>
-                <td>
-                  <button className='increaseBtn' onClick={decrease}>-</button>
-                  {totalQuantity}
-                  <button className='decreaseBtn' onClick={increase}>+</button>
-                </td>
-                <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
-                <td><button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}}>Delete</button></td>
-                <td>${product.price * totalQuantity}</td>
-              </tr>
-              <tr>
-              </tr>
-              <tr>
-              </tr>
-              <tr>
-              </tr>
-            </>     
-        )
-      }
+      );
+    } 
+    
+    else {
+      return (
+        <>
+          <tr key={product.id}>
+            <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+            <td>{product.name}</td>
+            <td>{product.category}</td>
+            <td>{lineItem.quantity}</td>
+            <td>
+              <button className='increaseBtn' onClick={decrease}>-</button>
+              {totalQuantity}
+              <button className='decreaseBtn' onClick={increase}>+</button>
+            </td>
+            <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
+            <td><button className='deleteBtn' onClick={onClick}>Remove Item</button></td>
+            <td>${product.price * totalQuantity}</td>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+        </>     
+      );
+    }
   }
 };
 
@@ -125,15 +129,15 @@ const mapState = ({ auth, products, orders }) => ({ auth, products, orders});
 
 const mapDispatch = (dispatch) => {
   return {
-    updateLineItem: (item) => {
-      dispatch(updateLineItem(item));
+    loadLineItems: ()=>{
+      dispatch(loadLineItems());
+    },
+    updateLineItem: (lineItem) => {
+      dispatch(updateLineItem(lineItem));
     },
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
-    },
-    loadLineItems: ()=>{
-      dispatch(loadLineItems())
-    },
+
   };
 };
 
