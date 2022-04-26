@@ -3,6 +3,7 @@ import axios from 'axios'
 // ACTION TYPES
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -25,6 +26,16 @@ export const createProduct = (product) => {
   }
 }
 
+export const deleteProduct = (category, name, tiers, flavor, frosting, message) => {
+   return async (dispatch) => { 
+    await axios.delete(`/api/products/${product.id}`, { category, name, tiers, flavor, frosting, message }).data;
+    dispatch({
+      type: DELETE_PRODUCT,
+      product
+    })
+   }
+}
+
 // REDUCER
 export default function(state = [], action) {
   switch (action.type) {
@@ -32,6 +43,8 @@ export default function(state = [], action) {
       return action.products
     case CREATE_PRODUCT:
       return [...state, action.product]
+    case DELETE_PRODUCT:
+      return state.filter(product => product.id !== action.product.id)
     default:
       return state
   }
