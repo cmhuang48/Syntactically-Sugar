@@ -29,22 +29,22 @@ class LineItemInCart extends React.Component {
     }
   }
 
-  onClick(){
-    const { auth } = this.props 
-    if(auth.username){
+  onChange (ev) {
+    const change = {};
+    change[ev.target.name] = ev.target.value;
+    this.setState(change);
+  }
 
-    }else{
+  onClick () {
+    const { auth } = this.props 
+    if (auth.username) {
+
+    } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       delete existingCart[this.props.lineItem.productId]
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       this.props.loadLineItems()
     }
-  }
-
-  onChange (ev) {
-    const change = {};
-    change[ev.target.name] = ev.target.value;
-    this.setState(change);
   }
 
   render () {

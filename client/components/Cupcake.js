@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLineItem } from '../store/lineItems';
+import { createLineItem, updateLineItem } from '../store/lineItems';
 
 class Cupcake extends React.Component {
   constructor () {
     super();
     this.state = {
-      quantity: 0
+      quantity: 1
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -14,9 +14,28 @@ class Cupcake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
-    const { cupcake, order, createLineItem } = this.props;
+    const { auth, cupcake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
-    createLineItem(quantity, cupcake.id, order.id);
+    if (auth.username) {
+      if (!lineItem) {
+        const newItem = { quantity: quantity, productId: cupcake.id, orderId: order.id };
+        createLineItem(newItem);
+      } else {
+        const updatedItem = { id: lineItem.id, quantity: quantity, productId: cupcake.id, orderId: order.id };
+        updateLineItem(updatedItem);
+      }
+    } else {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      if (existingCart[cupcake.id]) {
+        existingCart[cupcake.id] = existingCart[cupcake.id]*1 + quantity*1;
+        updateLineItem(existingCart)
+      } else {
+        existingCart[cupcake.id] = quantity;
+        createLineItem(existingCart)
+      }
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+    }
+    window.alert('Added to cart!');
   }
 
   onChange (ev) {
@@ -29,6 +48,7 @@ class Cupcake extends React.Component {
     const { cupcake } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
+
     if(!cupcake) return null;
 
     return (
@@ -47,19 +67,25 @@ class Cupcake extends React.Component {
   }
 };
 
-const mapState = ({ products, orders }, { match: { params: { id } } })=>{
+const mapState = ({ auth, products, orders, lineItems }, { match: { params: { id } } })=>{
   const cupcake = products.find(product => product.id === id*1);
   const order = orders.find(order => order.status === 'cart');
+  const lineItem = lineItems.find(lineItem => lineItem.productId === cupcake.id && lineItem.orderId === order?.id);
   return {
+    auth,
     cupcake,
-    order
+    order,
+    lineItem
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    createLineItem: (quantity, productId, orderId) => {
-      dispatch(createLineItem(quantity, productId, orderId));
+    createLineItem: (item) => {
+      dispatch(createLineItem(item));
+    },
+    updateLineItem: (item) => {
+      dispatch(updateLineItem(item));
     }
   };
 };

@@ -18,20 +18,20 @@ class Cake extends React.Component {
     const { quantity } = this.state;
     if (auth.username) {
       if (!lineItem) {
-        const newItem = {quantity:quantity, productId: cake.id, orderId: order.id}
+        const newItem = { quantity: quantity, productId: cake.id, orderId: order.id };
         createLineItem(newItem);
       } else {
-        const updatedItem = {id:lineItem.id, quantity:quantity, productId:cake.id, orderId: order.id}
+        const updatedItem = { id: lineItem.id, quantity: quantity, productId: cake.id, orderId: order.id };
         updateLineItem(updatedItem);
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart[cake.id]) {
         existingCart[cake.id] = existingCart[cake.id]*1 + quantity*1;
-        updateLineItem(existingCart)
+        updateLineItem(existingCart);
       } else {
         existingCart[cake.id] = quantity;
-        createLineItem(existingCart)
+        createLineItem(existingCart);
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
@@ -48,6 +48,7 @@ class Cake extends React.Component {
     const { cake } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
+    
     if(!cake) return null;
 
     return (
