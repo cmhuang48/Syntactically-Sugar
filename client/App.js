@@ -4,7 +4,7 @@ import Routes from './Routes'
 
 const App = () => {
   if (!window.localStorage.getItem('cart')) {
-    window.localStorage.setItem('cart', '{}')
+    window.localStorage.setItem('cart', '[]')
   }
 
   return (

@@ -26,12 +26,16 @@ class Cupcake extends React.Component {
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      if (existingCart[cupcake.id]) {
-        existingCart[cupcake.id] = existingCart[cupcake.id]*1 + quantity*1;
-        updateLineItem(existingCart)
+      let existingLineItem = existingCart.find(obj => obj.productId === cupcake.id);
+      const idx = existingCart.indexOf(existingLineItem);
+      if (existingLineItem) {
+        existingLineItem.quantity = existingLineItem.productId*1 + quantity*1;
+        existingCart[idx] = existingLineItem;
+        // updateLineItem(existingLineItem);
       } else {
-        existingCart[cupcake.id] = quantity;
-        createLineItem(existingCart)
+        existingLineItem = { productId: cake.id, quantity: quantity };
+        existingCart.push(existingLineItem);
+        // createLineItem(existingLineItem);
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
@@ -81,11 +85,11 @@ const mapState = ({ auth, products, orders, lineItems }, { match: { params: { id
 
 const mapDispatch = (dispatch) => {
   return {
-    createLineItem: (item) => {
-      dispatch(createLineItem(item));
+    createLineItem: (lineItem) => {
+      dispatch(createLineItem(lineItem));
     },
-    updateLineItem: (item) => {
-      dispatch(updateLineItem(item));
+    updateLineItem: (lineItem) => {
+      dispatch(updateLineItem(lineItem));
     }
   };
 };

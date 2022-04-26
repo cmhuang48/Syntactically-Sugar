@@ -1,80 +1,91 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
-import { createLineItem } from '../store/lineItems';
-import { createOrder } from '../store/orders';
+import { auth, updateOrder, createOrder, createLineItem } from '../store';
 
-class Cart extends React.Component{
-  constructor(props){
-    super(props)
+class Cart extends React.Component {
+  constructor () {
+    super();
+    this.onClick = this.onClick.bind(this);
   }
 
-  render(){
-    const { auth, orders, lineItems } = this.props
+  async onClick () {
+    const { auth, cart, updateOrder, createOrder, createLineItem } = this.props;
     if (auth.username) {
-      const cart = orders.find(order => order.status === 'cart')
-      if(!cart) return <div>Empty Cart</div>
-    
-      const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart.id)
-    
-      if(!associatedLineItems.length) return <div>Empty Cart</div> 
-    
+      // const token = window.localStorage.getItem('token');
+      updateOrder({ id: cart.id, status: 'order', userId: token });
+    } else {
+      const order = await createOrder({ status: 'order' });
+      const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      for (const lineItem of existingCart) {
+        createLineItem({ ...lineItem, orderId: order.id });
+      }
+    }
+  }
+
+  render () {
+    const { auth, cart } = this.props;
+    const { onClick } = this;
+
+    if (auth.username) {
+      if(!cart.length) return <div>Empty Cart</div>;
+
       return (
         <div>
           <h1>Cart</h1>
           <ul>
-            {associatedLineItems.map(lineItem => {
+            {cart.map(lineItem => {
               return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id}/>
+                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
               )
             })}
           </ul>
-          <button>Checkout</button>
+          <button onClick={onClick}>Checkout</button>
         </div>
       );
     }
 
     else {
-      let existingCart = this.props.lineItems[0]? this.props.lineItems[0]: {};
-
-      if(!Object.keys(existingCart).length) return <div>Empty Cart</div>
-
-      const associatedLineItems = [];
-      for (let productId in existingCart) {
-        associatedLineItems.push({'productId': productId, 'quantity': existingCart[productId]})
-      }
+      const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      if(!existingCart.length) return <div>Empty Cart</div>;
 
       return (
         <div>
           <h1>Cart</h1>
           <ul>
-            {associatedLineItems.map(lineItem => {
+            {existingCart.map(lineItem => {
               return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.productId}/>
+                <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
               )
             })}
           </ul>
-          <button>Checkout</button>
+          <button onClick={onClick}>Checkout</button>
         </div>
       );
     }
   }
-}
+};
 
-  
-  
-
-const mapState = (state) => state;
+const mapState = ({ auth, orders }) => {
+  const cart = orders.find(order => order.status === 'cart');
+  return {
+    auth,
+    cart
+  };
+};
 
 const mapDispatch = (dispatch) => {
   return {
-    createLineItem: (quantity, productId, orderId) => {
-      dispatch(createLineItem(quantity, productId, orderId))
+    updateOrder: (order) => {
+      dispatch(updateOrder(order));
     },
-    createOrder: (status) => {
-      dispatch(createOrder(status))
+    createOrder: (order) => {
+      dispatch(createOrder(order));
+    },
+    createLineItem: (lineItem) => {
+      dispatch(createLineItem(lineItem));
     }
-  }
-}
+  };
+};
 
 export default connect(mapState, mapDispatch)(Cart);

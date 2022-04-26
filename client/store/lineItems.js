@@ -12,7 +12,7 @@ export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
   if (token) {
-    window.localStorage.setItem('cart', '{}')
+    window.localStorage.setItem('cart', '[]')
     return async (dispatch) => {
       let lineItems
       if (Object.keys(localStorage).length === 0) {
@@ -39,21 +39,21 @@ export const loadLineItems = () => {
   }
 }
 
-export const createLineItem = (item) => {
+export const createLineItem = (lineItem) => {
   const token = window.localStorage.getItem('token')
   if (token) {
     return async (dispatch) => {
-      const lineItem = (await axios.post('/api/lineItems', item)).data
+      const newLineItem = (await axios.post('/api/lineItems', lineItem)).data
       dispatch({
         type: CREATE_LINEITEM,
-        lineItem
+        lineItem: newLineItem
       })
     }
   } else {
     return async (dispatch) => {
       dispatch({
-        type:CREATE_LINEITEM,
-        lineItem: item
+        type: CREATE_LINEITEM,
+        lineItem
       })
     }
   }
@@ -63,10 +63,10 @@ export const updateLineItem = (lineItem) => {
   const token = window.localStorage.getItem('token')
   if (token) {
     return async (dispatch) => {
-      const updatedlineItem = (await axios.put(`/api/lineItems/${lineItem.id}`, lineItem)).data
+      const updatedLineItem = (await axios.put(`/api/lineItems/${lineItem.id}`, lineItem)).data
       dispatch({
         type: UPDATE_LINEITEM,
-        lineItem: updatedlineItem
+        lineItem: updatedLineItem
       })
     }
   } else {
@@ -81,7 +81,7 @@ export const updateLineItem = (lineItem) => {
 
 export const deleteLineItem = (lineItem) => {
   return async (dispatch) => {
-    await axios.delete(`/api/lineItems/${lineItem.id}`);
+    await axios.delete(`/api/lineItems/${lineItem.id}`)
     dispatch({
       type: DESTROY_LINEITEM,
       lineItem

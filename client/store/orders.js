@@ -24,9 +24,9 @@ export const loadOrders = () => {
   }
 }
 
-export const createOrder = (status, userId) => {
+export const createOrder = (order) => {
   return async (dispatch) => {
-    const order = (await axios.post('/api/orders', { status, userId })).data
+    const order = (await axios.post('/api/orders', order)).data
     dispatch({
       type: CREATE_ORDER,
       order
@@ -35,9 +35,9 @@ export const createOrder = (status, userId) => {
 }
 
 // submit order (status 'cart' => 'order')
-export const updateOrder = (id, status, userId) => {
+export const updateOrder = (order) => {
   return async (dispatch) => {
-    const order = (await axios.put(`/api/orders/${id}`, { status, userId })).data;
+    const order = (await axios.put(`/api/orders/${order.id}`, order)).data;
     dispatch({
       type: UPDATE_ORDER,
       order
