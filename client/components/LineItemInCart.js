@@ -54,11 +54,11 @@ class LineItemInCart extends React.Component {
     const { onChange, onSubmit, onClick } = this;
     const product = products.find(product => product?.id === lineItem.productId*1)
     const increase = () => {
-      if(totalQuantity === 1) return
       this.setState({totalQuantity: totalQuantity*1 + 1})
     }
 
     const decrease = () => {
+      if(totalQuantity === 1) return
       this.setState({totalQuantity: totalQuantity*1 - 1})
     }
 
