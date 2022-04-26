@@ -63,14 +63,14 @@ class LineItemInCart extends React.Component {
     };
 
     const decrease = () => {
-      if(totalQuantity === 1) return;
+      if(totalQuantity === 1) { onClick() }
       this.setState({totalQuantity: totalQuantity*1 - 1});
     };
 
     if (auth.username) {  
       return (
         <>
-          <tr className='row' key={product.id}>
+          <tr id='row' key={product.id}>
             <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
             <td>{product.name}</td>
             <td>{product.category}</td>
@@ -137,7 +137,7 @@ const mapDispatch = (dispatch) => {
     },
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
-
+    }
   };
 };
 
