@@ -85,7 +85,7 @@ class Cart extends React.Component {
             </tbody>
             </table>
           </div>
-           <button className='cartCheckout' onClick={onClick}>Checkout</button>
+          <button className='cartCheckout' onClick={onClick}>Checkout</button>
         </div>
       );
     }
