@@ -57,7 +57,6 @@ class LineItemInCart extends React.Component {
 
     const product = products.find(product => product?.id === lineItem.productId*1);
     if(!product) return null;
-
     const increase = () => {
       this.setState({totalQuantity: totalQuantity*1 + 1});
     };
@@ -70,7 +69,7 @@ class LineItemInCart extends React.Component {
     if (auth.username) {  
       return (
         <>
-          <tr id='row' key={product.id}>
+          <tr key={product.id}>
             <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
             <td>{product.name}</td>
             <td>{product.category}</td>

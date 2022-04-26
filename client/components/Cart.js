@@ -26,9 +26,8 @@ class Cart extends React.Component {
   }
 
   render () {
-    const { auth, cart } = this.props;
+    const { auth, cart, loadLineItems } = this.props;
     const { onClick } = this;
-
     if (auth.username) {
       if(!cart.length) return <div>Empty Cart</div>;
 
@@ -92,16 +91,20 @@ class Cart extends React.Component {
   }
 };
 
-const mapState = ({ auth, orders }) => {
+const mapState = ({ auth, orders, products }) => {
   const cart = orders.find(order => order.status === 'cart');
   return {
     auth,
-    cart
+    cart,
+    products
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
+    loadLineItems: ()  => {
+      dispatch(loadLineItems());
+    },
     updateOrder: (order) => {
       dispatch(updateOrder(order));
     },
