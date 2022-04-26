@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createProduct } from '../store/products'
+import { createProduct, createLineItem } from '../store';
 
 class CreateCupcake extends React.Component {
   constructor () {
     super();
     this.state = {
       category: 'cupcake',
-      name: 'custom',
+      name: 'Custom',
       flavor: '', 
       frosting: '',
       message: ''
@@ -18,8 +18,22 @@ class CreateCupcake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
+    const { auth, order, createProduct, createLineItem } = this.props;
     const { category, name, flavor, frosting, message } = this.state;
-    this.props.createProduct(category, name, flavor, frosting, message);
+    if (auth.username) {
+      const id = Math.floor(Math.random()); // How to set UUID?
+      const newProduct = { id, category, name, flavor, frosting, message };
+      createProduct(newProduct);
+      const newLineItem = { quantity: 1, productId: id, orderId: order.id };
+      createLineItem(newLineItem);
+    } else {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      const id = Math.floor(Math.random()); // How to set UUID?
+      const newLineItem = { quantity: 1, productId: id };
+      existingCart.push(newLineItem);
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+    }
+    window.alert('Added to cart!');
   }
   
   onChange (ev) {
@@ -52,12 +66,23 @@ class CreateCupcake extends React.Component {
   }
 };
 
+const mapState = ({ auth, orders }) => {
+  const order = orders.find(order => order.status === 'cart');
+  return {
+    auth, 
+    order
+  };
+};
+
 const mapDispatch = (dispatch) => {
   return {
-    createProduct: (category, name, flavor, frosting, message) => {
-      dispatch(createProduct(category, name, flavor, frosting, message))
+    createProduct: (product) => {
+      dispatch(createProduct(product));
+    },
+    createLineItem: (lineItem) => {
+      dispatch(createLineItem(lineItem));
     }
   };
 };
 
-export default connect(null, mapDispatch)(CreateCupcake);
+export default connect(mapState, mapDispatch)(CreateCupcake);

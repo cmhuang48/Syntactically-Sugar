@@ -20,7 +20,7 @@ const Cupcakes = ({ cupcakes }) => {
           )
         })}
         <li>
-          <Link to={'/cupcakes/cupcake/custom'}>
+          <Link to='/cupcakes/custom'>
             <div className='cakeBox'>
                 <img className='cakeImage' src='https://images.creativemarket.com/0.1.0/ps/6337536/600/400/m2/fpnw/wm1/kyrxpus5cf11setgoakkc6bivngrm3dloqq5gotlosfroaknkr53xy8upaor8jtd-.jpg?1556962719&s=474ee12c8a3486dfbce8736c4a5cf584&fmt=webp' />
                 <span className='product-title'>Create A Custom Cupcake</span>

@@ -12,7 +12,7 @@ class Cart extends React.Component {
   onClick () {
     const { auth, cart, updateOrder, createOrder, createLineItem } = this.props;
     if (auth.username) {
-      // const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem('token'); // How to get userId?
       updateOrder({ id: cart.id, status: 'order', userId: token });
     } else {
       const id = Math.floor(Math.random());
@@ -22,6 +22,7 @@ class Cart extends React.Component {
         createLineItem({ ...lineItem, orderId: id });
       }
     }
+    window.alert('Successfully checked out!')
   }
 
   render () {

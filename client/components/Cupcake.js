@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createLineItem, updateLineItem } from '../store/lineItems';
+import { createLineItem, updateLineItem } from '../store';
 
 class Cupcake extends React.Component {
   constructor () {

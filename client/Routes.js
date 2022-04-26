@@ -33,11 +33,11 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
-            <Route exact path='/cakes/cake/custom' component={CreateCake} />
-            <Route exact path="/cakes/:id" component={Cake} />
+            <Route exact path='/cakes/custom' component={CreateCake} />
+            <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route exact path='/cupcakes/cupcake/custom' component={CreateCupcake} />
-            <Route exact path="/cupcakes/:id" component={Cupcake} />
+            <Route exact path='/cupcakes/custom' component={CreateCupcake} />
+            <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Redirect to="/home" />
@@ -48,11 +48,11 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
 			      <Route exact path="/cakes" component={Cakes} />
-            <Route path="/cakes/:id" component={Cake}/>
             <Route exact path='/cakes/custom' component={CreateCake} />
+            <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route path="/cupcakes/:id" component={Cupcake} />
             <Route exact path='/cupcakes/custom' component={CreateCupcake} />
+            <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
           </Switch>
