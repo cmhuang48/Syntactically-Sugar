@@ -79,7 +79,7 @@ class LineItemInCart extends React.Component {
             </td>
             <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
             <td>
-              <button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}>Delete</button>
+              <button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}}>Delete</button>
             </td>
             <td>${product.price * totalQuantity}</td>
           </tr>
@@ -105,7 +105,7 @@ class LineItemInCart extends React.Component {
                   <button className='decreaseBtn' onClick={increase}>+</button>
                 </td>
                 <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
-                <td><button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}>Delete</button></td>
+                <td><button className='deleteBtn' onClick={() => {deleteLineItem(lineItem)}}>Delete</button></td>
                 <td>${product.price * totalQuantity}</td>
               </tr>
               <tr>
