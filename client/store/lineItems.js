@@ -90,6 +90,10 @@ export const deleteLineItem = (lineItem) => {
   }
 }
 
+const totalAmount = (orderTotal = 0) => {
+
+}
+
 // REDUCER
 export default function(state = [], action) {
   switch (action.type) {

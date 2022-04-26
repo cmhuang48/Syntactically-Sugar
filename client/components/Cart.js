@@ -7,6 +7,9 @@ import { createOrder } from '../store/orders';
 class Cart extends React.Component{
   constructor(props){
     super(props)
+    this.state ={
+      orderTotal: 0
+    }
   }
 
   render(){
@@ -16,7 +19,7 @@ class Cart extends React.Component{
       if(!cart) return <div>Empty Cart</div>
     
       const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart.id)
-    console.log(associatedLineItems)
+      console.log(associatedLineItems)
       if(!associatedLineItems.length) return <div>Empty Cart</div> 
     
       return (

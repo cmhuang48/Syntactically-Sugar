@@ -68,7 +68,7 @@ class LineItemInCart extends React.Component {
     if (auth.username) {  
       return (
         <>
-          <tr key={product.id}>
+          <tr className='row' key={product.id}>
             <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
             <td>{product.name}</td>
             <td>{product.category}</td>
@@ -133,7 +133,7 @@ const mapDispatch = (dispatch) => {
     },
     loadLineItems: ()=>{
       dispatch(loadLineItems())
-    }
+    },
   };
 };
 
