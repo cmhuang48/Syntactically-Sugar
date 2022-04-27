@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
-import { auth, updateOrder, createOrder, createLineItem } from '../store';
+import { auth, updateOrder, checkout } from '../store';
 
 class Cart extends React.Component {
   constructor () {
@@ -10,36 +10,57 @@ class Cart extends React.Component {
   }
 
   onClick () {
-    const { auth, cart, updateOrder, createOrder, createLineItem } = this.props;
+    const { auth, cart, checkout } = this.props;
     if (auth.username) {
-      const token = window.localStorage.getItem('token'); // How to get userId?
-      updateOrder({ id: cart.id, status: 'order', userId: token });
+      updateOrder({ id: cart.id, status: 'order', userId: auth.id });
     } else {
-      const id = Math.floor(Math.random());
-      createOrder({ id, status: 'order' });
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      for (const lineItem of existingCart) {
-        createLineItem({ ...lineItem, orderId: id });
-      }
+      checkout(existingCart);
     }
     window.alert('Successfully checked out!');
   }
 
   render () {
-    const { auth, cart, associatedLineItems } = this.props;
+    const { auth, associatedLineItems } = this.props;
     const { onClick } = this;
 
     if (auth.username) {
       if(!associatedLineItems.length) return <div>Empty Cart</div>;
 
       return (
-        <div>
+        <div style={{marginBottom: '100%'}}>
           <h1>Cart</h1>
-            {associatedLineItems.map(lineItem => {
-              return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
-              )
-            })}
+            <div className='cartBox'>
+              <table>
+                <tbody>
+                   <tr>
+                  <th style={{width: "150px"}}>Product Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th style={{width: "50px"}}>Price</th>
+                </tr>
+                {associatedLineItems.map(lineItem => {
+                  return (
+                    <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                  )
+                })}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total:</td>
+                  <td>$</td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
           <button className='cartCheckout' onClick={onClick}>Continue to Checkout</button>
         </div>
       );
@@ -92,7 +113,7 @@ class Cart extends React.Component {
 
 const mapState = ({ auth, orders, lineItems }) => {
   const cart = orders.find(order => order.status === 'cart');
-  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId = cart.id);
+  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
     auth,
     cart,
@@ -102,17 +123,11 @@ const mapState = ({ auth, orders, lineItems }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadLineItems: ()  => {
-      dispatch(loadLineItems());
-    },
     updateOrder: (order) => {
       dispatch(updateOrder(order));
     },
-    createOrder: (order) => {
-      dispatch(createOrder(order));
-    },
-    createLineItem: (lineItem) => {
-      dispatch(createLineItem(lineItem));
+    checkout: (cart) => {
+      dispatch(checkout(cart));
     }
   };
 };

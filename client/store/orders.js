@@ -33,7 +33,6 @@ export const createOrder = (order) => {
   }
 }
 
-// submit order (status 'cart' => 'order')
 export const updateOrder = (order) => {
   return async (dispatch) => {
     const updatedOrder = (await axios.put(`/api/orders/${order.id}`, order)).data;

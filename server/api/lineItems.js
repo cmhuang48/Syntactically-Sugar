@@ -30,7 +30,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const {localStorage} = req.body
-    if(localStorage){
+    if (localStorage) {
       const user = await User.findByToken(req.headers.authorization)
       const order = await Order.findOne({
         where: {
@@ -44,33 +44,29 @@ router.put('/:id', async (req, res, next) => {
         }
       })
 
-      for(let i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
         let change = false
-        let obj = localStorage[i];
-        for(let i = 0; i < lineItems.length; i++){
+        let obj = localStorage[i]
+        for (let i = 0; i < lineItems.length; i++) {
           const item = lineItems[i]
-          if(obj.productId*1 === item.productId) {
+          if (obj.productId*1 === item.productId) {
             item.quantity += obj.quantity * 1
             change = true
           }
         }
-        if(!change){
-          const newItem = await LineItem.create({quantity: obj.quantity, orderId:order.id, productId: obj.productId})
+        if (!change) {
+          const newItem = await LineItem.create({ quantity: obj.quantity, orderId:order.id, productId: obj.productId })
           lineItems.push(newItem)
         }
       }
 
       res.json(lineItems)
-
-    } else {
-      const lineItem = await LineItem.findOne({
-        where: {
-          productId: req.body.productId,
-          orderId: req.body.orderId
-        }
-      })
-      if(req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
-      else{
+    } 
+    
+    else {
+      const lineItem = await LineItem.findByPk(req.body.id)
+      if (req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
+      else {
         let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
         res.json(await lineItem.update({ quantity: updatedQuantity }))
       }
