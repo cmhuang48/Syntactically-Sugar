@@ -37,9 +37,12 @@ class LineItemInCart extends React.Component {
     const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
 
-    if(totalQuantity === 1) { onClick() }
-    this.setState({totalQuantity: totalQuantity*1 - 1});
-    
+    if(totalQuantity === 1)  {
+      this.destroy()
+    } else {
+      this.setState({totalQuantity: totalQuantity*1 - 1});
+    }
+
     if (auth.username) {
       const updatedItem = { id: lineItem.id, totalQuantity: totalQuantity, productId: lineItem.productId, orderId: lineItem.orderId };
       updateLineItem(updatedItem);
@@ -47,7 +50,7 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
       const idx = existingCart.indexOf(existingLineItem);
-      existingLineItem.quantity = totalQuantity*1;
+      existingLineItem.quantity = totalQuantity*1; //why quantity is undefined
       existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       loadLineItems();
