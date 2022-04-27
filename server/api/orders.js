@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { models: { Order, User }} = require('../db')
 module.exports = router
 
-//get all orders
+// get all orders
 router.get('/', async (req, res, next) => {
   try {
 		const user = await User.findByToken(req.headers.authorization) // loggedIn
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//get order details
+// get order details
 router.get('/:id', async(req, res, next) => {
 	try {
 		if(!req.user.isAdmin) { 
@@ -30,7 +30,7 @@ router.get('/:id', async(req, res, next) => {
 	}
 })
 
-//create an order
+// create a new order
 router.post('/', async(req, res, next) => {
 	try {
 		const order = await Order.create(req.body)
@@ -40,7 +40,7 @@ router.post('/', async(req, res, next) => {
 	}
 })
 
-//update order 
+// update an order 
 router.put('/:id', async(req, res, next) => {
 	try {
 		const order = await Order.findByPk(req.params.id)
