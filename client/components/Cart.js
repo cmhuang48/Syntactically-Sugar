@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
-import { auth, updateOrder, createOrder, createLineItem, totalAmount, loadLineItems } from '../store';
+import { auth, updateOrder, createOrder, createLineItem, loadLineItems } from '../store';
 
 class Cart extends React.Component {
   constructor () {
@@ -10,6 +10,10 @@ class Cart extends React.Component {
       orderTotal: 0,
     }
     this.onClick = this.onClick.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('cart', this.props.loadLineItems())
   }
 
   onClick () {
@@ -127,6 +131,9 @@ const mapState = ({ auth, orders, lineItems}) => {
 
 const mapDispatch = (dispatch) => {
   return {
+    loadLineItems: (orderTotal) => {
+      dispatch(loadLineItems(orderTotal))
+    },
     updateOrder: (order) => {
       dispatch(updateOrder(order));
     },

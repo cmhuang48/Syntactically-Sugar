@@ -13,10 +13,13 @@ class LineItemInCart extends React.Component {
     this.destroy = this.destroy.bind(this);
   }
 
+  componentDidMount() {
+  console.log('itemincart', this.props.loadLineItems())
+  }
+
   increase () {
     const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
-
     this.setState({totalQuantity: totalQuantity*1 + 1});
 
     if (auth.username) {
@@ -38,7 +41,7 @@ class LineItemInCart extends React.Component {
     const { totalQuantity } = this.state;
 
     if(totalQuantity === 1)  {
-      this.destroy()
+      this.setState(this.destroy(lineItem))
     } else {
       this.setState({totalQuantity: totalQuantity*1 - 1});
     }
