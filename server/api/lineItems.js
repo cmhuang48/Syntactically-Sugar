@@ -64,12 +64,7 @@ router.put('/:id', async (req, res, next) => {
     } 
     
     else {
-      const lineItem = await LineItem.findOne({
-        where: {
-          productId: req.body.productId,
-          orderId: req.body.orderId
-        }
-      })
+      const lineItem = await LineItem.findByPk(req.body.id)
       if (req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
       else {
         let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
