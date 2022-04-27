@@ -29,22 +29,17 @@ class Cart extends React.Component {
     const { auth, cart, associatedLineItems } = this.props;
     const { onClick } = this;
 
-    console.log('cart', cart)
-    console.log(associatedLineItems)
-
     if (auth.username) {
       if(!associatedLineItems.length) return <div>Empty Cart</div>;
 
       return (
         <div>
           <h1>Cart</h1>
-          <ul>
             {associatedLineItems.map(lineItem => {
               return (
                 <LineItemInCart lineItem={lineItem} key={lineItem.id} />
               )
             })}
-          </ul>
           <button className='cartCheckout' onClick={onClick}>Continue to Checkout</button>
         </div>
       );
@@ -98,8 +93,6 @@ class Cart extends React.Component {
 const mapState = ({ auth, orders, lineItems }) => {
   const cart = orders.find(order => order.status === 'cart');
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId = cart.id);
-  console.log('state', cart)
-  console.log('items', associatedLineItems);
   return {
     auth,
     cart,
