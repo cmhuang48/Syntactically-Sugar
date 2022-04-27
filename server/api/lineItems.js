@@ -43,18 +43,20 @@ router.put('/:id', async (req, res, next) => {
           orderId: order.id
         }
       })
-
-      for(let key in localStorage){
+  
+      for(let i = 0; i < localStorage.length; i++){
         let change = false
+        const obj = localStorage[i]
         for(let i = 0; i < lineItems.length; i++){
           const item = lineItems[i]
-          if(key*1 === item.productId) {
-            item.quantity += localStorage[key] * 1
+          if(obj.productId*1 === item.productId) {
+            item.quantity += obj.quantity * 1
+            console.log('here')
             change = true
           }
         }
         if(!change){
-          const newItem = await LineItem.create({quantity:localStorage[key], orderId:order.id, productId:key})
+          const newItem = await LineItem.create({quantity:obj.quantity, orderId:order.id, productId:obj.productId})
           lineItems.push(newItem)
         }
       }
