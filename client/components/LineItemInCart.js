@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadLineItems, updateLineItem, deleteLineItem } from '../store';
 
-
 class LineItemInCart extends React.Component {
   constructor (props) {
     super(props);
@@ -45,6 +44,7 @@ class LineItemInCart extends React.Component {
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       existingCart = existingCart.filter(obj => obj.productId !== lineItem.productId);
+      console.log(existingCart)
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       loadLineItems();
     }

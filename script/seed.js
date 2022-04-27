@@ -47,11 +47,11 @@ async function seed() {
   console.log(`seeded ${cupcakes.length} cupcakes`)
 
   // Creating Orders
-  const orders = await Promise.all([
-    Order.create({ status: 'cart', userId: 1 }),
-    Order.create({ status: 'order', userId: 2 }),
-    Order.create({ status: 'cart', userId: 2 })
-  ])
+  const orders = await Promise.all(
+    users.map(async (user) => {
+      return await Order.create({ status: 'cart', userId: user.id})
+    })
+  )
 
   console.log(`seeded ${orders.length} orders`)
 
