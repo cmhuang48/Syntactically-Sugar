@@ -73,7 +73,7 @@ class LineItemInCart extends React.Component {
             <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
             <td>{product.name}</td>
             <td>{product.category}</td>
-            <td>{lineItem.quantity}</td>
+            <td>{totalQuantity}</td>
             <td>
               <button className='increaseBtn' onClick={decrease}>-</button>
               {totalQuantity}
@@ -102,7 +102,7 @@ class LineItemInCart extends React.Component {
             <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
             <td>{product.name}</td>
             <td>{product.category}</td>
-            <td>{lineItem.quantity}</td>
+            <td>{totalQuantity}</td>
             <td>
               <button className='increaseBtn' onClick={decrease}>-</button>
               {totalQuantity}
