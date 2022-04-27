@@ -52,9 +52,18 @@ table button {
 	width: 20px;
 	height: 20px;
 	font-size: 16px;
+	color: #fff4ee;
 	justify-content: center;
 	align-items: center;
 	margin: 10px;
-	border: 1px solid #000;
+	border: 1px solid #fff4ee;
 	border-radius: 50%;
+	background-color: #f58d72;
+
+}
+
+th {
+	font-family: "sofia";
+	color: #f58d72;
+	font-size: 18px;
 }
