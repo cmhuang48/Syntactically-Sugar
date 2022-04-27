@@ -12,11 +12,13 @@ const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
+
+  console.log(localStorage)
   if (token) {
     window.localStorage.setItem('cart', '[]')
     return async (dispatch) => {
       let lineItems
-      if (Object.keys(localStorage).length === 0) {
+      if (!localStorage.length) {
         lineItems = (await axios.get('/api/lineItems')).data
       } else {
         lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
