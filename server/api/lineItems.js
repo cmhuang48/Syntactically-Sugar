@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { models: { LineItem, User, Order }} = require('../db')
 module.exports = router
 
+// get all lineItems
 router.get('/', async (req, res, next) => {
   try {
     const lineItems = await LineItem.findAll()
@@ -11,6 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// get lineItem details
 router.get('/:id', async (req, res, next) => {
   try {
     res.json(await LineItem.findByPk(req.params.id))
@@ -19,6 +21,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+// create a new lineItem
 router.post('/', async (req, res, next) => {
   try {
    res.status(201).json(await LineItem.create(req.body))
@@ -27,6 +30,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+// update a lineItem
 router.put('/:id', async (req, res, next) => {
   try {
     const {localStorage} = req.body
@@ -34,7 +38,7 @@ router.put('/:id', async (req, res, next) => {
       const user = await User.findByToken(req.headers.authorization)
       const order = await Order.findOne({
         where: {
-          status:'cart',
+          status: 'cart',
           userId: user.id
         }
       })
@@ -44,21 +48,19 @@ router.put('/:id', async (req, res, next) => {
         }
       })
 
-      for (let i = 0; i < localStorage.length; i++) {
+      localStorage.forEach(async (obj) => {
         let change = false
-        let obj = localStorage[i]
-        for (let i = 0; i < lineItems.length; i++) {
-          const item = lineItems[i]
+        lineItems.forEach(item => {
           if (obj.productId*1 === item.productId) {
-            item.quantity += obj.quantity * 1
+            item.quantity += obj.quantity*1
             change = true
           }
-        }
+        })
         if (!change) {
-          const newItem = await LineItem.create({ quantity: obj.quantity, orderId:order.id, productId: obj.productId })
+          const newItem = await LineItem.create({ quantity: obj.quantity, productId: obj.productId, orderId: order.id })
           lineItems.push(newItem)
         }
-      }
+      })
 
       res.json(lineItems)
     } 
@@ -77,6 +79,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
+// delete a lineItem
 router.delete('/:id', async (req, res, next) => {
   try {
     const lineItem = await LineItem.findByPk(req.params.id)

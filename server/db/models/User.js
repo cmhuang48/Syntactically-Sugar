@@ -2,23 +2,79 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
-
 const SALT_ROUNDS = 5;
+
+const { STRING, BOOLEAN } = Sequelize;
 
 const User = db.define('user', {
   username: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
-    allowNull: false
   },
 
   password: {
-    type: Sequelize.STRING,
+    type: STRING
   },
   
   isAdmin: {
-    type: Sequelize.BOOLEAN,
+    type: BOOLEAN,
     defaultValue: false
+  },
+
+  firstName: {
+    type: STRING
+  },
+
+  lastName: {
+    type: STRING
+  },
+
+  address1: {
+    type: STRING
+  },
+
+  address2: {
+    type: STRING
+  },
+
+  city: {
+    type: STRING
+  },
+
+  state: {
+    type: STRING
+  },
+
+  zip: {
+    type: STRING
+  },
+
+  country: {
+    type: STRING
+  },
+
+  saveAddress: {
+    type: STRING
+  },
+
+  cardName: {
+    type: STRING
+  },
+
+  cardNumber: {
+    type: STRING
+  },
+
+  expDate: {
+    type: STRING
+  },
+
+  cvv: {
+    type: STRING
+  },
+
+  saveCard: {
+    type: STRING
   }
 })
 

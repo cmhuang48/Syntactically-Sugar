@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Routes from './Routes'
+import Copyright from './components/Copyright'
 
 const App = () => {
   if (!window.localStorage.getItem('cart')) {
@@ -11,6 +12,7 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
+      <Copyright />
     </div>
   )
 }
