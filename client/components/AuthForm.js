@@ -28,6 +28,7 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+      <img src = "https://64.media.tumblr.com/14853973edb0609f6e3ef11ffbd91d31/23030b2c9b9bec6c-26/s2048x3072/cabe9809bf8e5cd1584b284889e5a1145ef1321b.pnj" className="signUp"/>
     </div>
   )
 }

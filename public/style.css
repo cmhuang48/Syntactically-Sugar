@@ -17,6 +17,16 @@ p{
 	width: 50%;
 	height: 50%;
 }
+
+.signUp {
+	background-size:cover;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:100%;
+	size: 50%;
+	margin:0 auto;
+}
 .headerpic{
     background-size:cover;
   max-width:750px;
