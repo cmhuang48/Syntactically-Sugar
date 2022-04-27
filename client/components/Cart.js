@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
-import { auth, updateOrder, createOrder, createLineItem, totalAmount, loadLineItems } from '../store';
+import { auth, updateOrder, createOrder, createLineItem, loadLineItems } from '../store';
 
 class Cart extends React.Component {
   constructor () {

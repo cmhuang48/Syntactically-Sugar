@@ -19,7 +19,6 @@ export const loadLineItems = () => {
       let lineItems
       if (!localStorage.length) {
         lineItems = (await axios.get('/api/lineItems')).data 
-
       } else {
         lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
           headers: {
@@ -27,7 +26,6 @@ export const loadLineItems = () => {
           }
         })).data
       }
-      console.log('store', lineItems)
       dispatch({
         type: LOAD_LINEITEMS,
         lineItems
