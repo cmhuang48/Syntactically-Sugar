@@ -6,7 +6,6 @@ const CREATE_LINEITEM = 'CREATE_LINEITEM'
 const UPDATE_LINEITEM = 'UPDATE_LINEITEM'
 const DESTROY_LINEITEM = 'DESTROY_LINEITEM'
 const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
-const TOTAL_AMOUNT = 'TOTAL_AMOUNT'
 
 
 // THUNK CREATORS
@@ -20,6 +19,7 @@ export const loadLineItems = () => {
       let lineItems
       if (!localStorage.length) {
         lineItems = (await axios.get('/api/lineItems')).data 
+
       } else {
         lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
           headers: {
@@ -114,8 +114,6 @@ export default function(state = [], action) {
       return state.filter(lineItem => lineItem.id !== action.lineItem.id)
     case LOAD_LOCAL_LINEITEMS:
       return [action.localStorage]
-    case TOTAL_AMOUNT:
-      return action.orderTotal
     default:
       return state
   }
