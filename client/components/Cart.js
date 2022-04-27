@@ -33,13 +33,39 @@ class Cart extends React.Component {
       if(!associatedLineItems.length) return <div>Empty Cart</div>;
 
       return (
-        <div>
+        <div style={{marginBottom: '100%'}}>
           <h1>Cart</h1>
-            {associatedLineItems.map(lineItem => {
-              return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
-              )
-            })}
+            <div className='cartBox'>
+              <table>
+                <tbody>
+                   <tr>
+                  <th style={{width: "150px"}}>Product Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th style={{width: "50px"}}>Price</th>
+                </tr>
+              {associatedLineItems.map(lineItem => {
+                return (
+                  <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                )
+              })}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total:</td>
+                  <td>$</td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
           <button className='cartCheckout' onClick={onClick}>Continue to Checkout</button>
         </div>
       );
