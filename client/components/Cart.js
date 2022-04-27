@@ -109,6 +109,9 @@ const mapState = ({ auth, orders, lineItems }) => {
 
 const mapDispatch = (dispatch) => {
   return {
+    loadLineItems: ()  => {
+      dispatch(loadLineItems());
+    },
     updateOrder: (order) => {
       dispatch(updateOrder(order));
     },
