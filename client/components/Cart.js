@@ -22,26 +22,30 @@ class Cart extends React.Component {
         createLineItem({ ...lineItem, orderId: id });
       }
     }
-    window.alert('Successfully checked out!')
+    window.alert('Successfully checked out!');
   }
 
   render () {
-    const { auth, cart, loadLineItems } = this.props;
+    const { auth, cart, associatedLineItems } = this.props;
     const { onClick } = this;
+
+    console.log('cart', cart)
+    console.log(associatedLineItems)
+
     if (auth.username) {
-      if(!cart.length) return <div>Empty Cart</div>;
+      if(!associatedLineItems.length) return <div>Empty Cart</div>;
 
       return (
         <div>
           <h1>Cart</h1>
           <ul>
-            {cart.map(lineItem => {
+            {associatedLineItems.map(lineItem => {
               return (
                 <LineItemInCart lineItem={lineItem} key={lineItem.id} />
               )
             })}
           </ul>
-          <button className='cartCheckout' onClick={onClick}>Checkout</button>
+          <button className='cartCheckout' onClick={onClick}>Continue to Checkout</button>
         </div>
       );
     }
@@ -84,19 +88,22 @@ class Cart extends React.Component {
             </tbody>
             </table>
           </div>
-          <button className='cartCheckout' onClick={onClick}>Checkout</button>
+          <button className='cartCheckout' onClick={onClick}>Continue to Checkout</button>
         </div>
       );
     }
   }
 };
 
-const mapState = ({ auth, orders, products }) => {
+const mapState = ({ auth, orders, lineItems }) => {
   const cart = orders.find(order => order.status === 'cart');
+  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId = cart.id);
+  console.log('state', cart)
+  console.log('items', associatedLineItems);
   return {
     auth,
     cart,
-    products
+    associatedLineItems
   };
 };
 

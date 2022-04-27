@@ -4,12 +4,11 @@ import axios from 'axios'
 const LOAD_ORDERS = 'LOAD_ORDERS'
 const CREATE_ORDER = 'CREATE_ORDER'
 const UPDATE_ORDER = 'UPDATE_ORDER'
-const TOKEN = 'token'
 
 // THUNK CREATORS
 export const loadOrders = () => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem(TOKEN)
+    const token = window.localStorage.getItem('token')
     if (token) {
       const orders = (await axios.get('/api/orders', {
         headers: {
