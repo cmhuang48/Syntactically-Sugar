@@ -8,15 +8,17 @@ class LineItemInCart extends React.Component {
     this.state = {
       totalQuantity: this.props.lineItem.quantity ? this.props.lineItem.quantity : 0
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onClick = this.onClick.bind(this);
+    this.decrease = this.decrease.bind(this);
+    this.increase = this.increase.bind(this);
+    this.destroy = this.destroy.bind(this);
   }
-  
-  onSubmit (ev) {
-    ev.preventDefault();
+
+  increase () {
     const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
+
+    this.setState({totalQuantity: totalQuantity*1 + 1});
+
     if (auth.username) {
       const updatedItem = { id: lineItem.id, totalQuantity: totalQuantity, productId: lineItem.productId, orderId: lineItem.orderId };
       updateLineItem(updatedItem);
@@ -29,22 +31,36 @@ class LineItemInCart extends React.Component {
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       loadLineItems();
     }
-  }
+  };
 
-  onChange (ev) {
-    const change = {};
-    change[ev.target.name] = ev.target.value;
-    this.setState(change);
-  }
+  decrease () {
+    const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
+    const { totalQuantity } = this.state;
 
-  onClick () {
+    if(totalQuantity === 1) { onClick() }
+    this.setState({totalQuantity: totalQuantity*1 - 1});
+    
+    if (auth.username) {
+      const updatedItem = { id: lineItem.id, totalQuantity: totalQuantity, productId: lineItem.productId, orderId: lineItem.orderId };
+      updateLineItem(updatedItem);
+    } else {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
+      const idx = existingCart.indexOf(existingLineItem);
+      existingLineItem.quantity = totalQuantity*1;
+      existingCart[idx] = existingLineItem;
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+      loadLineItems();
+    }
+  };
+
+  destroy () {
     const { auth, loadLineItems, deleteLineItem, lineItem } = this.props;
     if (auth.username) {
       deleteLineItem(lineItem);
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       existingCart = existingCart.filter(obj => obj.productId !== lineItem.productId);
-      console.log(existingCart)
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       loadLineItems();
     }
@@ -53,20 +69,10 @@ class LineItemInCart extends React.Component {
   render () {
     const { products, lineItem, auth } = this.props;
     const { totalQuantity } = this.state;
-    const { onChange, onSubmit, onClick } = this;
+    const { decrease, increase, destroy } = this;
 
     const product = products.find(product => product?.id === lineItem.productId*1);
     if(!product) return null;
-    const increase = () => {
-      const updatedItem = { totalQuantity: totalQuantity, orderId: lineItem.orderId };
-      updateLineItem(updatedItem);
-      this.setState({totalQuantity: totalQuantity*1 + 1});
-    };
-
-    const decrease = () => {
-      if(totalQuantity === 1) { onClick() }
-      this.setState({totalQuantity: totalQuantity*1 - 1});
-    };
 
     if (auth.username) {  
       return (
@@ -81,9 +87,8 @@ class LineItemInCart extends React.Component {
               {totalQuantity}
               <button className='decreaseBtn' onClick={increase}>+</button>
             </td>
-            <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
             <td>
-              <button className='deleteBtn' onClick={onClick}>Remove Item</button>
+              <button className='deleteBtn' onClick={destroy}>Remove Item</button>
             </td>
             <td>${product.price * totalQuantity}</td>
           </tr>
@@ -110,8 +115,7 @@ class LineItemInCart extends React.Component {
               {totalQuantity}
               <button className='decreaseBtn' onClick={increase}>+</button>
             </td>
-            <td><form onSubmit={onSubmit}><button className='updateBtn'>Update</button></form></td>
-            <td><button className='deleteBtn' onClick={onClick}>Remove Item</button></td>
+            <td><button className='deleteBtn' onClick={destroy}>Remove Item</button></td>
             <td>${product.price * totalQuantity}</td>
           </tr>
           <tr>

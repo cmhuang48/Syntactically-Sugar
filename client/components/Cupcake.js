@@ -17,12 +17,12 @@ class Cupcake extends React.Component {
     const { auth, cupcake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
     if (auth.username) {
-      if (!lineItem) {
-        const newItem = { quantity: quantity, productId: cupcake.id, orderId: order.id };
-        createLineItem(newItem);
-      } else {
+      if (lineItem) {
         const updatedItem = { id: lineItem.id, quantity: quantity, productId: cupcake.id, orderId: order.id };
         updateLineItem(updatedItem);
+      } else {
+        const newItem = { quantity: quantity, productId: cupcake.id, orderId: order.id };
+        createLineItem(newItem);
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
