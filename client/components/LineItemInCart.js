@@ -58,6 +58,8 @@ class LineItemInCart extends React.Component {
     const product = products.find(product => product?.id === lineItem.productId*1);
     if(!product) return null;
     const increase = () => {
+      const updatedItem = { totalQuantity: totalQuantity, orderId: lineItem.orderId };
+      updateLineItem(updatedItem);
       this.setState({totalQuantity: totalQuantity*1 + 1});
     };
 

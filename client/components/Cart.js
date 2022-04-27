@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
-import { auth, updateOrder, createOrder, createLineItem } from '../store';
+import { auth, updateOrder, createOrder, createLineItem, totalAmount, loadLineItems } from '../store';
 
 class Cart extends React.Component {
   constructor () {
     super();
+    this.state ={
+      orderTotal: 0,
+    }
     this.onClick = this.onClick.bind(this);
   }
 
@@ -25,10 +28,10 @@ class Cart extends React.Component {
     window.alert('Successfully checked out!');
   }
 
-  render () {
-    const { auth, cart, associatedLineItems } = this.props;
-    const { onClick } = this;
 
+  render () {
+    const { auth, cart, associatedLineItems} = this.props;
+    const { onClick } = this;
     if (auth.username) {
       if(!associatedLineItems.length) return <div>Empty Cart</div>;
 
@@ -116,9 +119,9 @@ class Cart extends React.Component {
   }
 };
 
-const mapState = ({ auth, orders, lineItems }) => {
+const mapState = ({ auth, orders, lineItems}) => {
   const cart = orders.find(order => order.status === 'cart');
-  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId = cart?.id);
+  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
     auth,
     cart,
@@ -128,8 +131,8 @@ const mapState = ({ auth, orders, lineItems }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadLineItems: ()  => {
-      dispatch(loadLineItems());
+    loadLineItems: () => {
+      dispatch(loadLineItems())
     },
     updateOrder: (order) => {
       dispatch(updateOrder(order));
