@@ -96,8 +96,6 @@ class LineItemInCart extends React.Component {
           </tr>
           <tr>
           </tr>
-          <tr>
-          </tr>
         </>
       );
     } 
@@ -117,8 +115,6 @@ class LineItemInCart extends React.Component {
             </td>
             <td><button className='deleteBtn' onClick={destroy}>Remove Item</button></td>
             <td>${product.price * totalQuantity}</td>
-          </tr>
-          <tr>
           </tr>
           <tr>
           </tr>

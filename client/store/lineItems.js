@@ -26,6 +26,7 @@ export const loadLineItems = () => {
           }
         })).data
       }
+      console.log('store', lineItems)
       dispatch({
         type: LOAD_LINEITEMS,
         lineItems
@@ -89,10 +90,6 @@ export const deleteLineItem = (lineItem) => {
       lineItem
     })
   }
-}
-
-const totalAmount = (orderTotal = 0) => {
-
 }
 
 // REDUCER
