@@ -92,7 +92,7 @@ class Cart extends React.Component {
 
 const mapState = ({ auth, orders, lineItems }) => {
   const cart = orders.find(order => order.status === 'cart');
-  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId = cart.id);
+  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId = cart?.id);
   return {
     auth,
     cart,
