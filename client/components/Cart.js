@@ -13,32 +13,32 @@ const Cart = ({ auth, associatedLineItems }) => {
           <div className='cartBox'>
             <table>
               <tbody>
-                 <tr>
-                <th style={{width: "150px"}}>Product Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Quantity</th>
-                <th></th>
-                <th></th>
-                <th style={{width: "50px"}}>Price</th>
-              </tr>
-            {associatedLineItems.map(lineItem => {
-              return (
-                <LineItemInCart lineItem={lineItem} key={lineItem.id} />
-              )
-            })}
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total:</td>
-                <td>$</td>
-              </tr>
+                <tr>
+                  <th style={{width: "150px"}}>Product Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th></th>
+                  <th></th>
+                  <th style={{width: "50px"}}>Price</th>
+                </tr>
+                {associatedLineItems.map(lineItem => {
+                  return (
+                    <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                  )
+                })}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total:</td>
+                  <td>$</td>
+                </tr>
               </tbody>
             </table>
-        </div>
+          </div>
         <Link to='/checkout'><button className='cartCheckout'>Continue To Checkout</button></Link>
       </div>
     );
