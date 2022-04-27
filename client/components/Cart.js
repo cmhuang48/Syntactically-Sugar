@@ -86,7 +86,7 @@ const Cart = ({ auth, associatedLineItems }) => {
   }
 };
 
-const mapState = ({ auth, orders, lineItems }) => {
+const mapState = ({ auth, orders, lineItems}) => {
   const cart = orders.find(order => order.status === 'cart');
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
