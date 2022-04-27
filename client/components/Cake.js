@@ -21,7 +21,7 @@ class Cake extends React.Component {
         const updatedLineItem = { id: lineItem.id, quantity: quantity, productId: cake.id, orderId: order.id };
         updateLineItem(updatedLineItem);
       } else {
-        const newLineItem = { quantity: quantity, productId: cake.id };
+        const newLineItem = { quantity: quantity, productId: cake.id, orderId: order.id };
         createLineItem(newLineItem);
       }
     } else {

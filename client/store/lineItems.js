@@ -13,7 +13,6 @@ export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
 
-  console.log(localStorage)
   if (token) {
     window.localStorage.setItem('cart', '[]')
     return async (dispatch) => {
