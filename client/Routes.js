@@ -12,6 +12,8 @@ import Cupcake from './components/Cupcake'
 import CreateCupcake from './components/CreateCupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout/Checkout'
+import OrderConfirmation from './components/OrderConfirmation'
 
 /**
  * COMPONENT
@@ -33,13 +35,15 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
-            <Route exact path='/cakes/custom' component={CreateCake} />
+            <Route exact path="/cakes/custom" component={CreateCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route exact path='/cupcakes/custom' component={CreateCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/confirmation" component={OrderConfirmation} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -55,6 +59,8 @@ class Routes extends Component {
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/confirmation" component={OrderConfirmation} />
           </Switch>
         )}
       </div>

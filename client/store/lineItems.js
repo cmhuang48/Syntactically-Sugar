@@ -18,7 +18,7 @@ export const loadLineItems = () => {
     return async (dispatch) => {
       let lineItems
       if (!localStorage.length) {
-        lineItems = (await axios.get('/api/lineItems')).data
+        lineItems = (await axios.get('/api/lineItems')).data 
       } else {
         lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
           headers: {
@@ -89,10 +89,6 @@ export const deleteLineItem = (lineItem) => {
       lineItem
     })
   }
-}
-
-const totalAmount = (orderTotal = 0) => {
-
 }
 
 // REDUCER
