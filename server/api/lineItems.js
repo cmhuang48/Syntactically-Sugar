@@ -67,11 +67,7 @@ router.put('/:id', async (req, res, next) => {
     
     else {
       const lineItem = await LineItem.findByPk(req.body.id)
-      if (req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
-      else {
-        let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
-        res.json(await lineItem.update({ quantity: updatedQuantity }))
-      }
+      res.json(await lineItem.update({ quantity: req.body.quantity*1 }))
     }
   }
   catch (err) {

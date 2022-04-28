@@ -19,18 +19,15 @@ class CreateCake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
-    const { auth, order, createProduct, createLineItem } = this.props;
+    const { auth, createProduct } = this.props;
     const { category, name, tiers, flavor, frosting, message } = this.state;
+    const newProduct = { category, name, tiers, flavor, frosting, message };
     if (auth.username) {
-      const id = Math.floor(Math.random()); // How to set UUID?
-      const newProduct = { id, category, name, tiers, flavor, frosting, message };
+      // creates new product and new lineItem
       createProduct(newProduct);
-      const newLineItem = { quantity: 1, productId: id, orderId: order.id };
-      createLineItem(newLineItem);
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      const id = Math.floor(Math.random()); // How to set UUID?
-      const newLineItem = { quantity: 1, productId: id };
+      const newLineItem = { quantity: 1, newProduct };
       existingCart.push(newLineItem);
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
     }
