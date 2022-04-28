@@ -37,7 +37,7 @@ class LineItemInCart extends React.Component {
     const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
 
-    if(totalQuantity === 1) { this.destroy() }
+    if(totalQuantity === 1) { this.destroy() };
 
     this.setState({totalQuantity: totalQuantity*1 - 1});
     
