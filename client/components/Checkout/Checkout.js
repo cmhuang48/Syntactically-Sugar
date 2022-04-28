@@ -16,19 +16,6 @@ import { updateOrder, updateUser, checkout } from '../../store';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm orderInfo={React.useStateorderInfo}/>;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
-
 const theme = createTheme();
 
 function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, checkout }) {
@@ -50,6 +37,19 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm orderInfo={orderInfo} onChange={onChange} />;
+      case 1:
+        return <PaymentForm orderInfo={orderInfo} onChange={onChange} />;
+      case 2:
+        return <Review orderInfo={orderInfo} onChange={onChange} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  };
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -58,7 +58,12 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     setActiveStep(activeStep - 1);
   };
 
+  const onChange = (ev) => {
+    setOrderInfo({ ...orderInfo, [ev.target.name]: ev.target.value});
+  }
+
   const onSubmit = () => {
+    const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
     if (auth.username) {
       updateOrder({ id: cart.id, status: 'order', userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
       if (saveAddress === 'yes') {
@@ -73,10 +78,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
       checkout(existingCart);
     }
     window.alert('Successfully checked out!');
-  }
-
-  const onChange = () => {
-
   }
 
   if (auth.username) {
