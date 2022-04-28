@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const UserProfile = () => {
   return (
     <div>
-      <h1>User Info TBD</h1>
+      <h1 class = "font-effect-shadow-multiple">User Info TBD</h1>
     </div>
   )
 };
