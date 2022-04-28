@@ -36,7 +36,7 @@ class UserProfile extends React.Component {
     const { onChange, onSubmit } = this;
     return (
       <div>
-        <h1>User Info TBD</h1>
+        <h1 class = "font-effect-shadow-multiple">User Info TBD</h1>
         <form onSubmit={onSubmit}>
           <input name='username' value={username} placeholder='Enter username' onChange={onChange} />
           <input name='firstName' value={firstName} placeholder='Enter first name' onChange={onChange} />
