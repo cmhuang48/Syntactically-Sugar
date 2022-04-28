@@ -26,7 +26,7 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
       const idx = existingCart.indexOf(existingLineItem);
-      existingLineItem.quantity = totalQuantity*1;
+      existingLineItem.quantity = totalQuantity*1 + 1;
       existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       loadLineItems();
@@ -37,7 +37,8 @@ class LineItemInCart extends React.Component {
     const { auth, loadLineItems, updateLineItem, lineItem } = this.props;
     const { totalQuantity } = this.state;
 
-    if(totalQuantity === 1) { this.destroy() }
+    if(totalQuantity === 1) { this.destroy() };
+
     this.setState({totalQuantity: totalQuantity*1 - 1});
     
     if (auth.username) {
@@ -47,7 +48,7 @@ class LineItemInCart extends React.Component {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
       const idx = existingCart.indexOf(existingLineItem);
-      existingLineItem.quantity = totalQuantity*1;
+      existingLineItem.quantity = totalQuantity*1 - 1;
       existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       loadLineItems();
@@ -67,62 +68,36 @@ class LineItemInCart extends React.Component {
   }
 
   render () {
-    const { products, lineItem, auth } = this.props;
+    const { products, lineItem } = this.props;
     const { totalQuantity } = this.state;
     const { decrease, increase, destroy } = this;
 
     const product = products.find(product => product?.id === lineItem.productId*1);
     if(!product) return null;
 
-    if (auth.username) {  
-      return (
-        <>
-          <tr key={product.id}>
-            <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
-            <td>{product.name}</td>
-            <td>{product.category}</td>
-            <td>{totalQuantity}</td>
-            <td>
-              <button className='increaseBtn' onClick={decrease}>-</button>
-              {totalQuantity}
-              <button className='decreaseBtn' onClick={increase}>+</button>
-            </td>
-            <td>
-              <button className='deleteBtn' onClick={destroy}>Remove Item</button>
-            </td>
-            <td>${product.price * totalQuantity}</td>
-          </tr>
-          <tr>
-          </tr>
-          <tr>
-          </tr>
-        </>
-      );
-    } 
-    
-    else {
-      return (
-        <>
-          <tr key={product.id}>
-            <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
-            <td>{product.name}</td>
-            <td>{product.category}</td>
-            <td>{totalQuantity}</td>
-            <td>
-              <button className='increaseBtn' onClick={decrease}>-</button>
-              {totalQuantity}
-              <button className='decreaseBtn' onClick={increase}>+</button>
-            </td>
-            <td><button className='deleteBtn' onClick={destroy}>Remove Item</button></td>
-            <td>${product.price * totalQuantity}</td>
-          </tr>
-          <tr>
-          </tr>
-          <tr>
-          </tr>
-        </>     
-      );
-    }
+    return (
+      <>
+        <tr key={product.id}>
+          <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+          <td>{product.name}</td>
+          <td>{product.category}</td>
+          <td>{totalQuantity}</td>
+          <td>
+            <button className='increaseBtn' onClick={decrease}>-</button>
+            {totalQuantity}
+            <button className='decreaseBtn' onClick={increase}>+</button>
+          </td>
+          <td>
+            <button className='deleteBtn' onClick={destroy}>Remove Item</button>
+          </td>
+          <td>${product.price * totalQuantity}</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+        </tr>
+      </>
+    );
   }
 };
 
