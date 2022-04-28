@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 // ACTION TYPES
 const LOAD_LINEITEMS = 'LOAD_LINEITEMS'
 const CREATE_LINEITEM = 'CREATE_LINEITEM'
@@ -12,13 +13,13 @@ const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
-
+  
   if (token) {
     window.localStorage.setItem('cart', '[]')
     return async (dispatch) => {
       let lineItems
       if (!localStorage.length) {
-        lineItems = (await axios.get('/api/lineItems')).data 
+        lineItems = (await axios.get('/api/lineItems')).data
       } else {
         lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
           headers: {
@@ -36,6 +37,7 @@ export const loadLineItems = () => {
       dispatch({
         type: LOAD_LOCAL_LINEITEMS,
         localStorage
+
       })
     }
   }
@@ -90,6 +92,7 @@ export const deleteLineItem = (lineItem) => {
     })
   }
 }
+
 
 // REDUCER
 export default function(state = [], action) {

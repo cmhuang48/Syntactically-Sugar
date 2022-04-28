@@ -53,13 +53,16 @@ async function seed() {
     })
   )
 
+  // Create Order Example
+  const orderExample = await Order.create({status: 'cart', userId: 5})
+
   console.log(`seeded ${orders.length} orders`)
 
   // Creating Line Items
   const lineItems = await Promise.all([
-    LineItem.create({ quantity: 1, productId: cakes[0].id, orderId: orders[0].id }),
-    LineItem.create({ quantity: 2, productId: cakes[1].id, orderId : orders[1].id }),
-    LineItem.create({ quantity: 2, productId: cupcakes[0].id, orderId : orders[0].id })
+    LineItem.create({ quantity: 1, productId: cakes[0].id, orderId: orderExample.id }),
+    LineItem.create({ quantity: 2, productId: cakes[1].id, orderId : orderExample.id }),
+    LineItem.create({ quantity: 2, productId: cupcakes[0].id, orderId : orderExample.id })
   ])
   
   console.log(`seeded ${lineItems.length} line items`)
@@ -68,8 +71,8 @@ async function seed() {
   
   return {
     users: {
-      cody: users[0],
-      murphy: users[1]
+      cody: users[3],
+      murphy: users[6]
     },
     cakes,
     cupcakes, 
