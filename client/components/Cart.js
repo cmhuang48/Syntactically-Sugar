@@ -26,7 +26,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
           <table>
             <tbody>
               <tr>
-                <th style={{width: "150px"}}>Product Image</th>
+                <th style={{width: "150px"}}></th>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Quantity</th>

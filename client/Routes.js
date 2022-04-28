@@ -14,6 +14,7 @@ import Orders from './components/Orders'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout/Checkout'
 import OrderConfirmation from './components/OrderConfirmation'
+import UserProfile from './components/UserProfile'
 
 /**
  * COMPONENT
@@ -44,6 +45,7 @@ class Routes extends Component {
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/confirmation" component={OrderConfirmation} />
+            <Route path="/profile" component={UserProfile} />
             <Redirect to="/home" />
           </Switch>
         ) : (
