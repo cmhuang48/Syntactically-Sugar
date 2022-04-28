@@ -22,8 +22,11 @@ class LineItemInCart extends React.Component {
       const updatedItem = {id:lineItem.id, productId:lineItem.productId, orderId:lineItem.orderId, totalQuantity:totalQuantity}
       updateLineItem(updatedItem);
     } else {
-      let existingCart = JSON.parse(window.localStorage.getItem('cart'))
-      existingCart[lineItem.productId] = totalQuantity;
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
+      const idx = existingCart.indexOf(existingLineItem);
+      existingLineItem.quantity = totalQuantity*1 + 1;
+      existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       updateLineItem(existingCart)
     }
@@ -33,9 +36,19 @@ class LineItemInCart extends React.Component {
     const { auth } = this.props 
     if(auth.username){
 
-    }else{
+    if(totalQuantity === 1) { this.destroy() }
+
+    this.setState({totalQuantity: totalQuantity*1 - 1});
+    
+    if (auth.username) {
+      const updatedItem = { id: lineItem.id, totalQuantity: totalQuantity, productId: lineItem.productId, orderId: lineItem.orderId };
+      updateLineItem(updatedItem);
+    } else {
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      delete existingCart[this.props.lineItem.productId]
+      let existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
+      const idx = existingCart.indexOf(existingLineItem);
+      existingLineItem.quantity = totalQuantity*1 - 1;
+      existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
       this.props.loadLineItems()
     }
@@ -48,36 +61,36 @@ class LineItemInCart extends React.Component {
   }
 
   render () {
-    const { products, lineItem, deleteLineItem, auth } = this.props;
+    const { products, lineItem } = this.props;
     const { totalQuantity } = this.state;
     const { onChange, onSubmit, onClick } = this;
 
     const product = products.find(product => product?.id === lineItem.productId*1)
     if(!product) return null
 
-    if (auth.username) {  
-      return (
-        <li key={product.id}>
-          {product.name} {product.category} ({lineItem.quantity})
-          <form onSubmit={onSubmit}>
-            <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
-            <button>Update</button>
-          </form>
-          <button onClick={() => {deleteLineItem(lineItem)}}>Remove Item</button>
-        </li>
-      )
-      } else {
-        return (
-          <li key={product.id}>
-            {product.name} {product.category} ({lineItem.quantity})
-            <form onSubmit={onSubmit}>
-              <p>Quantity: <input name='totalQuantity' value={totalQuantity} type='number' min='1' max='10' onChange={onChange} /></p>
-              <button>Update</button>
-            </form>
-            <button onClick={onClick}>Remove Item</button>
-          </li>
-        )
-      }
+    return (
+      <>
+        <tr key={product.id}>
+          <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+          <td>{product.name}</td>
+          <td>{product.category}</td>
+          <td>{totalQuantity}</td>
+          <td>
+            <button className='increaseBtn' onClick={decrease}>-</button>
+            {totalQuantity}
+            <button className='decreaseBtn' onClick={increase}>+</button>
+          </td>
+          <td>
+            <button className='deleteBtn' onClick={destroy}>Remove Item</button>
+          </td>
+          <td>${product.price * totalQuantity}</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+        </tr>
+      </>
+    );
   }
 };
 
