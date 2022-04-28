@@ -9,9 +9,7 @@ class Cart extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-
-
-  componentDidUpdate(previousProps){ 
+  componentDidUpdate(){ 
     this.props.loadTotal()
   }
 

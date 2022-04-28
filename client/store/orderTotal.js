@@ -18,7 +18,7 @@ export const loadTotal = () => {
         const lineItemQuantity = removeExistingLineItem.map(lineItem => lineItem.quantity) 
         const existingItemPrice = lineItemId.map(ele => productPrice[ele])
         orderTotal = lineItemQuantity.reduce((acc, next ,i) => {return acc + next*existingItemPrice[i]},0)
-
+console.log('store', orderTotal)
       } else {
         lineItems = (await axios.put('/api/lineItems/1', { localStorage: localStorage }, {
           headers: {
