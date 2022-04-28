@@ -53,10 +53,6 @@ const User = db.define('user', {
     type: STRING
   },
 
-  saveAddress: {
-    type: STRING
-  },
-
   cardName: {
     type: STRING
   },
@@ -70,10 +66,6 @@ const User = db.define('user', {
   },
 
   cvv: {
-    type: STRING
-  },
-
-  saveCard: {
     type: STRING
   }
 })
