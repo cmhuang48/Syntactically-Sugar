@@ -6,7 +6,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
 
   return (
     <div>
-      <h1 class = "font-effect-shadow-multiple">Orders</h1>
+      <h1 className = "font-effect-shadow-multiple">Orders</h1>
       <ul>
         {completedOrders.map(order => {
           const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === order.id);
