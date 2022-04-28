@@ -23,6 +23,8 @@ function Review({ auth, associatedLineItems, products }) {
     cart = JSON.parse(window.localStorage.getItem('cart'));
   }
 
+  let total = 0;
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -31,6 +33,8 @@ function Review({ auth, associatedLineItems, products }) {
       <List disablePadding>
         {cart.map((lineItem) => {
           const product = products.find(product => product.id === lineItem.productId);
+
+          total += product.price * lineItem.quantity;
           return (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
             <ListItemText primary={product.name} secondary={product.category} />
@@ -42,7 +46,7 @@ function Review({ auth, associatedLineItems, products }) {
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            ${total}
           </Typography>
         </ListItem>
       </List>
