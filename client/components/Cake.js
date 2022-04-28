@@ -18,10 +18,10 @@ class Cake extends React.Component {
     const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
-        const updatedLineItem = { id: lineItem.id, quantity: quantity, productId: cake.id, orderId: order.id };
+        const updatedLineItem = { id: lineItem.id, quantity: lineItem.quantity*1 + quantity*1, productId: cake.id, orderId: order.id };
         updateLineItem(updatedLineItem);
       } else {
-        const newLineItem = { quantity: quantity, productId: cake.id, orderId: order.id };
+        const newLineItem = { quantity: quantity*1, productId: cake.id, orderId: order.id };
         createLineItem(newLineItem);
       }
     } else {
@@ -29,10 +29,10 @@ class Cake extends React.Component {
       let existingLineItem = existingCart.find(obj => obj.productId === cake.id);
       const idx = existingCart.indexOf(existingLineItem);
       if (existingLineItem) {
-        existingLineItem.quantity = existingLineItem.productId*1 + quantity*1;
+        existingLineItem.quantity = existingLineItem.quantity*1 + quantity*1;
         existingCart[idx] = existingLineItem;
       } else {
-        existingLineItem = { productId: cake.id, quantity: quantity };
+        existingLineItem = { productId: cake.id, quantity: quantity*1 };
         existingCart.push(existingLineItem);
       }
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
