@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function PaymentForm() {
+export default function PaymentForm({ orderInfo, onChange }) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -16,41 +16,49 @@ export default function PaymentForm() {
           <TextField
             required
             id="cardName"
+            value={orderInfo.cardName}
             label="Name on card"
             fullWidth
             autoComplete="cc-name"
             variant="standard"
+            onChange={onChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardNumber"
+            value={orderInfo.cardNumber}
             label="Card number"
             fullWidth
             autoComplete="cc-number"
             variant="standard"
+            onChange={onChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
             id="expDate"
+            value={orderInfo.expDate}
             label="Expiry date"
             fullWidth
             autoComplete="cc-exp"
             variant="standard"
+            onChange={onChange}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
             id="cvv"
+            value={orderInfo.cvv}
             label="CVV"
             helperText="Last three digits on signature strip"
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
+            onChange={onChange}
           />
         </Grid>
         <Grid item xs={12}>
