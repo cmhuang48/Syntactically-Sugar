@@ -48,30 +48,26 @@ router.put('/:id', async (req, res, next) => {
         }
       })
 
-      localStorage.forEach(async (obj) => {
+      for (let obj in localStorage) {
         let change = false
-        lineItems.forEach(item => {
+        for (let item in lineItems) {
           if (obj.productId*1 === item.productId) {
             item.quantity += obj.quantity*1
             change = true
           }
-        })
+        }
         if (!change) {
           const newItem = await LineItem.create({ quantity: obj.quantity, productId: obj.productId, orderId: order.id })
           lineItems.push(newItem)
         }
-      })
+      }
 
       res.json(lineItems)
     } 
     
     else {
       const lineItem = await LineItem.findByPk(req.body.id)
-      if (req.body.totalQuantity) res.json(await lineItem.update({ quantity: req.body.totalQuantity*1 }))
-      else {
-        let updatedQuantity = lineItem.quantity *1 + req.body.quantity*1
-        res.json(await lineItem.update({ quantity: updatedQuantity }))
-      }
+      res.json(await lineItem.update({ quantity: req.body.quantity*1 }))
     }
   }
   catch (err) {

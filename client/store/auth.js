@@ -7,6 +7,7 @@ import { loadOrders } from './orders'
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH'
+const UPDATE_USER = 'UPDATE_USER'
 const TOKEN = 'token'
 
 /**
@@ -50,6 +51,19 @@ export const logout = () => {
   }
 }
 
+export const updateUser = (user) => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem(TOKEN)
+    if (token) {
+      const updatedUser = (await axios.put(`api/users/${user.id}`, user)).data
+      dispatch({
+        type: UPDATE_USER,
+        user: updatedUser
+      })
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -57,6 +71,8 @@ export default function(state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
       return action.auth
+    case UPDATE_USER:
+      return action.user
     default:
       return state
   }

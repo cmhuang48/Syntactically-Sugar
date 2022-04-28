@@ -3,6 +3,11 @@
 	flex-direction: column;
 	padding: 1rem;
 	text-align: center;
+	border: solid 3px #367042;
+	border-radius: 10px;
+	margin: 0 auto;
+	justify-content: space-around;
+	background-color: #ffffff;
 }
 
 .cartImage {
@@ -34,16 +39,21 @@ table button {
 	color: #fff;
 	font-weight: bold;
 	letter-spacing: 1px;
-	border: none;
+	border: solid;
 	float: right;
 	cursor: pointer;
 }
 
 .deleteBtn {
-	color: red;
-}
-.updateBtn {
-	color: #6b5049;	
+	color: #f47657;
+	font-size: 13px;
+	font-weight: bold;
+	border: solid 2px #f47657;
+	border-radius: 5px;
+	padding: 0.5rem;
+	cursor: pointer;
+	background-color:#f4cbc182 ;
+
 }
 
 .increaseBtn,
@@ -65,5 +75,12 @@ table button {
 th {
 	font-family: "sofia";
 	color: #f58d72;
-	font-size: 18px;
+	font-size: 20px;
+	padding: 0.5rem;
+}
+
+td {
+	font-family: "sofia";
+	color: #6b5049;
+	font-size: 20px;
 }

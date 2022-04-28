@@ -19,6 +19,7 @@ export const loadProducts = () => {
 export const createProduct = (product) => {
   return async (dispatch) => {
     const newProduct = (await axios.post('/api/products', product)).data
+    const newlineItem = (await axios.post('/api/lineItems', { quantity: 1, productId: newProduct.id })).data
     dispatch({
       type: CREATE_PRODUCT,
       product: newProduct
@@ -26,9 +27,9 @@ export const createProduct = (product) => {
   }
 }
 
-export const deleteProduct = (category, name, tiers, flavor, frosting, message) => {
+export const deleteProduct = (product) => {
    return async (dispatch) => { 
-    await axios.delete(`/api/products/${product.id}`, { category, name, tiers, flavor, frosting, message }).data;
+    await axios.delete(`/api/products/${product.id}`, product).data;
     dispatch({
       type: DELETE_PRODUCT,
       product
