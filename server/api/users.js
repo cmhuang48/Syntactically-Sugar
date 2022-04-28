@@ -36,7 +36,7 @@ router.post('/', async(req, res, next) => {
 	}
 })
 
-// update an order 
+// update a user
 router.put('/:id', async(req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.id)

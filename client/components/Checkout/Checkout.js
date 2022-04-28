@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import { updateOrder, checkout } from '../../store';
+import { updateOrder, checkout, updateUser } from '../../store';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -44,8 +44,13 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, checkout }) {
 
   const onClick = () => {
     if (auth.username) {
-      updateOrder({ id: cart.id, status: 'order', userId: auth.id });
-
+      updateOrder({ id: cart.id, status: 'order', userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
+      if (saveAddress === 'yes') {
+        updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
+      } 
+      if (saveCard === 'yes') {
+        updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
+      }
     } else {
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       // creates new user, new order, and new lineItems
@@ -66,7 +71,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, checkout }) {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }} style={{ padding: '2em'}}>
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>

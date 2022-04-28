@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import LineItemInCart from './LineItemInCart';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ auth, associatedLineItems }) => {
+const Cart = ({ auth, associatedLineItems, products }) => {
   let cart;
 
   if (auth.username) {
@@ -17,6 +17,8 @@ const Cart = ({ auth, associatedLineItems }) => {
     cart = existingCart;
   }
 
+  let total; 
+
   return (
     <div style={{marginBottom: '100%'}}>
       <h1>Cart</h1>
@@ -29,10 +31,11 @@ const Cart = ({ auth, associatedLineItems }) => {
                 <th>Category</th>
                 <th>Quantity</th>
                 <th></th>
-                <th></th>
                 <th style={{width: "50px"}}>Price</th>
               </tr>
               {cart.map(lineItem => {
+                const product = products.find(product => product?.id === lineItem.productId*1);
+                total = product.price * lineItem.quantity;
                 return (
                   <LineItemInCart lineItem={lineItem} key={lineItem.id} />
                 )
@@ -42,9 +45,8 @@ const Cart = ({ auth, associatedLineItems }) => {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
                 <td>Total:</td>
-                <td>$</td>
+                <td>${total}</td>
               </tr>
             </tbody>
           </table>
@@ -54,12 +56,13 @@ const Cart = ({ auth, associatedLineItems }) => {
   );
 };
 
-const mapState = ({ auth, orders, lineItems}) => {
+const mapState = ({ auth, orders, lineItems, products }) => {
   const cart = orders.find(order => order.status === 'cart');
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
     auth,
-    associatedLineItems
+    associatedLineItems,
+    products
   };
 };
 

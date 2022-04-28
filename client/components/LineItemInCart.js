@@ -65,7 +65,6 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
         <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
         <td>{product.name}</td>
         <td>{product.category}</td>
-        <td>{currentQuantity}</td>
         <td>
           <button className='increaseBtn' onClick={decrease}>-</button>
           {currentQuantity}
@@ -75,10 +74,6 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
           <button className='deleteBtn' onClick={destroy}>Remove Item</button>
         </td>
         <td>${product.price * currentQuantity}</td>
-      </tr>
-      <tr>
-      </tr>
-      <tr>
       </tr>
     </>
   );
