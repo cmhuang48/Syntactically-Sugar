@@ -20,10 +20,6 @@ router.get('/', async (req, res, next) => {
 // get order details
 router.get('/:id', async(req, res, next) => {
 	try {
-		if(!req.user.isAdmin) { 
-			res.sendStatus(401)
-			throw 'Only admin can edit'
-		}
 		res.json(await Order.findByPk(req.params.id))
 	} catch (err) {
 		next(err)

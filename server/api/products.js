@@ -40,3 +40,16 @@ router.delete('/:id', async(req, res, next) => {
     next(error)
   }
 })
+
+
+router.put('/:id', async(req, res, next) => {
+  try {
+    const user = await User.findByToken(req.headers.authorization)
+    if(user.isAdmin) {
+      const product = await Product.findByPk(req.params.id)
+      console.log(product)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
