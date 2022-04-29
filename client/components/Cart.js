@@ -21,7 +21,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
 
   return (
     <div style={{marginBottom: '100%'}}>
-      <h1 class = "font-effect-shadow-multiple" >Cart</h1>
+      <h1 className="font-effect-shadow-multiple" >Cart</h1>
         <div className='cartBox'>
           <table>
             <tbody>
