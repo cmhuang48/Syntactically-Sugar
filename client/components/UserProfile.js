@@ -36,17 +36,26 @@ class UserProfile extends React.Component {
     const { onChange, onSubmit } = this;
     return (
       <div>
-        <h1 class = "font-effect-shadow-multiple">User Info TBD</h1>
+        <h1 className = "font-effect-shadow-multiple">User Info TBD</h1>
         <form onSubmit={onSubmit}>
           <input name='username' value={username} placeholder='Enter username' onChange={onChange} />
+          <br/>
           <input name='firstName' value={firstName} placeholder='Enter first name' onChange={onChange} />
+          <br/>
           <input name='lastName' value={lastName} placeholder='Enter lastName' onChange={onChange} />
+          <br/>
           <input name='address1' value={address1} placeholder='Enter address1' onChange={onChange} />
+          <br/>
           <input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />{address2}
+          <br/>
           <input name='city' value={city} placeholder='Enter city' onChange={onChange} />
+          <br/>
           <input name='state' value={state} placeholder='Enter state' onChange={onChange} />
+          <br/>
           <input name='zip' value={zip} placeholder='Enter zip' onChange={onChange} />
+          <br/>
           <input name='country' value={country} placeholder='Enter country' onChange={onChange} />
+          <br/>
           <button>Save</button>
         </form>
       </div>
