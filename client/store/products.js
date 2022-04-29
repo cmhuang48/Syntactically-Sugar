@@ -4,6 +4,8 @@ import axios from 'axios'
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const TOKEN = 'token'
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -37,6 +39,23 @@ export const deleteProduct = (product) => {
    }
 }
 
+export const updateProduct = (product, history) => {
+  return async dispatch => {
+     const token = window.localStorage.getItem(TOKEN)
+      if(token) {
+        const res = await axios.get('/auth/me', {headers: {authorization:token}})
+        if(res.data.isAdmin) {
+          const updatedProduct = (await axios.put(`/api/products/${product.id}`, product)).data;
+          dispatch({
+            type: UPDATE_PRODUCT,
+            product: updatedProduct
+          })
+          history.push(`/products/${product.id}`)
+        }
+      }
+  }
+}
+
 // REDUCER
 export default function(state = [], action) {
   switch (action.type) {
@@ -44,6 +63,8 @@ export default function(state = [], action) {
       return action.products
     case CREATE_PRODUCT:
       return [...state, action.product]
+    case UPDATE_PRODUCT:
+      return state.map(product => product.id !== action.product.id ? product : action.product)
     case DELETE_PRODUCT:
       return state.filter(product => product.id !== action.product.id)
     default:
