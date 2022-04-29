@@ -25,6 +25,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             variant="standard"
             onChange={onChange}
             InputLabelProps={{ shrink: true }}  
+            autoFocus
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -38,7 +39,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="family-name"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12}>

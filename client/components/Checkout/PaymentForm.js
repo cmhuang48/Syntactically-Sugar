@@ -22,6 +22,7 @@ export default function PaymentForm({ orderInfo, onChange }) {
             autoComplete="cc-name"
             variant="standard"
             onChange={onChange}
+            autoFocus
           />
         </Grid>
         <Grid item xs={12} md={6}>
