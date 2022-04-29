@@ -21,7 +21,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
 
   return (
     <div style={{marginBottom: '100%'}}>
-      <h1 class = "font-effect-shadow-multiple" >Cart</h1>
+      <h1 className = "font-effect-shadow-multiple" >Cart</h1>
         <div className='cartBox'>
           <table>
             <tbody>
@@ -34,8 +34,10 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 <th style={{width: "50px"}}>Price</th>
               </tr>
               {cart.map(lineItem => {
-                const product = products.find(product => product?.id === lineItem.productId*1);
-                total += product.price * lineItem.quantity;
+                console.log(products)
+                console.log(lineItem)
+                const product = products.find(product => product.id === lineItem.productId*1);
+                total += product?.price * lineItem.quantity;
                 return (
                   <LineItemInCart lineItem={lineItem} key={lineItem.id} />
                 )

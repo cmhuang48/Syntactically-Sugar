@@ -38,6 +38,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   });
 
   function getStepContent(step) {
+    console.log(step)
     switch (step) {
       case 0:
         return <AddressForm orderInfo={orderInfo} onChange={onChange} />;
