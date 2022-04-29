@@ -48,11 +48,13 @@ router.put('/:id', async (req, res, next) => {
         }
       })
 
-      for (let i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++ ) {
         let change = false
-        for (let j = 0; j < lineItems.length; j++) {
-          if (localStorage[i].productId*1 === lineItems[j].productId) {
-            await lineItems[j].update({quantity: lineItems[j].quantity*1 + localStorage[i].quantity*1})
+        let obj = localStorage[i]
+        for (let i = 0; i < lineItems.length; i++) {
+          let item = lineItems[i]
+          if (obj.productId*1 === item.productId) {
+            await item.update({quantity: item.quantity + obj.quantity*1})
             change = true
           }
         }

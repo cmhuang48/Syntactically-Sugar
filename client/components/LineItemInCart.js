@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadLineItems, updateLineItem, deleteLineItem } from '../store';
+import { updateLineItem, deleteLineItem } from '../store';
+import {loadLineItems} from '../store'
 
 const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineItem, deleteLineItem }) => {
   const destroy = () => {
@@ -10,9 +11,9 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
       let existingCart = JSON.parse(window.localStorage.getItem('cart'));
       existingCart = existingCart.filter(obj => obj.productId !== lineItem.productId);
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      loadLineItems();
+      updateLineItem(existingCart)
     }
-  };
+  }
 
   const increase = () => {
     if (auth.username) {
@@ -25,9 +26,9 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
       existingLineItem.quantity = existingLineItem.quantity*1+1;
       existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      loadLineItems();
+      this.props.loadLineItems()
     }
-  };
+  }
 
   const decrease = () => {
     if (lineItem.quantity === 1) { 
@@ -81,14 +82,14 @@ const mapState = ({ auth, products }) => ({ auth, products });
 
 const mapDispatch = (dispatch) => {
   return {
-    loadLineItems: ()=>{
-      dispatch(loadLineItems());
-    },
-    updateLineItem: (lineItem) => {
-      dispatch(updateLineItem(lineItem));
+    updateLineItem: (item) => {
+      dispatch(updateLineItem(item));
     },
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
+    },
+    loadLineItems: ()=>{
+      dispatch(loadLineItems())
     }
   };
 };

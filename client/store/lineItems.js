@@ -12,7 +12,6 @@ const LOAD_LOCAL_LINEITEMS = 'LOAD_LOCAL_LINEITEMS'
 export const loadLineItems = () => {
   const token = window.localStorage.getItem('token')
   const localStorage = JSON.parse(window.localStorage.getItem('cart'))
-
   if (token) {
     window.localStorage.setItem('cart', '[]')
     return async (dispatch) => {

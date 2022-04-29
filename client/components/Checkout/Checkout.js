@@ -47,14 +47,14 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
 
   const onChange = (ev) => {
     const change = {};
-    change[ev.target.name] = ev.target.value;
-    setOrderInfo(change);
+    change[ev.target.id] = ev.target.value;
+    setOrderInfo(orderInfo=>({...orderInfo, ...change}));
   }
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
     if (auth.username) {
-      updateOrder({ id: cart.id, status: 'order', userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
+      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
       if (saveAddress === 'yes') {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 

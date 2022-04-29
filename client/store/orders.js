@@ -40,6 +40,7 @@ export const updateOrder = (order) => {
       type: UPDATE_ORDER,
       order: updatedOrder
     })
+    if(updatedOrder.status === 'order') dispatch(loadOrders())
   }
 }
 
