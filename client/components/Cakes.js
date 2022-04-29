@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Cakes = ({ cakes }) => {
   return (
     <div>
-      <h1 class = "font-effect-shadow-multiple">Cakes</h1>
+      <h1 className="font-effect-shadow-multiple">Cakes</h1>
       <ul className='cakeContainer'>
         {cakes.map(cake => {
           return (
