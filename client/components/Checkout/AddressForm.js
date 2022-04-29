@@ -23,6 +23,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="given-name"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -36,6 +37,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="family-name"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12}>
@@ -49,6 +51,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping address-line1"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12}>
@@ -61,6 +64,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping address-line2"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -74,6 +78,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping address-level2"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -85,6 +90,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             fullWidth
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -98,6 +104,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping postal-code"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -111,6 +118,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping country"
             variant="standard"
             onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
           />
         </Grid>
         <Grid item xs={12}>

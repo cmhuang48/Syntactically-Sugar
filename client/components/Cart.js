@@ -4,10 +4,12 @@ import LineItemInCart from './LineItemInCart';
 import { Link } from 'react-router-dom';
 
 const Cart = ({ auth, associatedLineItems, products }) => {
+
   let cart;
 
   if (auth.username) {
     if(!associatedLineItems.length) return <div>Empty Cart</div>;
+
     cart = associatedLineItems;
   }
 
@@ -34,10 +36,10 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 <th style={{width: "50px"}}>Price</th>
               </tr>
               {cart.map(lineItem => {
-                const product = products.find(product => product?.id === lineItem.productId*1);
+                const product = products.find(product => product.id === lineItem.productId*1);
                 total += product.price * lineItem.quantity;
                 return (
-                  <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                  <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
                 )
               })}
               <tr>
