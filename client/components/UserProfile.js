@@ -36,10 +36,22 @@ class UserProfile extends React.Component {
     const { onChange, onSubmit } = this;
     return (
     <div className= "row">
-      <div className="borderinfo">
         <h1 className="font-effect-shadow-multiple">{username}'s info</h1>
+        <div className="column1">
+        <div className="info">
+        <p>User Name:</p>{username}
+        <p>First Name:</p>{firstName}
+        <p>Last Name:</p>{lastName}
+        <p>Address 1:</p>{address1}
+        <p>Address 2:</p>{address2}
+        <p>City:</p>{city}
+        <p>State:</p>{state}
+        <p>Zip:</p>{zip}
+        <p>Country:</p>{country}
+        </div>
+        </div>
+        <div className="borderinfo">
         <form onSubmit={onSubmit}>
-        <div className= "column1">
         <p> Username: </p>
           <input name='username' value={username} placeholder='Enter username' onChange={onChange} />
         <p> First Name: </p>
@@ -49,9 +61,7 @@ class UserProfile extends React.Component {
           <p>Address:</p>
           <input name='address1' value={address1} placeholder='Enter address1' onChange={onChange} />
         <p> Address 2:</p>
-          <input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />{address2}
-         </div>
-         <div className = "column">
+<input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />
           <p> City:</p>
           <input name='city' value={city} placeholder='Enter city' onChange={onChange} />
         <p> State:</p>
@@ -60,12 +70,9 @@ class UserProfile extends React.Component {
           <input name='zip' value={zip} placeholder='Enter zip' onChange={onChange} />
         <p> Country:</p>
           <input name='country' value={country} placeholder='Enter country' onChange={onChange} />
-          </div>
-          <div>
-          <br />
-        <button type='submit'>Submit</button>
-        </div>
         </form>
+        <br />
+        <button> Update </button>
 </div>
       </div>
     );

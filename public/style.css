@@ -106,7 +106,15 @@ display: flex;
 	background-color: #ffffff;
 	padding: 5px;
   }
-
+.info {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	border: solid 3px #367042;
+	border-radius: 10px;
+	background-color: #ffffff;
+	padding: 5px;
+}
 .cakeContainer {
 	display: flex;
 	padding: 35px;
