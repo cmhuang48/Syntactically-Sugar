@@ -37,17 +37,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
-  const handleNext = () => {
-    for(let key in orderInfo) {
-      let values = orderInfo[key]
-      if(values === '') {
-        window.alert('must')
-        return 
-      } else {
-        setActiveStep(activeStep + 1);
-      }
-    }
-  };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -58,6 +47,18 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     change[ev.target.id] = ev.target.value;
     setOrderInfo(orderInfo=>({...orderInfo, ...change}));
   }
+  const handleNext = () => {
+
+    if(orderInfo.address1 === '' || orderInfo.firstName === '' || orderInfo.city === '' || orderInfo.zip === '' || orderInfo.country === ''){ 
+      window.alert('* must input')
+      return setActiveStep(0);
+    } 
+    if(orderInfo.cardNumber === '' || orderInfo.cvv === '') {
+      window.alert('* must input')
+      return setActiveStep(1);
+    }
+    setActiveStep(activeStep + 1);
+  };
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
