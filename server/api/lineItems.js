@@ -33,7 +33,7 @@ router.post('/', async (req, res, next) => {
 // update a lineItem
 router.put('/:id', async (req, res, next) => {
   try {
-    const {localStorage} = req.body
+    const { localStorage } = req.body
     if (localStorage) {
       const user = await User.findByToken(req.headers.authorization)
       const order = await Order.findOne({
@@ -48,16 +48,16 @@ router.put('/:id', async (req, res, next) => {
         }
       })
 
-      for (let obj in localStorage) {
+      for (let i = 0; i < localStorage.length; i++) {
         let change = false
-        for (let item in lineItems) {
-          if (obj.productId*1 === item.productId) {
-            item.quantity += obj.quantity*1
+        for (let j = 0; j < lineItems.length; j++) {
+          if (localStorage[i].productId*1 === lineItems[j].productId) {
+            await lineItems[j].update({quantity: lineItems[j].quantity*1 + localStorage[i].quantity*1})
             change = true
           }
         }
         if (!change) {
-          const newItem = await LineItem.create({ quantity: obj.quantity, productId: obj.productId, orderId: order.id })
+          const newItem = await LineItem.create({ quantity: localStorage[i].quantity, productId: localStorage[i].productId, orderId: order.id })
           lineItems.push(newItem)
         }
       }

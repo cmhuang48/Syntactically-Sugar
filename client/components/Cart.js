@@ -36,8 +36,10 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 <th style={{width: "50px"}}>Price</th>
               </tr>
               {cart.map(lineItem => {
-                const product = products.find(product => product.id === lineItem.productId*1);
-                total += product.price * lineItem.quantity;
+                const product = products.find(product => product?.id === lineItem.productId*1);
+                if (product) {
+                  total += product.price * lineItem.quantity;
+                }
                 return (
                   <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
                 )
