@@ -37,6 +37,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
+<<<<<<< HEAD
   function getStepContent(step) {
     console.log(step)
     switch (step) {
@@ -51,6 +52,8 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     }
   };
 
+=======
+>>>>>>> 01cf2c40904b035b1c7dd878119c567cd2b74fda
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -60,7 +63,9 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   };
 
   const onChange = (ev) => {
-    setOrderInfo({ ...orderInfo, [ev.target.name]: ev.target.value});
+    const change = {};
+    change[ev.target.name] = ev.target.value;
+    setOrderInfo(change);
   }
 
   const onSubmit = () => {
@@ -80,6 +85,19 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     }
     window.alert('Successfully checked out!');
   }
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm orderInfo={orderInfo} onChange={onChange} />;
+      case 1:
+        return <PaymentForm orderInfo={orderInfo} onChange={onChange} />;
+      case 2:
+        return <Review orderInfo={orderInfo} onChange={onChange} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  };
 
   if (auth.username) {
     if(!associatedLineItems.length) return <div>Continue Shopping</div>;
