@@ -59,7 +59,7 @@ async function seed() {
   const lineItems = await Promise.all([
     LineItem.create({ quantity: 1, productId: cakes[0].id, orderId: orders[0].id }),
     LineItem.create({ quantity: 2, productId: cakes[1].id, orderId : orders[1].id }),
-    LineItem.create({ quantity: 2, productId: cupcakes[0].id, orderId : orders[0].id })
+    LineItem.create({ quantity: 2, productId: cupcakes[0].id, orderId : orders[0].id }),
   ])
   
   console.log(`seeded ${lineItems.length} line items`)

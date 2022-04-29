@@ -34,12 +34,10 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 <th style={{width: "50px"}}>Price</th>
               </tr>
               {cart.map(lineItem => {
-                console.log(products)
-                console.log(lineItem)
                 const product = products.find(product => product.id === lineItem.productId*1);
-                total += product?.price * lineItem.quantity;
+                if(product) total += product.price * lineItem.quantity;
                 return (
-                  <LineItemInCart lineItem={lineItem} key={lineItem.id} />
+                  <LineItemInCart lineItem={lineItem} key={lineItem.productId} />
                 )
               })}
               <tr>
@@ -59,6 +57,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
 };
 
 const mapState = ({ auth, orders, lineItems, products }) => {
+  console.log(lineItems)
   const cart = orders.find(order => order.status === 'cart');
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {

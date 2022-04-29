@@ -37,23 +37,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
-<<<<<<< HEAD
-  function getStepContent(step) {
-    console.log(step)
-    switch (step) {
-      case 0:
-        return <AddressForm orderInfo={orderInfo} onChange={onChange} />;
-      case 1:
-        return <PaymentForm orderInfo={orderInfo} onChange={onChange} />;
-      case 2:
-        return <Review orderInfo={orderInfo} onChange={onChange} />;
-      default:
-        throw new Error('Unknown step');
-    }
-  };
-
-=======
->>>>>>> 01cf2c40904b035b1c7dd878119c567cd2b74fda
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -64,14 +47,14 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
 
   const onChange = (ev) => {
     const change = {};
-    change[ev.target.name] = ev.target.value;
-    setOrderInfo(change);
+    change[ev.target.id] = ev.target.value;
+    setOrderInfo(orderInfo=>({...orderInfo, ...change}));
   }
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
     if (auth.username) {
-      updateOrder({ id: cart.id, status: 'order', userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
+      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
       if (saveAddress === 'yes') {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 
