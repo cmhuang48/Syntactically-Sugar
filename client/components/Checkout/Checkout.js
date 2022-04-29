@@ -38,6 +38,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   });
 
   const handleNext = () => {
+    if(!orderInfo.firstName && !orderInfo.address1) return 
     setActiveStep(activeStep + 1);
   };
 
@@ -147,7 +148,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   )}
 
                   <Button
-                    disabled={!orderInfo.firstName}
                     variant="contained" 
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
