@@ -49,6 +49,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     const change = {};
     change[ev.target.id] = ev.target.value;
     setOrderInfo(orderInfo=>({...orderInfo, ...change}));
+
   }
 
   const onSubmit = () => {
