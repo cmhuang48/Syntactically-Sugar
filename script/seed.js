@@ -15,7 +15,7 @@ async function seed() {
     User.create({ username: 'chanelle', password: '123', isAdmin: true }),
     User.create({ username: 'jiayu', password: '123', isAdmin: true }),
     User.create({ username: 'lauren', password: '123', isAdmin: true }),
-    User.create({ username: 'savannah', password: '123', isAdmin: true }),
+    User.create({ username: 'sava', password: '123', isAdmin: true }),
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' })
   ])
