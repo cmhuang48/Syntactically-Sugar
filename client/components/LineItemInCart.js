@@ -61,22 +61,20 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
   }
 
   return (
-    <>
-      <tr key={product.id}>
-        <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
-        <td>{product.name}</td>
-        <td>{product.category}</td>
-        <td>
-          <button className='increaseBtn' onClick={decrease}>-</button>
-          {currentQuantity}
-          <button className='decreaseBtn' onClick={increase}>+</button>
-        </td>
-        <td>
-          <button className='deleteBtn' onClick={destroy}>Remove Item</button>
-        </td>
-        <td>${product.price * currentQuantity}</td>
-      </tr>
-    </>
+    <tr key={product.id}>
+      <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+      <td>{product.name}</td>
+      <td>{product.category}</td>
+      <td>
+        <button className='increaseBtn' onClick={decrease}>-</button>
+        {currentQuantity}
+        <button className='decreaseBtn' onClick={increase}>+</button>
+      </td>
+      <td>
+        <button className='deleteBtn' onClick={destroy}>Remove Item</button>
+      </td>
+      <td>${product.price * currentQuantity}</td>
+    </tr>
   );
 };
 

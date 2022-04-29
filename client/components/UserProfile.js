@@ -35,29 +35,45 @@ class UserProfile extends React.Component {
     const { username, firstName, lastName, address1, address2, city, state, zip, country } = this.state;
     const { onChange, onSubmit } = this;
     return (
-      <div>
-        <h1 className="font-effect-shadow-multiple">User Info TBD</h1>
+    <div className= "row">
+        <h1 className="font-effect-shadow-multiple">{username}'s info</h1>
+        <div className="column1">
+        <div className="info">
+        <p>User Name:</p>{username}
+        <p>First Name:</p>{firstName}
+        <p>Last Name:</p>{lastName}
+        <p>Address 1:</p>{address1}
+        <p>Address 2:</p>{address2}
+        <p>City:</p>{city}
+        <p>State:</p>{state}
+        <p>Zip:</p>{zip}
+        <p>Country:</p>{country}
+        </div>
+        </div>
+        <div className="borderinfo">
         <form onSubmit={onSubmit}>
+        <p> Username: </p>
           <input name='username' value={username} placeholder='Enter username' onChange={onChange} />
-          <br/>
+        <p> First Name: </p>
           <input name='firstName' value={firstName} placeholder='Enter first name' onChange={onChange} />
-          <br/>
+        <p>Last Name:</p>
           <input name='lastName' value={lastName} placeholder='Enter lastName' onChange={onChange} />
-          <br/>
+          <p>Address:</p>
           <input name='address1' value={address1} placeholder='Enter address1' onChange={onChange} />
-          <br/>
-          <input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />{address2}
-          <br/>
+        <p> Address 2:</p>
+<input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />
+          <p> City:</p>
           <input name='city' value={city} placeholder='Enter city' onChange={onChange} />
-          <br/>
+        <p> State:</p>
           <input name='state' value={state} placeholder='Enter state' onChange={onChange} />
-          <br/>
+        <p> Zip:</p>
           <input name='zip' value={zip} placeholder='Enter zip' onChange={onChange} />
-          <br/>
+        <p> Country:</p>
           <input name='country' value={country} placeholder='Enter country' onChange={onChange} />
-          <br/>
-          <button>Save</button>
         </form>
+        <br />
+        <button> Update </button>
+</div>
       </div>
     );
   }

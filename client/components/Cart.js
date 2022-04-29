@@ -4,10 +4,12 @@ import LineItemInCart from './LineItemInCart';
 import { Link } from 'react-router-dom';
 
 const Cart = ({ auth, associatedLineItems, products }) => {
+
   let cart;
 
   if (auth.username) {
     if(!associatedLineItems.length) return <div>Empty Cart</div>;
+
     cart = associatedLineItems;
   }
 
