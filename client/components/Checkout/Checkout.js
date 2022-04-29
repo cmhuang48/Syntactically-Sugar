@@ -37,8 +37,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
-  const handleNext = (ev) => {
-    if(ev.target.value === '') return 
+  const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
 
@@ -148,6 +147,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   )}
 
                   <Button
+                    disabled={!orderInfo.firstName}
                     variant="contained" 
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
