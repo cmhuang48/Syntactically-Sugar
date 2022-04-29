@@ -35,29 +35,38 @@ class UserProfile extends React.Component {
     const { username, firstName, lastName, address1, address2, city, state, zip, country } = this.state;
     const { onChange, onSubmit } = this;
     return (
-      <div>
-        <h1 className="font-effect-shadow-multiple">User Info TBD</h1>
+    <div className= "row">
+      <div className="borderinfo">
+        <h1 className="font-effect-shadow-multiple">{username}'s info</h1>
         <form onSubmit={onSubmit}>
+        <div className= "column1">
+        <p> Username: </p>
           <input name='username' value={username} placeholder='Enter username' onChange={onChange} />
-          <br/>
+        <p> First Name: </p>
           <input name='firstName' value={firstName} placeholder='Enter first name' onChange={onChange} />
-          <br/>
+        <p>Last Name:</p>
           <input name='lastName' value={lastName} placeholder='Enter lastName' onChange={onChange} />
-          <br/>
+          <p>Address:</p>
           <input name='address1' value={address1} placeholder='Enter address1' onChange={onChange} />
-          <br/>
+        <p> Address 2:</p>
           <input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />{address2}
-          <br/>
+         </div>
+         <div className = "column">
+          <p> City:</p>
           <input name='city' value={city} placeholder='Enter city' onChange={onChange} />
-          <br/>
+        <p> State:</p>
           <input name='state' value={state} placeholder='Enter state' onChange={onChange} />
-          <br/>
+        <p> Zip:</p>
           <input name='zip' value={zip} placeholder='Enter zip' onChange={onChange} />
-          <br/>
+        <p> Country:</p>
           <input name='country' value={country} placeholder='Enter country' onChange={onChange} />
-          <br/>
-          <button>Save</button>
+          </div>
+          <div>
+          <br />
+        <button type='submit'>Submit</button>
+        </div>
         </form>
+</div>
       </div>
     );
   }
