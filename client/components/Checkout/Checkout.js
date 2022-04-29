@@ -38,8 +38,15 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   });
 
   const handleNext = () => {
-    if(!orderInfo.firstName && !orderInfo.address1) return 
-    setActiveStep(activeStep + 1);
+    for(let key in orderInfo) {
+      let values = orderInfo[key]
+      if(values === '') {
+        window.alert('must')
+        return 
+      } else {
+        setActiveStep(activeStep + 1);
+      }
+    }
   };
 
   const handleBack = () => {
@@ -148,6 +155,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   )}
 
                   <Button
+                   // disabled={orderInfo.map(ele => ele === undefined)}
                     variant="contained" 
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
