@@ -15,7 +15,7 @@ const Navbar = ({ handleClick, isLoggedIn, username}) => (
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/orders">Orders</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/profile">My Profile, {username}</Link>
+          <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
