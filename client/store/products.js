@@ -4,6 +4,7 @@ import axios from 'axios'
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -37,6 +38,14 @@ export const deleteProduct = (product) => {
    }
 }
 
+export const updateProduct = (product, history) => {
+  return async dispatch => {
+    const response = await axios.put(`/api/products/${product.id}`, product);
+    dispatch({type: UPDATE_PRODUCT, product: response.data});
+    history.go(`/products/${product.id}`)
+  }
+} 
+
 // REDUCER
 export default function(state = [], action) {
   switch (action.type) {
@@ -44,6 +53,8 @@ export default function(state = [], action) {
       return action.products
     case CREATE_PRODUCT:
       return [...state, action.product]
+    case UPDATE_PRODUCT:
+      return state.map(product => product.id !== action.product.id ? product : action.product)
     case DELETE_PRODUCT:
       return state.filter(product => product.id !== action.product.id)
     default:

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Product }} = require('../db')
+const { models: { Product, User }} = require('../db')
 module.exports = router
 
 // get all products
@@ -44,11 +44,9 @@ router.delete('/:id', async(req, res, next) => {
 
 router.put('/:id', async(req, res, next) => {
   try {
-    const user = await User.findByToken(req.headers.authorization)
-    if(user.isAdmin) {
-      const product = await Product.findByPk(req.params.id)
-      console.log(product)
-    }
+    const product = await Product.findByPk(req.params.id)
+    const updated = await product.update(req.body)
+    res.json(updated)
   } catch (error) {
     next(error)
   }

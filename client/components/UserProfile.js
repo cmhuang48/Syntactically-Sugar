@@ -61,7 +61,7 @@ class UserProfile extends React.Component {
           <p>Address:</p>
           <input name='address1' value={address1} placeholder='Enter address1' onChange={onChange} />
         <p> Address 2:</p>
-<input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />
+          <input name='address2' value={address2} placeholder='Enter address2' onChange={onChange} />
           <p> City:</p>
           <input name='city' value={city} placeholder='Enter city' onChange={onChange} />
         <p> State:</p>
@@ -73,7 +73,7 @@ class UserProfile extends React.Component {
         </form>
         <br />
         <button> Update </button>
-</div>
+        </div>
       </div>
     );
   }
