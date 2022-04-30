@@ -19,7 +19,7 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 const theme = createTheme();
 
 
-function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, checkout, newOrder }) {
+function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
     firstName: '',
@@ -188,12 +188,11 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   );
 }
 
-const mapState = ({ auth, orders, lineItems, newOrder }) => {
+const mapState = ({ auth, orders, newOrder }) => {
   const cart = orders.find(order => order.status === 'cart');
   return {
     auth,
     cart,
-    associatedLineItems,
     newOrder
   };
 };
