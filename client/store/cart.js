@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 // ACTION TYPES
-const CHECKOUT = 'CHECKOUT';
-const LOAD_ORDERS = 'LOAD_ORDERS'
-const LOAD_LINEITEMS = 'LOAD_LINEITEMS'
+const LOAD_CART = 'LOAD_CART'
 
 // THUNK CREATORS
 export const checkout = (cart) => {
@@ -20,23 +18,18 @@ export const checkout = (cart) => {
       }
     }
     dispatch({
-      type: LOAD_ORDERS,
-      orders:[newOrder]
-    })
-
-    dispatch({
-      type: LOAD_LINEITEMS,
-        lineItems: newLineItems
+      type: LOAD_CART,
+      newOrder
     })
   }
 }
 
 // REDUCER
-// export default function(state = [], action) {
-//   switch (action.type) {
-//     case CHECKOUT:
-//       return action.newLineItems
-//     default:
-//       return state
-//   }
-// }
+export default function(state = {}, action) {
+  switch (action.type) {
+    case LOAD_CART:
+      return action.newOrder
+    default:
+      return state
+  }
+}
