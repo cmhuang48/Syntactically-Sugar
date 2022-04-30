@@ -46,7 +46,7 @@ router.put('/:id', async(req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
     const updated = await product.update(req.body)
-     res.json(await Todo.findByPk(req.params.id))
+    res.json(updated)
   } catch (error) {
     next(error)
   }

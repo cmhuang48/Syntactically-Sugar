@@ -5,7 +5,6 @@ const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
-const TOKEN = 'token'
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -42,9 +41,8 @@ export const deleteProduct = (product) => {
 export const updateProduct = (product, history) => {
   return async dispatch => {
     const response = await axios.put(`/api/products/${product.id}`, product);
-    dispatch(_updateTodo(response.data));
-    console.log(response.data);
-    history.push('/products');
+    dispatch({type: UPDATE_PRODUCT, product: response.data});
+    history.go(`/products/${product.id}`)
   }
 } 
 
