@@ -51,9 +51,9 @@ class UpdateProduct extends Component {
 							<input name='name' value={name} placeholder='Enter name' onChange={handleChange} />
 						<p> Price: </p>
 							<input name='price' value={price} placeholder='Enter price' onChange={handleChange} />
-						<p>Image Url:</p>
+						<p> Image Url: </p>
 							<input name='image' value={image} size='100' placeholder='Enter image url' onChange={handleChange} />
-						<p>Quantity in Stock:</p>
+						<p> Quantity in Stock: </p>
 							<input name='quantityInStock' value={quantityInStock} placeholder='Enter Quantity in stock' onChange={handleChange} />
 							<br/>
 							<button style={{margin:'20px auto auto', width: '70px' }}> Update </button>
