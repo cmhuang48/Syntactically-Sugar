@@ -18,7 +18,7 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const theme = createTheme();
 
-function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, checkout }) {
+function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, checkout, newOrder }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
     firstName: '',
@@ -124,7 +124,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
+                  Your order number is {auth.username?cart?.id:newOrder?.id}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
@@ -196,13 +196,14 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   );
 }
 
-const mapState = ({ auth, orders, lineItems }) => {
+const mapState = ({ auth, orders, lineItems, newOrder }) => {
   const cart = orders.find(order => order.status === 'cart');
   const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
     auth,
     cart,
-    associatedLineItems
+    associatedLineItems,
+    newOrder
   };
 };
 
