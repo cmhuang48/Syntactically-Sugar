@@ -15,6 +15,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout/Checkout'
 import OrderConfirmation from './components/OrderConfirmation'
 import UserProfile from './components/UserProfile'
+import UpdateProduct from './components/UpdateProduct'
 
 /**
  * COMPONENT
@@ -38,9 +39,11 @@ class Routes extends Component {
             <Route exact path="/cakes" component={Cakes} />
             <Route exact path="/cakes/custom" component={CreateCake} />
             <Route path="/cakes/:id" component={Cake} />
+             <Route exact path='/cakes/:id/edit' component={UpdateProduct}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route exact path='/cupcakes/custom' component={CreateCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
+             <Route exact path='/cupcakes/:id/edit' component={UpdateProduct}/>
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />

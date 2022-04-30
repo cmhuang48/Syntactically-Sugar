@@ -41,20 +41,12 @@ export const deleteProduct = (product) => {
 
 export const updateProduct = (product, history) => {
   return async dispatch => {
-     const token = window.localStorage.getItem(TOKEN)
-      if(token) {
-        const res = await axios.get('/auth/me', {headers: {authorization:token}})
-        if(res.data.isAdmin) {
-          const updatedProduct = (await axios.put(`/api/products/${product.id}`, product)).data;
-          dispatch({
-            type: UPDATE_PRODUCT,
-            product: updatedProduct
-          })
-          history.push(`/products/${product.id}`)
-        }
-      }
+    const response = await axios.put(`/api/products/${product.id}`, product);
+    dispatch(_updateTodo(response.data));
+    console.log(response.data);
+    history.push('/products');
   }
-}
+} 
 
 // REDUCER
 export default function(state = [], action) {
