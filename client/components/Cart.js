@@ -22,10 +22,10 @@ const Cart = ({ auth, associatedLineItems, products }) => {
   let total = 0; 
 
   const check = () => {
-    // if(!auth.username) {
-    //   window.alert('please login or signup')
-    //   return history.go('/cart')
-    // }
+    if(!auth.username) {
+      window.alert('please login or signup')
+      return history.go('/cart')
+    }
   } 
 
   return (
