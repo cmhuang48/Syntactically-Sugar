@@ -13,7 +13,6 @@ import CreateCupcake from './components/CreateCupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout/Checkout'
-import OrderConfirmation from './components/OrderConfirmation'
 import UserProfile from './components/UserProfile'
 import UpdateProduct from './components/UpdateProduct'
 
