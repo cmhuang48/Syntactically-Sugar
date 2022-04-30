@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 // ACTION TYPES
-const LOAD_CART = 'LOAD_CART'
+const CHECKOUT = 'CHECKOUT';
 
 // THUNK CREATORS
 export const checkout = (cart) => {
-  window.localStorage.setItem('cart', '[]')
   return async (dispatch) => {
-    const newOrder = (await axios.post('/api/orders', { status: 'order' })).data
+    const newUser = (await axios.post('/api/users')).data
+    const newOrder = (await axios.post('/api/orders', { status: 'order', userId: newUser.id })).data
     const newLineItems = [];
     for (let obj in cart) {
       if (obj.newProduct) {
@@ -18,17 +18,17 @@ export const checkout = (cart) => {
       }
     }
     dispatch({
-      type: LOAD_CART,
-      newOrder
+      type: CHECKOUT,
+      newLineItems
     })
   }
 }
 
 // REDUCER
-export default function(state = {}, action) {
+export default function(state = [], action) {
   switch (action.type) {
-    case LOAD_CART:
-      return action.newOrder
+    case CHECKOUT:
+      return action.newLineItems
     default:
       return state
   }
