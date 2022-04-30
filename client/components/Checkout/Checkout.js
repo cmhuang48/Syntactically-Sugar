@@ -78,7 +78,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
       // creates new user, new order, and new lineItems
       checkout(existingCart);
     }
-    window.alert('Successfully checked out!');
+    setActiveStep(activeStep + 1);
   }
 
   function getStepContent(step) {
@@ -94,14 +94,14 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     }
   };
 
-  if (auth.username) {
-    if(!associatedLineItems.length) return <div>Continue Shopping</div>;
-  } 
+  // if (auth.username) {
+  //   if(!associatedLineItems.length) return <div>Continue Shopping</div>;
+  // } 
   
-  else {
-    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-    if(!existingCart.length) return <div>Continue Shopping</div>;
-  }
+  // else {
+  //   const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+  //   if(!existingCart.length) return <div>Continue Shopping</div>;
+  // }
 
   return (
     <ThemeProvider theme={theme}>
