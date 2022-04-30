@@ -36,7 +36,7 @@ class UserProfile extends React.Component {
     const { onChange, onSubmit } = this;
     return (
     <div className= "row">
-        <h1 className="font-effect-shadow-multiple">{username}'s info</h1>
+        <h1 className="font-effect-shadow-multiple">{username[0].toUpperCase() + username.slice(1)}'s info</h1>
         <div className="column1">
         <div className="info">
         <p>User Name:</p>{username}

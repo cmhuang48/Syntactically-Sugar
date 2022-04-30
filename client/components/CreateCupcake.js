@@ -46,6 +46,8 @@ class CreateCupcake extends React.Component {
     const { flavor, frosting, message } = this.state;
     const { onChange, onSubmit } = this;
     return (
+      <div className = "custom-cupcake">
+        <h1 className="font-effect-shadow-multiple">Create Your Own Cupcake</h1>
       <form onSubmit={onSubmit}>
         <select name='flavor' value={flavor} onChange={onChange}>
           <option value=''>Select Flavor</option>
@@ -53,15 +55,19 @@ class CreateCupcake extends React.Component {
           <option value='chocolate'>Chocolate</option>
           <option value='strawberry'>Strawberry</option>
         </select>
+        <br />
         <select name='frosting' value={frosting} onChange={onChange}>
           <option value=''>Select Frosting</option>
           <option value='vanilla'>Vanilla</option>
           <option value='chocolate'>Chocolate</option>
           <option value='strawberry'>Strawberry</option>
         </select>
+        < br />
         <input name='message' value={message} placeholder='Enter Message' onChange={onChange} />
+        < br />
         <button disabled={!flavor || !frosting}>Add Custom Cupcake Order</button>
       </form>
+      </div>
     );
   }
 };

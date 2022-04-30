@@ -157,7 +157,29 @@ input[type=number]::-webkit-outer-spin-button {
 	align-items: center;
 }
 
+.custom-cupcake {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	text-align: center;
+	border: solid 3px #367042;
+	border-radius: 10px;
+	margin: 0 auto;
+	justify-content: space-around;
+	background-color: #ffffff;
+}
 
+.custom-cake {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	text-align: center;
+	border: solid 3px #367042;
+	border-radius: 10px;
+	margin: 0 auto;
+	justify-content: space-around;
+	background-color: #ffffff;
+}
 @media (min-width: 767px) {
 	.cakeImage {
 		width: 20vw;

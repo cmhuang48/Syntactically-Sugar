@@ -18,6 +18,7 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const theme = createTheme();
 
+
 function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, checkout, newOrder }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
@@ -93,15 +94,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
         throw new Error('Unknown step');
     }
   };
-
-  // if (auth.username) {
-  //   if(!associatedLineItems.length) return <div>Continue Shopping</div>;
-  // } 
-  
-  // else {
-  //   const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-  //   if(!existingCart.length) return <div>Continue Shopping</div>;
-  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -198,7 +190,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
 
 const mapState = ({ auth, orders, lineItems, newOrder }) => {
   const cart = orders.find(order => order.status === 'cart');
-  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
     auth,
     cart,
