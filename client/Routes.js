@@ -47,7 +47,6 @@ class Routes extends Component {
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
-            <Route path="/confirmation" component={OrderConfirmation} />
             <Route path="/profile" component={UserProfile} />
             <Redirect to="/home" />
           </Switch>
@@ -64,7 +63,6 @@ class Routes extends Component {
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
-            <Route path="/confirmation" component={OrderConfirmation} />
           </Switch>
         )}
       </div>
