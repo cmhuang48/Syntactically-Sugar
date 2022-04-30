@@ -37,28 +37,31 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
-
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  
+  const handleNextOnAddressForm = () => {
+    if(!orderInfo.firstName || !orderInfo.address1 || !orderInfo.city || !orderInfo.state || !orderInfo.zip || !orderInfo.country){ 
+      window.alert('* must input')
+      return setActiveStep(0);
+    } 
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleNextOnPaymentForm = () => {
+    if(!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.cvv) {
+      window.alert('* must input')
+      return setActiveStep(1);
+    }
+    setActiveStep(activeStep + 1);
+  }
 
   const onChange = (ev) => {
     const change = {};
     change[ev.target.id] = ev.target.value;
     setOrderInfo(orderInfo=>({...orderInfo, ...change}));
   }
-  const handleNext = () => {
-
-    if(orderInfo.address1 === '' || orderInfo.firstName === '' || orderInfo.city === '' || orderInfo.zip === '' || orderInfo.country === ''){ 
-      window.alert('* must input')
-      return setActiveStep(0);
-    } 
-    if(orderInfo.cardNumber === '' || orderInfo.cvv === '') {
-      window.alert('* must input')
-      return setActiveStep(1);
-    }
-    setActiveStep(activeStep + 1);
-  };
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
@@ -145,7 +148,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   </Button>
                 </Box>
               </React.Fragment>
-            ) : (
+            ) : ( activeStep === steps.length-2 ? (
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -158,14 +161,34 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   <Button
                    // disabled={orderInfo.map(ele => ele === undefined)}
                     variant="contained" 
-                    onClick={handleNext}
+                    onClick={handleNextOnPaymentForm}
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
-            ))}
+            ) : (
+              <React.Fragment>
+                {getStepContent(activeStep)}
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                      Back
+                    </Button>
+                  )}
+
+                  <Button
+                  // disabled={orderInfo.map(ele => ele === undefined)}
+                    variant="contained" 
+                    onClick={handleNextOnAddressForm}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  </Button>
+                </Box>
+              </React.Fragment>
+            )))}
           </React.Fragment>
         </Paper>
       </Container>

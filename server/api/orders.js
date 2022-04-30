@@ -39,15 +39,11 @@ router.post('/', async(req, res, next) => {
 // update an order 
 router.put('/:id', async(req, res, next) => {
 	try {
-		console.log('body', req.body)
 		const order = await Order.findByPk(req.body.id *1)
-		console.log('order', order)
 		if (order.status === 'cart') {
-			console.log('here')
-			await order.update({ status: 'order', ...req.body });
+			await order.update({ ...req.body, status: 'order' });
 			await Order.create({ userId: order.userId })
 		}
-		console.log('updated', order)
 		res.json(order)
 	} catch (err) {
 		next(err)

@@ -26,7 +26,7 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
       existingLineItem.quantity = existingLineItem.quantity*1+1;
       existingCart[idx] = existingLineItem;
       window.localStorage.setItem('cart', JSON.stringify(existingCart));
-      this.props.loadLineItems()
+      loadLineItems();
     }
   }
 
