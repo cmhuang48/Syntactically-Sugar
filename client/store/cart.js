@@ -5,9 +5,9 @@ const CHECKOUT = 'CHECKOUT';
 
 // THUNK CREATORS
 export const checkout = (cart) => {
+  window.localStorage.setItem('cart', '[]')
   return async (dispatch) => {
-    const newUser = (await axios.post('/api/users')).data
-    const newOrder = (await axios.post('/api/orders', { status: 'order', userId: newUser.id })).data
+    const newOrder = (await axios.post('/api/orders', { status: 'order' })).data
     const newLineItems = [];
     for (let obj in cart) {
       if (obj.newProduct) {
@@ -19,16 +19,16 @@ export const checkout = (cart) => {
     }
     dispatch({
       type: CHECKOUT,
-      newLineItems
+      newOrder
     })
   }
 }
 
 // REDUCER
-export default function(state = [], action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case CHECKOUT:
-      return action.newLineItems
+      return action.newOrder
     default:
       return state
   }
