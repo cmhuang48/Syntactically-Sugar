@@ -62,7 +62,6 @@ class Routes extends Component {
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route exact path='/cupcakes/custom' component={CreateCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
-            <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/confirmation" component={OrderConfirmation} />

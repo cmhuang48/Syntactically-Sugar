@@ -42,7 +42,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   };
   
   const handleNextOnAddressForm = () => {
-    if(!orderInfo.firstName || !orderInfo.address1 || !orderInfo.city || !orderInfo.state || !orderInfo.zip || !orderInfo.country){ 
+    if (!orderInfo.firstName || !orderInfo.address1 || !orderInfo.city || !orderInfo.state || !orderInfo.zip || !orderInfo.country) { 
       window.alert('* must input')
       return setActiveStep(0);
     } 
@@ -50,7 +50,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   };
 
   const handleNextOnPaymentForm = () => {
-    if(!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.cvv) {
+    if (!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.cvv) {
       window.alert('* must input')
       return setActiveStep(1);
     }
