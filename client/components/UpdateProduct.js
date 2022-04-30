@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { updateProduct } from '../store'
+import { updateProduct, deleteProduct } from '../store'
 
 class UpdateProduct extends Component {
 	constructor(props) {
@@ -58,6 +58,9 @@ class UpdateProduct extends Component {
 							<br/>
 							<button style={{margin:'20px auto auto', width: '70px' }}> Update </button>
 					</form>
+					<form onSubmit={(ev) => ev.preventDefault()}>
+						<button style={{margin:'20px auto auto', width: '70px' }} onClick={()=>this.props.deleteProduct(this.props.match.params.id*1)}>Delete</button>
+					</form>
 				</div>
 			</div>
 		)
@@ -75,6 +78,9 @@ const mapDispatch = (dispatch, {history}) => {
 	return {
 		updateProduct: (product) => {
 			dispatch(updateProduct(product, history))
+		},
+		deleteProduct: (product) => {
+			dispatch(deleteProduct(product, history))
 		}
 	}
 }

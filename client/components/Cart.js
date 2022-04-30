@@ -60,7 +60,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
             </tbody>
           </table>
         </div>
-      {associatedLineItems.length  > 1 ? <Link to='/checkout'><button className='cartCheckout' onClick={check}>Continue To Checkout</button></Link> : <button className='cartCheckout' disabled>Continue To Checkout</button>}
+      <Link to='/checkout'><button className='cartCheckout' onClick={check}>Continue To Checkout</button></Link>
     </div>
   );
 };
