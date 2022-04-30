@@ -1,8 +1,15 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const { ENUM, STRING } = Sequelize
+const { ENUM, STRING, UUID, UUIDV4 } = Sequelize
 
 const Order = db.define('order', {
+  id: {
+    type: UUID,
+    allowNull: false,
+    defaultValue: UUIDV4,
+    primaryKey: true
+  },
+
   status: {
     type: ENUM(['cart', 'order']),
     allowNull: false,

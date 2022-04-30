@@ -44,6 +44,8 @@ class CreateCake extends React.Component {
     const { tiers, flavor, frosting, message } = this.state;
     const { onChange, onSubmit } = this;
     return (
+      <div className = "custom-cake">
+        <h1 className="font-effect-shadow-multiple">Create Your Own Cake</h1>
       <form onSubmit={onSubmit}>
         <select name='tiers' value={tiers} onChange={onChange}>
           <option value=''>Select Number of Tiers</option>
@@ -51,21 +53,26 @@ class CreateCake extends React.Component {
           <option value='2'>2</option>
           <option value='3'>3</option>
         </select>
+        <br />
         <select name='flavor' value={flavor} onChange={onChange}>
           <option value=''>Select Flavor</option>
           <option value='vanilla'>Vanilla</option>
           <option value='chocolate'>Chocolate</option>
           <option value='strawberry'>Strawberry</option>
         </select>
+        <br />
         <select name='frosting' value={frosting} onChange={onChange}>
           <option value=''>Select Frosting</option>
           <option value='vanilla'>Vanilla</option>
           <option value='chocolate'>Chocolate</option>
           <option value='strawberry'>Strawberry</option>
         </select>
+        < br />
         <input name='message' value={message} placeholder='Enter Message' onChange={onChange} />
+        < br />
         <button disabled={!tiers || !flavor || !frosting}>Add Custom Cake Order</button>
       </form>
+      </div>
     );
   } 
 };

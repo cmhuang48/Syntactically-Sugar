@@ -37,13 +37,26 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveCard: ''
   });
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  
+  const handleNextOnAddressForm = () => {
+    if (!orderInfo.firstName || !orderInfo.address1 || !orderInfo.city || !orderInfo.state || !orderInfo.zip || !orderInfo.country) { 
+      window.alert('* must input')
+      return setActiveStep(0);
+    } 
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleNextOnPaymentForm = () => {
+    if (!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.cvv) {
+      window.alert('* must input')
+      return setActiveStep(1);
+    }
+    setActiveStep(activeStep + 1);
+  }
 
   const onChange = (ev) => {
     const change = {};
