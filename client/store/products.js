@@ -28,13 +28,14 @@ export const createProduct = (product) => {
   }
 }
 
-export const deleteProduct = (product) => {
+export const deleteProduct = (id, history) => {
    return async (dispatch) => { 
-    await axios.delete(`/api/products/${product.id}`, product).data;
+    const {data: product } = await axios.delete(`/api/products/${id}`);
     dispatch({
       type: DELETE_PRODUCT,
       product
     })
+    history.go('/products')
    }
 }
 

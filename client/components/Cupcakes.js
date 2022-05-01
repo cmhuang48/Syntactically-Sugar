@@ -6,6 +6,7 @@ const Cupcakes = ({ cupcakes }) => {
   return (
     <div>
       <h1 className="font-effect-shadow-multiple">Cupcakes</h1>
+      <small style={{color: '#666'}}>{cupcakes.length} results</small>
       <ul className='cakeContainer'>
         {cupcakes.map(cupcake => {
           return ( 
