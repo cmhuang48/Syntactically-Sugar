@@ -17,9 +17,10 @@ export const loadProducts = () => {
   }
 }
 
-export const createProduct = (product) => {
+export const createProduct = (product, history) => {
   return async (dispatch) => {
     const newProduct = (await axios.post('/api/products', product)).data
+console.log(newProduct)
     const newlineItem = (await axios.post('/api/lineItems', { quantity: 1, productId: newProduct.id })).data
     dispatch({
       type: CREATE_PRODUCT,

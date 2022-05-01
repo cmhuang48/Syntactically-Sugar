@@ -1,9 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { loadLineItems, logout } from '../store'
 
-const Navbar = ({ handleClick, isLoggedIn, username}) => (
+const open = (ev) => {
+  if(ev.target.className === 'dropdown') {
+    const subNav = document.querySelector('.subNav')
+    if(subNav.style.display === 'none') {
+      subNav.style.display = 'block'
+    } else {
+      subNav.style.display = 'none'
+    }
+  }
+}
+
+const Navbar = ({ handleClick, isLoggedIn, username, auth}) => (
   <div>
   <img src="https://64.media.tumblr.com/b55b9c1b10e916e71d8707885cafa7ff/35499bb7ee39e5a9-a6/s1280x1920/46444ca3af7cb09553c43d43bb57d41414e970e7.pnj" className="headerpic"/>
     <nav>
@@ -15,7 +26,7 @@ const Navbar = ({ handleClick, isLoggedIn, username}) => (
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/orders">Orders</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
+          <Link onClick={open} to="/profile" className='dropdown'>{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -33,6 +44,14 @@ const Navbar = ({ handleClick, isLoggedIn, username}) => (
       )}
     </nav>
     <hr />
+    <nav className='subNav'>
+      {auth.isAdmin ? (
+        <div>
+          <Link to='/dashboard'>Dashboard</Link>
+        </div>
+        )
+      : ''}
+    </nav>
   </div>
 )
 
@@ -41,9 +60,11 @@ const Navbar = ({ handleClick, isLoggedIn, username}) => (
  */
 const mapState = state => {
   const username = state.auth.username
+  const auth = state.auth
   return {
     isLoggedIn: !!state.auth.id,
-    username
+    username,
+    auth
   }
 }
 
