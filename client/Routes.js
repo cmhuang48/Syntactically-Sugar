@@ -13,7 +13,6 @@ import CreateCupcake from './components/CreateCupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout/Checkout'
-import OrderConfirmation from './components/OrderConfirmation'
 import UserProfile from './components/UserProfile'
 import UpdateProduct from './components/UpdateProduct'
 import DashBoard from './components/DashBoard'
@@ -49,7 +48,6 @@ class Routes extends Component {
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
-            <Route path="/confirmation" component={OrderConfirmation} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/dashboard" component={DashBoard} />
             <Route path="/createNewProduct" component={CreateNewProduct} />
@@ -68,7 +66,6 @@ class Routes extends Component {
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
-            <Route path="/confirmation" component={OrderConfirmation} />
           </Switch>
         )}
       </div>

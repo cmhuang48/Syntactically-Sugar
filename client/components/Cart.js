@@ -21,12 +21,12 @@ const Cart = ({ auth, associatedLineItems, products }) => {
 
   let total = 0; 
 
-  const check = () => {
-    // if(!auth.username) {
-    //   window.alert('please login or signup')
-    //   return history.go('/cart')
-    // }
-  } 
+  // const check = () => {
+  //   if(!auth.username) {
+  //     window.alert('please login or signup')
+  //     return history.go('/cart')
+  //   }
+  // } 
 
   return (
     <div style={{marginBottom: '100%'}}>
@@ -60,7 +60,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
             </tbody>
           </table>
         </div>
-      <Link to='/checkout'><button className='cartCheckout' onClick={check}>Continue To Checkout</button></Link>
+      <Link to='/checkout'><button className='cartCheckout' >Continue To Checkout</button></Link>
     </div>
   );
 };

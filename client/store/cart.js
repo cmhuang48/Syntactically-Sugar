@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // ACTION TYPES
-const LOAD_CART = 'LOAD_CART'
+const CHECKOUT = 'CHECKOUT';
 
 // THUNK CREATORS
 export const checkout = (cart) => {
@@ -18,7 +18,7 @@ export const checkout = (cart) => {
       }
     }
     dispatch({
-      type: LOAD_CART,
+      type: CHECKOUT,
       newOrder
     })
   }
@@ -27,7 +27,7 @@ export const checkout = (cart) => {
 // REDUCER
 export default function(state = {}, action) {
   switch (action.type) {
-    case LOAD_CART:
+    case CHECKOUT:
       return action.newOrder
     default:
       return state

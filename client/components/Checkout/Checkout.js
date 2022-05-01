@@ -18,7 +18,8 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const theme = createTheme();
 
-function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, checkout, newOrder }) {
+
+function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
     firstName: '',
@@ -36,7 +37,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
     saveAddress: '',
     saveCard: ''
   });
-
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -61,7 +61,7 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   const onChange = (ev) => {
     const change = {};
     change[ev.target.id] = ev.target.value;
-    setOrderInfo({...orderInfo, ...change});
+    setOrderInfo(orderInfo=>({...orderInfo, ...change}));
   }
 
   const onSubmit = () => {
@@ -94,15 +94,6 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
         throw new Error('Unknown step');
     }
   };
-
-  // if (auth.username) {
-  //   if(!associatedLineItems.length) return <div>Continue Shopping</div>;
-  // } 
-  
-  // else {
-  //   const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-  //   if(!existingCart.length) return <div>Continue Shopping</div>;
-  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -149,6 +140,26 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   </Button>
                 </Box>
               </React.Fragment>
+            ) : ( activeStep === steps.length-2 ? (
+              <React.Fragment>
+                {getStepContent(activeStep)}
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                      Back
+                    </Button>
+                  )}
+
+                  <Button
+                   // disabled={orderInfo.map(ele => ele === undefined)}
+                    variant="contained" 
+                    onClick={handleNextOnPaymentForm}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                  </Button>
+                </Box>
+              </React.Fragment>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
@@ -160,15 +171,16 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
                   )}
 
                   <Button
-                    variant="contained"
-                    onClick={handleNext}
+                  // disabled={orderInfo.map(ele => ele === undefined)}
+                    variant="contained" 
+                    onClick={handleNextOnAddressForm}
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
-            ))}
+            )))}
           </React.Fragment>
         </Paper>
       </Container>
@@ -176,13 +188,11 @@ function Checkout({ auth, cart, associatedLineItems, updateOrder, updateUser, ch
   );
 }
 
-const mapState = ({ auth, orders, lineItems, newOrder }) => {
+const mapState = ({ auth, orders, newOrder }) => {
   const cart = orders.find(order => order.status === 'cart');
-  const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === cart?.id);
   return {
     auth,
     cart,
-    associatedLineItems, 
     newOrder
   };
 };
