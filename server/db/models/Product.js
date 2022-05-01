@@ -8,7 +8,7 @@ const Product = db.define('product', {
   },
   
   name: {
-    type: ENUM(['Vanilla', 'Chocolate', 'Strawberry', 'Red Velvet', 'Rainbow', 'Funfetti', 'Custom'])
+    type: ENUM(['Vanilla', 'Chocolate', 'Strawberry', 'Red Velvet', 'Rainbow', 'Funfetti', 'Matcha', 'Tiramisu Mille', 'Pistachio Mille', 'Custom', 'Seasonal'])
   },
 
   tiers: {
@@ -38,6 +38,11 @@ const Product = db.define('product', {
   image: {
     type: STRING,
     defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'
+  },
+
+  size: {
+    type: INTEGER,
+    defaultValue: 9
   }
 });
 

@@ -64,6 +64,7 @@ class Cake extends React.Component {
           <h1>{cake.name} cake</h1>
           <p>Price: ${cake.price}</p>
           <p>In Stock: {cake.quantityInStock}</p>
+          <p>Size: {cake.size} inch</p>
           <form onSubmit={onSubmit}>
             <p>Quantity: <input name='quantity' value={quantity} type='number' min='1' max='10' onChange={onChange} /></p>
             <button>Add to Cart</button>
