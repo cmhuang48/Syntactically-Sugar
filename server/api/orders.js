@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
 		const user = await User.findByToken(req.headers.authorization) 
 		const orders = await Order.findAll({
 			where: {
-				userId : user.dataValues.id
+				userId: user.dataValues.id
 			}
 		})
 		res.json(orders)

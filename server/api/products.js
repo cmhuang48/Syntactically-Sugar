@@ -1,11 +1,18 @@
 const router = require('express').Router()
 const { models: { Product, User }} = require('../db')
 module.exports = router
+const { Op } = require('sequelize');
 
 // get all products
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll()
+    const products = await Product.findAll({
+      where: {
+        name: {
+          [Op.ne]: 'Custom'
+        }
+      }
+    })
     res.json(products)
   } catch (err) {
     next(err)
@@ -25,7 +32,6 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const product = await Product.create(req.body)
-console.log('api', product)
     res.status(201).json(product)
   } catch (err) {
     next(err)
@@ -42,7 +48,6 @@ router.delete('/:id', async(req, res, next) => {
     next(error)
   }
 })
-
 
 router.put('/:id', async(req, res, next) => {
   try {
