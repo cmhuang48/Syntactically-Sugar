@@ -1,45 +1,44 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import { updateProduct, deleteProduct } from '../store'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateProduct, deleteProduct } from '../store';
 
 class UpdateProduct extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			name: this.props.product ? this.props.product.name : '',
 			price: this.props.product ? this.props.product.price : '',
 			image: this.props.product ? this.props.product.image : '',
 			quantityInStock: this.props.product ? this.props.product.quantityInStock : ''
-		}
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
+		};
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	componentDidUpdate(prevProps) {
+	componentDidUpdate (prevProps) {
 		if(!prevProps.product && this.props.product) {
 			this.setState({
 				name: this.props.product.name, 
 				price: this.props.product.price, 
 				image: this.props.product.image,
 				quantityInStock: this.props.product.quantityInStock
-			})
-			console.log('proud', this.props.product)
+			});
 		}
 	}
 
-	handleSubmit(ev) {
-		ev.preventDefault()
-		this.props.updateProduct({...this.props.product, ...this.state})
+	handleSubmit (ev) {
+		ev.preventDefault();
+		this.props.updateProduct({...this.props.product, ...this.state});
 	}
 
-	handleChange(ev) {
-		const change = {}
-		change[ev.target.name] = ev.target.value
-		this.setState(change)
+	handleChange (ev) {
+		const change = {};
+		change[ev.target.name] = ev.target.value;
+		this.setState(change);
 	}
 
-	render() {
-		const { name, price, image, quantityInStock} = this.state
+	render () {
+		const { name, price, image, quantityInStock} = this.state;
 		const { handleChange, handleSubmit } = this;
 
 		return (
@@ -63,18 +62,18 @@ class UpdateProduct extends Component {
 					</form>
 				</div>
 			</div>
-		)
+		);
 	}
 }
 
-const mapState = ({products}, {match}) => {
-	const product = products.find(product => product.id === match.params.id*1)
+const mapState = ({ products }, { match: { params: { id } } }) => {
+	const product = products.find(product => product.id === id*1);
 	return {
 		product
-	}
-}
+	};
+};
 
-const mapDispatch = (dispatch, {history}) => {
+const mapDispatch = (dispatch, { history }) => {
 	return {
 		updateProduct: (product) => {
 			dispatch(updateProduct(product, history))
@@ -82,7 +81,7 @@ const mapDispatch = (dispatch, {history}) => {
 		deleteProduct: (product) => {
 			dispatch(deleteProduct(product, history))
 		}
-	}
-}
+	};
+};
 
-export default connect(mapState, mapDispatch)(UpdateProduct)
+export default connect(mapState, mapDispatch)(UpdateProduct);
