@@ -21,6 +21,7 @@ const theme = createTheme();
 function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser, checkout }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
+    id: '',
     firstName: '',
     lastName: '',
     address1: '',
@@ -60,12 +61,13 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
   const onChange = (ev) => {
     const change = {};
     change[ev.target.id] = ev.target.value;
-    setOrderInfo(orderInfo => ({...orderInfo, ...change}));
+    setOrderInfo({...orderInfo, ...change});
   }
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
     if (auth.username) {
+      setOrderInfo({...orderInfo, id: cart.id});
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart) {
         // creates custom products and new lineItems
@@ -82,10 +84,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       // creates new user, new order, and new lineItems
       checkout(existingCart);
-      console.log(newOrder);
-      console.log(newOrder.id)
-      console.log(firstName);
-      console.log(saveAddress);
+      setOrderInfo({ id: newOrder.id });
       updateOrder({ id: newOrder.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
       if (saveAddress === 'yes') {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
@@ -131,7 +130,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {auth.username ? cart?.id : newOrder?.id}. We have emailed your order
+                  Your order number is {orderInfo.id}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>

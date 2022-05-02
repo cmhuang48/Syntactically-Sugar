@@ -15,11 +15,12 @@ function Review({ orderInfo, auth, associatedLineItems, products }) {
   ];
 
   let cart;
+  const existingCart = JSON.parse(window.localStorage.getItem('cart'));
 
   if (auth.username) {
-    cart = [...associatedLineItems, ...JSON.parse(window.localStorage.getItem('cart'))];
+    cart = [...associatedLineItems, ...existingCart];
   } else {
-    cart = JSON.parse(window.localStorage.getItem('cart'));
+    cart = existingCart;
   }
 
   let total = 0;

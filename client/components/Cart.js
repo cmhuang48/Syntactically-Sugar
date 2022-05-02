@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 
 const Cart = ({ auth, associatedLineItems, products }) => {
   let cart;
+  const existingCart = JSON.parse(window.localStorage.getItem('cart'));
 
   if (auth.username) {
-    if(!associatedLineItems.length) return <div>Empty Cart</div>;
-    cart = associatedLineItems;
+    if(!associatedLineItems.length && !existingCart.length) return <div>Empty Cart</div>;
+    cart = [...associatedLineItems, ...existingCart];
   }
 
   else {
-    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
     if(!existingCart.length) return <div>Empty Cart</div>;
     cart = existingCart;
   }
@@ -35,7 +35,8 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               </tr>
               {cart.map(lineItem => {
                 const product = lineItem.newProduct ? lineItem.newProduct : products.find(product => product.id === lineItem.productId*1);
-                if(product) total += product.price * lineItem.quantity;
+                total += product.price * lineItem.quantity;
+                
                 return (
                   <LineItemInCart lineItem={lineItem} />
                 )
