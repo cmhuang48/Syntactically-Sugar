@@ -20,7 +20,6 @@ export const loadProducts = () => {
 export const createProduct = (product, history) => {
   return async (dispatch) => {
     const newProduct = (await axios.post('/api/products', product)).data
-    const newlineItem = (await axios.post('/api/lineItems', { quantity: 1, productId: newProduct.id })).data
     dispatch({
       type: CREATE_PRODUCT,
       product: newProduct
@@ -30,7 +29,7 @@ export const createProduct = (product, history) => {
 
 export const deleteProduct = (id, history) => {
    return async (dispatch) => { 
-    const {data: product } = await axios.delete(`/api/products/${id}`);
+    const product = (await axios.delete(`/api/products/${id}`)).data
     dispatch({
       type: DELETE_PRODUCT,
       product
@@ -41,7 +40,7 @@ export const deleteProduct = (id, history) => {
 
 export const updateProduct = (product, history) => {
   return async dispatch => {
-    const response = await axios.put(`/api/products/${product.id}`, product);
+    const response = await axios.put(`/api/products/${product.id}`, product)
     dispatch({type: UPDATE_PRODUCT, product: response.data});
     history.go(`/products/${product.id}`)
   }

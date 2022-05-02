@@ -4,7 +4,6 @@ import { Link, Route } from 'react-router-dom';
 import { createLineItem, updateLineItem } from '../store';
 import UpdateProduct from './UpdateProduct';
 
-
 class Cake extends React.Component {
   constructor () {
     super();

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateLineItem, deleteLineItem } from '../store';
-import {loadLineItems} from '../store'
+import { updateLineItem, deleteLineItem, loadLineItems } from '../store';
 
 const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineItem, deleteLineItem }) => {
   const destroy = () => {
@@ -33,8 +32,7 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
   const decrease = () => {
     if (lineItem.quantity === 1) { 
       destroy();
-    }
-    else if (auth.username) {
+    } else if (auth.username) {
       const updatedItem = { id: lineItem.id, quantity: lineItem.quantity*1-1, productId: lineItem.productId, orderId: lineItem.orderId };
       updateLineItem(updatedItem);
     } else {
@@ -48,17 +46,28 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
     }
   };
 
-  const product = products.find(product => product?.id === lineItem.productId*1);
-  if(!product) return null;
+  if (lineItem.newProduct) {
+    const destroyCustom = () => {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      existingCart = existingCart.filter(obj => JSON.stringify(obj.newProduct) !== JSON.stringify(lineItem.newProduct));
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+      loadLineItems();
+    };
 
-  let currentQuantity;
-  if (auth.username) {
-    currentQuantity = lineItem.quantity;
-  } else {
-    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-    const existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
-    currentQuantity = existingLineItem.quantity;
+    return (
+      <tr>
+        <td className='cartImage'><img src={lineItem.newProduct.image}/></td>
+        <td>{lineItem.newProduct.name}</td>
+        <td>{lineItem.newProduct.category}</td>
+        <td>
+          <button className='deleteBtn' onClick={destroyCustom}>Remove Item</button>
+        </td>
+        <td>${lineItem.newProduct.price * lineItem.quantity}</td>
+      </tr>
+    );
   }
+
+  const product = products.find(product => product?.id === lineItem.productId*1);
 
   return (
     <tr key={product.id}>
@@ -67,13 +76,13 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
       <td>{product.category}</td>
       <td>
         <button className='increaseBtn' onClick={decrease}>-</button>
-        {currentQuantity}
+        {lineItem.quantity}
         <button className='decreaseBtn' onClick={increase}>+</button>
       </td>
       <td>
         <button className='deleteBtn' onClick={destroy}>Remove Item</button>
       </td>
-      <td>${product.price * currentQuantity}</td>
+      <td>${product.price * lineItem.quantity}</td>
     </tr>
   );
 };
@@ -88,8 +97,8 @@ const mapDispatch = (dispatch) => {
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
     },
-    loadLineItems: ()=>{
-      dispatch(loadLineItems())
+    loadLineItems: () => {
+      dispatch(loadLineItems());
     }
   };
 };

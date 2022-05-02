@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createProduct, createLineItem } from '../store';
 
-class CreateCake extends React.Component {
+class CustomCake extends React.Component {
   constructor () {
     super();
     this.state = {
       category: 'cake',
       name: 'Custom',
+      size: '',
       tiers: '', 
       flavor: '', 
       frosting: '',
-      message: ''
+      message: '',
+      price: 100,
+      image: 'https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg'
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -19,18 +21,12 @@ class CreateCake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
-    const { auth, createProduct } = this.props;
-    const { category, name, tiers, flavor, frosting, message } = this.state;
-    const newProduct = { category, name, tiers, flavor, frosting, message };
-    if (auth.username) {
-      // creates new product and new lineItem
-      createProduct(newProduct);
-    } else {
-      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      const newLineItem = { quantity: 1, newProduct };
-      existingCart.push(newLineItem);
-      window.localStorage.setItem('cart', JSON.stringify(existingCart));
-    }
+    const { category, name, size, tiers, flavor, frosting, message, price, image } = this.state;
+    const newProduct = { category, name, size, tiers, flavor, frosting, message, price, image };
+    const newLineItem = { quantity: 1, newProduct };
+    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+    existingCart.push(newLineItem);
+    window.localStorage.setItem('cart', JSON.stringify(existingCart));
     window.alert('Added to cart!');
   }
 
@@ -41,12 +37,18 @@ class CreateCake extends React.Component {
   }
   
   render () {
-    const { tiers, flavor, frosting, message } = this.state;
+    const { size, tiers, flavor, frosting, message } = this.state;
     const { onChange, onSubmit } = this;
     return (
       <div className = "custom-cake">
         <h1 className="font-effect-shadow-multiple">Create Your Own Cake</h1>
       <form onSubmit={onSubmit}>
+        <select name='size' value={size} onChange={onChange}>
+          <option value=''>Select Size</option>
+          <option value='9'>9 inch</option>
+          <option value='12'>12 inch</option>
+        </select>
+        <br />
         <select name='tiers' value={tiers} onChange={onChange}>
           <option value=''>Select Number of Tiers</option>
           <option value='1'>1</option>
@@ -70,30 +72,18 @@ class CreateCake extends React.Component {
         < br />
         <input name='message' value={message} placeholder='Enter Message' onChange={onChange} />
         < br />
-        <button disabled={!tiers || !flavor || !frosting}>Add Custom Cake Order</button>
+        <button disabled={!size || !tiers || !flavor || !frosting}>Add Custom Cake Order</button>
       </form>
       </div>
     );
   } 
 };
 
-const mapState = ({ auth, orders }) => {
+const mapState = ({ orders }) => {
   const order = orders.find(order => order.status === 'cart');
   return {
-    auth, 
     order
   };
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    createProduct: (product) => {
-      dispatch(createProduct(product));
-    },
-    createLineItem: (lineItem) => {
-      dispatch(createLineItem(lineItem));
-    }
-  };
-};
-
-export default connect(mapState, mapDispatch)(CreateCake);
+export default connect(mapState)(CustomCake);
