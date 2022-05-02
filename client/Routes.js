@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm'
 import Home from './components/Home'
-import { me, loadProducts, loadLineItems, loadOrders } from './store'
+import { me, loadProducts, loadLineItems, loadOrders, loadUsers } from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
 import CreateCake from './components/CreateCake'
@@ -17,6 +17,8 @@ import UserProfile from './components/UserProfile'
 import UpdateProduct from './components/UpdateProduct'
 import DashBoard from './components/DashBoard'
 import CreateNewProduct from './components/CreateNewProduct'
+import AllUsers from './components/AllUsers'
+import AllProducts from './components/AllProducts'
 
 /**
  * COMPONENT
@@ -27,6 +29,7 @@ class Routes extends Component {
     this.props.loadProducts()
     this.props.loadLineItems()
     this.props.loadOrders()
+    this.props.loadUsers()
   }
 
   render() {
@@ -51,6 +54,8 @@ class Routes extends Component {
             <Route path="/profile" component={UserProfile} />
             <Route path="/dashboard" component={DashBoard} />
             <Route path="/createNewProduct" component={CreateNewProduct} />
+            <Route path="/allUsers" component={AllUsers}/>
+            <Route path="/allProducts" component={AllProducts}/>
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -98,6 +103,9 @@ const mapDispatch = dispatch => {
     },
     loadOrders() {
       dispatch(loadOrders())
+    },
+    loadUsers() {
+      dispatch(loadUsers())
     }
   }
 }

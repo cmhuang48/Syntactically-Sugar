@@ -25,6 +25,7 @@ export const createProduct = (product, history) => {
       type: CREATE_PRODUCT,
       product: newProduct
     })
+    history.go('/products')
   }
 }
 

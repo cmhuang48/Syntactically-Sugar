@@ -12,12 +12,12 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'chanelle', password: '123', isAdmin: true }),
-    User.create({ username: 'jiayu', password: '123', isAdmin: true }),
-    User.create({ username: 'lauren', password: '123', isAdmin: true }),
-    User.create({ username: 'sava', password: '123', isAdmin: true }),
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' })
+    User.create({ username: 'chanelle', password: '123', isAdmin: true, firstName: 'chanelle', lastName: 'huang', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'chanelleHuang', cardNumber: '5118900128185237', expDate: '7/24'}),
+    User.create({ username: 'jiayu', password: '123', isAdmin: true, firstName: 'jiayu', lastName: 'zhang', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'jiayuZhang', cardNumber: '5118900128185237', expDate: '7/24' }),
+    User.create({ username: 'lauren', password: '123', isAdmin: true, firstName: 'lauren', lastName: 'cagnetta', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'LaurenCagnetta', cardNumber: '5118900128185237', expDate: '7/24' }),
+    User.create({ username: 'sava', password: '123', isAdmin: true, firstName: 'sava', lastName: 'lin', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'savaLin', cardNumber: '5118900128185237', expDate: '7/24'  }),
+    User.create({ username: 'cody', password: '123', firstName: 'cody', lastName: 'cody', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'codyCody', cardNumber: '5118900128185237', expDate: '7/24'  }),
+    User.create({ username: 'murphy', password: '123', firstName: 'murphy', lastName: 'murphy', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'murphyMurphy', cardNumber: '5118900128185237', expDate: '7/24'  })
   ])
 
   console.log(`seeded ${users.length} users`)
