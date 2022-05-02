@@ -34,8 +34,8 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
     cardNumber: '',
     expDate: '',
     cvv: '',
-    saveAddress: '',
-    saveCard: ''
+    saveAddress: false,
+    saveCard: false
   });
 
   const handleBack = () => {
@@ -60,28 +60,27 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
 
   const onChange = (ev) => {
     const change = {};
-    change[ev.target.id] = ev.target.value;
+    change[ev.target.name] = ev.target.value;
     setOrderInfo({...orderInfo, ...change});
   }
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
+    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
     if (auth.username) {
       setOrderInfo({...orderInfo, id: cart.id});
-      const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       if (existingCart) {
         // creates custom products and new lineItems
         createCustom(existingCart, cart.id);
       }
       updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
-      if (saveAddress === 'yes') {
+      if (saveAddress) {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 
-      if (saveCard === 'yes') {
+      if (saveCard) {
         updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
       }
     } else {
-      const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       // creates new user, new order, and new lineItems
       checkout(existingCart);
       setOrderInfo({ id: newOrder.id });

@@ -124,7 +124,7 @@ export default function AddressForm({ orderInfo, onChange }) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={onChange} />}
             label="Use this address for payment details"
           />
         </Grid>

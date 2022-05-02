@@ -16,6 +16,7 @@ export default function PaymentForm({ orderInfo, onChange }) {
           <TextField
             required
             id="cardName"
+            name="cardName"
             value={orderInfo.cardName}
             label="Name on card"
             fullWidth
@@ -29,6 +30,7 @@ export default function PaymentForm({ orderInfo, onChange }) {
           <TextField
             required
             id="cardNumber"
+            name="cardNumber"
             value={orderInfo.cardNumber}
             label="Card number"
             fullWidth
@@ -41,6 +43,7 @@ export default function PaymentForm({ orderInfo, onChange }) {
           <TextField
             required
             id="expDate"
+            name="expDate"
             value={orderInfo.expDate}
             label="Expiry date"
             fullWidth
@@ -53,6 +56,7 @@ export default function PaymentForm({ orderInfo, onChange }) {
           <TextField
             required
             id="cvv"
+            name="cvv"
             value={orderInfo.cvv}
             label="CVV"
             helperText="Last three digits on signature strip"
@@ -64,7 +68,7 @@ export default function PaymentForm({ orderInfo, onChange }) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+            control={<Checkbox color="secondary" name="saveCard" value="yes" onChange={onChange} />}
             label="Remember credit card details for next time"
           />
         </Grid>
