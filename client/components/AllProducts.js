@@ -29,6 +29,7 @@ const AllProducts = ({ products, foo }) => {
 					<TableCell>Image</TableCell>
 					<TableCell>Size</TableCell>
 					<TableCell>Quantity In Stock</TableCell>
+					<TableCell></TableCell>
 				</TableRow>
 				</TableHead>
 				<TableBody>
@@ -41,6 +42,7 @@ const AllProducts = ({ products, foo }) => {
 								<TableCell align="left">{product.price}</TableCell>
 								<TableCell align="left"><img style={{maxWidth:'100px'}} src={product.image}/></TableCell>
 								<TableCell align="left">{product.size}</TableCell>
+								<TableCell align="center">{product.quantityInStock}</TableCell>
 								<TableCell>
 									<Button classes={classes} onClick={()=> foo(product.id)} style={{color: 'red'}}>
 										X
