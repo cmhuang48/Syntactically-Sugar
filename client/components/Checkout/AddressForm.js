@@ -116,7 +116,20 @@ export default function AddressForm({ orderInfo, onChange }) {
             value={orderInfo.country}
             label="Country"
             fullWidth
-            autoComplete="shipping country"
+            variant="standard"
+            onChange={onChange}
+            InputLabelProps={{ shrink: true }}  
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="email"
+            name="email"
+            value={orderInfo.email}
+            label="Email"
+            fullWidth
+            autoComplete="email"
             variant="standard"
             onChange={onChange}
             InputLabelProps={{ shrink: true }}  
