@@ -34,6 +34,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
     cardNumber: '',
     expDate: '',
     cvv: '',
+    email: '',
     saveAddress: false,
     saveCard: false
   });
@@ -73,7 +74,10 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
         // creates custom products and new lineItems
         createCustom(existingCart, cart.id);
       }
-      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
+      const userInfo = {
+        email: orderInfo.email
+      }
+      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv }, userInfo);
       if (saveAddress) {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 
@@ -82,7 +86,10 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
       }
     } else {
       // creates new user, new order, and new lineItems
-      checkout(existingCart);
+      const userInfo = {
+        email: orderInfo.email
+      }
+      checkout(existingCart, userInfo);
       setOrderInfo({ id: newOrder.id });
       updateOrder({ id: newOrder.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
       if (saveAddress === 'yes') {
@@ -215,15 +222,15 @@ const mapDispatch = (dispatch) => {
     createCustom: (cart, cartId) => {
       dispatch(createCustom(cart, cartId));
     },
-    updateOrder: (order) => {
-      dispatch(updateOrder(order));
+    updateOrder: (order, userInfo) => {
+      dispatch(updateOrder(order, userInfo));
     },
     updateUser: (user) => {
-      dispatch(updateUser(user));
+      dispatch(updateUser(user,));
     },
-    checkout: (cart) => {
-      dispatch(checkout(cart));
-    }
+    checkout: (cart, userInfo) => {
+      dispatch(checkout(cart, userInfo));
+    },
   };
 };
 

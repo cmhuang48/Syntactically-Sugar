@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'username', 'firstName', 'lastName', 'address1', 'address2', 'city', 'state', 'zip', 'country']
+      attributes: ['id', 'username', 'firstName', 'lastName', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'isAdmin', 'cardName', 'cardNumber', 'expDate']
     })
     res.json(users)
   } catch (err) {
@@ -44,4 +44,14 @@ router.put('/:id', async(req, res, next) => {
 	} catch (err) {
 		next(err)
 	}
+})
+
+router.delete('/:id', async(req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id)
+    await user.destroy()
+    res.sendStatus(204)
+  } catch(err) {
+    next(err)
+  }
 })
