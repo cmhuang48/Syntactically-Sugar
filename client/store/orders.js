@@ -33,9 +33,14 @@ export const createOrder = (order) => {
   }
 }
 
-export const updateOrder = (order) => {
+export const updateOrder = (order, userInfo) => {
   return async (dispatch) => {
     const updatedOrder = (await axios.put(`/api/orders/${order.id}`, order)).data;
+    if(userInfo){
+      const message = `Your order number is ${order.id}. We will send you an update when your order has shipped.`
+      userInfo = { ...userInfo, orderId: order.id, message: message}
+      await axios.post('/api/email', userInfo)
+    }
     dispatch({
       type: UPDATE_ORDER,
       order: updatedOrder

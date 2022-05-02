@@ -4,7 +4,7 @@ import axios from 'axios';
 const CHECKOUT = 'CHECKOUT';
 
 // THUNK CREATORS
-export const checkout = (cart) => {
+export const checkout = (cart, userInfo) => {
   window.localStorage.setItem('cart', '[]')
   return async (dispatch) => {
     const newOrder = (await axios.post('/api/orders', { status: 'order' })).data
@@ -17,6 +17,9 @@ export const checkout = (cart) => {
         newLineItems.push((await axios.post('/api/lineItems', { quantity: obj.quantity, productId: obj.productId, orderId: newOrder.id })).data);
       }
     }
+    const message = `Your order number is ${newOrder.id}. We will send you an update when your order has shipped.`
+    userInfo = { ...userInfo, orderId: newOrder.id, message: message}
+    await axios.post('/api/email', userInfo)
     dispatch({
       type: CHECKOUT,
       newOrder

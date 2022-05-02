@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import { updateOrder, updateUser, checkout } from '../../store';
+import { updateOrder, updateUser, checkout} from '../../store';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -34,6 +34,7 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
     cardNumber: '',
     expDate: '',
     cvv: '',
+    email: '',
     saveAddress: '',
     saveCard: ''
   });
@@ -67,7 +68,10 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
     if (auth.username) {
-      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
+      const userInfo = {
+        email: orderInfo.email
+      }
+      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv }, userInfo);
       if (saveAddress === 'yes') {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 
@@ -77,7 +81,11 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
     } else {
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
       // creates new user, new order, and new lineItems
-      checkout(existingCart);
+      const userInfo = {
+        email: orderInfo.email
+      }
+
+      checkout(existingCart, userInfo);
     }
     setActiveStep(activeStep + 1);
   }
@@ -199,15 +207,15 @@ const mapState = ({ auth, orders, newOrder }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    updateOrder: (order) => {
-      dispatch(updateOrder(order));
+    updateOrder: (order, userInfo) => {
+      dispatch(updateOrder(order, userInfo));
     },
     updateUser: (user) => {
-      dispatch(updateUser(user));
+      dispatch(updateUser(user,));
     },
-    checkout: (cart) => {
-      dispatch(checkout(cart));
-    }
+    checkout: (cart, userInfo) => {
+      dispatch(checkout(cart, userInfo));
+    },
   };
 };
 
