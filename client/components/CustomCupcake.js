@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createProduct, createLineItem } from '../store';
 
-class CreateCupcake extends React.Component {
+class CustomCupcake extends React.Component {
   constructor () {
     super();
     this.state = {
@@ -10,7 +9,9 @@ class CreateCupcake extends React.Component {
       name: 'Custom',
       flavor: '', 
       frosting: '',
-      message: ''
+      message: '',
+      price: 12,
+      image: 'https://images.creativemarket.com/0.1.0/ps/6337536/600/400/m2/fpnw/wm1/kyrxpus5cf11setgoakkc6bivngrm3dloqq5gotlosfroaknkr53xy8upaor8jtd-.jpg?1556962719&s=474ee12c8a3486dfbce8736c4a5cf584&fmt=webp'
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -18,21 +19,12 @@ class CreateCupcake extends React.Component {
 
   onSubmit (ev) {
     ev.preventDefault();
-    const { auth, order, createProduct, createLineItem } = this.props;
-    const { category, name, flavor, frosting, message } = this.state;
-    if (auth.username) {
-      const id = Math.floor(Math.random()); // How to set UUID?
-      const newProduct = { id, category, name, flavor, frosting, message };
-      createProduct(newProduct);
-      const newLineItem = { quantity: 1, productId: id, orderId: order.id };
-      createLineItem(newLineItem);
-    } else {
-      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      const id = Math.floor(Math.random()); // How to set UUID?
-      const newLineItem = { quantity: 1, productId: id };
-      existingCart.push(newLineItem);
-      window.localStorage.setItem('cart', JSON.stringify(existingCart));
-    }
+    const { category, name, flavor, frosting, message, price, image } = this.state;
+    const newProduct = { category, name, flavor, frosting, message, price, image };
+    const newLineItem = { quantity: 1, newProduct };
+    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+    existingCart.push(newLineItem);
+    window.localStorage.setItem('cart', JSON.stringify(existingCart));
     window.alert('Added to cart!');
   }
   
@@ -72,23 +64,11 @@ class CreateCupcake extends React.Component {
   }
 };
 
-const mapState = ({ auth, orders }) => {
+const mapState = ({ orders }) => {
   const order = orders.find(order => order.status === 'cart');
   return {
-    auth, 
     order
   };
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    createProduct: (product) => {
-      dispatch(createProduct(product));
-    },
-    createLineItem: (lineItem) => {
-      dispatch(createLineItem(lineItem));
-    }
-  };
-};
-
-export default connect(mapState, mapDispatch)(CreateCupcake);
+export default connect(mapState)(CustomCupcake);

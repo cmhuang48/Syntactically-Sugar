@@ -11,8 +11,8 @@ class UpdateProduct extends Component {
 			image: this.props.product ? this.props.product.image : '',
 			quantityInStock: this.props.product ? this.props.product.quantityInStock : ''
 		};
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidUpdate (prevProps) {
@@ -38,7 +38,7 @@ class UpdateProduct extends Component {
 	}
 
 	render () {
-		const { name, price, image, quantityInStock} = this.state;
+		const { name, price, image, quantityInStock } = this.state;
 		const { handleChange, handleSubmit } = this;
 
 		return (
