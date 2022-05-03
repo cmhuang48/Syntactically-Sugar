@@ -38,23 +38,23 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// delete a product
-router.delete('/:id', async(req, res, next) => {
-  try {
-    const product = await Product.findByPk(req.params.id)
-    await product.destroy()
-    res.sendStatus(204)
-  } catch (error) {
-    next(error)
-  }
-})
-
 // update a product
 router.put('/:id', async(req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
     const updated = await product.update(req.body)
     res.json(updated)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// delete a product
+router.delete('/:id', async(req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.id)
+    await product.destroy()
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
