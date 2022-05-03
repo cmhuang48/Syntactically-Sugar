@@ -39,6 +39,8 @@ class CustomCupcake extends React.Component {
     const { onChange, onSubmit } = this;
     return (
       <div className = "custom-cupcake">
+      <div className = "row">
+      <div className = "column1">
         <h1 className="font-effect-shadow-multiple">Create Your Own Cupcake</h1>
       <form onSubmit={onSubmit}>
         <select name='flavor' value={flavor} onChange={onChange}>
@@ -59,6 +61,13 @@ class CustomCupcake extends React.Component {
         < br />
         <button disabled={!flavor || !frosting}>Add Custom Cupcake Order</button>
       </form>
+      </div>
+      <div className = "examples"> 
+      <h1 className = "font-effect-shadow-multiple">Some of our past work:</h1> 
+        <img className = "photoex" src="https://myincrediblerecipes.com/wp-content/uploads/2022/02/Pink-Velvet-Funetti-Cupcakes-25.jpg" alt="custom cake" />
+        <img className = "photoex" src="https://www.cookingclassy.com/wp-content/uploads/2016/01/chocolate_cupcakes_raspberry_buttercream6...jpg" alt="custom cake" />
+      </div>
+      </div>
       </div>
     );
   }

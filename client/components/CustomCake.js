@@ -41,6 +41,8 @@ class CustomCake extends React.Component {
     const { onChange, onSubmit } = this;
     return (
       <div className = "custom-cake">
+      <div className = "row">
+      <div className = "column1">
         <h1 className="font-effect-shadow-multiple">Create Your Own Cake</h1>
       <form onSubmit={onSubmit}>
         <select name='size' value={size} onChange={onChange}>
@@ -75,8 +77,15 @@ class CustomCake extends React.Component {
         <button disabled={!size || !tiers || !flavor || !frosting}>Add Custom Cake Order</button>
       </form>
       </div>
+      <div className = "examples"> 
+      <h1 className = "font-effect-shadow-multiple">Some of our past work:</h1> 
+        <img className = "photoex" src="https://i.pinimg.com/originals/39/b7/f1/39b7f157dc9426c4486dcced7aed0a9b.jpg" alt="custom cake" />
+        <img className = "photoex" src="https://media1.popsugar-assets.com/files/thumbor/x6Pv5O4nmLzv1j1RXFjpUQSYkuQ/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2020/08/28/919/n/3019466/235ac81ab95dc140_007._Cape_Cod_Celebrations_-_Meghan_Gregory_Photo/i/Funfetti.jpeg" alt="custom cake" />
+      </div>
+      </div>
+      </div>
     );
-  } 
+  }
 };
 
 const mapState = ({ orders }) => {

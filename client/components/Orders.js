@@ -5,7 +5,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
   if(!completedOrders.length) return <div>No Orders</div>;
 
   return (
-    <div>
+    <div className ="orders">
       <h1 className="font-effect-shadow-multiple">Orders</h1>
       <ul>
         {completedOrders.map(order => {
