@@ -12,6 +12,8 @@ class CreateNewProduct extends React.Component {
 			name: '',
 			size: '',
 			tiers: '',
+			flavor: '',
+			frosting: '',
 			price: '',
 			quantityInStock: '',
 			image: ''
@@ -32,52 +34,44 @@ class CreateNewProduct extends React.Component {
 	}
 
 	render () {
-		const { category, name, size, tiers, price, image, quantityInStock } = this.state;
+		const { category, name, size, tiers, flavor, frosting, price, quantityInStock, image } = this.state;
 		const { handleChange, handleSubmit } = this; 
 		return (
 			<div className="borderinfo">
 				<form id='createProductForm' onSubmit={handleSubmit}>
-					<p htmlFor='Category'>Category</p>
-					<select value={category} name='category' onChange={handleChange}>
-						<option value=''>----</option>
+					<p htmlFor='category'>Category</p>
+					<select name='category' value={category} onChange={handleChange}>
+						<option value=''>Select a category</option>
 						<option value='cake'>cake</option>
 						<option value='cupcake'>cupcake</option>
 					</select>
-					<p htmlFor='Name'>Name:</p>
-					<select value={name} name='name' onChange={handleChange}>
-						<option value=''>-----</option>
-						<option value='Vanilla'>Vanilla</option>
-						<option value='Chocolate'>Chocolate</option>
-						<option value='Strawberry'>Strawberry</option>
-						<option value='Red Velvet'>Red Velvet</option>
-						<option value='Rainbow'>Rainbow</option>
-						<option value='Funfetti'>Funfetti</option>
-						<option value='Matcha'>Matcha</option>
-						<option value='Tiramisu Mille'>Tiramisu Mille</option>
-						<option value='Pistachio Mille'>Pistachio Mille</option>
-						<option value='Seasonal'>Seasonal</option>
-					</select>
-					<select value={size} name='size' onChange={handleChange}>
-						<option value=''>-----</option>
+					<p htmlFor='name'>Name:</p>
+					<input name='name' value={name} placeholder='Enter name' onChange={handleChange} />
+					<p htmlFor='size'>Size:</p>
+					<select name='size' value={size} onChange={handleChange}>
+						<option value=''>Select a size</option>
 						<option value='9'>9 inch</option>
 						<option value='12'>12 inch</option>
 					</select>
-					<select value={tiers} name='tiers' onChange={handleChange}>
-						<option value=''>-----</option>
+					<p htmlFor='tiers'>Tiers:</p>
+					<select name='tiers' value={tiers} onChange={handleChange}>
+						<option value=''>Select number of tiers</option>
 						<option value='1'>1</option>
 						<option value='2'>2</option>
 						<option value='3'>3</option>
 					</select>
-					<p htmlFor='Price'>Price:</p>
-					<input name='price' onChange={handleChange} value={price} placeholder='Enter price'/>
-					<p htmlFor='image'>Image url:</p>
-					<input name='image' onChange={handleChange} value={image} placeholder='Enter image url' size='100'/>
-					<p htmlFor='QuantityInStock'>Quantity in Stock:</p>
-					<input name='quantityInStock' onChange={handleChange} value={quantityInStock} placeholder='Enter quantity'/>
-					<p htmlFor='size'>Size:</p>
-					<input name='size' onChange={handleChange} value={size} placeholder='Enter quantity'/>
+					<p htmlFor='flavor'>Flavor:</p>
+					<input name='flavor' value={flavor} placeholder='Enter flavor' onChange={handleChange} />
+					<p htmlFor='frosting'>Frosting:</p>
+					<input name='frosting' value={frosting} placeholder='Enter frosting' onChange={handleChange} />
+					<p htmlFor='price'>Price:</p>
+					<input name='price' value={price} placeholder='Enter price' onChange={handleChange} />
+					<p htmlFor='QuantityInStock'>Quantity:</p>
+					<input name='quantityInStock' value={quantityInStock} placeholder='Enter quantity in stock' onChange={handleChange}/>
+					<p htmlFor='image'>Image:</p>
+					<input name='image' value={image} placeholder='Enter image URL' size='100' onChange={handleChange} />
 					<br/>
-					<button style={{marginTop:'20px'}} disabled={!name || !category || !price ||!image || !quantityInStock}>Add</button>
+					<button style={{marginTop:'20px'}} disabled={!category || !name || !size || !tiers || !flavor || !frosting || !price || !quantityInStock || !image}>Add</button>
 					<Link to='/profile'>Cancel</Link>
 				</form>
 			</div>
@@ -85,12 +79,12 @@ class CreateNewProduct extends React.Component {
 	}
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
 	return {
-		createProduct: (product, {history}) => {
-			dispatch(createProduct(product, history ))
+		createProduct: (product) => {
+			dispatch(createProduct(product, history));
 		}
 	};
 };
 
-export default connect(state => state, mapDispatch)(CreateNewProduct)
+export default connect(state => state, mapDispatch)(CreateNewProduct);

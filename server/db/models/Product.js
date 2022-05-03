@@ -8,7 +8,7 @@ const Product = db.define('product', {
   },
   
   name: {
-    type: ENUM(['Vanilla', 'Chocolate', 'Strawberry', 'Red Velvet', 'Rainbow', 'Funfetti', 'Matcha', 'Tiramisu Mille', 'Pistachio Mille', 'Custom', 'Seasonal'])
+    type: STRING
   },
   
   size: {
@@ -21,11 +21,11 @@ const Product = db.define('product', {
   },
 
   flavor: {
-    type: ENUM(['vanilla', 'chocolate', 'strawberry'])
+    type: STRING
   },
 
   frosting: {
-    type: ENUM(['vanilla', 'chocolate', 'strawberry'])
+    type: STRING
   },
 
   message: {
