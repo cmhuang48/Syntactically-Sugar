@@ -19,6 +19,8 @@ const Cart = ({ auth, associatedLineItems, products }) => {
 
   let total = 0; 
 
+  if(!products.length) return null
+
   return (
     <div style={{marginBottom: '100%'}}>
       <h1 className = "font-effect-shadow-multiple" >Cart</h1>
@@ -38,7 +40,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 total += product.price * lineItem.quantity;
                 
                 return (
-                  <LineItemInCart lineItem={lineItem} />
+                  <LineItemInCart lineItem={lineItem}/>
                 )
               })}
               <tr>

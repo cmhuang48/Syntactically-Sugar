@@ -36,7 +36,7 @@ function Review({ orderInfo, auth, associatedLineItems, products }) {
           total += product.price * lineItem.quantity;
 
           return (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
+          <ListItem key={product.id} sx={{ py: 1, px: 0 }}>
             <ListItemText primary={product.name} secondary={product.category} />
             <Typography variant="body2">{`${lineItem.quantity} @ ${product.price}`}</Typography>
           </ListItem>

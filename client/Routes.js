@@ -26,9 +26,9 @@ import AllProducts from './components/AllProducts'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    this.props.loadProducts()
     this.props.loadLineItems()
     this.props.loadOrders()
+    this.props.loadProducts()
     this.props.loadUsers()
   }
 
