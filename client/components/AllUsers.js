@@ -34,7 +34,6 @@ const AllUsers = ({ users, destroy }) => {
 					<TableCell align="right">Country</TableCell>
 					<TableCell align="right">Card Name</TableCell>
 					<TableCell align="right">Card Number</TableCell>
-					<TableCell align="right">Exp Date</TableCell>
 					<TableCell align="right"></TableCell>
 					<TableCell align="right"></TableCell>
 				</TableRow>
@@ -58,8 +57,7 @@ const AllUsers = ({ users, destroy }) => {
 								<TableCell align="right">{user.zip}</TableCell>
 								<TableCell align="right">{user.country}</TableCell>
 								<TableCell align="right">{user.cardName}</TableCell>
-								<TableCell align="right">{user.cardNumber}</TableCell>
-								<TableCell align="right">{user.expDate}</TableCell>
+								<TableCell align="right">{'XXXXXXXXXXXX' + user.cardNumber.slice(-4)}</TableCell>
 								<TableCell>
 									<Button classes={classes} onClick={()=> destroy(user)} style={{color: 'red'}}>
 										X
