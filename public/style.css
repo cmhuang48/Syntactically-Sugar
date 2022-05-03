@@ -203,7 +203,14 @@ input {
 	font-family: 'unica one';
 	color: #f58d72;
 	font-size: 20px;
-	float: right; 
+
+}
+
+.input1 {
+	font-family: 'unica one';
+	color: #f58d72;
+	font-size: 20px;
+	
 }
 @media (min-width: 767px) {
 	.cakeImage {
