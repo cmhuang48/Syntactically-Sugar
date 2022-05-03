@@ -16,7 +16,7 @@ const open = (ev) => {
 
 const Navbar = ({ handleClick, isLoggedIn, username, auth}) => (
   <div>
-  <img src="https://64.media.tumblr.com/b55b9c1b10e916e71d8707885cafa7ff/35499bb7ee39e5a9-a6/s1280x1920/46444ca3af7cb09553c43d43bb57d41414e970e7.pnj" className="headerpic"/>
+  <img src="https://64.media.tumblr.com/0247842009fe11e7313136833fde624d/23030b2c9b9bec6c-36/s1280x1920/2e54ad5f5b0299d2f0b5a8e27412d636d9d4089b.pnj" className="headerpic"/>
     <nav>
       {isLoggedIn ? (
         <div >

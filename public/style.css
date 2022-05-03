@@ -1,5 +1,6 @@
 body {
-  font-family: sans-serif;
+  font-family: "unica one", sans-serif;
+  color: #6b5049;
   background: #FFF4EE;
   
 }
@@ -54,6 +55,7 @@ p{
 font-family: 'unica one';
   color: #f58d72;
   font-size: 20px;
+  align-self: auto;
 }
 label {
   display: block;
@@ -206,7 +208,14 @@ h2 {
 ul {
 	list-style-type: symbols(#f4cbc182);
 	font-family: 'unica one';
-	color: #367042;
+	float: left
+
+}
+input {
+	font-family: 'unica one';
+	color: #f58d72;
+	font-size: 20px;
+	float: right; 
 }
 @media (min-width: 767px) {
 	.cakeImage {
