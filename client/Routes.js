@@ -16,7 +16,6 @@ import Checkout from './components/Checkout/Checkout'
 import UserProfile from './components/UserProfile'
 import UpdateProduct from './components/UpdateProduct'
 import DashBoard from './components/DashBoard'
-import CreateNewProduct from './components/CreateNewProduct'
 import AllUsers from './components/AllUsers'
 import AllProducts from './components/AllProducts'
 
@@ -53,7 +52,7 @@ class Routes extends Component {
             <Route path="/checkout" component={Checkout} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/dashboard" component={DashBoard} />
-            <Route path="/allUsers" component={AllUsers}/>
+            <Route path="/users" component={AllUsers}/>
             <Route path="/allProducts" component={AllProducts}/>
             <Redirect to="/home" />
           </Switch>

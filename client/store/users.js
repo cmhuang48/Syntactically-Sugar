@@ -15,14 +15,14 @@ export const loadUsers = () => {
       })
   }
 }
-export const deleteUser = (id) => {
+export const deleteUser = (user, history) => {
   return async dispatch => {
-    const {data: user } = await axios.delete(`/api/users/${id}`);
+    await axios.delete(`/api/users/${user.id}`);
     dispatch({
       type: DELETE_USER,
       user
     })
-    history.go('/users')
+    history.push('/users')
    } 
 }
 

@@ -71,10 +71,10 @@ function DashBoard({ history }) {
        <CreateNewProduct history={history} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-				<AllUsers/>
+				<AllUsers history={history} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <AllProducts/>
+       <AllProducts history={history} />
       </TabPanel>
     </Box>
   );
