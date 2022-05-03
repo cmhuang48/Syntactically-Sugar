@@ -8,12 +8,12 @@ const Cart = ({ auth, associatedLineItems, products }) => {
   const existingCart = JSON.parse(window.localStorage.getItem('cart'));
 
   if (auth.username) {
-    if(!associatedLineItems.length && !existingCart.length) return <div>Empty Cart</div>;
+    if (!associatedLineItems.length && !existingCart.length) return <div>Empty Cart</div>;
     cart = [...associatedLineItems, ...existingCart];
   }
 
   else {
-    if(!existingCart.length) return <div>Empty Cart</div>;
+    if (!existingCart.length) return <div>Empty Cart</div>;
     cart = existingCart;
   }
 
@@ -35,7 +35,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               </tr>
               {cart.map(lineItem => {
                 const product = lineItem.newProduct ? lineItem.newProduct : products.find(product => product.id === lineItem.productId*1);
-                total += product.price * lineItem.quantity;
+                if (product) total += product.price * lineItem.quantity;
                 
                 return (
                   <LineItemInCart lineItem={lineItem} product={product} />

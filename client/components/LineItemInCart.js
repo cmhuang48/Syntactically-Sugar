@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateLineItem, deleteLineItem, loadLineItems } from '../store';
 
-const LineItemInCart = ({ lineItem, product, auth, loadLineItems, updateLineItem, deleteLineItem }) => {
+const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineItem, deleteLineItem }) => {
   const destroy = () => {
     if (auth.username) {
       deleteLineItem(lineItem);
@@ -67,6 +67,9 @@ const LineItemInCart = ({ lineItem, product, auth, loadLineItems, updateLineItem
     );
   }
 
+  if (!products.length) return null;
+  const product = products.find(product => product.id === lineItem.productId);  
+
   return (
     <tr key={product.id}>
       <td className='cartImage'><a href={`/${product.category}s/${product.id}`}><img src={product.image}/></a></td>
@@ -85,7 +88,7 @@ const LineItemInCart = ({ lineItem, product, auth, loadLineItems, updateLineItem
   );
 };
 
-const mapState = ({ auth }) => ({ auth });
+const mapState = ({ auth, products }) => ({ auth, products });
 
 const mapDispatch = (dispatch) => {
   return {
