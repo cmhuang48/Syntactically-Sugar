@@ -38,7 +38,7 @@ const AllUsers = ({ users, auth, foo }) => {
 					<TableCell align="right">Card Number</TableCell>
 					<TableCell align="right">Exp Date</TableCell>
 					<TableCell align="right"></TableCell>
-					<TableCell align="right"></TableCell>
+					{/*<TableCell align="right"></TableCell>*/}
 				</TableRow>
 				</TableHead>
 				<TableBody>

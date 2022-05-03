@@ -21,6 +21,11 @@ const User = db.define('user', {
     defaultValue: false
   },
 
+  email: {
+    type: STRING,
+    unique: true
+  },
+
   firstName: {
     type: STRING
   },

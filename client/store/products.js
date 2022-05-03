@@ -36,7 +36,7 @@ export const deleteProduct = (id, history) => {
       type: DELETE_PRODUCT,
       product
     })
-    history.go('/products')
+    history.push('/dashboard')
    }
 }
 
@@ -44,7 +44,7 @@ export const updateProduct = (product, history) => {
   return async dispatch => {
     const response = await axios.put(`/api/products/${product.id}`, product);
     dispatch({type: UPDATE_PRODUCT, product: response.data});
-    history.go(`/products/${product.id}`)
+    history.push(`/dashboard`)
   }
 } 
 

@@ -43,11 +43,9 @@ class Routes extends Component {
             <Route exact path="/cakes" component={Cakes} />
             <Route exact path="/cakes/custom" component={CreateCake} />
             <Route path="/cakes/:id" component={Cake} />
-            <Route exact path='/cakes/:id/edit' component={UpdateProduct}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route exact path='/cupcakes/custom' component={CreateCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
-            <Route exact path='/cupcakes/:id/edit' component={UpdateProduct}/>
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
@@ -56,6 +54,7 @@ class Routes extends Component {
             <Route path="/createNewProduct" component={CreateNewProduct} />
             <Route path="/allUsers" component={AllUsers}/>
             <Route path="/allProducts" component={AllProducts}/>
+            <Route exact path='/products/:id/edit' component={UpdateProduct}/>
             <Redirect to="/home" />
           </Switch>
         ) : (
