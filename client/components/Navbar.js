@@ -4,9 +4,9 @@ import { Link} from 'react-router-dom'
 import { loadLineItems, logout } from '../store'
 
 const open = (ev) => {
-  if(ev.target.className === 'dropdown') {
+  if (ev.target.className === 'dropdown') {
     const subNav = document.querySelector('.subNav')
-    if(subNav.style.display === 'none') {
+    if (subNav.style.display === 'none') {
       subNav.style.display = 'block'
     } else {
       subNav.style.display = 'none'

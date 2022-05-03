@@ -4,7 +4,6 @@ module.exports = router
 const nodemailer = require('nodemailer')
 const {google} = require('googleapis')
 
-
 const CLIENT_ID = '935021820603-2jphugvsfs0kr9tgf5aot5f3nips2r6m.apps.googleusercontent.com'
 const CLIENT_SECRET = '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'
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
@@ -23,19 +22,19 @@ let mailOptions = {
 }
 
 router.post('/', async(req, res, next)=>{
-  try{
+  try {
     const data = req.body
     mailOptions = {...mailOptions, to:data.email, subject:`Order confirmation for ${data.orderId}`, text: data.message, html: `<h1>${data.message}</h1>`}
     await sendMail(mailOptions)
     res.sendStatus(200)
-  }catch(err){
+  } catch (err) {
     console.log('error sending email')
     next(err)
   }
 })
 
 async function sendMail(mailOptions){
-  try{
+  try {
     const accessToken = await oAuth2Client.getAccessToken()
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -53,7 +52,7 @@ async function sendMail(mailOptions){
 
     return result
 
-  }catch(err){
+  } catch (err) {
     return err
   }
 }

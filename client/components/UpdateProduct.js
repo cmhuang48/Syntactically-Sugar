@@ -16,7 +16,7 @@ class UpdateProduct extends Component {
 	}
 
 	componentDidUpdate (prevProps) {
-		if(!prevProps.product && this.props.product) {
+		if (!prevProps.product && this.props.product) {
 			this.setState({
 				name: this.props.product.name, 
 				price: this.props.product.price, 
