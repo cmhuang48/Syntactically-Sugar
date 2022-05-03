@@ -17,8 +17,8 @@ export const checkout = (cart, userInfo) => {
         await axios.post('/api/lineItems', { quantity: obj.quantity, productId: obj.productId, orderId: newOrder.id }).data;
       }
     }
-    const message = `Your order number is ${newOrder.id}. We will send you an update when your order has shipped.`
-    userInfo = { ...userInfo, orderId: newOrder.id, message: message}
+    const message = `Thank you for shopping at Syntactically Sugar! Your order number is ${newOrder.id}. We will send you an update when your order has shipped.`
+    userInfo = { ...userInfo, orderId: newOrder.id, message }
     await axios.post('/api/email', userInfo)
     dispatch({
       type: CHECKOUT,

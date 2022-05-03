@@ -53,7 +53,7 @@ class Cake extends React.Component {
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
     
-    if(!cake) return null;
+    if (!cake) return null;
 
     return (
       <>

@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer')
 const {google} = require('googleapis')
 require('dotenv').config()
 
-
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 const REDIRECT_URI = process.env.REDIRECT_URI
@@ -25,7 +24,7 @@ let mailOptions = {
 router.post('/', async(req, res, next)=>{
   try{
     const data = req.body
-    mailOptions = {...mailOptions, to:data.email, subject:`Order confirmation for ${data.orderId}`, text: data.message, html: `<h1>${data.message}</h1>`}
+    mailOptions = {...mailOptions, to:data.email, subject:`Order confirmation for Order #: ${data.orderId}`, text: data.message, html: `<h1>${data.message}</h1>`}
     await sendMail(mailOptions)
     console.log('confirmation sent')
     res.sendStatus(200)
@@ -58,7 +57,3 @@ async function sendMail(mailOptions){
     return err
   }
 }
-
-// sendMail(mailOptions)
-//   .then(result => console.log('Email send...', result))
-//   .catch(error => console.log(error.message))

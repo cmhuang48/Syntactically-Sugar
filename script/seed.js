@@ -12,24 +12,28 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'chanelle', password: '123', isAdmin: true, firstName: 'chanelle', lastName: 'huang', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'chanelleHuang', cardNumber: '5118900128185237', expDate: '7/24'}),
-    User.create({ username: 'jiayu', password: '123', isAdmin: true, firstName: 'jiayu', lastName: 'zhang', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'jiayuZhang', cardNumber: '5118900128185237', expDate: '7/24' }),
-    User.create({ username: 'lauren', password: '123', isAdmin: true, firstName: 'lauren', lastName: 'cagnetta', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'LaurenCagnetta', cardNumber: '5118900128185237', expDate: '7/24' }),
-    User.create({ username: 'sava', password: '123', isAdmin: true, firstName: 'sava', lastName: 'lin', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'savaLin', cardNumber: '5118900128185237', expDate: '7/24'  }),
-    User.create({ username: 'cody', password: '123', firstName: 'cody', lastName: 'cody', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'codyCody', cardNumber: '5118900128185237', expDate: '7/24'  }),
-    User.create({ username: 'murphy', password: '123', firstName: 'murphy', lastName: 'murphy', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'murphyMurphy', cardNumber: '5118900128185237', expDate: '7/24'  })
+    User.create({ username: 'chanelle', password: '123', isAdmin: true, firstName: 'Chanelle', lastName: 'Huang', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'Chanelle Huang', cardNumber: '5118900128185237', expDate: '7/24'}),
+    User.create({ username: 'jiayu', password: '123', isAdmin: true, firstName: 'Jiayu', lastName: 'Zhang', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'Jiayu Zhang', cardNumber: '5118900128185237', expDate: '7/24' }),
+    User.create({ username: 'lauren', password: '123', isAdmin: true, firstName: 'Lauren', lastName: 'Cagnetta', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'Lauren Cagnetta', cardNumber: '5118900128185237', expDate: '7/24' }),
+    User.create({ username: 'sava', password: '123', isAdmin: true, firstName: 'Sava', lastName: 'Lin', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'Sava Lin', cardNumber: '5118900128185237', expDate: '7/24'  }),
+    User.create({ username: 'cody', password: '123', firstName: 'Cody', lastName: 'Cody', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'Cody Cody', cardNumber: '5118900128185237', expDate: '7/24'  }),
+    User.create({ username: 'murphy', password: '123', firstName: 'Murphy', lastName: 'Murphy', address1: '6525 W Sack Dr #306', city: 'Glendale', zip: '85308', state: 'Arkansas', country: 'U.S.A', cardName: 'Murphy Murphy', cardNumber: '5118900128185237', expDate: '7/24'  })
   ])
 
   console.log(`seeded ${users.length} users`)
 
-  // Creating Cakesçcç
+  // Creating Cakes
   const cakes = await Promise.all([
     Product.create({ category: 'cake', name: 'Vanilla', price: 45.00, quantityInStock: 5, size: 9, image: 'https://static.onecms.io/wp-content/uploads/sites/19/2018/09/11/mrtrending_0905180427-2000.jpg' }),
-    Product.create({ category: 'cake', name: 'Chocolate', price: 60.00, quantityInStock: 5, size: 9, image: 'https://64.media.tumblr.com/51947a2c282a410467a6efc04ec12e57/1c878b7e68f0b85f-cd/s540x810/78bcdc3929891608eefbc76b5f5fcff4666d3ab3.jpg' }),
+    Product.create({ category: 'cake', name: 'Chocolate', price: 60.00, quantityInStock: 5, size: 12, image: 'https://64.media.tumblr.com/51947a2c282a410467a6efc04ec12e57/1c878b7e68f0b85f-cd/s540x810/78bcdc3929891608eefbc76b5f5fcff4666d3ab3.jpg' }),
     Product.create({ category: 'cake', name: 'Strawberry', price: 40.00, quantityInStock: 5, size: 9, image: "https://64.media.tumblr.com/c2756ccbc61bc7eebd8cce937f8fe8c6/1c878b7e68f0b85f-ae/s540x810/2f1ef9193485874ec945ded8b9e0290804481305.jpg" }),
     Product.create({ category: 'cake', name: 'Red Velvet', price: 50.00, quantityInStock: 10, size: 9, image: 'https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg' }),
-    Product.create({ category: 'cake', name: 'Rainbow', price: 60.00, quantityInStock: 10, size: 9, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
-    Product.create({ category: 'cake', name: 'Funfetti', price: 50.00, quantityInStock:2, size: 9, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" })
+    Product.create({ category: 'cake', name: 'Rainbow', price: 60.00, quantityInStock: 10, size: 12, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
+    Product.create({ category: 'cake', name: 'Funfetti', price: 50.00, quantityInStock: 3, size: 12, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
+    Product.create({ category: 'cake', name: 'Matcha', price: 50.00, quantityInStock: 6, size: 9, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
+    Product.create({ category: 'cake', name: 'Tiramisu Mille', price: 50.00, quantityInStock: 5, size: 12, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
+    Product.create({ category: 'cake', name: 'Pistachio Mille', price: 50.00, quantityInStock: 8, size: 9, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
+    Product.create({ category: 'cake', name: 'Seasonal', price: 50.00, quantityInStock: 7, size: 12, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
   ])
 
   console.log(`seeded ${cakes.length} cakes`)

@@ -8,12 +8,12 @@ const Cart = ({ auth, associatedLineItems, products }) => {
   const existingCart = JSON.parse(window.localStorage.getItem('cart'));
 
   if (auth.username) {
-    if(!associatedLineItems.length && !existingCart.length) return <div>Empty Cart</div>;
+    if (!associatedLineItems.length && !existingCart.length) return <div>Empty Cart</div>;
     cart = [...associatedLineItems, ...existingCart];
   }
 
   else {
-    if(!existingCart.length) return <div>Empty Cart</div>;
+    if (!existingCart.length) return <div>Empty Cart</div>;
     cart = existingCart;
   }
 
@@ -37,10 +37,14 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               </tr>
               {cart.map(lineItem => {
                 const product = lineItem.newProduct ? lineItem.newProduct : products.find(product => product.id === lineItem.productId*1);
-                total += product.price * lineItem.quantity;
+                if (product) total += product.price * lineItem.quantity;
                 
                 return (
+<<<<<<< HEAD
                   <LineItemInCart lineItem={lineItem}/>
+=======
+                  <LineItemInCart lineItem={lineItem} product={product} />
+>>>>>>> 6d1bc42a93aaec46e342adf1e4cc8547cf522471
                 )
               })}
               <tr>
@@ -54,7 +58,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
             </tbody>
           </table>
         </div>
-      <Link to='/checkout'><button className='cartCheckout' >Continue To Checkout</button></Link>
+      <Link to='/checkout'><button className='cartCheckout'>Continue To Checkout</button></Link>
     </div>
   );
 };

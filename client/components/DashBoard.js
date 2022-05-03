@@ -9,6 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Box'
+import { connect } from 'react-redux'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,7 +44,7 @@ function a11yProps(index) {
   };
 }
 
-export default function DashBoard() {
+function DashBoard({ history }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -67,15 +68,16 @@ export default function DashBoard() {
         <Tab label="Products" {...a11yProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-       <CreateNewProduct/>
+       <CreateNewProduct history={history} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-				<AllUsers/>
+				<AllUsers history={history} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <AllProducts/>
+       <AllProducts history={history} />
       </TabPanel>
     </Box>
   );
 }
 
+export default connect()(DashBoard);

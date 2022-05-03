@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Table from '@material-ui/core/Table'
@@ -9,14 +9,12 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/styles';
-import {deleteUser} from '../store'
-
+import { makeStyles } from '@material-ui/styles'
+import { deleteUser } from '../store'
 
 const useStyles = makeStyles({ root: { minWidth: '10px' } });
 
-
-const AllUsers = ({ users, auth, foo }) => {
+const AllUsers = ({ users, destroy }) => {
 	const classes = useStyles();
 	return (
 		<>
@@ -24,9 +22,9 @@ const AllUsers = ({ users, auth, foo }) => {
 			<Table>
 				<TableHead>
 				<TableRow>
-					<TableCell>id</TableCell>
+					<TableCell>ID</TableCell>
 					<TableCell>Admin</TableCell>
-					<TableCell>UserName</TableCell>
+					<TableCell>Username</TableCell>
 					<TableCell>First Name</TableCell>
 					<TableCell align="right">Last Name</TableCell>
 					<TableCell align="right">Address</TableCell>
@@ -36,31 +34,32 @@ const AllUsers = ({ users, auth, foo }) => {
 					<TableCell align="right">Country</TableCell>
 					<TableCell align="right">Card Name</TableCell>
 					<TableCell align="right">Card Number</TableCell>
-					<TableCell align="right">Exp Date</TableCell>
 					<TableCell align="right"></TableCell>
 					<TableCell align="right"></TableCell>
 				</TableRow>
 				</TableHead>
 				<TableBody>
-					{users.map( user => {
+					{users.map(user => {
 						return (
-							
 							<TableRow>
 								<TableCell component="th" scope="row" key={user.id}>{user.id}</TableCell>
 								<TableCell align='right'>{user.isAdmin.toString()}</TableCell>
 								<TableCell align="right">{user.username}</TableCell>
 								<TableCell align="right">{user.firstName}</TableCell>
 								<TableCell align="right">{user.lastName}</TableCell>
-								<TableCell align="right">{user.address1}</TableCell>
+								<TableCell align="right">
+									{user.address1}
+									<br />
+									{user.address2}
+								</TableCell>
 								<TableCell align="right">{user.city}</TableCell>
 								<TableCell align="right">{user.state}</TableCell>
 								<TableCell align="right">{user.zip}</TableCell>
 								<TableCell align="right">{user.country}</TableCell>
 								<TableCell align="right">{user.cardName}</TableCell>
-								<TableCell align="right">{user.cardNumber}</TableCell>
-								<TableCell align="right">{user.expDate}</TableCell>
+								<TableCell align="right">{'XXXXXXXXXXXX' + user.cardNumber.slice(-4)}</TableCell>
 								<TableCell>
-									<Button classes={classes} onClick={()=> foo(user.id)} style={{color: 'red'}}>
+									<Button classes={classes} onClick={()=> destroy(user)} style={{color: 'red'}}>
 										X
 									</Button>
 								</TableCell>
@@ -79,17 +78,15 @@ const AllUsers = ({ users, auth, foo }) => {
 	)
 }
 
-const mapState = ({users, auth}) => {
-	return users
-}
+const mapState = ({ users }) => ({ users });
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
 	return{
-		foo: (id) => {
-			dispatch(deleteUser(id))
+		destroy: (user) => {
+			dispatch(deleteUser(user, history))
 		}
-	}
-}
+	};
+};
 
 
-export default connect(state => state, mapDispatch)(AllUsers)
+export default connect(mapState, mapDispatch)(AllUsers)

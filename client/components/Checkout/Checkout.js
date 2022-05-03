@@ -68,14 +68,12 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
     const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+    const userInfo = { email: orderInfo.email };
     if (auth.username) {
       setOrderInfo({...orderInfo, id: cart.id});
       if (existingCart) {
         // creates custom products and new lineItems
         createCustom(existingCart, cart.id);
-      }
-      const userInfo = {
-        email: orderInfo.email
       }
       updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv }, userInfo);
       if (saveAddress) {
@@ -86,9 +84,6 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
       }
     } else {
       // creates new user, new order, and new lineItems
-      const userInfo = {
-        email: orderInfo.email
-      }
       checkout(existingCart, userInfo);
       setOrderInfo({ id: newOrder.id });
       updateOrder({ id: newOrder.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });

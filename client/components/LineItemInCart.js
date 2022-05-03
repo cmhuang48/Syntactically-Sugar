@@ -67,11 +67,12 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
     );
   }
 
-  const product = products.find(product => product?.id === lineItem.productId*1);
+  if (!products.length) return null;
+  const product = products.find(product => product.id === lineItem.productId);  
 
   return (
-    <tr >
-      <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+    <tr key={product.id}>
+      <td className='cartImage'><a href={`/${product.category}s/${product.id}`}><img src={product.image}/></a></td>
       <td>{product.name}</td>
       <td>{product.category}</td>
       <td>
