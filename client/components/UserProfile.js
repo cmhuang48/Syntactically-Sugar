@@ -39,15 +39,15 @@ class UserProfile extends React.Component {
         <h1 className="font-effect-shadow-multiple">{username[0].toUpperCase() + username.slice(1)}'s info</h1>
         <div className="column1">
         <div className="info">
-        <p>User Name:{username}</p>
-        <p>First Name:{firstName}</p>
-        <p>Last Name:{lastName}</p>
-        <p>Address 1:{address1}</p>
-        <p>Address 2:{address2}</p>
-        <p>City:{city}</p>
-        <p>State:{state}</p>
-        <p>Zip:{zip}</p>
-        <p>Country:{country}</p>
+        <p>User Name: {username}</p>
+        <p>First Name: {firstName}</p>
+        <p>Last Name: {lastName}</p>
+        <p>Address 1: {address1}</p>
+        <p>Address 2: {address2}</p>
+        <p>City: {city}</p>
+        <p>State: {state}</p>
+        <p>Zip: {zip}</p>
+        <p>Country: {country}</p>
         </div>
         </div>
         <div className="borderinfo">
