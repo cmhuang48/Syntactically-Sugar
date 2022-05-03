@@ -38,7 +38,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 total += product.price * lineItem.quantity;
                 
                 return (
-                  <LineItemInCart lineItem={lineItem} />
+                  <LineItemInCart lineItem={lineItem} product={product} />
                 )
               })}
               <tr>
@@ -52,7 +52,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
             </tbody>
           </table>
         </div>
-      <Link to='/checkout'><button className='cartCheckout' >Continue To Checkout</button></Link>
+      <Link to='/checkout'><button className='cartCheckout'>Continue To Checkout</button></Link>
     </div>
   );
 };

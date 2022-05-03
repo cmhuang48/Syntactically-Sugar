@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateLineItem, deleteLineItem, loadLineItems } from '../store';
 
-const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineItem, deleteLineItem }) => {
+const LineItemInCart = ({ lineItem, product, auth, loadLineItems, updateLineItem, deleteLineItem }) => {
   const destroy = () => {
     if (auth.username) {
       deleteLineItem(lineItem);
@@ -67,11 +67,9 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
     );
   }
 
-  const product = products.find(product => product?.id === lineItem.productId*1);
-
   return (
     <tr key={product.id}>
-      <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+      <td className='cartImage'><a href={`/${product.category}s/${product.id}`}><img src={product.image}/></a></td>
       <td>{product.name}</td>
       <td>{product.category}</td>
       <td>
@@ -87,7 +85,7 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
   );
 };
 
-const mapState = ({ auth, products }) => ({ auth, products });
+const mapState = ({ auth }) => ({ auth });
 
 const mapDispatch = (dispatch) => {
   return {
