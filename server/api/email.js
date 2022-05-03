@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { models: { User }} = require('../db')
 module.exports = router
 const nodemailer = require('nodemailer')
-const {google} = require('googleapis')
+const { google } = require('googleapis')
 
 const CLIENT_ID = '935021820603-2jphugvsfs0kr9tgf5aot5f3nips2r6m.apps.googleusercontent.com'
 const CLIENT_SECRET = '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'
@@ -11,7 +11,7 @@ const REFRESH_TOKEN = '1//04Ls6AVzt4KNlCgYIARAAGAQSNwF-L9IrHdSrQwN5CD7klfr6y0tOc
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 
-oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN})
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
 
 let mailOptions = {
   from: "ORDER CONFIRMATION <syntacticallysugarconfirmation@gmail.com>",
@@ -24,10 +24,10 @@ let mailOptions = {
 router.post('/', async(req, res, next)=>{
   try {
     const data = req.body
-    mailOptions = {...mailOptions, to:data.email, subject:`Order confirmation for ${data.orderId}`, text: data.message, html: `<h1>${data.message}</h1>`}
+    mailOptions = {...mailOptions, to: data.email, subject: `Order confirmation for Order #${data.orderId}`, text: data.message, html: `<h1>${data.message}</h1>`}
     await sendMail(mailOptions)
     res.sendStatus(200)
-  } catch (err) {
+  } catch(err) {
     console.log('error sending email')
     next(err)
   }
@@ -36,27 +36,28 @@ router.post('/', async(req, res, next)=>{
 async function sendMail(mailOptions){
   try {
     const accessToken = await oAuth2Client.getAccessToken()
-    const transporter = nodemailer.createTransport({
+
+    const transport = nodemailer.createTransport({
       service: "gmail",
-      auth:{
+      auth: {
         type: 'OAuth2',
         user: 'syntacticallysugarconfirmation@gmail.com',
-        clientId : CLIENT_ID,
+        clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
         refreshToken: REFRESH_TOKEN,
         accessToken: accessToken
       }
     })
 
-    const result = await transporter.sendMail(mailOptions)
+    const result = await transport.sendMail(mailOptions)
 
     return result
 
-  } catch (err) {
+  } catch(err) {
     return err
   }
 }
 
 // sendMail(mailOptions)
-//   .then(result => console.log('Email send...', result))
+//   .then(result => console.log('Email sent...', result))
 //   .catch(error => console.log(error.message))
