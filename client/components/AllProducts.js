@@ -17,6 +17,7 @@ const useStyles = makeStyles({ root: { minWidth: '10px' } });
 
 const AllProducts = ({ products, foo }) => {
 	const classes = useStyles();
+
 	return (
 		<>
 		 <TableContainer component={Paper}>
@@ -29,6 +30,7 @@ const AllProducts = ({ products, foo }) => {
 					<TableCell>Image</TableCell>
 					<TableCell>Size</TableCell>
 					<TableCell>Quantity In Stock</TableCell>
+					<TableCell></TableCell>
 					<TableCell></TableCell>
 				</TableRow>
 				</TableHead>
@@ -48,11 +50,11 @@ const AllProducts = ({ products, foo }) => {
 										X
 									</Button>
 								</TableCell>
-								{/*<TableCell>
+								<TableCell>
 										<Button classes={classes}>
 											&#x270D;
 										</Button>
-								</TableCell>*/}
+								</TableCell>
 							</TableRow>
 						)
 					})}
