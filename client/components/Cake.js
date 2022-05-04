@@ -81,7 +81,9 @@ class Cake extends React.Component {
           <div className="cake-add-to-cart">
             <h1>{cake.name} cake</h1>
             <p>Price: ${cake.price}</p>
-            <p>In Stock: {cake.quantityInStock - lineItemToCheckOut?.quantity}</p>
+            <p>
+              In Stock: {cake.quantityInStock - lineItemToCheckOut?.quantity}
+            </p>
             <form onSubmit={onSubmit}>
               <p>Tiers:</p>
               <select value={tiers} name="tiers" onChange={onChange}>
@@ -125,18 +127,21 @@ const mapState = (
 ) => {
   const cake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const orderInOrder = orders.find((order) => order.status === 'order')
+  const orderInOrder = orders.find((order) => order.status === "order");
   const lineItem = lineItems.find(
     (lineItem) =>
       lineItem.productId === cake?.id && lineItem.orderId === order?.id
   );
-  const lineItemToCheckOut = lineItems.find(lineItem =>lineItem.productId === cake?.id && lineItem.orderId === orderInOrder?.id )
+  const lineItemToCheckOut = lineItems.find(
+    (lineItem) =>
+      lineItem.productId === cake?.id && lineItem.orderId === orderInOrder?.id
+  );
   return {
     auth,
     cake,
     order,
     lineItem,
-    lineItemToCheckOut
+    lineItemToCheckOut,
   };
 };
 
