@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 import { createLineItem, updateLineItem } from '../store';
-import UpdateProduct from './UpdateProduct';
 
 class Cupcake extends React.Component {
   constructor () {
@@ -67,11 +66,7 @@ class Cupcake extends React.Component {
             <p>Quantity: <input name='quantity' value={quantity} type='number' min='1' max='10' onChange={onChange} /></p>
             <button>Add to Cart</button>
           </form>
-          {auth.isAdmin ? <button><Link to={`/cupcakes/${cupcake.id}/edit`}>Update Product</Link></button> : ''}
         </div>
-      </div>
-      <div style={{ margin: "5rem auto 20rem auto"}}>
-         <Route exact path='/cupcakes/:id/edit' component={UpdateProduct} />
       </div>
     </>
     );

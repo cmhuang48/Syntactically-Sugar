@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom';
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -10,14 +10,14 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/styles';
-import {deleteProduct} from '../store'
+import { deleteProduct } from '../store'
+import UpdateProduct from './UpdateProduct';
 
 const useStyles = makeStyles({ root: { minWidth: '10px' } });
 
 
-const AllProducts = ({ products, foo }) => {
+const AllProducts = ({ products, foo, product }) => {
 	const classes = useStyles();
-
 	return (
 		<>
 		 <TableContainer component={Paper}>
@@ -52,7 +52,9 @@ const AllProducts = ({ products, foo }) => {
 								</TableCell>
 								<TableCell>
 										<Button classes={classes}>
-											&#x270D;
+											<Link to={`/products/${product.id}/edit`}>
+												&#x270D;
+											</Link>
 										</Button>
 								</TableCell>
 							</TableRow>
@@ -66,7 +68,7 @@ const AllProducts = ({ products, foo }) => {
 }
 
 const mapState = ({products}) => {
-	return products
+	return {products}
 }
 
 const mapDispatch = (dispatch) => {

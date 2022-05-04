@@ -35,7 +35,7 @@ const AllUsers = ({ users, destroy }) => {
 					<TableCell align="right">Card Name</TableCell>
 					<TableCell align="right">Card Number</TableCell>
 					<TableCell align="right"></TableCell>
-					<TableCell align="right"></TableCell>
+					{/*<TableCell align="right"></TableCell>*/}
 				</TableRow>
 				</TableHead>
 				<TableBody>
