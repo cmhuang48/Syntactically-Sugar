@@ -9,9 +9,8 @@ class UpdateProduct extends Component {
       name: this.props.product ? this.props.product.name : "",
       price: this.props.product ? this.props.product.price : "",
       image: this.props.product ? this.props.product.image : "",
-      quantityInStock: this.props.product
-        ? this.props.product.quantityInStock
-        : "",
+      quantityInStock: this.props.product ? this.props.product.quantityInStock : "",
+	  lineItemToCheckOut: this.props.lineItemToCheckOut ? this.props.lineItemToCheckOut: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +23,7 @@ class UpdateProduct extends Component {
         price: this.props.product.price,
         image: this.props.product.image,
         quantityInStock: this.props.product.quantityInStock,
+		lineItemToCheckOut: this.props.lineItemToCheckOut
       });
     }
   }
@@ -40,9 +40,8 @@ class UpdateProduct extends Component {
   }
 
   render() {
-    const { name, price, image, quantityInStock } = this.state;
+    const { name, price, image, quantityInStock, lineItemToCheckOut} = this.state;
     const { handleChange, handleSubmit } = this;
-
     return (
       <div className="row">
         <h1 className="font-effect-shadow-multiple">Product's info</h1>
@@ -73,7 +72,8 @@ class UpdateProduct extends Component {
             <p> Quantity in Stock: </p>
             <input
               name="quantityInStock"
-              value={quantityInStock}
+              value={quantityInStock - lineItemToCheckOut.quantity}
+			
               placeholder="Enter Quantity in stock"
               onChange={handleChange}
             />
@@ -100,7 +100,7 @@ class UpdateProduct extends Component {
 }
 
 const mapState = (
-  { products },
+  { products, orders, lineItems },
   {
     match: {
       params: { id },
@@ -108,12 +108,15 @@ const mapState = (
   }
 ) => {
   const product = products.find((product) => product.id === id * 1);
+  const orderInOrder = orders.find((order) => order.status === 'order')
+  const lineItemToCheckOut = lineItems.find(lineItem => lineItem.productId === product?.id && lineItem.orderId === orderInOrder?.id)
   return {
     product,
+	lineItemToCheckOut
   };
 };
 
-const mapDispatch = (dispatch, { history }) => {
+const mapDispatch = (dispatch, { history }) => { 
   return {
     updateProduct: (product) => {
       dispatch(updateProduct(product, history));
