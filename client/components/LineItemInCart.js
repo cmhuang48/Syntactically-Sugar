@@ -96,7 +96,7 @@ const LineItemInCart = ({
             Remove Item
           </button>
         </td>
-        <td>${lineItem.newProduct.price * lineItem.quantity}</td>
+        <td>${(lineItem.newProduct.price * lineItem.quantity).toFixed(2)}</td>
       </tr>
     );
   }
@@ -138,7 +138,7 @@ const LineItemInCart = ({
           Remove Item
         </button>
       </td>
-      <td>${product.price * lineItem.quantity}</td>
+      <td>${(product.price * lineItem.quantity).toFixed(2)}</td>
     </tr>
   );
 };

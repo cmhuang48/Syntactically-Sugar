@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-const { ENUM, STRING, INTEGER } = Sequelize;
+const { ENUM, STRING, INTEGER, DECIMAL } = Sequelize;
 
 const Product = db.define("product", {
   category: {
@@ -33,7 +33,7 @@ const Product = db.define("product", {
   },
 
   price: {
-    type: INTEGER,
+    type: DECIMAL(10, 2),
   },
 
   quantityInStock: {
