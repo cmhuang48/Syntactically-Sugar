@@ -38,7 +38,7 @@ class UpdateProduct extends Component {
 	}
 
 	render () {
-		const { name, price, image, quantityInStock} = this.state;
+		const { name, price, image, quantityInStock } = this.state;
 		const { handleChange, handleSubmit } = this;
 
 		return (

@@ -41,8 +41,7 @@ const Product = db.define('product', {
   },
 
   size: {
-    type: INTEGER,
-    defaultValue: 9
+    type: ENUM(['9', '12'])
   }
 });
 

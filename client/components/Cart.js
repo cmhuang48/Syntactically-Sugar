@@ -39,6 +39,8 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 <th>Name</th>
                 <th>Category</th>
                 <th>Quantity</th>
+                <th>Size</th>
+                <th>Tiers</th>
                 <th></th>
                 <th style={{width: "50px"}}>Price</th>
               </tr>
@@ -50,6 +52,8 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 )
               })}
               <tr>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

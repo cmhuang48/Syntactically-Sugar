@@ -22,14 +22,14 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`)
 
-  // Creating Cakesçcç
+  // Creating Cakes
   const cakes = await Promise.all([
-    Product.create({ category: 'cake', name: 'Vanilla', price: 45.00, quantityInStock: 5, size: 9, image: 'https://static.onecms.io/wp-content/uploads/sites/19/2018/09/11/mrtrending_0905180427-2000.jpg' }),
-    Product.create({ category: 'cake', name: 'Chocolate', price: 60.00, quantityInStock: 5, size: 9, image: 'https://64.media.tumblr.com/51947a2c282a410467a6efc04ec12e57/1c878b7e68f0b85f-cd/s540x810/78bcdc3929891608eefbc76b5f5fcff4666d3ab3.jpg' }),
-    Product.create({ category: 'cake', name: 'Strawberry', price: 40.00, quantityInStock: 5, size: 9, image: "https://64.media.tumblr.com/c2756ccbc61bc7eebd8cce937f8fe8c6/1c878b7e68f0b85f-ae/s540x810/2f1ef9193485874ec945ded8b9e0290804481305.jpg" }),
-    Product.create({ category: 'cake', name: 'Red Velvet', price: 50.00, quantityInStock: 10, size: 9, image: 'https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg' }),
-    Product.create({ category: 'cake', name: 'Rainbow', price: 60.00, quantityInStock: 10, size: 9, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
-    Product.create({ category: 'cake', name: 'Funfetti', price: 50.00, quantityInStock:2, size: 9, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" })
+    Product.create({ category: 'cake', name: 'Vanilla', price: 45.00, quantityInStock: 5, image: 'https://static.onecms.io/wp-content/uploads/sites/19/2018/09/11/mrtrending_0905180427-2000.jpg' }),
+    Product.create({ category: 'cake', name: 'Chocolate', price: 60.00, quantityInStock: 5, image: 'https://64.media.tumblr.com/51947a2c282a410467a6efc04ec12e57/1c878b7e68f0b85f-cd/s540x810/78bcdc3929891608eefbc76b5f5fcff4666d3ab3.jpg' }),
+    Product.create({ category: 'cake', name: 'Strawberry', price: 40.00, quantityInStock: 5, image: "https://64.media.tumblr.com/c2756ccbc61bc7eebd8cce937f8fe8c6/1c878b7e68f0b85f-ae/s540x810/2f1ef9193485874ec945ded8b9e0290804481305.jpg" }),
+    Product.create({ category: 'cake', name: 'Red Velvet', price: 50.00, quantityInStock: 10, image: 'https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg' }),
+    Product.create({ category: 'cake', name: 'Rainbow', price: 60.00, quantityInStock: 10, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
+    Product.create({ category: 'cake', name: 'Funfetti', price: 50.00, quantityInStock:2, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" })
   ])
 
   console.log(`seeded ${cakes.length} cakes`)

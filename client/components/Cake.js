@@ -7,7 +7,9 @@ class Cake extends React.Component {
   constructor () {
     super();
     this.state = {
-      quantity: 1
+      quantity: 1,
+      tiers: 1,
+      size: 9
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -16,13 +18,14 @@ class Cake extends React.Component {
   onSubmit (ev) {
     ev.preventDefault();
     const { auth, cake, order, lineItem, createLineItem, updateLineItem } = this.props;
-    const { quantity } = this.state;
+    const { quantity, tiers, size } = this.state;
     if (auth.username) {
       if (lineItem) {
-        const updatedLineItem = { id: lineItem.id, quantity: lineItem.quantity*1 + quantity*1, productId: cake.id, orderId: order.id };
+        const updatedLineItem = { id: lineItem.id, quantity: lineItem.quantity*1 + quantity*1, productId: cake.id, orderId: order.id, tiers: tiers, size:size};
         updateLineItem(updatedLineItem);
       } else {
-        const newLineItem = { quantity: quantity*1, productId: cake.id, orderId: order.id };
+        const newLineItem = { quantity: quantity*1, productId: cake.id, orderId: order.id, tiers: tiers*1, size: size*1};
+console.log('newLineItem', newLineItem)
         createLineItem(newLineItem);
       }
     } else {
@@ -49,7 +52,7 @@ class Cake extends React.Component {
 
   render () {
     const { cake, auth } = this.props;
-    const { quantity } = this.state;
+    const { quantity, tiers, size } = this.state;
     const { onChange, onSubmit } = this;
     
     if(!cake) return null;
@@ -62,8 +65,19 @@ class Cake extends React.Component {
           <h1>{cake.name} cake</h1>
           <p>Price: ${cake.price}</p>
           <p>In Stock: {cake.quantityInStock}</p>
-          <p>Size: {cake.size} inch</p>
           <form onSubmit={onSubmit}>
+          <p>Tiers:</p>
+            <select value={tiers} name='tiers' onChange={onChange}>
+              <option value=''>Select Number of Tiers</option>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+            </select>
+          <p>Size:</p>
+            <select value={size} name='size' onChange={onChange}>
+              <option value='9'>9</option>
+              <option value='12'>12</option>
+            </select>
             <p>Quantity: <input name='quantity' value={quantity} type='number' min='1' max='10' onChange={onChange} /></p>
             <button>Add to Cart</button>
           </form>
