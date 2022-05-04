@@ -35,7 +35,7 @@ function Review({ orderInfo, auth, associatedLineItems, products }) {
           const product = lineItem.newProduct
             ? lineItem.newProduct
             : products.find((product) => product.id === lineItem.productId);
-          if (product) total += product.price * lineItem.quantity;
+          if (product) total += (product.price * lineItem.quantity).toFixed(2);
 
           return (
             <ListItem sx={{ py: 1, px: 0 }}>
