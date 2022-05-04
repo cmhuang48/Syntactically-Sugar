@@ -6,10 +6,10 @@ import auth from './auth'
 import products from './products'
 import orders from './orders'
 import lineItems from './lineItems'
-import cart from './cart'
+import newOrder from './cart'
 import users from './users'
 
-const reducer = combineReducers({ auth, products, orders, lineItems, cart, users })
+const reducer = combineReducers({ auth, products, orders, lineItems, newOrder, users })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

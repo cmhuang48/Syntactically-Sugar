@@ -66,9 +66,8 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
   }
 
   const onSubmit = () => {
-    const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
+    const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard, email } = orderInfo;
     const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-    const userInfo = { email: orderInfo.email };
     if (auth.username) {
       setOrderInfo({...orderInfo, id: cart.id});
       if (existingCart) {
@@ -84,15 +83,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
       }
     } else {
       // creates new user, new order, and new lineItems
-      checkout(existingCart, userInfo);
-      setOrderInfo({ id: newOrder.id });
-      updateOrder({ id: newOrder.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
-      if (saveAddress === 'yes') {
-        updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
-      } 
-      if (saveCard === 'yes') {
-        updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
-      }
+      checkout(existingCart, orderInfo);
     }
     setActiveStep(activeStep + 1);
   }
@@ -131,7 +122,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {orderInfo.id}. We have emailed your order
+                  Your order number is {auth.id ? orderInfo.id : newOrder.id}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
