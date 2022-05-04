@@ -39,7 +39,6 @@ class Cake extends React.Component {
           tiers: tiers * 1,
           size: size * 1,
         };
-        console.log("newLineItem", newLineItem);
         createLineItem(newLineItem);
       }
     } else {
