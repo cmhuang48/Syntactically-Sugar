@@ -1,53 +1,54 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
-const { ENUM, STRING, INTEGER } = Sequelize
+const Sequelize = require("sequelize");
+const db = require("../db");
+const { ENUM, STRING, INTEGER } = Sequelize;
 
-const Product = db.define('product', {
+const Product = db.define("product", {
   category: {
-    type: ENUM(['cake', 'cupcake'])
+    type: ENUM(["cake", "cupcake"]),
   },
-  
+
   name: {
-    type: STRING
+    type: STRING,
   },
-  
+
   size: {
     type: INTEGER,
-    defaultValue: 9
+    defaultValue: 9,
   },
 
   tiers: {
-    type: ENUM(['1', '2', '3'])
+    type: ENUM(["1", "2", "3"]),
   },
 
   flavor: {
-    type: STRING
+    type: STRING,
   },
 
   frosting: {
-    type: STRING
+    type: STRING,
   },
 
   message: {
-    type: STRING
+    type: STRING,
   },
 
   price: {
-    type: INTEGER
+    type: INTEGER,
   },
 
   quantityInStock: {
-    type: INTEGER
+    type: INTEGER,
   },
-  
+
   image: {
     type: STRING,
-    defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'
+    defaultValue:
+      "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930",
   },
 
   size: {
-    type: ENUM(['9', '12'])
-  }
+    type: ENUM(["9", "12"]),
+  },
 });
 
 module.exports = Product;

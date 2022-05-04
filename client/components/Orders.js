@@ -1,23 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
 const Orders = ({ completedOrders, lineItems, products }) => {
   if (!completedOrders.length) return <div>No Orders</div>;
 
   return (
-    <div className ="orders">
+    <div className="orders">
       <h1 className="font-effect-shadow-multiple">My Orders</h1>
       <ul>
-        {completedOrders.map(order => {
-          const associatedLineItems = lineItems.filter(lineItem => lineItem.orderId === order.id);
+        {completedOrders.map((order) => {
+          const associatedLineItems = lineItems.filter(
+            (lineItem) => lineItem.orderId === order.id
+          );
 
           return (
             <li key={order.id}>
               <div>
                 <h2>Order ID: {order.id}</h2>
                 <ul>
-                  {associatedLineItems.map(lineItem => {
-                    const product = products.find(product => product.id === lineItem.productId);
+                  {associatedLineItems.map((lineItem) => {
+                    const product = products.find(
+                      (product) => product.id === lineItem.productId
+                    );
 
                     return (
                       <li key={lineItem.id}>
@@ -36,11 +40,11 @@ const Orders = ({ completedOrders, lineItems, products }) => {
 };
 
 const mapState = ({ orders, lineItems, products }) => {
-  const completedOrders = orders.filter(order => order.status === "order");
+  const completedOrders = orders.filter((order) => order.status === "order");
   return {
     completedOrders,
     lineItems,
-    products
+    products,
   };
 };
 

@@ -15,7 +15,8 @@
     "test": "NODE_ENV=test JWT=a_secret mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" --require @babel/register --require esm ",
     "test:dev": "npm run test -- --watch",
     "test:dev:models": "npm run test:dev -- --grep=model",
-    "test:dev:routes": "npm run test:dev -- --grep=route"
+    "test:dev:routes": "npm run test:dev -- --grep=route",
+    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\""
   },
   "author": "Fullstack Academy of Code",
   "license": "MIT",
@@ -34,6 +35,7 @@
     "morgan": "^1.9.1",
     "nodemailer": "^6.7.4",
     "pg": "^8.5.1",
+    "prettier": "^2.6.2",
     "seed": "^0.4.4",
     "sequelize": "^6.3.5"
   },

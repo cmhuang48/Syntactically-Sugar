@@ -1,32 +1,39 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link} from 'react-router-dom'
-import { loadLineItems, logout } from '../store'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { loadLineItems, logout } from "../store";
 
 const open = (ev) => {
-  if (ev.target.className === 'dropdown') {
-    const subNav = document.querySelector('.subNav')
-    if (subNav.style.display === 'none') {
-      subNav.style.display = 'block'
+  if (ev.target.className === "dropdown") {
+    const subNav = document.querySelector(".subNav");
+    if (subNav.style.display === "none") {
+      subNav.style.display = "block";
     } else {
-      subNav.style.display = 'none'
+      subNav.style.display = "none";
     }
   }
-}
+};
 
-const Navbar = ({ handleClick, isLoggedIn, username, auth}) => (
+const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
   <div>
-  <Link to="/home"><img src="https://64.media.tumblr.com/0247842009fe11e7313136833fde624d/23030b2c9b9bec6c-36/s1280x1920/2e54ad5f5b0299d2f0b5a8e27412d636d9d4089b.pnj" className="headerpic"/></Link>
+    <Link to="/home">
+      <img
+        src="https://64.media.tumblr.com/0247842009fe11e7313136833fde624d/23030b2c9b9bec6c-36/s1280x1920/2e54ad5f5b0299d2f0b5a8e27412d636d9d4089b.pnj"
+        className="headerpic"
+      />
+    </Link>
     <nav>
       {isLoggedIn ? (
-        <div >
+        <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/cakes">Cakes</Link>
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/orders">Orders</Link>
           <Link to="/cart">Cart</Link>
-          <Link onClick={open} to="/profile" className='dropdown'>{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
+          <Link onClick={open} to="/profile" className="dropdown">
+            {username[0].toUpperCase() + username.slice(1)}'s Profile
+          </Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -35,7 +42,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth}) => (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
-		      <Link to="/cakes">Cakes</Link>
+          <Link to="/cakes">Cakes</Link>
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/cart">Cart</Link>
           <Link to="/login">Login</Link>
@@ -44,37 +51,37 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth}) => (
       )}
     </nav>
     <hr />
-    <nav className='subNav'>
+    <nav className="subNav">
       {auth.isAdmin ? (
         <div>
-          <Link to='/dashboard'>Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </div>
-        )
-      : ''}
+      ) : (
+        ""
+      )}
     </nav>
   </div>
-)
+);
 
 /**
  * CONTAINER
  */
-const mapState = state => {
-  const username = state.auth.username
-  const auth = state.auth
+const mapState = (state) => {
+  const username = state.auth.username;
+  const auth = state.auth;
   return {
     isLoggedIn: !!state.auth.id,
     username,
-    auth
-  }
-}
+    auth,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(logout()),
-      dispatch(loadLineItems())
-    }
-  }
-}
+      dispatch(logout()), dispatch(loadLineItems());
+    },
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);
