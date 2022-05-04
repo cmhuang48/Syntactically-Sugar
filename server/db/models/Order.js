@@ -1,68 +1,68 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
-const { ENUM, STRING, UUID, UUIDV4 } = Sequelize
+const Sequelize = require("sequelize");
+const db = require("../db");
+const { ENUM, STRING, UUID, UUIDV4 } = Sequelize;
 
-const Order = db.define('order', {
+const Order = db.define("order", {
   id: {
     type: UUID,
     allowNull: false,
     defaultValue: UUIDV4,
-    primaryKey: true
+    primaryKey: true,
   },
 
   status: {
-    type: ENUM(['cart', 'order']),
+    type: ENUM(["cart", "order"]),
     allowNull: false,
-    defaultValue: 'cart'
+    defaultValue: "cart",
   },
 
   firstName: {
-    type: STRING
+    type: STRING,
   },
 
   lastName: {
-    type: STRING
+    type: STRING,
   },
 
   address1: {
-    type: STRING
+    type: STRING,
   },
 
   address2: {
-    type: STRING
+    type: STRING,
   },
 
   city: {
-    type: STRING
+    type: STRING,
   },
 
   state: {
-    type: STRING
+    type: STRING,
   },
 
   zip: {
-    type: STRING
+    type: STRING,
   },
 
   country: {
-    type: STRING
+    type: STRING,
   },
 
   cardName: {
-    type: STRING
+    type: STRING,
   },
 
   cardNumber: {
-    type: STRING
+    type: STRING,
   },
 
   expDate: {
-    type: STRING
+    type: STRING,
   },
 
   cvv: {
-    type: STRING
-  }
+    type: STRING,
+  },
 });
 
 module.exports = Order;

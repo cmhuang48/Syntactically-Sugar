@@ -1,9 +1,9 @@
-import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import * as React from "react";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 export default function AddressForm({ orderInfo, onChange }) {
   return (
@@ -23,7 +23,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="given-name"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
             autoFocus
           />
         </Grid>
@@ -52,7 +52,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping address-line1"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -65,7 +65,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping address-line2"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -79,7 +79,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping address-level2"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -91,7 +91,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             fullWidth
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -105,7 +105,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="shipping postal-code"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -118,7 +118,7 @@ export default function AddressForm({ orderInfo, onChange }) {
             fullWidth
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -132,12 +132,19 @@ export default function AddressForm({ orderInfo, onChange }) {
             autoComplete="email"
             variant="standard"
             onChange={onChange}
-            InputLabelProps={{ shrink: true }}  
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={onChange} />}
+            control={
+              <Checkbox
+                color="secondary"
+                name="saveAddress"
+                value="yes"
+                onChange={onChange}
+              />
+            }
             label="Use this address for payment details"
           />
         </Grid>

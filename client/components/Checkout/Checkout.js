@@ -1,83 +1,142 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
-import { createCustom, updateOrder, updateUser, checkout } from '../../store';
+import * as React from "react";
+import { connect } from "react-redux";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import AddressForm from "./AddressForm";
+import PaymentForm from "./PaymentForm";
+import Review from "./Review";
+import { createCustom, updateOrder, updateUser, checkout } from "../../store";
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ["Shipping address", "Payment details", "Review your order"];
 
 const theme = createTheme();
 
-function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser, checkout }) {
+function Checkout({
+  auth,
+  cart,
+  newOrder,
+  createCustom,
+  updateOrder,
+  updateUser,
+  checkout,
+}) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
-    id: '',
-    firstName: '',
-    lastName: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '',
-    zip: '',
-    country: '',
-    cardName: '',
-    cardNumber: '',
-    expDate: '',
-    cvv: '',
-    email: '',
+    id: "",
+    firstName: "",
+    lastName: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
+    cardName: "",
+    cardNumber: "",
+    expDate: "",
+    cvv: "",
+    email: "",
     saveAddress: false,
-    saveCard: false
+    saveCard: false,
   });
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  
+
   const handleNextOnAddressForm = () => {
-    if (!orderInfo.firstName || !orderInfo.address1 || !orderInfo.city || !orderInfo.state || !orderInfo.zip || !orderInfo.country) { 
-      window.alert('* must input')
+    if (
+      !orderInfo.firstName ||
+      !orderInfo.address1 ||
+      !orderInfo.city ||
+      !orderInfo.state ||
+      !orderInfo.zip ||
+      !orderInfo.country
+    ) {
+      window.alert("* must input");
       return setActiveStep(0);
-    } 
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleNextOnPaymentForm = () => {
     if (!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.cvv) {
-      window.alert('* must input')
+      window.alert("* must input");
       return setActiveStep(1);
     }
     setActiveStep(activeStep + 1);
-  }
+  };
 
   const onChange = (ev) => {
     const change = {};
     change[ev.target.name] = ev.target.value;
-    setOrderInfo({...orderInfo, ...change});
-  }
+    setOrderInfo({ ...orderInfo, ...change });
+  };
 
   const onSubmit = () => {
-    const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard, email } = orderInfo;
-    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+    const {
+      firstName,
+      lastName,
+      address1,
+      address2,
+      city,
+      state,
+      zip,
+      country,
+      cardName,
+      cardNumber,
+      expDate,
+      cvv,
+      saveAddress,
+      saveCard,
+      email
+    } = orderInfo;
+    const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     if (auth.username) {
-      setOrderInfo({...orderInfo, id: cart.id});
+      setOrderInfo({ ...orderInfo, id: cart.id });
       if (existingCart) {
         // creates custom products and new lineItems
         createCustom(existingCart, cart.id);
       }
-      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, email });
+      updateOrder(
+        {
+          id: cart.id,
+          userId: auth.id,
+          firstName,
+          lastName,
+          address1,
+          address2,
+          city,
+          state,
+          zip,
+          country,
+          cardName,
+          cardNumber,
+          expDate,
+          cvv,
+          email
+        }
+      );
       if (saveAddress) {
-        updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
-      } 
+        updateUser({
+          id: auth.id,
+          firstName,
+          lastName,
+          address1,
+          address2,
+          city,
+          state,
+          zip,
+          country,
+        });
+      }
       if (saveCard) {
         updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
       }
@@ -86,7 +145,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
       checkout(existingCart, orderInfo);
     }
     setActiveStep(activeStep + 1);
-  }
+  };
 
   function getStepContent(step) {
     switch (step) {
@@ -97,14 +156,18 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
       case 2:
         return <Review orderInfo={orderInfo} />;
       default:
-        throw new Error('Unknown step');
+        throw new Error("Unknown step");
     }
-  };
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }} style={{ padding: '2em'}}>
+        <Paper
+          variant="outlined"
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          style={{ padding: "2em" }}
+        >
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
@@ -127,10 +190,10 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                   shipped.
                 </Typography>
               </React.Fragment>
-            ) : ( activeStep === steps.length-1 ? (
+            ) : activeStep === steps.length - 1 ? (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
@@ -142,14 +205,14 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                     onClick={onSubmit}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>
               </React.Fragment>
-            ) : ( activeStep === steps.length-2 ? (
+            ) : activeStep === steps.length - 2 ? (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
@@ -157,19 +220,19 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                   )}
 
                   <Button
-                   // disabled={orderInfo.map(ele => ele === undefined)}
-                    variant="contained" 
+                    // disabled={orderInfo.map(ele => ele === undefined)}
+                    variant="contained"
                     onClick={handleNextOnPaymentForm}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>
               </React.Fragment>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
@@ -177,16 +240,16 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                   )}
 
                   <Button
-                  // disabled={orderInfo.map(ele => ele === undefined)}
-                    variant="contained" 
+                    // disabled={orderInfo.map(ele => ele === undefined)}
+                    variant="contained"
                     onClick={handleNextOnAddressForm}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>
               </React.Fragment>
-            )))}
+            )}
           </React.Fragment>
         </Paper>
       </Container>
@@ -195,11 +258,11 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
 }
 
 const mapState = ({ auth, orders, newOrder }) => {
-  const cart = orders.find(order => order.status === 'cart');
+  const cart = orders.find((order) => order.status === "cart");
   return {
     auth,
     cart,
-    newOrder
+    newOrder,
   };
 };
 
@@ -212,7 +275,7 @@ const mapDispatch = (dispatch) => {
       dispatch(updateOrder(order, userInfo));
     },
     updateUser: (user) => {
-      dispatch(updateUser(user,));
+      dispatch(updateUser(user));
     },
     checkout: (cart, userInfo) => {
       dispatch(checkout(cart, userInfo));
