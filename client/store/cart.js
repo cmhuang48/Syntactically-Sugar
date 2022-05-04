@@ -7,12 +7,16 @@ const CREATE_CUSTOM = 'CREATE_CUSTOM';
 // THUNK CREATORS
 export const checkout = (cart, userInfo) => {
   window.localStorage.setItem('cart', '[]')
+  console.log('here')
   return async (dispatch) => {
+    console.log('here2')
     const newOrder = (await axios.post('/api/orders', { status: 'order' })).data
+    console.log('hi',newOrder)
     for (let obj in cart) {
+      console.log(obj)
       if (obj.newProduct) {
         const newProduct = (await axios.post('/api/products', obj.newProduct));
-        await axios.post('/api/lineItems', { quantity: obj.quantity, productId: newProduct.productId, orderId: newOrder.id }).data;
+        await axios.post('/api/lineItems', { quantity: obj.quantity, productId: newProduct.id, orderId: newOrder.id }).data;
       } else {
         await axios.post('/api/lineItems', { quantity: obj.quantity, productId: obj.productId, orderId: newOrder.id }).data;
       }

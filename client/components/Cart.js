@@ -40,11 +40,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
                 if (product) total += product.price * lineItem.quantity;
                 
                 return (
-<<<<<<< HEAD
-                  <LineItemInCart lineItem={lineItem}/>
-=======
                   <LineItemInCart lineItem={lineItem} product={product} />
->>>>>>> 6d1bc42a93aaec46e342adf1e4cc8547cf522471
                 )
               })}
               <tr>
