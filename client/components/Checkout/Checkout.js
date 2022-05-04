@@ -74,7 +74,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
         // creates custom products and new lineItems
         createCustom(existingCart, cart.id);
       }
-      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv }, userInfo);
+      updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, email });
       if (saveAddress) {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 
@@ -122,7 +122,7 @@ function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser,
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {auth.id ? orderInfo.id : newOrder.id}. We have emailed your order
+                  Your order number is {auth.id ? orderInfo.id : newOrder?.id}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>

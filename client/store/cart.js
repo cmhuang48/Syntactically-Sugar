@@ -9,7 +9,7 @@ export const checkout = (cart, orderInfo) => {
   const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, email } = orderInfo;
   window.localStorage.setItem('cart', '[]')
   return async (dispatch) => {
-    let newOrder = (await axios.post('/api/orders', { status: 'order' })).data
+    let newOrder = (await axios.post('/api/orders', { status: 'order', firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, email })).data;
     for (let obj in cart) {
       if (obj.newProduct) {
         const newProduct = (await axios.post('/api/products', obj.newProduct));
@@ -18,10 +18,11 @@ export const checkout = (cart, orderInfo) => {
         await axios.post('/api/lineItems', { quantity: obj.quantity, productId: obj.productId, orderId: newOrder.id }).data;
       }
     }
-    newOrder = await axios.put(`/api/orders/${newOrder.id}`, { id: newOrder.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
-    const message = `Thank you for shopping at Syntactically Sugar! Your order number is ${newOrder.id}. We will send you an update when your order has shipped.`
-    orderInfo = { ...orderInfo, orderId: newOrder.id, message }
-    await axios.post('/api/email', orderInfo)
+    if (orderInfo.email) {
+      const message = `Thank you for shopping at Syntactically Sugar! Your order number is ${newOrder.id}. We will send you an update when your order has shipped.`
+      orderInfo = { ...orderInfo, orderId: newOrder.id, message };
+      await axios.post('/api/email', orderInfo);
+    }
     dispatch({
       type: CHECKOUT,
       newOrder
