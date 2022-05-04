@@ -48,6 +48,25 @@ class CustomCupcake extends React.Component {
           <option value='vanilla'>Vanilla</option>
           <option value='chocolate'>Chocolate</option>
           <option value='strawberry'>Strawberry</option>
+          <option value='caramel'>Caramel</option>
+          <option value='mint'>Mint</option>
+          <option value='buttercup'>Buttercup</option>
+          <option value='pecan'>Pecan</option>
+          <option value='almond'>Almond</option>
+          <option value='hazelnut'>Hazelnut</option>
+          <option value='coconut'>Coconut</option>
+          <option value='cranberry'>Cranberry</option>
+          <option value='peach'>Peach</option>
+          <option value='raspberry'>Raspberry</option>
+          <option value='apple'>Apple</option>
+          <option value='orange'>Orange</option>
+          <option value='lemon'>Lemon</option>
+          <option value='mango'>Mango</option>
+          <option value='pineapple'>Pineapple</option>
+          <option value='banana'>Banana</option>
+          <option value="peanut butter">Peanut Butter</option>
+          <option value="nutella">Nutella</option>
+
         </select>
         <br />
         <select name='frosting' value={frosting} onChange={onChange}>
@@ -55,6 +74,29 @@ class CustomCupcake extends React.Component {
           <option value='vanilla'>Vanilla</option>
           <option value='chocolate'>Chocolate</option>
           <option value='strawberry'>Strawberry</option>
+          <option value='caramel'>Caramel</option>
+          <option value='mint'>Mint</option>
+          <option value='buttercup'>Buttercup</option>
+          <option value='pecan'>Pecan</option>
+          <option value='almond'>Almond</option>
+          <option value='hazelnut'>Hazelnut</option>
+          <option value='coconut'>Coconut</option>
+          <option value='cranberry'>Cranberry</option>
+          <option value='peach'>Peach</option>
+          <option value='raspberry'>Raspberry</option>
+          <option value='apple'>Apple</option>
+          <option value='orange'>Orange</option>
+          <option value='lemon'>Lemon</option>
+          <option value='mango'>Mango</option>
+          <option value='pineapple'>Pineapple</option>
+          <option value='coffee'>Coffee</option>
+          <option value= 'oreo'>Oreo</option>
+          <option value='peanut butter'>Peanut Butter</option>
+          <option value='cream cheese'>Cream Cheese</option>
+          <option value='strawberry jam'>Strawberry Jam</option>
+          <option value='nutella'>Nutella</option>
+
+
         </select>
         < br />
         <input name='message' value={message} placeholder='Enter Message' onChange={onChange} />
