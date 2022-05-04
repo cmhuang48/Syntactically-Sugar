@@ -30,10 +30,10 @@ async function seed() {
     Product.create({ category: 'cake', name: 'Red Velvet', price: 50.00, quantityInStock: 10, size: 9, image: 'https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg' }),
     Product.create({ category: 'cake', name: 'Rainbow', price: 60.00, quantityInStock: 10, size: 12, image: "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg" }),
     Product.create({ category: 'cake', name: 'Funfetti', price: 50.00, quantityInStock: 3, size: 12, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
-    Product.create({ category: 'cake', name: 'Matcha', price: 50.00, quantityInStock: 6, size: 9, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
-    Product.create({ category: 'cake', name: 'Tiramisu Mille', price: 50.00, quantityInStock: 5, size: 12, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
-    Product.create({ category: 'cake', name: 'Pistachio Mille', price: 50.00, quantityInStock: 8, size: 9, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
-    Product.create({ category: 'cake', name: 'Seasonal', price: 50.00, quantityInStock: 7, size: 12, image: "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg" }),
+    Product.create({ category: 'cake', name: 'Matcha', price: 50.00, quantityInStock: 6, size: 9, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb5tsrULea7UgME7rJ_1DCFVJYcqta52S3eA&usqp=CAU" }),
+    Product.create({ category: 'cake', name: 'Tiramisu', price: 50.00, quantityInStock: 5, size: 12, image: "https://bakingamoment.com/wp-content/uploads/2017/06/IMG_3437-tiramisu-cake-square.jpg" }),
+    Product.create({ category: 'cake', name: 'Pistachio', price: 50.00, quantityInStock: 8, size: 9, image: "https://64.media.tumblr.com/7794f3fb58dd75f9febca38751654e41/1c878b7e68f0b85f-35/s1280x1920/00da43f04aa76b16b405c75e1052f2c04a3dc8bb.jpg" }),
+    Product.create({ category: 'cake', name: 'Seasonal: Lemon', price: 50.00, quantityInStock: 7, size: 12, image: "https://i.pinimg.com/736x/6c/f0/36/6cf036a90c176977997d9134d78d8087.jpg" }),
   ])
 
   console.log(`seeded ${cakes.length} cakes`)
