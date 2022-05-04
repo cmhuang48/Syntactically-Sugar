@@ -12,16 +12,16 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import { updateOrder, updateUser, checkout} from '../../store';
+import { createCustom, updateOrder, updateUser, checkout } from '../../store';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const theme = createTheme();
 
-
-function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
+function Checkout({ auth, cart, newOrder, createCustom, updateOrder, updateUser, checkout }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orderInfo, setOrderInfo] = React.useState({
+    id: '',
     firstName: '',
     lastName: '',
     address1: '',
@@ -35,8 +35,8 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
     expDate: '',
     cvv: '',
     email: '',
-    saveAddress: '',
-    saveCard: ''
+    saveAddress: false,
+    saveCard: false
   });
 
   const handleBack = () => {
@@ -61,31 +61,38 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
 
   const onChange = (ev) => {
     const change = {};
-    change[ev.target.id] = ev.target.value;
-    setOrderInfo(orderInfo=>({...orderInfo, ...change}));
+    change[ev.target.name] = ev.target.value;
+    setOrderInfo({...orderInfo, ...change});
   }
 
   const onSubmit = () => {
     const { firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv, saveAddress, saveCard } = orderInfo;
+    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
+    const userInfo = { email: orderInfo.email };
     if (auth.username) {
-      const userInfo = {
-        email: orderInfo.email
+      setOrderInfo({...orderInfo, id: cart.id});
+      if (existingCart) {
+        // creates custom products and new lineItems
+        createCustom(existingCart, cart.id);
       }
       updateOrder({ id: cart.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv }, userInfo);
+      if (saveAddress) {
+        updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
+      } 
+      if (saveCard) {
+        updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
+      }
+    } else {
+      // creates new user, new order, and new lineItems
+      checkout(existingCart, userInfo);
+      setOrderInfo({ id: newOrder.id });
+      updateOrder({ id: newOrder.id, userId: auth.id, firstName, lastName, address1, address2, city, state, zip, country, cardName, cardNumber, expDate, cvv });
       if (saveAddress === 'yes') {
         updateUser({ id: auth.id, firstName, lastName, address1, address2, city, state, zip, country });
       } 
       if (saveCard === 'yes') {
         updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
       }
-    } else {
-      const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-      // creates new user, new order, and new lineItems
-      const userInfo = {
-        email: orderInfo.email
-      }
-
-      checkout(existingCart, userInfo);
     }
     setActiveStep(activeStep + 1);
   }
@@ -97,7 +104,7 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
       case 1:
         return <PaymentForm orderInfo={orderInfo} onChange={onChange} />;
       case 2:
-        return <Review orderInfo={orderInfo} onChange={onChange} />;
+        return <Review orderInfo={orderInfo} />;
       default:
         throw new Error('Unknown step');
     }
@@ -124,7 +131,7 @@ function Checkout({ auth, cart, updateOrder, updateUser, checkout, newOrder }) {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {auth.username?cart?.id:newOrder?.id}. We have emailed your order
+                  Your order number is {orderInfo.id}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
@@ -207,6 +214,9 @@ const mapState = ({ auth, orders, newOrder }) => {
 
 const mapDispatch = (dispatch) => {
   return {
+    createCustom: (cart, cartId) => {
+      dispatch(createCustom(cart, cartId));
+    },
     updateOrder: (order, userInfo) => {
       dispatch(updateOrder(order, userInfo));
     },

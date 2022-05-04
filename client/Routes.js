@@ -6,17 +6,16 @@ import Home from './components/Home'
 import { me, loadProducts, loadLineItems, loadOrders, loadUsers } from './store'
 import Cakes from './components/Cakes'
 import Cake from './components/Cake'
-import CreateCake from './components/CreateCake'
+import CustomCake from './components/CustomCake'
 import Cupcakes from './components/Cupcakes'
 import Cupcake from './components/Cupcake'
-import CreateCupcake from './components/CreateCupcake'
+import CustomCupcake from './components/CustomCupcake'
 import Orders from './components/Orders'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout/Checkout'
 import UserProfile from './components/UserProfile'
 import UpdateProduct from './components/UpdateProduct'
 import DashBoard from './components/DashBoard'
-import CreateNewProduct from './components/CreateNewProduct'
 import AllUsers from './components/AllUsers'
 import AllProducts from './components/AllProducts'
 
@@ -41,35 +40,35 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
-            <Route exact path="/cakes/custom" component={CreateCake} />
+            <Route exact path="/cakes/custom" component={CustomCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route exact path='/cupcakes/custom' component={CreateCupcake} />
+            <Route exact path='/cupcakes/custom' component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/dashboard" component={DashBoard} />
-            <Route path="/createNewProduct" component={CreateNewProduct} />
-            <Route path="/allUsers" component={AllUsers}/>
+            <Route path="/users" component={AllUsers}/>
             <Route path="/allProducts" component={AllProducts}/>
             <Route exact path='/products/:id/edit' component={UpdateProduct}/>
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
-            <Route path='/' exact component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route path="/home" component={Home} />
 			      <Route exact path="/cakes" component={Cakes} />
-            <Route exact path='/cakes/custom' component={CreateCake} />
+            <Route exact path='/cakes/custom' component={CustomCake} />
             <Route path="/cakes/:id" component={Cake}/>
             <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route exact path='/cupcakes/custom' component={CreateCupcake} />
+            <Route exact path='/cupcakes/custom' component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Redirect to="/home" />
           </Switch>
         )}
       </div>

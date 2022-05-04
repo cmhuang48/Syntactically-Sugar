@@ -6,21 +6,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+function Review({ orderInfo, auth, associatedLineItems, products }) {
+  const payments = [
+    { name: 'Card type', detail: 'Visa' },
+    { name: 'Card holder', detail: orderInfo.cardName },
+    { name: 'Card number', detail: orderInfo.cardNumber },
+    { name: 'Expiry date', detail: orderInfo.expDate },
+  ];
 
-function Review({ auth, associatedLineItems, products }) {
   let cart;
+  const existingCart = JSON.parse(window.localStorage.getItem('cart'));
 
   if (auth.username) {
-    cart = associatedLineItems;
+    cart = [...associatedLineItems, ...existingCart];
   } else {
-    cart = JSON.parse(window.localStorage.getItem('cart'));
+    cart = existingCart;
   }
 
   let total = 0;
@@ -32,13 +32,13 @@ function Review({ auth, associatedLineItems, products }) {
       </Typography>
       <List disablePadding>
         {cart.map((lineItem) => {
-          const product = products.find(product => product.id === lineItem.productId);
+          const product = lineItem.newProduct ? lineItem.newProduct : products.find(product => product.id === lineItem.productId);
+          if (product) total += product.price * lineItem.quantity;
 
-          total += product.price * lineItem.quantity;
           return (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
+          <ListItem sx={{ py: 1, px: 0 }}>
             <ListItemText primary={product.name} secondary={product.category} />
-            <Typography variant="body2">{`${lineItem.quantity} @ ${product.price}`}</Typography>
+            <Typography variant="body2">{`${lineItem.quantity} x $${product.price}`}</Typography>
           </ListItem>
           )
         })}
@@ -55,8 +55,10 @@ function Review({ auth, associatedLineItems, products }) {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{orderInfo.firstName} {orderInfo.lastName}</Typography>
+          <Typography gutterBottom>{orderInfo.address1}</Typography>
+          <Typography gutterBottom>{orderInfo.address2}</Typography>
+          <Typography gutterBottom>{orderInfo.city}, {orderInfo.state}, {orderInfo.zip}, {orderInfo.country}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>

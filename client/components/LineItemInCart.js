@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateLineItem, deleteLineItem } from '../store';
-import {loadLineItems} from '../store'
+import { updateLineItem, deleteLineItem, loadLineItems } from '../store';
 
 const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineItem, deleteLineItem }) => {
   const destroy = () => {
@@ -36,6 +35,7 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
     }
     else if (auth.username) {
       const updatedItem = { id: lineItem.id, quantity: lineItem.quantity*1-1, productId: lineItem.productId, orderId: lineItem.orderId, tiers: lineItem.tiers*1, size: line.Item.size*1 };
+
       updateLineItem(updatedItem);
     } else {
       const existingCart = JSON.parse(window.localStorage.getItem('cart'));
@@ -47,11 +47,30 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
       loadLineItems();
     }
   };
+  
+  if (lineItem.newProduct) {
+    const destroyCustom = () => {
+      let existingCart = JSON.parse(window.localStorage.getItem('cart'));
+      existingCart = existingCart.filter(obj => JSON.stringify(obj.newProduct) !== JSON.stringify(lineItem.newProduct));
+      window.localStorage.setItem('cart', JSON.stringify(existingCart));
+      loadLineItems();
+    };
 
-  const product = products.find(product => product?.id === lineItem.productId*1);
+    return (
+      <tr>
+        <td className='cartImage'><img src={lineItem.newProduct.image}/></td>
+        <td>{lineItem.newProduct.name}</td>
+        <td>{lineItem.newProduct.category}</td>
+        <td>
+          <button className='deleteBtn' onClick={destroyCustom}>Remove Item</button>
+        </td>
+        <td>${lineItem.newProduct.price * lineItem.quantity}</td>
+      </tr>
+    );
+  }
 
-  if(!product) return null;
-
+  if (!products.length) return null;
+  const product = products.find(product => product.id === lineItem.productId*1);  
   let currentQuantity;
   let currentTiers
   let currentSize
@@ -59,20 +78,15 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
     currentQuantity = lineItem.quantity;
     currentTiers = lineItem.tiers;
     currentSize = lineItem.size;
-  } else {
-    const existingCart = JSON.parse(window.localStorage.getItem('cart'));
-    const existingLineItem = existingCart.find(obj => obj.productId === lineItem.productId);
-    currentQuantity = existingLineItem.quantity;
-  }
-
+  } 
   return (
     <tr key={product.id}>
-      <td className='cartImage'><a href={`/cakes/${product.id}`}><img src={product.image}/></a></td>
+      <td className='cartImage'><a href={`/${product.category}s/${product.id}`}><img src={product.image}/></a></td>
       <td>{product.name}</td>
       <td>{product.category}</td>
       <td>
         <button className='increaseBtn' onClick={decrease}>-</button>
-        {currentQuantity}
+        {lineItem.quantity}
         <button className='decreaseBtn' onClick={increase}>+</button>
       </td>
       <td>{currentTiers}</td>
@@ -80,7 +94,7 @@ const LineItemInCart = ({ lineItem, auth, products, loadLineItems, updateLineIte
       <td>
         <button className='deleteBtn' onClick={destroy}>Remove Item</button>
       </td>
-      <td>${product.price * currentQuantity}</td>
+      <td>${product.price * lineItem.quantity}</td>
     </tr>
   );
 };
@@ -94,8 +108,8 @@ const mapDispatch = (dispatch) => {
     deleteLineItem: (lineItem) => {
       dispatch(deleteLineItem(lineItem));
     },
-    loadLineItems: ()=>{
-      dispatch(loadLineItems())
+    loadLineItems: () => {
+      dispatch(loadLineItems());
     }
   };
 };

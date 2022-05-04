@@ -52,7 +52,7 @@ class Cupcake extends React.Component {
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
 
-    if(!cupcake) return null;
+    if (!cupcake) return null;
 
     return (
     <>

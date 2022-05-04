@@ -11,12 +11,12 @@ class UpdateProduct extends Component {
 			image: this.props.product ? this.props.product.image : '',
 			quantityInStock: this.props.product ? this.props.product.quantityInStock : ''
 		};
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidUpdate (prevProps) {
-		if(!prevProps.product && this.props.product) {
+		if (!prevProps.product && this.props.product) {
 			this.setState({
 				name: this.props.product.name, 
 				price: this.props.product.price, 

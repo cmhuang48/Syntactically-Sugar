@@ -55,7 +55,7 @@ console.log('newLineItem', newLineItem)
     const { quantity, tiers, size } = this.state;
     const { onChange, onSubmit } = this;
     
-    if(!cake) return null;
+    if (!cake) return null;
 
     return (
       <>

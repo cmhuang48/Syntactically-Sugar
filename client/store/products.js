@@ -25,25 +25,29 @@ export const createProduct = (product) => {
       type: CREATE_PRODUCT,
       product: newProduct
     })
+    history.push(`/${product.category}s`)
   }
 }
 
-export const deleteProduct = (id, history) => {
+export const deleteProduct = (product, history) => {
    return async (dispatch) => { 
-    const {data: product } = await axios.delete(`/api/products/${id}`);
+    await axios.delete(`/api/products/${product.id}`).data
     dispatch({
       type: DELETE_PRODUCT,
       product
     })
-    history.push('/dashboard')
+    history.push(`/${product.category}s`)
    }
 }
 
 export const updateProduct = (product, history) => {
-  return async dispatch => {
-    const response = await axios.put(`/api/products/${product.id}`, product);
-    dispatch({type: UPDATE_PRODUCT, product: response.data});
-    history.push(`/dashboard`)
+  return async (dispatch) => {
+    const updatedProduct = (await axios.put(`/api/products/${product.id}`, product)).data
+    dispatch({
+      type: UPDATE_PRODUCT, 
+      product: updatedProduct
+    });
+    history.push(`/${product.category}s/${product.id}`)
   }
 } 
 
