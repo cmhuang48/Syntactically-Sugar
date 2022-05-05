@@ -215,7 +215,7 @@ input {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  background-color:#fbbdbd42;
+  background-color: #fbbdbd42;
 }
 
 @media (min-width: 767px) {
