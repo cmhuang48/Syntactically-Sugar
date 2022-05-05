@@ -207,6 +207,13 @@ input {
   color: #f58d72;
   font-size: 20px;
 }
+.navbar {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
 @media (min-width: 767px) {
   .cakeImage {
     width: 20vw;
