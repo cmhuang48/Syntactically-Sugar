@@ -12,8 +12,8 @@ class UpdateProduct extends React.Component {
       name: this.props.product.id ? this.props.product.name : "",
       price: this.props.product.id ? this.props.product.price : "",
       image: this.props.product.id ? this.props.product.image : "",
-      quantityInStock: this.props.product
-       .id ? this.props.product.quantityInStock
+      quantityInStock: this.props.product.id
+        ? this.props.product.quantityInStock
         : "",
     };
     this.handleChange = this.handleChange.bind(this);
@@ -45,8 +45,7 @@ class UpdateProduct extends React.Component {
   }
 
   render() {
-    const { name, price, image, quantityInStock } =
-      this.state;
+    const { name, price, image, quantityInStock } = this.state;
     const { handleChange, handleSubmit } = this;
     return (
       <div className="row">
@@ -90,9 +89,7 @@ class UpdateProduct extends React.Component {
           <form onSubmit={(ev) => ev.preventDefault()}>
             <button
               style={{ margin: "20px auto auto", width: "70px" }}
-              onClick={() =>
-                this.props.deleteProduct(this.props.product)
-              }
+              onClick={() => this.props.deleteProduct(this.props.product)}
             >
               Delete
             </button>

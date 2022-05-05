@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import {
-  me,
-  loadProducts,
-  loadLineItems,
-  loadOrders,
-  loadUsers,
-} from "./store";
 import Cakes from "./components/Cakes";
 import Cake from "./components/Cake";
 import CustomCake from "./components/CustomCake";
@@ -24,6 +18,14 @@ import UpdateProduct from "./components/UpdateProduct";
 import DashBoard from "./components/DashBoard";
 import AllUsers from "./components/AllUsers";
 import AllProducts from "./components/AllProducts";
+
+import {
+  me,
+  loadProducts,
+  loadLineItems,
+  loadOrders,
+  loadUsers,
+} from "./store";
 
 /**
  * COMPONENT
@@ -46,9 +48,11 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
+            <Route path="/cakes/sort/:sort" component={Cakes} />
             <Route exact path="/cakes/custom" component={CustomCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
+            <Route path="/cakes/sort/:sort" component={Cupcakes} />
             <Route exact path="/cupcakes/custom" component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />
@@ -65,9 +69,11 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
+            <Route path="/cakes/sort/:sort" component={Cakes} />
             <Route exact path="/cakes/custom" component={CustomCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
+            <Route path="/cakes/sort/:sort" component={Cupcakes} />
             <Route exact path="/cupcakes/custom" component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/cart" component={Cart} />

@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Cupcakes = ({ cupcakes }) => {
+const Cupcakes = ({ cupcakes, history }) => {
   return (
     <div>
       <h1 className="font-effect-shadow-multiple">Cupcakes</h1>
       <small style={{ color: "#666" }}>{cupcakes.length} results</small>
+      <select onChange={(ev) => history.push(`/cakes/sort/${ev.target.value}`)}>
+        <option value=''>Sort By</option>
+        <option value='price_asc'>Price (low - high)</option>
+        <option value='price_desc'>Price (high - low)</option>
+      </select>
       <ul className="cakeContainer">
         {cupcakes.map((cupcake) => {
           return (
@@ -36,8 +41,15 @@ const Cupcakes = ({ cupcakes }) => {
   );
 };
 
-const mapState = ({ products }) => {
+const mapState = ({ products }, { match }) => {
   const cupcakes = products.filter((product) => product.category === "cupcake");
+  const sort = match.params.sort;
+  if (sort === 'price_asc') {
+    cupcakes.sort((a,b) => a.price - b.price);
+  }
+  if (sort === 'price_desc') {
+    cupcakes.sort((a,b) => b.price - a.price);
+  }
   return {
     cupcakes,
   };
