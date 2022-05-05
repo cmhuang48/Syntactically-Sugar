@@ -1,13 +1,13 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {authenticate} from '../store'
+import React from "react";
+import { connect } from "react-redux";
+
+import { authenticate } from "../store";
 
 /**
  * COMPONENT
  */
-const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
-
+const AuthForm = (props) => {
+  const { name, displayName, handleSubmit, error } = props;
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -28,10 +28,13 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <img src = "https://64.media.tumblr.com/14853973edb0609f6e3ef11ffbd91d31/23030b2c9b9bec6c-26/s2048x3072/cabe9809bf8e5cd1584b284889e5a1145ef1321b.pnj" className="signUp"/>
+      <img
+        src="https://64.media.tumblr.com/14853973edb0609f6e3ef11ffbd91d31/23030b2c9b9bec6c-26/s2048x3072/cabe9809bf8e5cd1584b284889e5a1145ef1321b.pnj"
+        className="signUp"
+      />
     </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
@@ -40,34 +43,34 @@ const AuthForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
+const mapLogin = (state) => {
   return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-  }
-}
+    name: "login",
+    displayName: "Login",
+    error: state.auth.error,
+  };
+};
 
-const mapSignup = state => {
+const mapSignup = (state) => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.auth.error
-  }
-}
+    name: "signup",
+    displayName: "Sign Up",
+    error: state.auth.error,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const username = evt.target.username.value
-      const password = evt.target.password.value
-      const localCart = JSON.parse(window.localStorage.getItem('cart'))
-      dispatch(authenticate(username, password, formName, localCart))
-    }
-  }
-}
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const username = evt.target.username.value;
+      const password = evt.target.password.value;
+      const localCart = JSON.parse(window.localStorage.getItem("cart"));
+      dispatch(authenticate(username, password, formName, localCart));
+    },
+  };
+};
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapDispatch)(AuthForm);
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm);

@@ -1,11 +1,11 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Routes from './Routes'
-import Copyright from './components/Copyright'
+import React from "react";
+import Navbar from "./components/Navbar";
+import Routes from "./Routes";
+import Copyright from "./components/Copyright";
 
 const App = () => {
-  if (!window.localStorage.getItem('cart')) {
-    window.localStorage.setItem('cart', '[]')
+  if (!window.localStorage.getItem("cart")) {
+    window.localStorage.setItem("cart", "[]");
   }
 
   return (
@@ -14,7 +14,7 @@ const App = () => {
       <Routes />
       <Copyright />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

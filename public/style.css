@@ -1,57 +1,57 @@
 body {
   font-family: "unica one", sans-serif;
   color: #6b5049;
-  background: #FFF4EE;
-  
+  background: #fff4ee;
 }
 p {
-	font-size: 1.2em;
-	font-family: 'Crafty Girls';
+  font-size: 1.2em;
+  font-family: "Crafty Girls";
   color: #367042;
 }
 .homepic {
-	width: 50%;
-	height: 50%;
-
+  width: 50%;
+  height: 50%;
 }
 .aboutUs {
-	width: 50%;
-	height: 50%;
+  width: 50%;
+  height: 50%;
 }
 .signUp {
-	background-size:cover;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width:100%;
-	margin:0 auto;
-}
-.headerpic{
-	background-size:cover;
-  max-width:750px;
+  background-size: cover;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width:100%;
-  margin:0 auto;
+  width: 100%;
+  margin: 0 auto;
+}
+.headerpic {
+  background-size: cover;
+  max-width: 750px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
 }
 a {
   text-decoration: none;
-  font-family: 'sofia';
+  font-family: "sofia";
   color: #f58d72;
 }
 h3 {
-	font-family: 'beth ellen';
-  color: #6b5049;
-  font-size: 25px;
-}
-h1 {
-	  font-family: 'beth ellen';
+  font-family: "beth ellen";
   color: #6b5049;
   font-size: 30px;
+  text-align: center;
+}
+h1 {
+  font-family: "beth ellen";
+  color: #6b5049;
+  font-size: 30px;
+  text-align: center;
 }
 p {
-font-family: 'unica one';
+  font-family: "unica one";
   color: #f58d72;
   font-size: 20px;
   align-self: auto;
@@ -79,162 +79,164 @@ img {
 }
 
 .photoex {
-	width: 20vw;
-		height: 20vw;
-		margin-bottom: 15px;
-  }
+  width: 20vw;
+  height: 20vw;
+  margin-bottom: 15px;
+}
 
 li {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 .product-title {
-	display: block;
-	font-size: 20px;
+  display: block;
+  font-size: 20px;
 }
 
 .column1 {
-	float: left;
-	width: 50%;
+  float: left;
+  width: 50%;
 }
-  
+
 .row:after {
-	content: "";
-	display: table;
-	clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 .borderinfo {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	border: solid 3px #367042;
-	border-radius: 10px;
-	background-color: #ffffff;
-	padding: 5px;
-  }
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: solid 3px #367042;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 5px;
+}
 .info {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	border: solid 3px #367042;
-	border-radius: 10px;
-	background-color: #ffffff;
-	padding: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: solid 3px #367042;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 5px;
+  flex-wrap: wrap;
 }
 .cakeContainer {
-	display: flex;
-	padding: 35px;
-	margin: 0 auto 20px;
-	justify-content: space-around;
-	text-align: center;
-	flex-wrap: wrap;
+  display: flex;
+  padding: 35px;
+  margin: 0 auto 20px;
+  justify-content: space-around;
+  text-align: center;
+  flex-wrap: wrap;
 }
 .cakeBox {
-	flex-direction: column;
+  flex-direction: column;
 }
 .cakeImage {
-	width: 40vw;
-	height: 40vw;
-	margin-bottom: 15px;
+  width: 40vw;
+  height: 40vw;
+  margin-bottom: 15px;
 }
 .cake-details {
-	display: flex;
-	margin: 0 auto;
-	justify-content: center;
-	flex-direction: column;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  flex-direction: column;
 }
 .cake-details > img {
-	width: 80%;
+  width: 80%;
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
-   opacity: 1;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
 }
 .cake-add-to-cart {
-	width: 50%;
-	justify-content: center;
-	align-items: center;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
 }
 .custom-cupcake {
-	display: flex;
-	flex-direction: column;
-	padding: 1rem;
-	text-align: center;
-	border: solid 3px #367042;
-	border-radius: 10px;
-	margin: 0 auto;
-	justify-content: space-around;
-	background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  border: solid 3px #367042;
+  border-radius: 10px;
+  margin: 0 auto;
+  justify-content: space-around;
+  background-color: #ffffff;
 }
 .custom-cake {
-	display: flex;
-	flex-direction: column;
-	padding: 1rem;
-	text-align: center;
-	border: solid 3px #367042;
-	border-radius: 10px;
-	margin: 0 auto;
-	background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  border: solid 3px #367042;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #ffffff;
 }
 .orders {
-	display: flex;
-	flex-direction: column;
-	padding: 1rem;
-	text-align: center;
-	border: solid 3px #367042;
-	border-radius: 10px;
-	margin: 0 auto;
-	justify-content: space-around;
-	background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  border: solid 3px #367042;
+  border-radius: 10px;
+  margin: 0 auto;
+  justify-content: space-around;
+  background-color: #ffffff;
 }
 h2 {
-	font-family: 'unica one';
-	color: #f58d72;
-	font-size: 20px;
-	float: left
+  font-family: "unica one";
+  color: #f58d72;
+  font-size: 20px;
+  float: left;
 }
 ul {
-	list-style-type: symbols(#f4cbc182);
-	font-family: 'unica one';
-	float: left
-
+  list-style-type: symbols(#f4cbc182);
+  font-family: "unica one";
+  float: left;
 }
 input {
-	font-family: 'unica one';
-	color: #f58d72;
-	font-size: 20px;
-
+  font-family: "unica one";
+  color: #f58d72;
+  font-size: 20px;
 }
 
 .input1 {
-	font-family: 'unica one';
-	color: #f58d72;
-	font-size: 20px;
-	
+  font-family: "unica one";
+  color: #f58d72;
+  font-size: 20px;
 }
+.navbar {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  background-color:#fbbdbd42;
+}
+
 @media (min-width: 767px) {
-	.cakeImage {
-		width: 20vw;
-		height: 20vw;
-		margin-bottom: 15px;
-	
-	}
+  .cakeImage {
+    width: 20vw;
+    height: 20vw;
+    margin-bottom: 15px;
+  }
 
-	.cake-details {
-		flex-direction: row;
-		justify-content: space-around;
-	}
+  .cake-details {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-	.cake-details > img {
-		width: 40%;
-	}
+  .cake-details > img {
+    width: 40%;
+  }
 
-	.cake-add-to-cart {
-		width: 40%;
-		justify-content: center;
-		align-items: center;
-	}
-
+  .cake-add-to-cart {
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+  }
 }
-
-
