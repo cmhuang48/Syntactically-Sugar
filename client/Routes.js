@@ -110,7 +110,7 @@ const mapDispatch = (dispatch) => {
     },
     loadUsers() {
       dispatch(loadUsers());
-    },
+    }
   };
 };
 
