@@ -7,6 +7,7 @@ class Cake extends React.Component {
     super();
     this.state = {
       quantity: 1,
+      updateQuantity: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -14,8 +15,15 @@ class Cake extends React.Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    const { auth, cake, order, lineItem, createLineItem, updateLineItem } =
-      this.props;
+    const {
+      auth,
+      cake,
+      order,
+      lineItem,
+      createLineItem,
+      updateLineItem
+    } = this.props;
+
     const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
