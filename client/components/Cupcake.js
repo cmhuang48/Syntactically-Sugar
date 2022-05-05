@@ -14,25 +14,24 @@ class Cupcake extends React.Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    const { auth, cupcake, order, lineItem, createLineItem, updateLineItem } =
-      this.props;
+    const { auth, cupcake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
-        const updatedItem = {
+        const updatedLineItem = {
           id: lineItem.id,
           quantity: lineItem.quantity * 1 + quantity * 1,
           productId: cupcake.id,
           orderId: order.id,
         };
-        updateLineItem(updatedItem);
+        updateLineItem(updatedLineItem);
       } else {
-        const newItem = {
+        const newLineItem = {
           quantity: quantity * 1,
           productId: cupcake.id,
           orderId: order.id,
         };
-        createLineItem(newItem);
+        createLineItem(newLineItem);
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem("cart"));
@@ -41,8 +40,7 @@ class Cupcake extends React.Component {
       );
       const idx = existingCart.indexOf(existingLineItem);
       if (existingLineItem) {
-        existingLineItem.quantity =
-          existingLineItem.quantity * 1 + quantity * 1;
+        existingLineItem.quantity = existingLineItem.quantity * 1 + quantity * 1;
         existingCart[idx] = existingLineItem;
       } else {
         existingLineItem = { productId: cupcake.id, quantity: quantity * 1 };
@@ -60,7 +58,7 @@ class Cupcake extends React.Component {
   }
 
   render() {
-    const { cupcake, auth, lineItemToCheckOut } = this.props;
+    const { cupcake } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
 
@@ -73,9 +71,7 @@ class Cupcake extends React.Component {
           <div className="cake-add-to-cart">
             <h1>{cupcake.name} cupcake</h1>
             <p>Price: ${cupcake.price}</p>
-            <p>
-              In Stock: {cupcake.quantityInStock}
-            </p>
+            <p>In Stock</p>
             <form onSubmit={onSubmit}>
               <p>
                 Quantity:{" "}
@@ -99,32 +95,16 @@ class Cupcake extends React.Component {
 
 const mapState = (
   { auth, products, orders, lineItems },
-  {
-    match: {
-      params: { id },
-    },
-  }
+  { match: { params: { id } } }
 ) => {
   const cupcake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const orderInOrder = orders.find((order) => order.status === "order");
-
-  const lineItem = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cupcake?.id && lineItem.orderId === order?.id
-  );
-  const lineItemToCheckOut = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cupcake?.id &&
-      lineItem.orderId === orderInOrder?.id
-  );
-
+  const lineItem = lineItems.find((lineItem) => lineItem.productId === cupcake?.id && lineItem.orderId === order?.id);
   return {
     auth,
     cupcake,
     order,
-    lineItem,
-    lineItemToCheckOut,
+    lineItem
   };
 };
 

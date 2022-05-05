@@ -114,7 +114,6 @@ async function seed() {
       name: "Vanilla",
       price: 45.0,
       quantityInStock: 5,
-      size: 9,
       image:
         "https://static.onecms.io/wp-content/uploads/sites/19/2018/09/11/mrtrending_0905180427-2000.jpg",
     }),
@@ -123,7 +122,6 @@ async function seed() {
       name: "Chocolate",
       price: 60.0,
       quantityInStock: 5,
-      size: 12,
       image:
         "https://64.media.tumblr.com/51947a2c282a410467a6efc04ec12e57/1c878b7e68f0b85f-cd/s540x810/78bcdc3929891608eefbc76b5f5fcff4666d3ab3.jpg",
     }),
@@ -132,7 +130,6 @@ async function seed() {
       name: "Strawberry",
       price: 40.0,
       quantityInStock: 5,
-      size: 9,
       image:
         "https://64.media.tumblr.com/c2756ccbc61bc7eebd8cce937f8fe8c6/1c878b7e68f0b85f-ae/s540x810/2f1ef9193485874ec945ded8b9e0290804481305.jpg",
     }),
@@ -141,7 +138,6 @@ async function seed() {
       name: "Red Velvet",
       price: 50.0,
       quantityInStock: 10,
-      size: 9,
       image:
         "https://www.simplyrecipes.com/thmb/fWHkQtywilGAJCP_FFsyg7AOTRA=/3047x4570/filters:fill(auto,1)/Simply-Recipes-Red-Velvet-Cake-Lead-3-11190d90cd18461f9d0fa7b5e115b43d.jpg",
     }),
@@ -150,7 +146,6 @@ async function seed() {
       name: "Rainbow",
       price: 60.0,
       quantityInStock: 10,
-      size: 12,
       image:
         "https://www.sugarhero.com/wp-content/uploads/2019/03/rainbow-cake-3.jpg",
     }),
@@ -159,7 +154,6 @@ async function seed() {
       name: "Funfetti",
       price: 50.0,
       quantityInStock: 3,
-      size: 12,
       image:
         "https://www.onceuponachef.com/images/2020/09/Sprinkle-Funfetti-Cake-scaled.jpg",
     }),
@@ -168,7 +162,6 @@ async function seed() {
       name: "Matcha",
       price: 50.0,
       quantityInStock: 6,
-      size: 9,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb5tsrULea7UgME7rJ_1DCFVJYcqta52S3eA&usqp=CAU",
     }),
@@ -177,7 +170,6 @@ async function seed() {
       name: "Tiramisu",
       price: 50.0,
       quantityInStock: 5,
-      size: 12,
       image:
         "https://bakingamoment.com/wp-content/uploads/2017/06/IMG_3437-tiramisu-cake-square.jpg",
     }),
@@ -186,7 +178,6 @@ async function seed() {
       name: "Pistachio",
       price: 50.0,
       quantityInStock: 8,
-      size: 9,
       image:
         "https://64.media.tumblr.com/7794f3fb58dd75f9febca38751654e41/1c878b7e68f0b85f-35/s1280x1920/00da43f04aa76b16b405c75e1052f2c04a3dc8bb.jpg",
     }),
@@ -195,7 +186,6 @@ async function seed() {
       name: "Seasonal: Lemon",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://i.pinimg.com/736x/6c/f0/36/6cf036a90c176977997d9134d78d8087.jpg",
     }),
@@ -204,7 +194,6 @@ async function seed() {
       name: "Carrot",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco/k%2Farchive%2Fefb05f7945e573b58f04e5f6ed30fe5a2d687f7c",
     }),
@@ -213,7 +202,6 @@ async function seed() {
       name: "Boston Creme",
       price: 40.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://www.bakefromscratch.com/wp-content/uploads/2017/06/BostonCreme954MBS.jpg",
     }),
@@ -222,7 +210,6 @@ async function seed() {
       name: "Chocolate Chip",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://www.ambitiouskitchen.com/wp-content/uploads/2020/01/Grain-Free-Peanut-Butter-Banana-Cake-5-1.jpg",
     }),
@@ -231,7 +218,6 @@ async function seed() {
       name: "Chocolate Peanut Butter",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://tastesbetterfromscratch.com/wp-content/uploads/2016/03/Chocolate-Peanut-Butter-Cake-21.jpg",
     }),
@@ -240,7 +226,6 @@ async function seed() {
       name: "Cherry",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://i2.wp.com/completelydelicious.com/wp-content/uploads/2020/01/cherry-chip-layer-cake-3.jpg",
     }),
@@ -249,7 +234,6 @@ async function seed() {
       name: "Coconut",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://i0.wp.com/www.mythreeseasons.com/wp-content/uploads/2019/04/Coconut-Layer-Cake-2-800x1200.jpg?resize=800%2C1200",
     }),
@@ -258,7 +242,6 @@ async function seed() {
       name: "Coffee",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://www.seasonsandsuppers.ca/wp-content/uploads/2017/03/berry-crumb-cake-4-3.jpg",
     }),
@@ -267,7 +250,6 @@ async function seed() {
       name: "Cranberry",
       price: 50.0,
       quantityInStock: 7,
-      size: 12,
       image:
         "https://www.savingdessert.com/wp-content/uploads/2020/12/Cranberry-Christmas-Cake-7-500x500.jpg",
     }),

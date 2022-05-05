@@ -32,7 +32,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/orders">Orders</Link>
           <Link to="/cart">Cart</Link>
-          <Link onClick={open} to="/profile" className="dropdown">
+          <Link to="/profile" className="dropdown" onClick={open}>
             {username[0].toUpperCase() + username.slice(1)}'s Profile
           </Link>
           <a href="#" onClick={handleClick}>

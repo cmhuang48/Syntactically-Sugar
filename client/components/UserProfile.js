@@ -50,24 +50,10 @@ class UserProfile extends React.Component {
         <h1 className="font-effect-shadow-multiple">
           {username[0].toUpperCase() + username.slice(1)}'s info
         </h1>
-        <div className="column1">
-          <div className="info">
-            <p>User Name:{username}</p>
-            <p>First Name:{firstName}</p>
-            <p>Last Name:{lastName}</p>
-            <p>Address 1:{address1}</p>
-            <p>Address 2:{address2}</p>
-            <p>City:{city}</p>
-            <p>State:{state}</p>
-            <p>Zip:{zip}</p>
-            <p>Country:{country}</p>
-          </div>
-        </div>
         <div className="borderinfo">
           <form onSubmit={onSubmit}>
             <p>
-              {" "}
-              Username:
+              Username: {}
               <input
                 name="username"
                 value={username}
@@ -77,8 +63,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              {" "}
-              First Name:
+              First Name: {}
               <input
                 name="firstName"
                 value={firstName}
@@ -88,7 +73,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              Last Name:
+              Last Name: {}
               <input
                 name="lastName"
                 value={lastName}
@@ -98,7 +83,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              Address:
+              Address: {}
               <input
                 name="address1"
                 value={address1}
@@ -108,8 +93,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              {" "}
-              Address 2:
+              Address 2: {}
               <input
                 name="address2"
                 value={address2}
@@ -119,8 +103,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              {" "}
-              City:
+              City: {}
               <input
                 name="city"
                 value={city}
@@ -130,8 +113,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              {" "}
-              State:
+              State: {}
               <input
                 name="state"
                 value={state}
@@ -141,8 +123,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              {" "}
-              Zip:
+              Zip: {}
               <input
                 name="zip"
                 value={zip}
@@ -152,8 +133,7 @@ class UserProfile extends React.Component {
               />
             </p>
             <p>
-              {" "}
-              Country:
+              Country: {}
               <input
                 name="country"
                 value={country}
@@ -164,7 +144,7 @@ class UserProfile extends React.Component {
             </p>
           </form>
           <br />
-          <button> Update </button>
+          <button>Update</button>
         </div>
       </div>
     );

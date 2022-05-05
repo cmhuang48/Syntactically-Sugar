@@ -12,7 +12,6 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
 
 import { deleteProduct } from "../store";
-import UpdateProduct from "./UpdateProduct";
 
 const useStyles = makeStyles({ root: { minWidth: "10px" } });
 
