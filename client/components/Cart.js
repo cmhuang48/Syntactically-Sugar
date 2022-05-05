@@ -46,8 +46,6 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
               <td>Total:</td>
               <td>${total.toFixed(2)}</td>
             </tr>
