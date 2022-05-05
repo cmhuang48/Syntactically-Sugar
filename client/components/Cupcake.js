@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { createLineItem, updateLineItem } from "../store";
 
 class Cupcake extends React.Component {
@@ -101,7 +100,6 @@ const mapState = (
   const cupcake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
   const lineItem = lineItems.find((lineItem) => lineItem.productId === cupcake?.id && lineItem.orderId === order?.id);
-
   return {
     auth,
     cupcake,

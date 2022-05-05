@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { createLineItem, updateLineItem } from "../store";
 
 class Cake extends React.Component {
@@ -63,7 +62,6 @@ class Cake extends React.Component {
     const { cake } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
-
     if (!cake) return null;
 
     return (

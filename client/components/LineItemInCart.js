@@ -31,8 +31,6 @@ const LineItemInCart = ({
         quantity: lineItem.quantity * 1 + 1,
         productId: lineItem.productId,
         orderId: lineItem.orderId,
-        tiers: lineItem.tiers * 1,
-        size: lineItem.size * 1,
       };
       updateLineItem(updatedItem);
     } else {
@@ -57,8 +55,6 @@ const LineItemInCart = ({
         quantity: lineItem.quantity * 1 - 1,
         productId: lineItem.productId,
         orderId: lineItem.orderId,
-        tiers: lineItem.tiers * 1,
-        size: lineItem.size * 1,
       };
       updateLineItem(updatedItem);
     } else {
@@ -106,6 +102,7 @@ const LineItemInCart = ({
   const product = products.find(
     (product) => product.id === lineItem.productId * 1
   );
+
   return (
     <tr key={product.id}>
       <td className="cartImage">

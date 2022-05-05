@@ -10,10 +10,6 @@ class CreateNewProduct extends React.Component {
     this.state = {
       category: "",
       name: "",
-      size: "",
-      tiers: "",
-      flavor: "",
-      frosting: "",
       price: "",
       quantityInStock: "",
       image: "",
@@ -34,17 +30,7 @@ class CreateNewProduct extends React.Component {
   }
 
   render() {
-    const {
-      category,
-      name,
-      size,
-      tiers,
-      flavor,
-      frosting,
-      price,
-      quantityInStock,
-      image,
-    } = this.state;
+    const { category, name, price, quantityInStock, image } = this.state;
     const { handleChange, handleSubmit } = this;
     return (
       <div className="borderinfo">
@@ -60,33 +46,6 @@ class CreateNewProduct extends React.Component {
             name="name"
             value={name}
             placeholder="Enter name"
-            onChange={handleChange}
-          />
-          <p htmlFor="size">Size:</p>
-          <select name="size" value={size} onChange={handleChange}>
-            <option value="">Select a size</option>
-            <option value="9">9 inch</option>
-            <option value="12">12 inch</option>
-          </select>
-          <p htmlFor="tiers">Tiers:</p>
-          <select name="tiers" value={tiers} onChange={handleChange}>
-            <option value="">Select number of tiers</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-          <p htmlFor="flavor">Flavor:</p>
-          <input
-            name="flavor"
-            value={flavor}
-            placeholder="Enter flavor"
-            onChange={handleChange}
-          />
-          <p htmlFor="frosting">Frosting:</p>
-          <input
-            name="frosting"
-            value={frosting}
-            placeholder="Enter frosting"
             onChange={handleChange}
           />
           <p htmlFor="price">Price:</p>
@@ -115,15 +74,7 @@ class CreateNewProduct extends React.Component {
           <button
             style={{ marginTop: "20px" }}
             disabled={
-              !category ||
-              !name ||
-              !size ||
-              !tiers ||
-              !flavor ||
-              !frosting ||
-              !price ||
-              !quantityInStock ||
-              !image
+              !category || !name || !price || !quantityInStock || !image
             }
           >
             Add
