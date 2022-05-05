@@ -30,9 +30,7 @@ const LineItemInCart = ({
         id: lineItem.id,
         quantity: lineItem.quantity * 1 + 1,
         productId: lineItem.productId,
-        orderId: lineItem.orderId,
-        tiers: lineItem.tiers * 1,
-        size: lineItem.size * 1,
+        orderId: lineItem.orderId
       };
       updateLineItem(updatedItem);
     } else {
@@ -56,9 +54,7 @@ const LineItemInCart = ({
         id: lineItem.id,
         quantity: lineItem.quantity * 1 - 1,
         productId: lineItem.productId,
-        orderId: lineItem.orderId,
-        tiers: lineItem.tiers * 1,
-        size: lineItem.size * 1,
+        orderId: lineItem.orderId
       };
       updateLineItem(updatedItem);
     } else {
@@ -107,12 +103,8 @@ const LineItemInCart = ({
     (product) => product.id === lineItem.productId * 1
   );
   let currentQuantity;
-  let currentTiers;
-  let currentSize;
   if (auth.username) {
     currentQuantity = lineItem.quantity;
-    currentTiers = lineItem.tiers;
-    currentSize = lineItem.size;
   }
   return (
     <tr key={product.id}>
@@ -132,8 +124,6 @@ const LineItemInCart = ({
           +
         </button>
       </td>
-      <td>{currentTiers}</td>
-      <td>{currentSize}</td>
       <td>
         <button className="deleteBtn" onClick={destroy}>
           Remove Item
