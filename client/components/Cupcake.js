@@ -73,9 +73,7 @@ class Cupcake extends React.Component {
           <div className="cake-add-to-cart">
             <h1>{cupcake.name} cupcake</h1>
             <p>Price: ${cupcake.price}</p>
-            <p>
-              In Stock: {cupcake.quantityInStock}
-            </p>
+            <p>In Stock: {cupcake.quantityInStock}</p>
             <form onSubmit={onSubmit}>
               <p>
                 Quantity:{" "}

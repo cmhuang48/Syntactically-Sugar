@@ -9,6 +9,7 @@ class Cake extends React.Component {
       quantity: 1,
       tiers: 1,
       size: 9,
+      updateQuantity: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,10 +23,9 @@ class Cake extends React.Component {
       order,
       lineItem,
       createLineItem,
-      updateLineItem,
-      lineItemToCheckOut,
+      updateLineItem
     } = this.props;
-    const { quantity, tiers, size } = this.state;
+    const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
         const updatedLineItem = {
@@ -69,8 +69,8 @@ class Cake extends React.Component {
   }
 
   render() {
-    const { cake, auth, lineItemToCheckOut } = this.props;
-    const { quantity, tiers, size } = this.state;
+    const { cake, auth } = this.props;
+    const { quantity } = this.state;
     const { onChange, onSubmit } = this;
     if (!cake) return null;
 
@@ -113,24 +113,16 @@ const mapState = (
 ) => {
   const cake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const completedOrders = orders.find((order) => order.status === "order");
   const lineItem = lineItems.find(
     (lineItem) =>
       lineItem.productId === cake?.id && lineItem.orderId === order?.id
-  );
-
-  const lineItemToCheckOut = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cake?.id &&
-      lineItem.orderId === completedOrders?.id
   );
 
   return {
     auth,
     cake,
     order,
-    lineItem,
-    lineItemToCheckOut,
+    lineItem
   };
 };
 

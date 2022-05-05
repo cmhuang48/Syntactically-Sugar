@@ -16,8 +16,7 @@ import UpdateProduct from "./UpdateProduct";
 
 const useStyles = makeStyles({ root: { minWidth: "10px" } });
 
-const AllProducts = ({ products, foo, product, lineItemToCheckOut }) => {
-  console.log(lineItemToCheckOut);
+const AllProducts = ({ products, foo }) => {
   const classes = useStyles();
   return (
     <>
@@ -77,14 +76,7 @@ const AllProducts = ({ products, foo, product, lineItemToCheckOut }) => {
 
 const mapState = ({ products, orders, lineItems }) => {
   const product = products.find((product) => product.id === id * 1);
-  const orderInOrder = orders.find((order) => order.status === "order");
-  const lineItemToCheckOut = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === product?.id &&
-      lineItem.orderId === orderInOrder?.id
-  );
-
-  return { products, lineItemToCheckOut };
+  return { products };
 };
 
 const mapDispatch = (dispatch) => {
