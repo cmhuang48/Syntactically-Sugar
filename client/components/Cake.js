@@ -7,8 +7,6 @@ class Cake extends React.Component {
     super();
     this.state = {
       quantity: 1,
-      tiers: 1,
-      size: 9,
       updateQuantity: "",
     };
     this.onChange = this.onChange.bind(this);
@@ -25,6 +23,7 @@ class Cake extends React.Component {
       createLineItem,
       updateLineItem
     } = this.props;
+
     const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
@@ -69,7 +68,7 @@ class Cake extends React.Component {
   }
 
   render() {
-    const { cake, auth } = this.props;
+    const { cake } = this.props;
     const { quantity } = this.state;
     const { onChange, onSubmit } = this;
     if (!cake) return null;
@@ -80,11 +79,11 @@ class Cake extends React.Component {
           <img src={cake.image} />
           <div className="cake-add-to-cart">
             <h1>{cake.name} cake</h1>
+            <p>In Stock</p>
             <p>Price: ${cake.price}</p>
-            <p>In Stock: {cake.quantityInStock}</p>
             <form onSubmit={onSubmit}>
               <p>
-                Quantity:{" "}
+                Quantity: {}
                 <input
                   name="quantity"
                   value={quantity}
@@ -105,19 +104,11 @@ class Cake extends React.Component {
 
 const mapState = (
   { auth, products, orders, lineItems },
-  {
-    match: {
-      params: { id },
-    },
-  }
+  { match: { params: { id } } }
 ) => {
   const cake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const lineItem = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cake?.id && lineItem.orderId === order?.id
-  );
-
+  const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order?.id);
   return {
     auth,
     cake,

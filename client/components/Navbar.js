@@ -25,14 +25,14 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
     </Link>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className = "navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/cakes">Cakes</Link>
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/orders">Orders</Link>
           <Link to="/cart">Cart</Link>
-          <Link onClick={open} to="/profile" className="dropdown">
+          <Link to="/profile" className="dropdown" onClick={open}>
             {username[0].toUpperCase() + username.slice(1)}'s Profile
           </Link>
           <a href="#" onClick={handleClick}>
@@ -40,7 +40,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           </a>
         </div>
       ) : (
-        <div>
+        <div className= "navbar">
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
           <Link to="/cakes">Cakes</Link>

@@ -102,10 +102,7 @@ const LineItemInCart = ({
   const product = products.find(
     (product) => product.id === lineItem.productId * 1
   );
-  let currentQuantity;
-  if (auth.username) {
-    currentQuantity = lineItem.quantity;
-  }
+
   return (
     <tr key={product.id}>
       <td className="cartImage">
