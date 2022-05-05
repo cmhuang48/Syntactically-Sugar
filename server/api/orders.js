@@ -29,17 +29,6 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // create a new order
-<<<<<<< HEAD
-router.post('/', async(req, res, next) => {
-	try {
-		const order = await Order.create(req.body)
-		console.log(order)
-		res.status(201).json(order)
-	} catch (err) {
-		next(err)
-	}
-})
-=======
 router.post("/", async (req, res, next) => {
   try {
     const order = await Order.create(req.body);
@@ -48,7 +37,6 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
->>>>>>> 36890d763e3b26162d33df4613c6d665347cb1d7
 
 // update an order
 router.put("/:id", async (req, res, next) => {
