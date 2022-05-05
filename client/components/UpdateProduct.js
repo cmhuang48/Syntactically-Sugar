@@ -1,20 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import { updateProduct, deleteProduct } from "../store";
 
-class UpdateProduct extends Component {
+class UpdateProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.product ? this.props.product.name : "",
-      price: this.props.product ? this.props.product.price : "",
-      image: this.props.product ? this.props.product.image : "",
+      id: this.props.product.id ? this.props.product.id : "",
+      category: this.props.product.id ? this.props.product.category : "",
+      name: this.props.product.id ? this.props.product.name : "",
+      price: this.props.product.id ? this.props.product.price : "",
+      image: this.props.product.id ? this.props.product.image : "",
       quantityInStock: this.props.product
-        ? this.props.product.quantityInStock
-        : "",
-      lineItemToCheckOut: this.props.lineItemToCheckOut
-        ? this.props.lineItemToCheckOut
+       .id ? this.props.product.quantityInStock
         : "",
     };
     this.handleChange = this.handleChange.bind(this);
@@ -22,20 +21,21 @@ class UpdateProduct extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.product && this.props.product) {
+    if (!prevProps.product.id && this.props.product.id) {
       this.setState({
+        id: this.props.product.id,
+        category: this.props.product.category,
         name: this.props.product.name,
         price: this.props.product.price,
         image: this.props.product.image,
         quantityInStock: this.props.product.quantityInStock,
-        lineItemToCheckOut: this.props.lineItemToCheckOut,
       });
     }
   }
 
   handleSubmit(ev) {
     ev.preventDefault();
-    this.props.updateProduct({ ...this.props.product, ...this.state });
+    this.props.updateProduct(this.state);
   }
 
   handleChange(ev) {
@@ -45,7 +45,7 @@ class UpdateProduct extends Component {
   }
 
   render() {
-    const { name, price, image, quantityInStock, lineItemToCheckOut } =
+    const { name, price, image, quantityInStock } =
       this.state;
     const { handleChange, handleSubmit } = this;
     return (
@@ -67,32 +67,31 @@ class UpdateProduct extends Component {
               placeholder="Enter price"
               onChange={handleChange}
             />
+            <p> Quantity in Stock: </p>
+            <input
+              name="quantityInStock"
+              value={quantityInStock}
+              placeholder="Enter Quantity in stock"
+              onChange={handleChange}
+            />
             <p> Image Url: </p>
             <input
               name="image"
               value={image}
               size="100"
-              placeholder="Enter image url"
-              onChange={handleChange}
-            />
-            <p> Quantity in Stock: </p>
-            <input
-              name="quantityInStock"
-              value={quantityInStock - lineItemToCheckOut.quantity}
-              placeholder="Enter Quantity in stock"
+              placeholder="Enter image URL"
               onChange={handleChange}
             />
             <br />
             <button style={{ margin: "20px auto auto", width: "70px" }}>
-              {" "}
-              Update{" "}
+              Update
             </button>
           </form>
           <form onSubmit={(ev) => ev.preventDefault()}>
             <button
               style={{ margin: "20px auto auto", width: "70px" }}
               onClick={() =>
-                this.props.deleteProduct(this.props.match.params.id * 1)
+                this.props.deleteProduct(this.props.product)
               }
             >
               Delete
@@ -105,7 +104,7 @@ class UpdateProduct extends Component {
 }
 
 const mapState = (
-  { products, orders, lineItems },
+  { products },
   {
     match: {
       params: { id },
@@ -113,15 +112,8 @@ const mapState = (
   }
 ) => {
   const product = products.find((product) => product.id === id * 1);
-  const orderInOrder = orders.find((order) => order.status === "order");
-  const lineItemToCheckOut = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === product?.id &&
-      lineItem.orderId === orderInOrder?.id
-  );
   return {
     product,
-    lineItemToCheckOut,
   };
 };
 
