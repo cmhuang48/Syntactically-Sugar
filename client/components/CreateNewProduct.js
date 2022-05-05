@@ -30,13 +30,7 @@ class CreateNewProduct extends React.Component {
   }
 
   render() {
-    const {
-      category,
-      name,
-      price,
-      quantityInStock,
-      image,
-    } = this.state;
+    const { category, name, price, quantityInStock, image } = this.state;
     const { handleChange, handleSubmit } = this;
     return (
       <div className="borderinfo">
@@ -80,11 +74,7 @@ class CreateNewProduct extends React.Component {
           <button
             style={{ marginTop: "20px" }}
             disabled={
-              !category ||
-              !name ||
-              !price ||
-              !quantityInStock ||
-              !image
+              !category || !name || !price || !quantityInStock || !image
             }
           >
             Add

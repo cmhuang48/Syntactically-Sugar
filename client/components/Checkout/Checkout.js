@@ -98,7 +98,7 @@ function Checkout({
       cvv,
       saveAddress,
       saveCard,
-      email
+      email,
     } = orderInfo;
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     if (auth.username) {
@@ -107,25 +107,23 @@ function Checkout({
         // creates custom products and new lineItems
         createCustom(existingCart, cart.id);
       }
-      updateOrder(
-        {
-          id: cart.id,
-          userId: auth.id,
-          firstName,
-          lastName,
-          address1,
-          address2,
-          city,
-          state,
-          zip,
-          country,
-          cardName,
-          cardNumber,
-          expDate,
-          cvv,
-          email
-        }
-      );
+      updateOrder({
+        id: cart.id,
+        userId: auth.id,
+        firstName,
+        lastName,
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        country,
+        cardName,
+        cardNumber,
+        expDate,
+        cvv,
+        email,
+      });
       if (saveAddress) {
         updateUser({
           id: auth.id,
@@ -187,9 +185,9 @@ function Checkout({
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {auth.id ? orderInfo.id : newOrder?.id}. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  Your order number is {auth.id ? orderInfo.id : newOrder?.id}.
+                  We have emailed your order confirmation, and will send you an
+                  update when your order has shipped.
                 </Typography>
               </React.Fragment>
             ) : activeStep === steps.length - 1 ? (

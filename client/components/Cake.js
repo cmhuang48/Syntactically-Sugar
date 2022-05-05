@@ -8,7 +8,7 @@ class Cake extends React.Component {
     this.state = {
       quantity: 1,
       tiers: 1,
-      size: 9
+      size: 9,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -16,23 +16,30 @@ class Cake extends React.Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    const { auth, cake, order, lineItem, createLineItem, updateLineItem, lineItemToCheckOut } =
-      this.props;
-    const { quantity, tiers, size} = this.state;
+    const {
+      auth,
+      cake,
+      order,
+      lineItem,
+      createLineItem,
+      updateLineItem,
+      lineItemToCheckOut,
+    } = this.props;
+    const { quantity, tiers, size } = this.state;
     if (auth.username) {
       if (lineItem) {
         const updatedLineItem = {
           id: lineItem.id,
           quantity: lineItem.quantity * 1 + quantity * 1,
           productId: cake.id,
-          orderId: order.id
+          orderId: order.id,
         };
         updateLineItem(updatedLineItem);
       } else {
         const newLineItem = {
           quantity: quantity * 1,
           productId: cake.id,
-          orderId: order.id
+          orderId: order.id,
         };
         createLineItem(newLineItem);
       }
@@ -62,12 +69,11 @@ class Cake extends React.Component {
   }
 
   render() {
-    const { cake, auth, lineItemToCheckOut} = this.props;
-    const { quantity, tiers, size} = this.state;
+    const { cake, auth, lineItemToCheckOut } = this.props;
+    const { quantity, tiers, size } = this.state;
     const { onChange, onSubmit } = this;
     if (!cake) return null;
-  
-   
+
     return (
       <>
         <div className="cake-details">
@@ -75,9 +81,7 @@ class Cake extends React.Component {
           <div className="cake-add-to-cart">
             <h1>{cake.name} cake</h1>
             <p>Price: ${cake.price}</p>
-            <p>
-              In Stock: {cake.quantityInStock}
-            </p>
+            <p>In Stock: {cake.quantityInStock}</p>
             <form onSubmit={onSubmit}>
               <p>
                 Quantity:{" "}
@@ -109,7 +113,7 @@ const mapState = (
 ) => {
   const cake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const completedOrders = orders.find((order) => order.status === "order")
+  const completedOrders = orders.find((order) => order.status === "order");
   const lineItem = lineItems.find(
     (lineItem) =>
       lineItem.productId === cake?.id && lineItem.orderId === order?.id
@@ -117,7 +121,8 @@ const mapState = (
 
   const lineItemToCheckOut = lineItems.find(
     (lineItem) =>
-      lineItem.productId === cake?.id && lineItem.orderId === completedOrders?.id
+      lineItem.productId === cake?.id &&
+      lineItem.orderId === completedOrders?.id
   );
 
   return {
@@ -136,7 +141,7 @@ const mapDispatch = (dispatch) => {
     },
     updateLineItem: (lineItem) => {
       dispatch(updateLineItem(lineItem));
-    }
+    },
   };
 };
 

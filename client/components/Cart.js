@@ -33,13 +33,16 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               <th></th>
               <th style={{ width: "50px" }}>Price</th>
             </tr>
-            {cart.map(lineItem => {
-              const product = lineItem.newProduct ? lineItem.newProduct : products.find(product => product.id === lineItem.productId*1);
-              if (product) total += Number((product.price * lineItem.quantity).toFixed(2));
+            {cart.map((lineItem) => {
+              const product = lineItem.newProduct
+                ? lineItem.newProduct
+                : products.find(
+                    (product) => product.id === lineItem.productId * 1
+                  );
+              if (product)
+                total += Number((product.price * lineItem.quantity).toFixed(2));
 
-              return (
-                <LineItemInCart lineItem={lineItem} product={product} />
-              )
+              return <LineItemInCart lineItem={lineItem} product={product} />;
             })}
             <tr>
               <td></td>

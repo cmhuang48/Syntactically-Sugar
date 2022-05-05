@@ -30,7 +30,7 @@ const LineItemInCart = ({
         id: lineItem.id,
         quantity: lineItem.quantity * 1 + 1,
         productId: lineItem.productId,
-        orderId: lineItem.orderId
+        orderId: lineItem.orderId,
       };
       updateLineItem(updatedItem);
     } else {
@@ -54,7 +54,7 @@ const LineItemInCart = ({
         id: lineItem.id,
         quantity: lineItem.quantity * 1 - 1,
         productId: lineItem.productId,
-        orderId: lineItem.orderId
+        orderId: lineItem.orderId,
       };
       updateLineItem(updatedItem);
     } else {

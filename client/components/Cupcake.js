@@ -115,7 +115,8 @@ const mapState = (
   );
   const lineItemToCheckOut = lineItems.find(
     (lineItem) =>
-      lineItem.productId === cupcake?.id && lineItem.orderId === orderInOrder?.id
+      lineItem.productId === cupcake?.id &&
+      lineItem.orderId === orderInOrder?.id
   );
 
   return {

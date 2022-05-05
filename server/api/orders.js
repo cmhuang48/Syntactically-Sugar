@@ -38,16 +38,16 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// update an order 
-router.put('/:id', async(req, res, next) => {
-	try {
-		let order = await Order.findByPk(req.body.id)
-		if (order.status === 'cart') {
-			order = await order.update({ ...req.body, status: 'order' });
-			await Order.create({ userId: order.userId })
-		}
-		res.json(order)
-	} catch (err) {
-		next(err)
-	}
-})
+// update an order
+router.put("/:id", async (req, res, next) => {
+  try {
+    let order = await Order.findByPk(req.body.id);
+    if (order.status === "cart") {
+      order = await order.update({ ...req.body, status: "order" });
+      await Order.create({ userId: order.userId });
+    }
+    res.json(order);
+  } catch (err) {
+    next(err);
+  }
+});
