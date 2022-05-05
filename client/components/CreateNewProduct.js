@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { createProduct } from "../store";
-import Box from "@material-ui/core/Box";
 
 class CreateNewProduct extends React.Component {
   constructor() {

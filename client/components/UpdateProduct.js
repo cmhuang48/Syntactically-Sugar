@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { updateProduct, deleteProduct } from "../store";
 
 class UpdateProduct extends Component {

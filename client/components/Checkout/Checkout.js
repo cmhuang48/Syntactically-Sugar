@@ -9,9 +9,11 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
+
 import { createCustom, updateOrder, updateUser, checkout } from "../../store";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];

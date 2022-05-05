@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import LineItemInCart from "./LineItemInCart";
 import { Link } from "react-router-dom";
+
+import LineItemInCart from "./LineItemInCart";
 
 const Cart = ({ auth, associatedLineItems, products }) => {
   let cart;
