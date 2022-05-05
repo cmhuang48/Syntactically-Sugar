@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, Route } from "react-router-dom";
-import { createLineItem, updateLineItem} from "../store";
+import { createLineItem, updateLineItem } from "../store";
 
 class Cake extends React.Component {
   constructor() {
@@ -26,18 +25,14 @@ class Cake extends React.Component {
           id: lineItem.id,
           quantity: lineItem.quantity * 1 + quantity * 1,
           productId: cake.id,
-          orderId: order.id,
-          tiers: tiers,
-          size: size,
+          orderId: order.id
         };
         updateLineItem(updatedLineItem);
       } else {
         const newLineItem = {
           quantity: quantity * 1,
           productId: cake.id,
-          orderId: order.id,
-          tiers: tiers * 1,
-          size: size * 1,
+          orderId: order.id
         };
         createLineItem(newLineItem);
       }
@@ -81,21 +76,9 @@ class Cake extends React.Component {
             <h1>{cake.name} cake</h1>
             <p>Price: ${cake.price}</p>
             <p>
-              In Stock: {cake.quantityInStock - lineItemToCheckOut}
+              In Stock: {cake.quantityInStock}
             </p>
             <form onSubmit={onSubmit}>
-              <p>Tiers:</p>
-              <select value={tiers} name="tiers" onChange={onChange}>
-                <option value="">Select Number of Tiers</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-              <p>Size:</p>
-              <select value={size} name="size" onChange={onChange}>
-                <option value="9">9</option>
-                <option value="12">12</option>
-              </select>
               <p>
                 Quantity:{" "}
                 <input

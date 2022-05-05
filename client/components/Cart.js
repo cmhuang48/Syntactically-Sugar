@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import LineItemInCart from "./LineItemInCart";
 import { Link } from "react-router-dom";
+
+import LineItemInCart from "./LineItemInCart";
 
 const Cart = ({ auth, associatedLineItems, products }) => {
   let cart;
@@ -34,15 +35,13 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               <th></th>
               <th style={{ width: "50px" }}>Price</th>
             </tr>
-            {cart.map((lineItem) => {
-              const product = lineItem.newProduct
-                ? lineItem.newProduct
-                : products.find(
-                    (product) => product.id === lineItem.productId * 1
-                  );
-              if (product) total += product.price * lineItem.quantity;
+            {cart.map(lineItem => {
+              const product = lineItem.newProduct ? lineItem.newProduct : products.find(product => product.id === lineItem.productId*1);
+              if (product) total += Number((product.price * lineItem.quantity).toFixed(2));
 
-              return <LineItemInCart lineItem={lineItem} product={product} />;
+              return (
+                <LineItemInCart lineItem={lineItem} product={product} />
+              )
             })}
             <tr>
               <td></td>
@@ -52,7 +51,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               <td></td>
               <td></td>
               <td>Total:</td>
-              <td>${total}</td>
+              <td>${total.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { updateUser } from "../store";
 
 class UserProfile extends React.Component {

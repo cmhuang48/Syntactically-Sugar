@@ -35,7 +35,7 @@ function Review({ orderInfo, auth, associatedLineItems, products }) {
           const product = lineItem.newProduct
             ? lineItem.newProduct
             : products.find((product) => product.id === lineItem.productId);
-          if (product) total += product.price * lineItem.quantity;
+          if (product) total += Number((product.price * lineItem.quantity).toFixed(2));
 
           return (
             <ListItem sx={{ py: 1, px: 0 }}>
@@ -51,7 +51,7 @@ function Review({ orderInfo, auth, associatedLineItems, products }) {
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            ${total}
+            ${total.toFixed(2)}
           </Typography>
         </ListItem>
       </List>

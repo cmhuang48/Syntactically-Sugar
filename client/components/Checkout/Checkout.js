@@ -9,9 +9,11 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
+
 import { createCustom, updateOrder, updateUser, checkout } from "../../store";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
@@ -96,9 +98,9 @@ function Checkout({
       cvv,
       saveAddress,
       saveCard,
+      email
     } = orderInfo;
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
-    const userInfo = { email: orderInfo.email };
     if (auth.username) {
       setOrderInfo({ ...orderInfo, id: cart.id });
       if (existingCart) {
@@ -121,8 +123,8 @@ function Checkout({
           cardNumber,
           expDate,
           cvv,
-        },
-        userInfo
+          email
+        }
       );
       if (saveAddress) {
         updateUser({
@@ -142,40 +144,7 @@ function Checkout({
       }
     } else {
       // creates new user, new order, and new lineItems
-      checkout(existingCart, userInfo);
-      setOrderInfo({ id: newOrder.id });
-      updateOrder({
-        id: newOrder.id,
-        userId: auth.id,
-        firstName,
-        lastName,
-        address1,
-        address2,
-        city,
-        state,
-        zip,
-        country,
-        cardName,
-        cardNumber,
-        expDate,
-        cvv,
-      });
-      if (saveAddress === "yes") {
-        updateUser({
-          id: auth.id,
-          firstName,
-          lastName,
-          address1,
-          address2,
-          city,
-          state,
-          zip,
-          country,
-        });
-      }
-      if (saveCard === "yes") {
-        updateUser({ id: auth.id, cardName, cardNumber, expDate, cvv });
-      }
+      checkout(existingCart, orderInfo);
     }
     setActiveStep(activeStep + 1);
   };
@@ -218,9 +187,9 @@ function Checkout({
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {orderInfo.id}. We have emailed your
-                  order confirmation, and will send you an update when your
-                  order has shipped.
+                  Your order number is {auth.id ? orderInfo.id : newOrder?.id}. We have emailed your order
+                  confirmation, and will send you an update when your order has
+                  shipped.
                 </Typography>
               </React.Fragment>
             ) : activeStep === steps.length - 1 ? (
