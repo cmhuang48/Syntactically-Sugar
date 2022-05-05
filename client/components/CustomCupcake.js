@@ -20,18 +20,7 @@ class CustomCupcake extends React.Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    const { category, name, flavor, frosting, message, price, image } =
-      this.state;
-    const newProduct = {
-      category,
-      name,
-      flavor,
-      frosting,
-      message,
-      price,
-      image,
-    };
-    const newLineItem = { quantity: 1, newProduct };
+    const newLineItem = { quantity: 1, newProduct: this.state };
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     existingCart.push(newLineItem);
     window.localStorage.setItem("cart", JSON.stringify(existingCart));

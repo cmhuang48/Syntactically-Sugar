@@ -8,8 +8,6 @@ class Cake extends React.Component {
     super();
     this.state = {
       quantity: 1,
-      tiers: 1,
-      size: 9,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -17,9 +15,8 @@ class Cake extends React.Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    const { auth, cake, order, lineItem, createLineItem, updateLineItem } =
-      this.props;
-    const { quantity, tiers, size } = this.state;
+    const { auth, cake, order, lineItem, createLineItem, updateLineItem } = this.props;
+    const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
         const updatedLineItem = {
@@ -27,8 +24,6 @@ class Cake extends React.Component {
           quantity: lineItem.quantity * 1 + quantity * 1,
           productId: cake.id,
           orderId: order.id,
-          tiers: tiers,
-          size: size,
         };
         updateLineItem(updatedLineItem);
       } else {
@@ -36,8 +31,6 @@ class Cake extends React.Component {
           quantity: quantity * 1,
           productId: cake.id,
           orderId: order.id,
-          tiers: tiers * 1,
-          size: size * 1,
         };
         createLineItem(newLineItem);
       }
@@ -67,8 +60,8 @@ class Cake extends React.Component {
   }
 
   render() {
-    const { cake, auth, lineItemToCheckOut } = this.props;
-    const { quantity, tiers, size } = this.state;
+    const { cake } = this.props;
+    const { quantity } = this.state;
     const { onChange, onSubmit } = this;
 
     if (!cake) return null;
@@ -79,25 +72,11 @@ class Cake extends React.Component {
           <img src={cake.image} />
           <div className="cake-add-to-cart">
             <h1>{cake.name} cake</h1>
+            <p>In Stock</p>
             <p>Price: ${cake.price}</p>
-            <p>
-              In Stock: {cake.quantityInStock - lineItemToCheckOut?.quantity}
-            </p>
             <form onSubmit={onSubmit}>
-              <p>Tiers:</p>
-              <select value={tiers} name="tiers" onChange={onChange}>
-                <option value="">Select Number of Tiers</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-              <p>Size:</p>
-              <select value={size} name="size" onChange={onChange}>
-                <option value="9">9</option>
-                <option value="12">12</option>
-              </select>
               <p>
-                Quantity:{" "}
+                Quantity: {}
                 <input
                   name="quantity"
                   value={quantity}
@@ -118,29 +97,16 @@ class Cake extends React.Component {
 
 const mapState = (
   { auth, products, orders, lineItems },
-  {
-    match: {
-      params: { id },
-    },
-  }
+  { match: { params: { id } } }
 ) => {
   const cake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const orderInOrder = orders.find((order) => order.status === "order");
-  const lineItem = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cake?.id && lineItem.orderId === order?.id
-  );
-  const lineItemToCheckOut = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cake?.id && lineItem.orderId === orderInOrder?.id
-  );
+  const lineItem = lineItems.find(lineItem => lineItem.productId === cake.id && lineItem.orderId === order?.id);
   return {
     auth,
     cake,
     order,
-    lineItem,
-    lineItemToCheckOut,
+    lineItem
   };
 };
 

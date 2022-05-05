@@ -132,8 +132,6 @@ const LineItemInCart = ({
           +
         </button>
       </td>
-      <td>{currentTiers}</td>
-      <td>{currentSize}</td>
       <td>
         <button className="deleteBtn" onClick={destroy}>
           Remove Item
