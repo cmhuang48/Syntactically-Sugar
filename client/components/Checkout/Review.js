@@ -39,7 +39,7 @@ function Review({ orderInfo, auth, associatedLineItems, products }) {
             total += Number((product.price * lineItem.quantity).toFixed(2));
 
           return (
-            <ListItem sx={{ py: 1, px: 0 }}>
+            <ListItem sx={{ py: 1, px: 0 }} key={lineItem.id}>
               <ListItemText
                 primary={product.name}
                 secondary={product.category}
