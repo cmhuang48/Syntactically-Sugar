@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createLineItem, updateLineItem } from "../store";
+import { createLineItem, updateLineItem, updateQuantity } from "../store";
 
 class Cake extends React.Component {
   constructor() {
     super();
     this.state = {
       quantity: 1,
-      updateQuantity: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -124,7 +123,7 @@ const mapDispatch = (dispatch) => {
     },
     updateLineItem: (lineItem) => {
       dispatch(updateLineItem(lineItem));
-    },
+    }
   };
 };
 
