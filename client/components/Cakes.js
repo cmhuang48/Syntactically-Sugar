@@ -1,29 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Pagination from './Pagination'
+import Pagination from '@material-ui/lab/Pagination';
 
-class Cakes extends React.Component{
-  constructor(){
-    super()
+class Cakes extends React.Component {
+  constructor () {
+    super();
     this.state = {
-      currentPage : 1,
-      cakesPerPage: 5
-    }
+      page: 1,
+      amountPerPage: 12
+    };
   }
 
-  paginate = (pageNumber) => {
-    this.setState({currentPage:pageNumber})
-  }
+  render () {
+    const { cakes, history } = this.props;
+    const { page, amountPerPage } = this.state;
+    const indexOfLastCake = page * amountPerPage;
+    const indexOfFirstCake = indexOfLastCake - amountPerPage;
+    const currentCakes = cakes.slice(indexOfFirstCake, indexOfLastCake);
 
-  render(){
-    const {cakes} = this.props
-    const {currentPage, cakesPerPage} = this.state
-    const indexOfLastCake = currentPage * cakesPerPage
-    const indexOfFirstCampus = indexOfLastCake - cakesPerPage
-    const currentCakes = cakes.slice(indexOfFirstCampus, indexOfLastCake)
     return (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column'}}>
         <h1 className="font-effect-shadow-multiple">Cakes</h1>
         <small style={{ color: "#666" }}>{cakes.length} results</small>
         <select onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
@@ -31,7 +28,6 @@ class Cakes extends React.Component{
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
-        <Pagination itemsPerPage = {cakesPerPage} totalItems = {cakes.length} paginate = {this.paginate} currentPage = {currentPage} linkRoute = "cakes"/>
         <ul className="cakeContainer">
           <li>
             <Link to="/cakes/custom">
@@ -57,6 +53,7 @@ class Cakes extends React.Component{
             );
           })}
         </ul>
+        <Pagination count={Math.ceil(cakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
       </div>
     );
   }
