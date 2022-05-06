@@ -1,10 +1,13 @@
 import axios from "axios";
+import { loadLineItems } from "./lineItems";
+import { loadOrders } from "./orders";
 
 // ACTION TYPES
 const LOAD_PRODUCTS = "LOAD_PRODUCTS";
 const CREATE_PRODUCT = "CREATE_PRODUCT";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -24,15 +27,13 @@ export const createProduct = (product) => {
       await axios.post("/api/lineItems", {
         quantity: 1,
         productId: newProduct.id,
-        tiers: 1,
-        size: 9,
       })
     ).data;
     dispatch({
       type: CREATE_PRODUCT,
       product: newProduct,
     });
-    history.push(`/${product.category}s`);
+    history.push(`/dashboard`);
   };
 };
 
@@ -43,7 +44,7 @@ export const deleteProduct = (product, history) => {
       type: DELETE_PRODUCT,
       product,
     });
-    history.push(`/${product.category}s`);
+    history.push(`/dashboard`);
   };
 };
 
@@ -56,7 +57,19 @@ export const updateProduct = (product, history) => {
       type: UPDATE_PRODUCT,
       product: updatedProduct,
     });
-    history.push(`/${product.category}s/${product.id}`);
+    history.push(`/dashboard`);
+  };
+};
+
+export const updateQuantity = (quantity) => {
+  return async (dispatch) => {
+    const cake = products.find((product) => product.id === id * 1);
+    const completedOrders = orders.find((order) => order.status === "order");
+    const lineItemToCheckOut = lineItems.find((lineItem) => lineItem.productId === cake.id && lineItem.orderId === completedOrders.id);
+    dispatch({
+      type: UPDATE_QUANTITY,
+      quantity
+    });
   };
 };
 
@@ -73,6 +86,7 @@ export default function (state = [], action) {
       );
     case DELETE_PRODUCT:
       return state.filter((product) => product.id !== action.product.id);
+    case UPDATE_QUANTITY: 
     default:
       return state;
   }

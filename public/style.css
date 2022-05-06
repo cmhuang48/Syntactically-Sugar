@@ -41,12 +41,14 @@ a {
 h3 {
   font-family: "beth ellen";
   color: #6b5049;
-  font-size: 25px;
+  font-size: 30px;
+  text-align: center;
 }
 h1 {
   font-family: "beth ellen";
   color: #6b5049;
   font-size: 30px;
+  text-align: center;
 }
 p {
   font-family: "unica one";
@@ -118,6 +120,7 @@ li {
   border-radius: 10px;
   background-color: #ffffff;
   padding: 5px;
+  flex-wrap: wrap;
 }
 .cakeContainer {
   display: flex;
@@ -212,6 +215,11 @@ input {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
+}
+
+small {
+  font-family: "unica one";
+  text-align: right;
 }
 
 @media (min-width: 767px) {

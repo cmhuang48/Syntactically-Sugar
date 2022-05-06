@@ -7,6 +7,7 @@ class Cake extends React.Component {
     super();
     this.state = {
       quantity: 1,
+      updateQuantity: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
