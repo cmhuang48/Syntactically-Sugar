@@ -82,3 +82,14 @@ td {
   color: #6b5049;
   font-size: 20px;
 }
+
+
+.pageNumbers{
+  display: flex;
+  margin: 0 auto;
+}
+
+.pagination {
+  margin: 0 auto;
+  position: relative;
+}

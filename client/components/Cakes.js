@@ -17,21 +17,20 @@ class Cakes extends React.Component{
   }
 
   render(){
-    const {cakes} = this.props
+    const {cakes, history} = this.props
     const {currentPage, cakesPerPage} = this.state
     const indexOfLastCake = currentPage * cakesPerPage
     const indexOfFirstCampus = indexOfLastCake - cakesPerPage
     const currentCakes = cakes.slice(indexOfFirstCampus, indexOfLastCake)
     return (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column'}}>
         <h1 className="font-effect-shadow-multiple">Cakes</h1>
         <small style={{ color: "#666" }}>{cakes.length} results</small>
-        <select onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
+        <select style={{ width: '10%' }}onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
           <option value="">Sort By</option>
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
-        <Pagination itemsPerPage = {cakesPerPage} totalItems = {cakes.length} paginate = {this.paginate} currentPage = {currentPage} linkRoute = "cakes"/>
         <ul className="cakeContainer">
           <li>
             <Link to="/cakes/custom">
@@ -57,6 +56,9 @@ class Cakes extends React.Component{
             );
           })}
         </ul>
+        <div className='pagination'>
+          <Pagination className='cakespage' itemsPerPage = {cakesPerPage} totalItems = {cakes.length} paginate = {this.paginate} currentPage = {currentPage} linkRoute = "cakes"/>
+        </div>
       </div>
     );
   }
