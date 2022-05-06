@@ -69,7 +69,7 @@ router.put("/:id", async (req, res, next) => {
         }
       }
 
-      res.json(await LineItem.findAll({where:{orderId:order.id}}));
+      res.json(await LineItem.findAll());
     } else {
       const lineItem = await LineItem.findByPk(req.body.id);
       res.json(await lineItem.update({ quantity: req.body.quantity * 1 }));
