@@ -31,6 +31,9 @@ class Cakes extends React.Component{
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
+        <div className='pagination'>
+          <Pagination className='cakespage' itemsPerPage = {cakesPerPage} totalItems = {cakes.length} paginate = {this.paginate} currentPage = {currentPage} linkRoute = "cakes"/>
+        </div>
         <ul className="cakeContainer">
           <li>
             <Link to="/cakes/custom">

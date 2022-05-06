@@ -93,3 +93,7 @@ td {
   margin: 0 auto;
   position: relative;
 }
+
+.pagination p {
+  display: none;
+}
