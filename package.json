@@ -8,15 +8,14 @@
     "build:dev": "npm run build -- --watch --mode=development",
     "seed": "node script/seed.js",
     "start": "node server",
-    "start:dev": "npm run build:dev & npm run start-server & npm run prettify",
+    "start:dev": "npm run build:dev & npm run start-server",
     "start:dev:logger": "LOGGING=true npm run start:dev",
     "start:dev:seed": "SEED=true npm run start:dev",
     "start-server": "JWT=shh nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV=test JWT=a_secret mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" --require @babel/register --require esm ",
     "test:dev": "npm run test -- --watch",
     "test:dev:models": "npm run test:dev -- --grep=model",
-    "test:dev:routes": "npm run test:dev -- --grep=route",
-    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\""
+    "test:dev:routes": "npm run test:dev -- --grep=route"
   },
   "author": "Fullstack Academy of Code",
   "license": "MIT",
