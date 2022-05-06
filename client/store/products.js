@@ -1,13 +1,10 @@
 import axios from "axios";
-import { loadLineItems } from "./lineItems";
-import { loadOrders } from "./orders";
 
 // ACTION TYPES
 const LOAD_PRODUCTS = "LOAD_PRODUCTS";
 const CREATE_PRODUCT = "CREATE_PRODUCT";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 
 // THUNK CREATORS
 export const loadProducts = () => {
