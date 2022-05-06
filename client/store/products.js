@@ -1,6 +1,4 @@
 import axios from "axios";
-import { loadLineItems } from "./lineItems";
-import { loadOrders } from "./orders";
 
 // ACTION TYPES
 const LOAD_PRODUCTS = "LOAD_PRODUCTS";
@@ -23,12 +21,6 @@ export const loadProducts = () => {
 export const createProduct = (product) => {
   return async (dispatch) => {
     const newProduct = (await axios.post("/api/products", product)).data;
-    const newlineItem = (
-      await axios.post("/api/lineItems", {
-        quantity: 1,
-        productId: newProduct.id,
-      })
-    ).data;
     dispatch({
       type: CREATE_PRODUCT,
       product: newProduct,
