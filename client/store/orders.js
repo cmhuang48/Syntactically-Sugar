@@ -25,30 +25,36 @@ export const loadOrders = () => {
   };
 };
 
-export const createOrder = (order) => {
-  return async (dispatch) => {
-    const newOrder = (await axios.post("/api/orders", order)).data;
-    dispatch({
-      type: CREATE_ORDER,
-      order: newOrder,
-    });
-  };
-};
+// export const createOrder = (order) => {
+//   return async (dispatch) => {
+//     const token = window.localStorage.getItem("token");
+//     if (token) {
+//       const newOrder = (await axios.post("/api/orders", order)).data;
+//       dispatch({
+//         type: CREATE_ORDER,
+//         order: newOrder,
+//       });
+//     }
+//   };
+// };
 
 export const updateOrder = (order) => {
   return async (dispatch) => {
-    const updatedOrder = (await axios.put(`/api/orders/${order.id}`, order))
-      .data;
-    if (order.email) {
-      const message = `Your order number is ${order.id}. We will send you an update when your order has shipped.`;
-      order = { ...order, orderId: order.id, message };
-      await axios.post("/api/email", order);
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      const updatedOrder = (await axios.put(`/api/orders/${order.id}`, order))
+        .data;
+      if (order.email) {
+        const message = `Your order number is ${order.id}. We will send you an update when your order has shipped.`;
+        order = { ...order, orderId: order.id, message };
+        await axios.post("/api/email", order);
+      }
+      dispatch({
+        type: UPDATE_ORDER,
+        order: updatedOrder,
+      });
+      if (updatedOrder.status === "order") dispatch(loadOrders());
     }
-    dispatch({
-      type: UPDATE_ORDER,
-      order: updatedOrder,
-    });
-    if (updatedOrder.status === "order") dispatch(loadOrders());
   };
 };
 
@@ -57,8 +63,8 @@ export default function (state = [], action) {
   switch (action.type) {
     case LOAD_ORDERS:
       return action.orders;
-    case CREATE_ORDER:
-      return [...state, action.order];
+    // case CREATE_ORDER:
+    //   return [...state, action.order];
     case UPDATE_ORDER:
       return state.map((order) =>
         order.id !== action.order.id ? order : action.order

@@ -10,8 +10,8 @@ const LOAD_LOCAL_LINEITEMS = "LOAD_LOCAL_LINEITEMS";
 // THUNK CREATORS
 export const loadLineItems = () => {
   const token = window.localStorage.getItem("token");
-  const localStorage = JSON.parse(window.localStorage.getItem("cart"));
   if (token) {
+    const localStorage = JSON.parse(window.localStorage.getItem("cart"));
     window.localStorage.setItem("cart", "[]");
     return async (dispatch) => {
       let lineItems;
@@ -88,12 +88,15 @@ export const updateLineItem = (lineItem) => {
 };
 
 export const deleteLineItem = (lineItem) => {
-  return async (dispatch) => {
-    await axios.delete(`/api/lineItems/${lineItem.id}`);
-    dispatch({
-      type: DESTROY_LINEITEM,
-      lineItem,
-    });
+  const token = window.localStorage.getItem("token");
+  if (token) {
+    return async (dispatch) => {
+      await axios.delete(`/api/lineItems/${lineItem.id}`);
+      dispatch({
+        type: DESTROY_LINEITEM,
+        lineItem,
+      });
+    };
   };
 };
 
