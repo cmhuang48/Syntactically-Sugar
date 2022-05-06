@@ -42,7 +42,7 @@ export const checkout = (cart, orderInfo) => {
       })
     ).data;
     for (let obj in cart) {
-      console.log(obj)
+      console.log(obj);
       if (obj.newProduct) {
         const newProduct = await axios.post("/api/products", obj.newProduct);
         await axios.post("/api/lineItems", {

@@ -19,7 +19,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
 
   let total = 0;
 
-  if(!products.length) return null
+  if (!products.length) return null;
 
   return (
     <div style={{ marginBottom: "100%" }}>

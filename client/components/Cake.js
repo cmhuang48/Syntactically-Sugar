@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createLineItem, updateLineItem } from "../store";
+import { createLineItem, updateLineItem, updateQuantity } from "../store";
 
 class Cake extends React.Component {
   constructor() {
     super();
     this.state = {
       quantity: 1,
-      updateQuantity: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -15,14 +14,8 @@ class Cake extends React.Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    const {
-      auth,
-      cake,
-      order,
-      lineItem,
-      createLineItem,
-      updateLineItem
-    } = this.props;
+    const { auth, cake, order, lineItem, createLineItem, updateLineItem } =
+      this.props;
 
     const { quantity } = this.state;
     if (auth.username) {
@@ -131,7 +124,7 @@ const mapDispatch = (dispatch) => {
     },
     updateLineItem: (lineItem) => {
       dispatch(updateLineItem(lineItem));
-    },
+    }
   };
 };
 

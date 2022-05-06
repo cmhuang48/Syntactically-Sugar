@@ -61,17 +61,6 @@ export const updateProduct = (product, history) => {
   };
 };
 
-export const updateQuantity = (quantity) => {
-  return async (dispatch) => {
-    const cake = products.find((product) => product.id === id * 1);
-    const completedOrders = orders.find((order) => order.status === "order");
-    const lineItemToCheckOut = lineItems.find((lineItem) => lineItem.productId === cake.id && lineItem.orderId === completedOrders.id);
-    dispatch({
-      type: UPDATE_QUANTITY,
-      quantity
-    });
-  };
-};
 
 // REDUCER
 export default function (state = [], action) {
@@ -86,7 +75,6 @@ export default function (state = [], action) {
       );
     case DELETE_PRODUCT:
       return state.filter((product) => product.id !== action.product.id);
-    case UPDATE_QUANTITY: 
     default:
       return state;
   }
