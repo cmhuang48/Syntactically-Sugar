@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createLineItem, updateLineItem, updateQuantity } from "../store";
+import { createLineItem, updateLineItem} from "../store";
 
 class Cake extends React.Component {
   constructor() {
