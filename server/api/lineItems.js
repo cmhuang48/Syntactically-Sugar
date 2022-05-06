@@ -66,11 +66,10 @@ router.put("/:id", async (req, res, next) => {
             productId: localStorage[i].productId,
             orderId: order.id,
           });
-          lineItems.push(newItem);
         }
       }
 
-      res.json(lineItems);
+      res.json(await LineItem.findAll({where:{orderId:order.id}}));
     } else {
       const lineItem = await LineItem.findByPk(req.body.id);
       res.json(await lineItem.update({ quantity: req.body.quantity * 1 }));
