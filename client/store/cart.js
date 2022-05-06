@@ -42,7 +42,6 @@ export const checkout = (cart, orderInfo) => {
       })
     ).data;
     for (let obj in cart) {
-      console.log(obj)
       if (obj.newProduct) {
         const newProduct = await axios.post("/api/products", obj.newProduct);
         await axios.post("/api/lineItems", {
@@ -71,25 +70,28 @@ export const checkout = (cart, orderInfo) => {
 };
 
 export const createCustom = (cart, cartId) => {
-  window.localStorage.setItem("cart", "[]");
-  return async (dispatch) => {
-    const newLineItems = [];
-    for (let obj in cart) {
-      const newProduct = await axios.post("/api/products", obj.newProduct);
-      newLineItems.push(
-        (
-          await axios.post("/api/lineItems", {
-            quantity: obj.quantity,
-            productId: newProduct.productId,
-            orderId: cartId,
-          })
-        ).data
-      );
+  const token = window.localStorage.getItem("token");
+  if (token) {
+    window.localStorage.setItem("cart", "[]");
+    return async (dispatch) => {
+      const newLineItems = [];
+      for (let obj in cart) {
+        const newProduct = await axios.post("/api/products", obj.newProduct);
+        newLineItems.push(
+          (
+            await axios.post("/api/lineItems", {
+              quantity: obj.quantity,
+              productId: newProduct.productId,
+              orderId: cartId,
+            })
+          ).data
+        );
+      }
+      dispatch({
+        type: CREATE_CUSTOM,
+        newLineItems,
+      });
     }
-    dispatch({
-      type: CREATE_CUSTOM,
-      newLineItems,
-    });
   };
 };
 
