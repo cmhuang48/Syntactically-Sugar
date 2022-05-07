@@ -23,7 +23,7 @@ class Cakes extends React.Component {
       <div style={{ display: 'flex', flexDirection: 'column'}}>
         <h1 className="font-effect-shadow-multiple">Cakes</h1>
         <small style={{ color: "#666" }}>{cakes.length} results</small>
-        <select style={{ width: '10%' }}onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
+        <select style={{ width: '10%' }} onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
           <option value="">Sort By</option>
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>

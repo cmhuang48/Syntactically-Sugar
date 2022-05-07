@@ -215,6 +215,11 @@ select {
   color: #f58d72;
   font-size: 20px;
 }
+.select1 {
+  font-family: "unica one";
+  color: #f58d72;
+  font-size: 20px;
+}
 .navbar {
   padding: 0;
   display: flex;

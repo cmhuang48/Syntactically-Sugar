@@ -44,6 +44,7 @@ class CustomCupcake extends React.Component {
               Create Your Own Cupcake
             </h1>
             <form onSubmit={onSubmit}>
+              <p>Flavor:</p>
               <select name="flavor" value={flavor} onChange={onChange}>
                 <option value="">Select Flavor</option>
                 <option value="vanilla">Vanilla</option>
@@ -69,6 +70,7 @@ class CustomCupcake extends React.Component {
                 <option value="nutella">Nutella</option>
               </select>
               <br />
+              <p>Frosting:</p>
               <select name="frosting" value={frosting} onChange={onChange}>
                 <option value="">Select Frosting</option>
                 <option value="vanilla">Vanilla</option>
@@ -97,6 +99,7 @@ class CustomCupcake extends React.Component {
                 <option value="nutella">Nutella</option>
               </select>
               <br />
+              <p>Message:</p>
               <input
                 name="message"
                 value={message}
@@ -104,14 +107,14 @@ class CustomCupcake extends React.Component {
                 onChange={onChange}
               />
               <br />
-              <button disabled={!flavor || !frosting}>
+              <button disabled={!flavor || !frosting} className="submitButton">
                 Add Custom Cupcake Order
               </button>
             </form>
           </div>
           <div className="examples">
             <h1 className="font-effect-shadow-multiple">
-              Some of our past work:
+              Check out some of our past works!
             </h1>
             <img
               className="photoex"

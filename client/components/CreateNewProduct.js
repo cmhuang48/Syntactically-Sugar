@@ -72,10 +72,10 @@ class CreateNewProduct extends React.Component {
           />
           <br />
           <button
-            style={{ marginTop: "20px" }}
             disabled={
               !category || !name || !price || !quantityInStock || !image
             }
+            className="submitButton"
           >
             Add
           </button>
