@@ -18,7 +18,7 @@ const AllUsers = ({ users, destroy }) => {
   const classes = useStyles();
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className = 'userDashBoard'>
         <Table>
           <TableHead>
             <TableRow>
