@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-function DashBoard({ history }) {
+function DashBoard({ history, match }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -70,7 +70,7 @@ function DashBoard({ history }) {
         <CreateNewProduct history={history} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AllUsers history={history} />
+        <AllUsers history={history} match={match} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <AllProducts history={history} />
