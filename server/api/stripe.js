@@ -41,25 +41,14 @@ router.post("/checkout", async (req, res) => {
         idempotencyKey,
       }
     );
-    const coupon = await stripe.coupons.create({percent_off: 20, duration: 'once'});
-    const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        mode: 'payment',
-        discounts: [{
-          coupon: 'promo_1KwoUvGncdLk4YDTZpGroDpD',
-        }],
-        success_url: 'https://example.com/success',
-        cancel_url: 'https://example.com/cancel',
-    });
-    console.log("Charge:", {coupon})
-    //console.log("Charge:", { charge });
     status = "success";
   } catch (err) {
     console.log(err);
     status = "failure";
   }
-
   res.json({ error, status });
 });
+
+
 
 module.exports = router;
