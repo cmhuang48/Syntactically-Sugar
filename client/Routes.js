@@ -52,7 +52,7 @@ class Routes extends Component {
             <Route exact path="/cakes/custom" component={CustomCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route path="/cakes/sort/:sort" component={Cupcakes} />
+            <Route path="/cupcakes/sort/:sort" component={Cupcakes} />
             <Route exact path="/cupcakes/custom" component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
             <Route path="/orders" component={Orders} />

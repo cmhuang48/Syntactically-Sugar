@@ -47,6 +47,7 @@ class Cakes extends React.Component {
                   <div className="cakeBox">
                     <img className="cakeImage" src={cake.image} />
                     <span className="product-title">{cake.name}</span>
+                    <div>${cake.price}</div>
                   </div>
                 </Link>
               </li>
