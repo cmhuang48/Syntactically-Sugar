@@ -22,7 +22,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
   if (!products.length) return null;
 
   return (
-    <div style={{ marginBottom: "100%" }}>
+    <div>
       <h1 className="font-effect-shadow-multiple">Cart</h1>
       <div className="cartBox">
         <table>
