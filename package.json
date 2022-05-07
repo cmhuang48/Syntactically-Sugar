@@ -29,7 +29,6 @@
     "@stripe/stripe-js": "^1.29.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
-    "body-parser": "^1.20.0",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
     "css-loader": "^6.7.1",
