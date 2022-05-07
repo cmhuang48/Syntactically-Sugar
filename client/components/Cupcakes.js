@@ -29,17 +29,6 @@ class Cupcakes extends React.Component {
           <option value="price_desc">Price (high - low)</option>
         </select>
         <ul className="cakeContainer">
-          <li>
-            <Link to="/cupcakes/custom">
-              <div className="cakeBox">
-                <img
-                  className="cakeImage"
-                  src="https://images.creativemarket.com/0.1.0/ps/6337536/600/400/m2/fpnw/wm1/kyrxpus5cf11setgoakkc6bivngrm3dloqq5gotlosfroaknkr53xy8upaor8jtd-.jpg?1556962719&s=474ee12c8a3486dfbce8736c4a5cf584&fmt=webp"
-                />
-                <span className="product-title">Create A Custom Cupcake</span>
-              </div>
-            </Link>
-          </li>
           {currentCupcakes.map((cupcake) => {
             return (
               <li key={cupcake.id}>
@@ -47,13 +36,14 @@ class Cupcakes extends React.Component {
                   <div className="cakeBox">
                     <img className="cakeImage" src={cupcake.image} />
                     <span className="product-title">{cupcake.name}</span>
+                    <div>${cupcake.price}</div>
                   </div>
                 </Link>
               </li>
             );
           })}
         </ul>
-        <Pagination count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
+        <Pagination className='pagination' count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
       </div>
     );
   }
