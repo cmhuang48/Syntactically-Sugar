@@ -4,6 +4,24 @@ import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import { loadLineItems, logout } from "../store";
+import Cart from './Cart'
+
+document.addEventListener('mouseover', e=>{
+  const isDropdownButton = e.target.matches('[data-dropdown-button]')
+  
+  setTimeout(()=>{
+    if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
+    let currentDropdown
+    if(isDropdownButton){
+      currentDropdown = e.target.closest('[data-dropdown]')
+      currentDropdown.classList.toggle('active')
+    }
+    document.querySelectorAll('[data-dropdown].active').forEach(dropdown =>{
+      if(dropdown === currentDropdown) return
+      dropdown.classList.remove('active')
+    })
+  }, 500)
+})
 
 const open = (ev) => {
   if (ev.target.className === "dropdown") {
@@ -29,10 +47,28 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <Link to="/cakes">Cakes</Link>
+          <div className = 'dropdown' data-dropdown>
+            <button className = 'link' data-dropdown-button>
+              Products
+            </button>
+            <div className = 'dropdown-menu'>
+              <Link to="/cakes">Cakes</Link>
+              <Link to="/cupcakes">Cupcakes</Link>
+              <Link to="/custom">Customize!</Link>
+            </div>
+          </div>
+          {/* <Link to="/cakes">Cakes</Link>
           <Link to="/cupcakes">Cupcakes</Link>
-          <Link to="/custom">Customize!</Link>
+          <Link to="/custom">Customize!</Link> */}
           <Link to="/orders">Orders</Link>
+          <div className = 'dropdown' data-dropdown>
+            <button className = 'link' data-dropdown-button>
+              <Link to="/cart">Cart</Link>
+            </button>
+            <div className = 'dropdown-menu'>
+              <Cart/>
+            </div>
+          </div>
           <Link to="/profile" className="dropdown" onClick={open}>
             {username[0].toUpperCase() + username.slice(1)}'s Profile
           </Link>

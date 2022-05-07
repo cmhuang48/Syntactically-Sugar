@@ -254,6 +254,168 @@ async function seed() {
       image:
         "https://www.savingdessert.com/wp-content/uploads/2020/12/Cranberry-Christmas-Cake-7-500x500.jpg",
     }),
+    Product.create({
+      category: "cake",
+      name: "Gluten-free Persian",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "http://img.taste.com.au/9nTHFPeD/taste/2016/11/top-50-cakes-image-12-66330-1.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Black Forrest",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/6/66/Black_Forest_gateau.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Hummingbird",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "http://img.taste.com.au/E-7EMn0o/taste/2016/11/top-50-cakes-image-16-66335-1.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Tres Leches",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://gypsyplate.com/wp-content/uploads/2021/06/Berry-Tres-Leches-Cake-Recipe-5.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Coconut",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://gypsyplate.com/wp-content/uploads/2021/06/Coconut-Cake-Reshoot_10.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Mango",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+      "https://gypsyplate.com/wp-content/uploads/2021/06/Mango-Cake-Recipe-7-1024x1536-1.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Raspberry Tiramisu",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://gypsyplate.com/wp-content/uploads/2021/06/Raspberry-Tiramisu-Cake-Recipe.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Lemon Mousse",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://gypsyplate.com/wp-content/uploads/2021/06/Lemon-Mousse-Cake-2.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Irish Whiskey",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://gypsyplate.com/wp-content/uploads/2021/06/TheLittleEpicurean-st-patricks-day-stout-chocolate-cake.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Golden Key Caramel",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://gypsyplate.com/wp-content/uploads/2021/06/Golden-Key-Caramel-Cake-Recipe-2.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Glazed Brown Sugar Bunt",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://www.aheadofthyme.com/wp-content/uploads/2018/11/glazed-brown-sugar-bundt-cake-8.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Chocolate and Vanilla",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://img.huffingtonpost.com/asset/62155245360000396024f6a9.jpeg?cache=QCUvQjVgZC&ops=scalefit_960_noupscale&format=webp",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Three Layer Pineapple Upside Down Cheesecake",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://img.huffingtonpost.com/asset/5b9eb2da250000330036f741.jpeg?ops=scalefit_960_noupscale&format=webp",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Vanilla Caramel Latte",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://img.huffingtonpost.com/asset/5b9eb2de250000360036f743.png?ops=scalefit_960_noupscale&format=webp",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Ultimate Chocolate Chip Cookie Layer",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://www.lifeloveandsugar.com/wp-content/uploads/2015/02/The_Ultimate_Chocolate_Chip_Cookie_Cake6.jpg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Chocolate Peanut Butter Cup Pretzel",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://img.huffingtonpost.com/asset/5b9eb2e22000004e00fe770d.png?ops=scalefit_960_noupscale&format=webp",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Cereal Supreme",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://img.huffingtonpost.com/asset/5b9eb2e42100003100c607b4.jpeg?ops=scalefit_960_noupscale&format=webp",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Maltesers",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://img.taste.com.au/pGPVBBO5/w354-h236-cfill-q80/taste/2016/11/amazing-maltesers-cake-74777-1.jpeg",
+    }),
+    Product.create({
+      category: "cake",
+      name: "German Chocolate",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_1392,h_1740/k%2FPhoto%2FRecipes%2F2020-02-How-To-German-Chocolate-Cake%2FHT-German-Chocolate-Cake_051",
+    }),
+    Product.create({
+      category: "cake",
+      name: "Banana Pudding",
+      price: 50.0,
+      quantityInStock: 7,
+      image:
+        "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_center,w_1392,h_1740/k%2FPhoto%2FRecipes%2F2019-12-banana-pudding-cake%2F2019230IMG_0004-Edit-411",
+    }),
+
+
   ]);
 
   console.log(`seeded ${cakes.length} cakes`);

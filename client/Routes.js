@@ -62,8 +62,8 @@ class Routes extends Component {
             <Route path="/checkout" component={Checkout} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/dashboard" component={DashBoard} />
-            <Route path="/users" component={AllUsers} />
-            <Route path="/allProducts" component={AllProducts} />
+            {/* <Route path="/users" component={AllUsers} />
+            <Route path="/allProducts" component={AllProducts} /> */}
             <Route exact path="/products/:id/edit" component={UpdateProduct} />
             <Redirect to="/home" />
           </Switch>
