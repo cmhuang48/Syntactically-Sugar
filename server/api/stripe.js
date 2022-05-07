@@ -1,10 +1,11 @@
+require('dotenv').config();
+const SECRET_KEY = process.env.SECRET_KEY
 const router = require("express").Router();
 const cors = require("cors");
 const express = require('express')
 const uuid = require("uuid").v4;
-const stripe = require("stripe")(
-  "sk_test_51KwnUeGncdLk4YDTWSKiOvmjkAwiaoHDSAyD7LdUdkEzT3dKFgdlocooR1zt0CIDmZSulwev26xHfGXcsyyDfp2O00vkosWJZF"
-);
+const stripe = require("stripe")(SECRET_KEY);
+
 
 router.use(express.urlencoded({ extended: true }));
 router.use(cors());

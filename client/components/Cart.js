@@ -23,7 +23,8 @@ const Cart = ({ auth, associatedLineItems, products }) => {
   async function handleToken(token, addresses) {
     const response = await axios.post(
       "http://localhost:8080/api/stripe/checkout",
-      { token, total}
+      { token, total},
+console.log(token)
     );
     if (response.status === 200) {
       toast("Success! Check email for details", { type: "success" });
