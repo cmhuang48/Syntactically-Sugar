@@ -23,23 +23,12 @@ class Cakes extends React.Component {
       <div style={{ display: 'flex', flexDirection: 'column'}}>
         <h1 className="font-effect-shadow-multiple">Cakes</h1>
         <small style={{ color: "#666" }}>{cakes.length} results</small>
-        <select style={{ width: '10%' }}onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
+        <select style={{ width: '10%' }} onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
           <option value="">Sort By</option>
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
         <ul className="cakeContainer">
-          <li>
-            <Link to="/cakes/custom">
-              <div className="cakeBox">
-                <img
-                  className="cakeImage"
-                  src="https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg"
-                />
-                <span className="product-title">Create A Custom Cake</span>
-              </div>
-            </Link>
-          </li>
           {currentCakes.map((cake) => {
             return (
               <li key={cake.id}>
@@ -47,13 +36,14 @@ class Cakes extends React.Component {
                   <div className="cakeBox">
                     <img className="cakeImage" src={cake.image} />
                     <span className="product-title">{cake.name}</span>
+                    <div>${cake.price}</div>
                   </div>
                 </Link>
               </li>
             );
           })}
         </ul>
-        <Pagination count={Math.ceil(cakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
+        <Pagination className='pagination' count={Math.ceil(cakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
       </div>
     );
   }

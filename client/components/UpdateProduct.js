@@ -52,28 +52,28 @@ class UpdateProduct extends React.Component {
         <h1 className="font-effect-shadow-multiple">Product's info</h1>
         <div className="borderinfo">
           <form onSubmit={handleSubmit}>
-            <p> Name: </p>
+            <p>Name:</p>
             <input
               name="name"
               value={name}
               placeholder="Enter name"
               onChange={handleChange}
             />
-            <p> Price: </p>
+            <p>Price:</p>
             <input
               name="price"
               value={price}
               placeholder="Enter price"
               onChange={handleChange}
             />
-            <p> Quantity in Stock: </p>
+            <p>Quantity in Stock:</p>
             <input
               name="quantityInStock"
               value={quantityInStock}
               placeholder="Enter Quantity in stock"
               onChange={handleChange}
             />
-            <p> Image Url: </p>
+            <p>Image URL:</p>
             <input
               name="image"
               value={image}
@@ -82,14 +82,14 @@ class UpdateProduct extends React.Component {
               onChange={handleChange}
             />
             <br />
-            <button style={{ margin: "20px auto auto", width: "70px" }}>
+            <button className="submitButton">
               Update
             </button>
           </form>
           <form onSubmit={(ev) => ev.preventDefault()}>
             <button
-              style={{ margin: "20px auto auto", width: "70px" }}
               onClick={() => this.props.deleteProduct(this.props.product)}
+              className="submitButton"
             >
               Delete
             </button>

@@ -59,7 +59,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               if (product)
                 total += Number((product.price * lineItem.quantity).toFixed(2));
 
-              return <LineItemInCart lineItem={lineItem} product={product} />;
+              return <LineItemInCart lineItem={lineItem} product={product} key = {lineItem.id}/>;
             })}
             <tr>
               <td></td>

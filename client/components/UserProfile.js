@@ -144,7 +144,7 @@ class UserProfile extends React.Component {
             </p>
           </form>
           <br />
-          <button>Update</button>
+          <button className="submitButton">Update</button>
         </div>
       </div>
     );

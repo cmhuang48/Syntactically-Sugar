@@ -17,20 +17,20 @@ export const loadProducts = () => {
   };
 };
 
-export const createProduct = (product) => {
+export const createProduct = (product, history) => {
   return async (dispatch) => {
     const newProduct = (await axios.post("/api/products", product)).data;
-    const newlineItem = (
-      await axios.post("/api/lineItems", {
-        quantity: 1,
-        productId: newProduct.id,
-      })
-    ).data;
+    // const newlineItem = (
+    //   await axios.post("/api/lineItems", {
+    //     quantity: 1,
+    //     productId: newProduct.id,
+    //   })
+    // ).data;
     dispatch({
       type: CREATE_PRODUCT,
       product: newProduct,
     });
-    history.push(`/dashboard`);
+    history.push(`/${newProduct.category}s`);
   };
 };
 
@@ -54,7 +54,7 @@ export const updateProduct = (product, history) => {
       type: UPDATE_PRODUCT,
       product: updatedProduct,
     });
-    history.push(`/dashboard`);
+    history.push(`/${product.category}s/${product.id}`);
   };
 };
 
