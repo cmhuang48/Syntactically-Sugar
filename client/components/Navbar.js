@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import { loadLineItems, logout } from "../store";
 import Cart from './Cart'
@@ -74,6 +75,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <Link to="/cart"><ShoppingCartIcon /></Link>
         </div>
       ) : (
         <div className="navbar">
@@ -82,9 +84,9 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <Link to="/cakes">Cakes</Link>
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/custom">Customize!</Link>
-          <Link to="/cart">Cart</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/cart"><ShoppingCartIcon /></Link>
         </div>
       )}
     </nav>
