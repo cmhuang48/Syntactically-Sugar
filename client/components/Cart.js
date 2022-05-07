@@ -20,11 +20,10 @@ const Cart = ({ auth, associatedLineItems, products }) => {
     cart = existingCart;
   }
 
-  async function handleToken(token, addresses) {
+  async function handleToken(token) {
     const response = await axios.post(
       "http://localhost:8080/api/stripe/checkout",
-      { token, total},
-console.log(token)
+      { token, total}
     );
     if (response.status === 200) {
       toast("Success! Check email for details", { type: "success" });
@@ -32,6 +31,7 @@ console.log(token)
       toast("Something went wrong", { type: "error" });
     }
   }
+
 
   let total = 0;
 
