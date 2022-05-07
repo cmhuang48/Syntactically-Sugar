@@ -7,16 +7,19 @@ import Cart from './Cart'
 
 document.addEventListener('mouseover', e=>{
   const isDropdownButton = e.target.matches('[data-dropdown-button]')
-  if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
-  let currentDropdown
-  if(isDropdownButton){
-    currentDropdown = e.target.closest('[data-dropdown]')
-    currentDropdown.classList.toggle('active')
-  }
-  document.querySelectorAll('[data-dropdown].active').forEach(dropdown =>{
-    if(dropdown === currentDropdown) return
-    dropdown.classList.remove('active')
-  })
+  
+  setTimeout(()=>{
+    if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
+    let currentDropdown
+    if(isDropdownButton){
+      currentDropdown = e.target.closest('[data-dropdown]')
+      currentDropdown.classList.toggle('active')
+    }
+    document.querySelectorAll('[data-dropdown].active').forEach(dropdown =>{
+      if(dropdown === currentDropdown) return
+      dropdown.classList.remove('active')
+    })
+  }, 500)
 })
 
 const open = (ev) => {
@@ -43,9 +46,19 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <Link to="/cakes">Cakes</Link>
+          <div className = 'dropdown' data-dropdown>
+            <button className = 'link' data-dropdown-button>
+              Products
+            </button>
+            <div className = 'dropdown-menu'>
+              <Link to="/cakes">Cakes</Link>
+              <Link to="/cupcakes">Cupcakes</Link>
+              <Link to="/custom">Customize!</Link>
+            </div>
+          </div>
+          {/* <Link to="/cakes">Cakes</Link>
           <Link to="/cupcakes">Cupcakes</Link>
-          <Link to="/custom">Customize!</Link>
+          <Link to="/custom">Customize!</Link> */}
           <Link to="/orders">Orders</Link>
           <div className = 'dropdown' data-dropdown>
             <button className = 'link' data-dropdown-button>

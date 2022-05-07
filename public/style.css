@@ -225,6 +225,7 @@ select {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
+  align-items: center;
 }
 
 small {
@@ -277,4 +278,13 @@ small {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto
+}
+
+.link {
+  border:none;
+  background:none;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "sofia";
+  color: #f58d72;
 }
