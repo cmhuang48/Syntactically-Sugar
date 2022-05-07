@@ -210,12 +210,21 @@ input {
   color: #f58d72;
   font-size: 20px;
 }
+select {
+  font-family: "unica one";
+  color: #f58d72;
+  font-size: 20px;
+}
+.select1 {
+  font-family: "unica one";
+  color: #f58d72;
+  font-size: 20px;
+}
 .navbar {
   padding: 0;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  background-color: #fbbdbd42;
 }
 
 small {

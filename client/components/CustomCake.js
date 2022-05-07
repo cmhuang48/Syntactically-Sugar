@@ -46,20 +46,23 @@ class CustomCake extends React.Component {
               Create Your Own Cake
             </h1>
             <form onSubmit={onSubmit}>
-              <select name="size" value={size} onChange={onChange}>
+              <p>Size:</p>
+              <select name="size" value={size} onChange={onChange} className='select1'>
                 <option value="">Select Size</option>
                 <option value="9">9 inch</option>
                 <option value="12">12 inch</option>
               </select>
               <br />
-              <select name="tiers" value={tiers} onChange={onChange}>
+              <p>Tiers:</p>
+              <select name="tiers" value={tiers} onChange={onChange} className='select1'>
                 <option value="">Select Number of Tiers</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
               <br />
-              <select name="flavor" value={flavor} onChange={onChange}>
+              <p>Flavor:</p>
+              <select name="flavor" value={flavor} onChange={onChange} className='select1'>
                 <option value="">Select Flavor</option>
                 <option value="vanilla">Vanilla</option>
                 <option value="chocolate">Chocolate</option>
@@ -84,7 +87,8 @@ class CustomCake extends React.Component {
                 <option value="banana">Banana</option>
               </select>
               <br />
-              <select name="frosting" value={frosting} onChange={onChange}>
+              <p>Frosting:</p>
+              <select name="frosting" value={frosting} onChange={onChange} className='select1'>
                 <option value="">Select Frosting</option>
                 <option value="vanilla">Vanilla</option>
                 <option value="chocolate">Chocolate</option>
@@ -112,6 +116,7 @@ class CustomCake extends React.Component {
                 <option value="nutella">Nutella</option>
               </select>
               <br />
+              <p>Message:</p>
               <input
                 name="message"
                 value={message}
@@ -119,14 +124,14 @@ class CustomCake extends React.Component {
                 onChange={onChange}
               />
               <br />
-              <button disabled={!size || !tiers || !flavor || !frosting}>
+              <button disabled={!size || !tiers || !flavor || !frosting} className="submitButton">
                 Add Custom Cake Order
               </button>
             </form>
           </div>
           <div className="examples">
             <h1 className="font-effect-shadow-multiple">
-              Some of our past work:
+              Check out some of our past works!
             </h1>
             <img
               className="photoex"

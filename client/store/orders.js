@@ -45,7 +45,7 @@ export const updateOrder = (order) => {
       const updatedOrder = (await axios.put(`/api/orders/${order.id}`, order))
         .data;
       if (order.email) {
-        const message = `Your order number is ${order.id}. We will send you an update when your order has shipped.`;
+        const message = `Thank you for shopping at Syntactically Sugar! Your order number is ${order.id}. We will send you an update when your order has shipped.`;
         order = { ...order, orderId: order.id, message };
         await axios.post("/api/email", order);
       }

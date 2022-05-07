@@ -26,6 +26,7 @@ import {
   loadOrders,
   loadUsers,
 } from "./store";
+import CustomProducts from "./components/CustomProducts";
 
 /**
  * COMPONENT
@@ -49,12 +50,14 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
             <Route path="/cakes/sort/:sort" component={Cakes} />
-            <Route exact path="/cakes/custom" component={CustomCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route path="/cupcakes/sort/:sort" component={Cupcakes} />
             <Route exact path="/cupcakes/custom" component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
+            <Route exact path="/custom" component={CustomProducts} />
+            <Route exact path="/custom/cakes" component={CustomCake} />
+            <Route exact path="/custom/cupcakes" component={CustomCupcake} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
@@ -70,12 +73,13 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route exact path="/cakes" component={Cakes} />
             <Route path="/cakes/sort/:sort" component={Cakes} />
-            <Route exact path="/cakes/custom" component={CustomCake} />
             <Route path="/cakes/:id" component={Cake} />
             <Route exact path="/cupcakes" component={Cupcakes} />
             <Route path="/cakes/sort/:sort" component={Cupcakes} />
-            <Route exact path="/cupcakes/custom" component={CustomCupcake} />
             <Route path="/cupcakes/:id" component={Cupcake} />
+            <Route exact path="/custom" component={CustomProducts} />
+            <Route exact path="/custom/cakes" component={CustomCake} />
+            <Route exact path="/custom/cupcakes" component={CustomCupcake} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/login" component={Login} />
