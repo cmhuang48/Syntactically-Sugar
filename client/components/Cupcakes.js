@@ -53,7 +53,7 @@ class Cupcakes extends React.Component {
             );
           })}
         </ul>
-        <Pagination count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
+        <Pagination className='pagination' count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
       </div>
     );
   }
