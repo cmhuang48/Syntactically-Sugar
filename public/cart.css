@@ -35,13 +35,14 @@ table button {
 
 .cartCheckout {
   background-color: #f58d72;
-  padding: 0.3rem 1.5rem;
+  padding: 0.456rem 1.5rem;
   color: #fff;
   font-weight: bold;
   letter-spacing: 1px;
   border: solid;
   float: right;
   cursor: pointer;
+  margin-top: 23px;
 }
 
 .deleteBtn {
@@ -83,17 +84,22 @@ td {
   font-size: 20px;
 }
 
-
-.pageNumbers{
-  display: flex;
-  margin: 0 auto;
+.StripeCheckout {
+  border-radius: 0!important;
+  background: transparent!important;
+  box-shadow: none!important;
+  float: right;
+  padding: 0!important;
 }
 
-.pagination {
-  margin: 0 auto;
-  position: relative;
-}
-
-.pagination p {
-  display: none;
+.StripeCheckout > span {
+  cursor: pointer;
+  background: #f58d72;
+  background-image: none!important;
+  text-shadow: none!important;
+  box-shadow: none!important;
+  border-radius: 0!important;
+  font-size: inherit!important;
+  letter-spacing: 1px;
+  padding: 0 20px!important;
 }

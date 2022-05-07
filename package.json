@@ -28,8 +28,10 @@
     "@stripe/stripe-js": "^1.29.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
+    "body-parser": "^1.20.0",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
+    "css-loader": "^6.7.1",
     "dotenv": "^16.0.0",
     "express": "^4.16.4",
     "googleapis": "^100.0.0",
@@ -39,9 +41,13 @@
     "morgan": "^1.9.1",
     "nodemailer": "^6.7.4",
     "pg": "^8.5.1",
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^9.0.1",
     "seed": "^0.4.4",
     "sequelize": "^6.3.5",
-    "stripe": "^8.221.0"
+    "stripe": "^8.221.0",
+    "style-loader": "^3.3.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
