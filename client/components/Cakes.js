@@ -29,17 +29,6 @@ class Cakes extends React.Component {
           <option value="price_desc">Price (high - low)</option>
         </select>
         <ul className="cakeContainer">
-          <li>
-            <Link to="/cakes/custom">
-              <div className="cakeBox">
-                <img
-                  className="cakeImage"
-                  src="https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg"
-                />
-                <span className="product-title">Create A Custom Cake</span>
-              </div>
-            </Link>
-          </li>
           {currentCakes.map((cake) => {
             return (
               <li key={cake.id}>
