@@ -15,7 +15,7 @@ import { deleteProduct } from "../store";
 
 const useStyles = makeStyles({ root: { minWidth: "10px" } });
 
-const AllProducts = ({ products, foo }) => {
+const AllProducts = ({ products, destroy, history }) => {
   const classes = useStyles();
   return (
     <>
@@ -52,7 +52,7 @@ const AllProducts = ({ products, foo }) => {
                   <TableCell>
                     <Button
                       classes={classes}
-                      onClick={() => foo(product.id)}
+                      onClick={() => destroy(product, history)}
                       style={{ color: "red" }}
                     >
                       X
@@ -80,8 +80,8 @@ const mapState = ({ products, orders, lineItems }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    foo: (id) => {
-      dispatch(deleteProduct(id));
+    destroy: (product, history) => {
+      dispatch(deleteProduct(product, history));
     },
   };
 };
