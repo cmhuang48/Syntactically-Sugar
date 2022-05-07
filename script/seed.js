@@ -279,14 +279,6 @@ async function seed() {
     }),
     Product.create({
       category: "cake",
-      name: "Black Forrest",
-      price: 50.0,
-      quantityInStock: 17,
-      image:
-        "http://img.taste.com.au/mlQHBARG/taste/2016/11/top-50-cakes-image-20-66342-1.jpg",
-    }),
-    Product.create({
-      category: "cake",
       name: "Tres Leches",
       price: 50.0,
       quantityInStock: 7,
@@ -327,7 +319,7 @@ async function seed() {
     }),
     Product.create({
       category: "cake",
-      name: "Irish Whiskey and Stout Chocolate",
+      name: "Irish Whiskey",
       price: 50.0,
       quantityInStock: 7,
       image:
