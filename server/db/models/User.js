@@ -4,9 +4,16 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 5;
 
-const { STRING, BOOLEAN } = Sequelize;
+const { UUID, UUIDV4, STRING, BOOLEAN } = Sequelize;
 
 const User = db.define("user", {
+  id: {
+    type: UUID,
+    allowNull: false,
+    defaultValue: UUIDV4,
+    primaryKey: true,
+  },
+  
   username: {
     type: STRING,
     unique: true,

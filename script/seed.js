@@ -4,6 +4,7 @@ const {
   db,
   models: { User, Product, LineItem, Order },
 } = require("../server/db");
+const faker = require('faker');
 
 /**
  * seed - this function clears the database, updates tables to
@@ -13,22 +14,23 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // Creating Users
-  const users = await Promise.all([
+  // Creating Admins
+  const admins = await Promise.all([
     User.create({
       username: "chanelle",
       password: "123",
       isAdmin: true,
       firstName: "Chanelle",
       lastName: "Huang",
-      address1: "6525 W Sack Dr #306",
-      city: "Glendale",
-      zip: "85308",
-      state: "Arkansas",
-      country: "U.S.A",
-      cardName: "Chanelle Huang",
-      cardNumber: "5118900128185237",
-      expDate: "7/24",
+      address1: faker.address.streetAddress(),
+      address2: faker.address.secondaryAddress(),
+      city: faker.address.city(),
+      zip: faker.address.zipCodeByState(),
+      state: faker.address.stateAbbr(),
+      country: faker.address.countryCode(),
+      cardName: 'Chanelle Huang',
+      cardNumber: faker.finance.creditCardNumber(),
+      expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
     }),
     User.create({
       username: "jiayu",
@@ -36,14 +38,15 @@ async function seed() {
       isAdmin: true,
       firstName: "Jiayu",
       lastName: "Zhang",
-      address1: "6525 W Sack Dr #306",
-      city: "Glendale",
-      zip: "85308",
-      state: "Arkansas",
-      country: "U.S.A",
-      cardName: "Jiayu Zhang",
-      cardNumber: "5118900128185237",
-      expDate: "7/24",
+      address1: faker.address.streetAddress(),
+      address2: faker.address.secondaryAddress(),
+      city: faker.address.city(),
+      zip: faker.address.zipCodeByState(),
+      state: faker.address.stateAbbr(),
+      country: faker.address.countryCode(),
+      cardName: 'Jiayu Zhang',
+      cardNumber: faker.finance.creditCardNumber(),
+      expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
     }),
     User.create({
       username: "lauren",
@@ -51,14 +54,15 @@ async function seed() {
       isAdmin: true,
       firstName: "Lauren",
       lastName: "Cagnetta",
-      address1: "6525 W Sack Dr #306",
-      city: "Glendale",
-      zip: "85308",
-      state: "Arkansas",
-      country: "U.S.A",
-      cardName: "Lauren Cagnetta",
-      cardNumber: "5118900128185237",
-      expDate: "7/24",
+      address1: faker.address.streetAddress(),
+      address2: faker.address.secondaryAddress(),
+      city: faker.address.city(),
+      zip: faker.address.zipCodeByState(),
+      state: faker.address.stateAbbr(),
+      country: faker.address.countryCode(),
+      cardName: 'Lauren Cagnetta',
+      cardNumber: faker.finance.creditCardNumber(),
+      expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
     }),
     User.create({
       username: "sava",
@@ -66,44 +70,41 @@ async function seed() {
       isAdmin: true,
       firstName: "Sava",
       lastName: "Lin",
-      address1: "6525 W Sack Dr #306",
-      city: "Glendale",
-      zip: "85308",
-      state: "Arkansas",
-      country: "U.S.A",
-      cardName: "Sava Lin",
-      cardNumber: "5118900128185237",
-      expDate: "7/24",
-    }),
-    User.create({
-      username: "cody",
-      password: "123",
-      firstName: "Cody",
-      lastName: "Cody",
-      address1: "6525 W Sack Dr #306",
-      city: "Glendale",
-      zip: "85308",
-      state: "Arkansas",
-      country: "U.S.A",
-      cardName: "Cody Cody",
-      cardNumber: "5118900128185237",
-      expDate: "7/24",
-    }),
-    User.create({
-      username: "murphy",
-      password: "123",
-      firstName: "Murphy",
-      lastName: "Murphy",
-      address1: "6525 W Sack Dr #306",
-      city: "Glendale",
-      zip: "85308",
-      state: "Arkansas",
-      country: "U.S.A",
-      cardName: "Murphy Murphy",
-      cardNumber: "5118900128185237",
-      expDate: "7/24",
+      address1: faker.address.streetAddress(),
+      address2: faker.address.secondaryAddress(),
+      city: faker.address.city(),
+      zip: faker.address.zipCodeByState(),
+      state: faker.address.stateAbbr(),
+      country: faker.address.countryCode(),
+      cardName: 'Sava Lin',
+      cardNumber: faker.finance.creditCardNumber(),
+      expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
     }),
   ]);
+  console.log(`seeded ${admins.length} admins`);
+
+  // Creating Users
+  const users = [...Array(100)].map(user => ({
+    username: faker.internet.userName(),
+    password: "123",
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    address1: faker.address.streetAddress(),
+    address2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    zip: faker.address.zipCodeByState(),
+    state: faker.address.stateAbbr(),
+    country: faker.address.countryCode(),
+    cardName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    cardNumber: faker.finance.creditCardNumber(),
+    expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
+  }));
+
+  await Promise.all(
+    users.map(async (user) => {
+      return await User.create(user);
+    })
+  );
 
   console.log(`seeded ${users.length} users`);
 
@@ -431,43 +432,49 @@ async function seed() {
 
   console.log(`seeded ${cupcakes.length} cupcakes`);
 
-  // Creating Orders
-  const orders = await Promise.all(
+  // Creating Carts
+  const carts = await Promise.all(
     users.map(async (user) => {
       return await Order.create({ status: "cart", userId: user.id });
     })
   );
 
+  console.log(`seeded ${carts.length} carts`);
+
+  // Creating Orders
+  const orders = await Promise.all(
+    users.map(async (user) => {
+      return await Order.create({ status: 'order', userId: user.id });
+    })   
+  );
+    
   console.log(`seeded ${orders.length} orders`);
 
   // Creating Line Items
-  const lineItems = await Promise.all([
-    LineItem.create({
-      quantity: 1,
-      productId: cakes[0].id,
-      orderId: orders[0].id,
-    }),
-    LineItem.create({
-      quantity: 2,
-      productId: cakes[1].id,
-      orderId: orders[1].id,
-    }),
-    LineItem.create({
-      quantity: 2,
-      productId: cupcakes[0].id,
-      orderId: orders[0].id,
-    }),
-  ]);
+  const lineItems = [...Array(50)].map(lineItem => ({
+    quantity: Math.floor(Math.random()*(10-1)+1),
+    productId: cakes[Math.floor(Math.random()*(18-1)+1)].id,
+    orderId: orders[Math.floor(Math.random()*(100-1)+1)].id,
+  })).concat(
+    [...Array(50).map(lineItem => ({
+      quantity: Math.floor(Math.random()*(10-1)+1),
+      productId: cupcakes[Math.floor(Math.random()*(21-1)+1)].id,
+      orderId: orders[Math.floor(Math.random()*(100-1)+1)].id,
+    }))]);
+
+  await Promise.all(
+    lineItems.map(async (lineItem) => {
+      return await LineItem.create(lineItem);
+    })
+  );
 
   console.log(`seeded ${lineItems.length} line items`);
 
   console.log(`seeded successfully`);
 
   return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
+    admins,
+    users,
     cakes,
     cupcakes,
     orders,
