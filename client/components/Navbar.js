@@ -3,6 +3,21 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { loadLineItems, logout } from "../store";
+import Cart from './Cart'
+
+document.addEventListener('mouseover', e=>{
+  const isDropdownButton = e.target.matches('[data-dropdown-button]')
+  if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
+  let currentDropdown
+  if(isDropdownButton){
+    currentDropdown = e.target.closest('[data-dropdown]')
+    currentDropdown.classList.toggle('active')
+  }
+  document.querySelectorAll('[data-dropdown].active').forEach(dropdown =>{
+    if(dropdown === currentDropdown) return
+    dropdown.classList.remove('active')
+  })
+})
 
 const open = (ev) => {
   if (ev.target.className === "dropdown") {
@@ -32,7 +47,14 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <Link to="/cupcakes">Cupcakes</Link>
           <Link to="/custom">Customize!</Link>
           <Link to="/orders">Orders</Link>
-          <Link to="/cart">Cart</Link>
+          <div className = 'dropdown' data-dropdown>
+            <button className = 'link' data-dropdown-button>
+              <Link to="/cart">Cart</Link>
+            </button>
+            <div className = 'dropdown-menu'>
+              <Cart/>
+            </div>
+          </div>
           <Link to="/profile" className="dropdown" onClick={open}>
             {username[0].toUpperCase() + username.slice(1)}'s Profile
           </Link>
