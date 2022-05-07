@@ -596,7 +596,7 @@ async function seed() {
 
   // Creating Carts
   const carts = await Promise.all(
-    users.map(async (user) => {
+    [...users, ...admins].map(async (user) => {
       return await Order.create({ status: "cart", userId: user.id });
     })
   );
@@ -605,7 +605,7 @@ async function seed() {
 
   // Creating Orders
   const orders = await Promise.all(
-    users.map(async (user) => {
+    [...users, ...admins].map(async (user) => {
       return await Order.create({ status: 'order', userId: user.id });
     })   
   );
