@@ -6,8 +6,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { loadLineItems, logout } from "../store";
 import Cart from './Cart'
 
-document.addEventListener('mouseover', e=>{
-  setTimeout(()=>{
+document.addEventListener('click', e=>{
     const isDropdownButton = e.target.matches('[data-dropdown-button]')
     if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
     let currentDropdown
@@ -19,7 +18,6 @@ document.addEventListener('mouseover', e=>{
       if(dropdown === currentDropdown) return
       dropdown.classList.remove('active')
     })
-  }, 500)
 })
 
 const open = (ev) => {
@@ -62,9 +60,10 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <Link to="/orders">Orders</Link>
           <div className = 'dropdown' data-dropdown>
             <button className = 'link' data-dropdown-button>
-              <Link to="/cart">Cart</Link>
+              Cart
             </button>
             <div className = 'dropdown-menu'>
+              <Link to="/cart">Go to Cart!</Link>
               <Cart/>
             </div>
           </div>
