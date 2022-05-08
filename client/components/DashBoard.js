@@ -52,7 +52,7 @@ function DashBoard({ history, match }) {
 
   return (
     <Box
-      sx={{ flexGrow: 2, bgcolor: "inherit", display: "flex"}}
+      sx={{ flexGrow: 1, bgcolor: "inherit", display: "flex"}}
     >
       <Tabs
         orientation="vertical"
@@ -66,8 +66,8 @@ function DashBoard({ history, match }) {
         <Tab label="Users" {...a11yProps(1)} />
         <Tab label="Products" {...a11yProps(2)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
-        <CreateNewProduct history={history} />
+      <TabPanel value={value} index={0} >
+        <CreateNewProduct history={history}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <AllUsers history={history} match={match} />
@@ -80,3 +80,5 @@ function DashBoard({ history, match }) {
 }
 
 export default connect()(DashBoard);
+
+
