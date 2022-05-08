@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
+import Pagination from '@material-ui/lab/Pagination';
 
 import { deleteProduct } from "../store";
 
@@ -17,6 +18,13 @@ const useStyles = makeStyles({ root: { minWidth: "10px" } });
 
 const AllProducts = ({ products, destroy, history }) => {
   const classes = useStyles();
+
+  const [page, setPage] = React.useState(1);
+  const amountPerPage = 10;
+  const indexOfLastProduct = page * amountPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - amountPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -34,7 +42,7 @@ const AllProducts = ({ products, destroy, history }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => {
+            {currentProducts.map((product) => {
               return (
                 <TableRow>
                   <TableCell component="th" scope="row" key={product.id}>
@@ -69,14 +77,12 @@ const AllProducts = ({ products, destroy, history }) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Pagination className='pagination' count={Math.ceil(products.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
     </>
   );
 };
 
-const mapState = ({ products, orders, lineItems }) => {
-  const product = products.find((product) => product.id === id * 1);
-  return { products };
-};
+const mapState = ({ products }) => ({ products });
 
 const mapDispatch = (dispatch) => {
   return {
@@ -86,4 +92,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect((state) => state, mapDispatch)(AllProducts);
+export default connect(mapState, mapDispatch)(AllProducts);
