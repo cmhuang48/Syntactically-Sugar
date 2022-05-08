@@ -271,13 +271,15 @@ small {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-10px);
-  transition: opacity 150ms ease-in-out transform 150ms ease-in-out
+  transition: opacity 300ms ease-in-out transform 300ms ease-in-out
 }
 
 .dropdown.active > .link + .dropdown-menu {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: auto
+  pointer-events: auto;
+  border:1px solid;
+  border-radius: 25px;
 }
 
 .link {
@@ -287,4 +289,9 @@ small {
   font-size: 16px;
   font-family: "sofia";
   color: #f58d72;
+}
+
+.ordersList{
+  float:left;
+  clear:left
 }

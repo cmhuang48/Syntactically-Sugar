@@ -7,9 +7,8 @@ import { loadLineItems, logout } from "../store";
 import Cart from './Cart'
 
 document.addEventListener('mouseover', e=>{
-  const isDropdownButton = e.target.matches('[data-dropdown-button]')
-  
   setTimeout(()=>{
+    const isDropdownButton = e.target.matches('[data-dropdown-button]')
     if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
     let currentDropdown
     if(isDropdownButton){

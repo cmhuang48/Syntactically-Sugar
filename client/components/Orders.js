@@ -14,7 +14,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
           );
 
           return (
-            <li key={order.id}>
+            <li key={order.id} className="ordersList">
               <div>
                 <h2>Order ID: {order.id}</h2>
                 <ul>
