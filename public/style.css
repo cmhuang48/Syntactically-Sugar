@@ -327,13 +327,15 @@ small {
 .landingnavbar ul li{
   list-style: none;
   display: inline-block;
-  margin: 0 20px
+  margin: 0 20px;
 }
 
 .landingnavbar ul li a{
+  font-size: 30px;
   text-decoration: none;
   color: #f58d72;
-  text-transform: uppercase
+  text-transform: uppercase;
+  font-family: 'Amatic SC', cursive;
 }
 
 .landingnavbar ul li::after{
@@ -358,15 +360,17 @@ small {
 }
 
 .content h1{
-  font-size: 40px;
+  font-size: 90px;
   text-align: center;
-  color:#f58d72
+  color:#f58d72;
+  font-family: 'Amatic SC', cursive;
 }
 
 .content p {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 100;
-  text-align:center
+  text-align:center;
+  font-family: 'Amatic SC', cursive;
 }
 
 .shoplinkscontainer{
@@ -374,11 +378,12 @@ small {
 }
 
 .shoplinks {
-  font-size: 24px;
+  font-size: 35px;
   display:inline-block;
   padding: 10px;
   margin: 45px;
-  border: 1px solid pink
+  border: 1px solid pink;
+  font-family: 'Amatic SC', cursive;
 }
 
 .shoplinks:hover{
@@ -404,34 +409,3 @@ small {
   object-fit: contain;
 }
 
-.carouselcontainer{
-  display:flex;
-  justify-content: center;
-}
-
-.carousel{
-  position:relative;
-  display:flex;
-  justify-content: space-around;
-  width: 90vw;
-  height: 250px;
-}
-
-.carousel div img {
-  margin:5px;
-  width:100%;
-  height:100%;
-  object-fit: fill
-}
-
-.carousel h1 {
-  font-size: 16px;
-  position: absolute;
-  top:30%
-}
-
-.carousel h2{
-  font-size: 14px;
-  position: absolute;
-  top:50%
-}
