@@ -111,6 +111,7 @@ li {
   border-radius: 10px;
   background-color: #ffffff;
   padding: 5px;
+  width:80vw
 }
 .info {
   display: flex;
@@ -294,4 +295,8 @@ small {
 .ordersList{
   float:left;
   clear:left
+}
+
+.productImage{
+  width:80%
 }

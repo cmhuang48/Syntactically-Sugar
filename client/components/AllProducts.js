@@ -14,6 +14,7 @@ import Pagination from '@material-ui/lab/Pagination';
 
 import { deleteProduct } from "../store";
 
+
 const useStyles = makeStyles({ root: { minWidth: "10px" } });
 
 const AllProducts = ({ products, destroy, history }) => {
@@ -27,8 +28,8 @@ const AllProducts = ({ products, destroy, history }) => {
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer component={Paper} >
+        <Table style={{width: '80vw'}}>
           <TableHead>
             <TableRow>
               <TableCell>Category</TableCell>

@@ -43,11 +43,11 @@ const AllUsers = ({ users, destroy, history, match }) => {
         <option value="first_name">First Name</option>
         <option value="last_name">Last Name</option>
       </select>
-      <TableContainer component={Paper} className = 'userDashBoard'>
+      <TableContainer component={Paper} style= {{width:'95%'}}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
+              <TableCell style= {{minWidth:50, maxWidth: 50}}>ID</TableCell>
               <TableCell>Admin</TableCell>
               <TableCell>Username</TableCell>
               <TableCell>First Name</TableCell>
@@ -58,7 +58,7 @@ const AllUsers = ({ users, destroy, history, match }) => {
               <TableCell align="right">Zip</TableCell>
               <TableCell align="right">Country</TableCell>
               <TableCell align="right">Card Name</TableCell>
-              <TableCell align="right">Card Number</TableCell>
+              <TableCell align="right" style= {{minWidth:'50px', maxWidth: '50px'}}>Card Number</TableCell>
               <TableCell align="right"></TableCell>
               {/*<TableCell align="right"></TableCell>*/}
             </TableRow>
