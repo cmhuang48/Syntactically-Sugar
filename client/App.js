@@ -10,9 +10,7 @@ const App = () => {
 
   return (
     <div>
-      <Navbar />
       <Routes />
-      <Copyright />
     </div>
   );
 };
