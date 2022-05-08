@@ -387,11 +387,51 @@ small {
 }
 
 .welcomebanner{
-  height:100vh
+  height:750px;
 }
 
-.welcomebanner img{
+.homepic{
+  height:600px;
   max-height: auto;
-  max-width: 100%;
+  max-width: 50%;
   object-fit: contain;
+}
+
+.aboutUs{
+  height:600px;
+  max-height: auto;
+  max-width: 50%;
+  object-fit: contain;
+}
+
+.carouselcontainer{
+  display:flex;
+  justify-content: center;
+}
+
+.carousel{
+  position:relative;
+  display:flex;
+  justify-content: space-around;
+  width: 90vw;
+  height: 250px;
+}
+
+.carousel div img {
+  margin:5px;
+  width:100%;
+  height:100%;
+  object-fit: fill
+}
+
+.carousel h1 {
+  font-size: 16px;
+  position: absolute;
+  top:30%
+}
+
+.carousel h2{
+  font-size: 14px;
+  position: absolute;
+  top:50%
 }

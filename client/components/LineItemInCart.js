@@ -98,11 +98,12 @@ const LineItemInCart = ({
     );
   }
 
-  if (!products.length) return null;
   const product = products.find(
     (product) => product.id === lineItem.productId * 1
   );
 
+  if(!product) return null
+  
   return (
     <tr key={product.id}>
       <td className="cartImage">
