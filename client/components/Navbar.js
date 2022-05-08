@@ -54,13 +54,10 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
               <Link to="/custom">Customize!</Link>
             </div>
           </div>
-          {/* <Link to="/cakes">Cakes</Link>
-          <Link to="/cupcakes">Cupcakes</Link>
-          <Link to="/custom">Customize!</Link> */}
           <Link to="/orders">Orders</Link>
           <div className = 'dropdown' data-dropdown>
             <button className = 'link' data-dropdown-button>
-              Cart
+              Cart <ShoppingCartIcon />
             </button>
             <div className = 'dropdown-menu'>
               <Link to="/cart">Go to Cart!</Link>
@@ -73,18 +70,32 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/cart"><ShoppingCartIcon /></Link>
         </div>
       ) : (
         <div className="navbar">
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
-          <Link to="/cakes">Cakes</Link>
-          <Link to="/cupcakes">Cupcakes</Link>
-          <Link to="/custom">Customize!</Link>
+          <div className = 'dropdown' data-dropdown>
+            <button className = 'link' data-dropdown-button>
+              Products
+            </button>
+            <div className = 'dropdown-menu'>
+              <Link to="/cakes">Cakes</Link>
+              <Link to="/cupcakes">Cupcakes</Link>
+              <Link to="/custom">Customize!</Link>
+            </div>
+          </div>
+          <div className = 'dropdown' data-dropdown>
+            <button className = 'link' data-dropdown-button>
+              Cart <ShoppingCartIcon />
+            </button>
+            <div className = 'dropdown-menu'>
+              <Link to="/cart">Go to Cart!</Link>
+              <Cart/>
+            </div>
+          </div>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <Link to="/cart"><ShoppingCartIcon /></Link>
         </div>
       )}
     </nav>
