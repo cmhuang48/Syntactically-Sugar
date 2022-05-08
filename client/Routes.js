@@ -17,6 +17,9 @@ import Checkout from "./components/Checkout/Checkout";
 import UserProfile from "./components/UserProfile";
 import DashBoard from "./components/DashBoard";
 import UpdateProduct from "./components/UpdateProduct";
+import Navbar from './components/Navbar'
+import Copyright from "./components/Copyright";
+import LandingPage from "./components/LandingPage";
 
 import {
   me,
@@ -45,45 +48,65 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
-            <Route exact path="/cakes" component={Cakes} />
-            <Route path="/cakes/sort/:sort" component={Cakes} />
-            <Route path="/cakes/:id" component={Cake} />
-            <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route path="/cupcakes/sort/:sort" component={Cupcakes} />
-            <Route path="/cupcakes/:id" component={Cupcake} />
-            <Route exact path="/custom" component={CustomProducts} />
-            <Route exact path="/custom/cakes" component={CustomCake} />
-            <Route exact path="/custom/cupcakes" component={CustomCupcake} />
-            <Route path="/orders" component={Orders} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/profile" component={UserProfile} />
-            <Route exact path="/dashboard" component={DashBoard} />
-            <Route path="/dashboard/sort/:sort" component={DashBoard} />
-            {/* <Route path="/users" component={AllUsers} />
-            <Route path="/allProducts" component={AllProducts} /> */}
-            <Route exact path="/products/:id/edit" component={UpdateProduct} />
-            <Redirect to="/home" />
+            <Route exact path="/" component={LandingPage}/>
+            <Route>
+              <div>
+                <Navbar/>
+                <Switch>
+                  <Route path="/home" component={Home} />
+                  <Route exact path="/cakes" component={Cakes} />
+                  <Route path="/cakes/sort/:sort" component={Cakes} />
+                  <Route path="/cakes/:id" component={Cake} />
+                  <Route exact path="/cupcakes" component={Cupcakes} />
+                  <Route path="/cupcakes/sort/:sort" component={Cupcakes} />
+                  <Route path="/cupcakes/:id" component={Cupcake} />
+                  <Route exact path="/custom" component={CustomProducts} />
+                  <Route exact path="/custom/cakes" component={CustomCake} />
+                  <Route exact path="/custom/cupcakes" component={CustomCupcake} />
+                  <Route path="/orders" component={Orders} />
+                  <Route path="/cart" component={Cart} />
+                  <Route path="/checkout" component={Checkout} />
+                  <Route path="/profile" component={UserProfile} />
+                  <Route exact path="/dashboard" component={DashBoard} />
+                  <Route path="/dashboard/sort/:sort" component={DashBoard} />
+                  {/* <Route path="/users" component={AllUsers} />
+                  <Route path="/allProducts" component={AllProducts} /> */}
+                  <Route exact path="/products/:id/edit" component={UpdateProduct} />
+                  <Redirect to="/home"/>
+                </Switch>
+                <Copyright/>
+              </div>
+            </Route>
           </Switch>
         ) : (
+          <>
           <Switch>
-            <Route path="/home" component={Home} />
-            <Route exact path="/cakes" component={Cakes} />
-            <Route path="/cakes/sort/:sort" component={Cakes} />
-            <Route path="/cakes/:id" component={Cake} />
-            <Route exact path="/cupcakes" component={Cupcakes} />
-            <Route path="/cupcakes/sort/:sort" component={Cupcakes} />
-            <Route path="/cupcakes/:id" component={Cupcake} />
-            <Route exact path="/custom" component={CustomProducts} />
-            <Route exact path="/custom/cakes" component={CustomCake} />
-            <Route exact path="/custom/cupcakes" component={CustomCupcake} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Redirect to="/home" />
+            <Route exact path="/" component={LandingPage}/>
+            <Route>
+              <div>
+              <Navbar/>
+                <Switch>
+                  <Route path="/home" component={Home} />
+                  <Route exact path="/cakes" component={Cakes} />
+                  <Route path="/cakes/sort/:sort" component={Cakes} />
+                  <Route path="/cakes/:id" component={Cake} />
+                  <Route exact path="/cupcakes" component={Cupcakes} />
+                  <Route path="/cupcakes/sort/:sort" component={Cupcakes} />
+                  <Route path="/cupcakes/:id" component={Cupcake} />
+                  <Route exact path="/custom" component={CustomProducts} />
+                  <Route exact path="/custom/cakes" component={CustomCake} />
+                  <Route exact path="/custom/cupcakes" component={CustomCupcake} />
+                  <Route path="/cart" component={Cart} />
+                  <Route path="/checkout" component={Checkout} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/signup" component={Signup} />
+                  <Redirect to="/home" />
+                </Switch>
+                <Copyright/>
+              </div>
+            </Route>
           </Switch>
+          </>
         )}
       </div>
     );
