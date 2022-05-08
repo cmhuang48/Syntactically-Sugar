@@ -16,9 +16,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
     if (!existingCart.length) return <div>Empty Cart</div>;
     cart = existingCart;
   }
-
   let total = 0;
-
   if (!products.length) return null;
 
   return (

@@ -106,7 +106,7 @@ const mapState = (
   const order = orders.find((order) => order.status === "cart");
   const lineItem = lineItems.find(
     (lineItem) =>
-      lineItem.productId === cake.id && lineItem.orderId === order?.id
+      lineItem.productId === cake?.id && lineItem.orderId === order?.id
   );
   return {
     auth,

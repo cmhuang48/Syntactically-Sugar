@@ -52,7 +52,7 @@ function DashBoard({ history, match }) {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: "inherit", display: "flex"}}
+      sx={{ flexGrow: 2, bgcolor: "inherit", display: "flex"}}
     >
       <Tabs
         orientation="vertical"
