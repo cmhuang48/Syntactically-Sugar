@@ -69,6 +69,7 @@ class CreateNewProduct extends React.Component {
             placeholder="Enter image URL"
             size="100"
             onChange={handleChange}
+            className = "productImage"
           />
           <br />
           <button

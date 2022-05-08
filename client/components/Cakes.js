@@ -8,7 +8,7 @@ class Cakes extends React.Component {
     super();
     this.state = {
       page: 1,
-      amountPerPage: 12
+      amountPerPage: 12,
     };
   }
 
