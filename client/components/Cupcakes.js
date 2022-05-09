@@ -22,13 +22,12 @@ class Cupcakes extends React.Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'column'}}> 
         <h1 className="font-effect-shadow-multiple">Cupcakes</h1>
-        <small style={{ color: "#666" }}>{cupcakes.length} results</small>
-        <select style={{ width: '10%' }} onChange={(ev) => history.push(ev.target.value ? `/cupcakes/sort/${ev.target.value}` : '/cupcakes')}>
+        <small style={{ color: "#666", marginRight: "3%" }}>{cupcakes.length} results</small>
+        <select style={{ width: '10%', marginLeft: "3%" }} onChange={(ev) => history.push(ev.target.value ? `/cupcakes/sort/${ev.target.value}` : '/cupcakes')}>
           <option value="">Sort By</option>
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
-        <Pagination className='pagination' count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
         <ul className="cakeContainer">
           {currentCupcakes.map((cupcake) => {
             return (
