@@ -387,6 +387,7 @@ small {
 }
 
 .shoplinks:hover{
+  border: 1px solid white;
   color: white;
   transition: 0.3s ease
 }
