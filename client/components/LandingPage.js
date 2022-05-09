@@ -8,11 +8,9 @@ const LandingPage = ({auth, handleClick}) =>{
   return (
     <div className = 'banner'>
       <div className = 'landingnavbar'>
-        <img src = "../../public/images/logo.jpeg" className = 'logo'/>
+        <img src = "/../images/logo.jpeg" className = 'logo'/>
         <ul>
           <li><Link to= "/home">Home</Link></li>
-          <li><Link to = "/cakes">Shop Cakes</Link></li>
-          <li><Link to = "/cupcakes">Shop Cupcakes</Link></li>
           {auth.username?
           <li><a href="#" onClick={handleClick}>
           Logout</a></li>
