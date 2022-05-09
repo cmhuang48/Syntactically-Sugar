@@ -1,23 +1,19 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-////material ui
-//tab function
+
+//// material ui
+
+// tab function
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-//drawer function
+
+// drawer function
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 
-//react component
+// react component
 import CreateNewProduct from "./CreateNewProduct";
 import AllUsers from "./AllUsers";
 import AllProducts from "./AllProducts";
@@ -88,6 +84,7 @@ function DashBoard({ history, match }) {
             anchor='left'
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            PaperProps={{ style: { marginTop: "22%", padding: "1%", height: "15vh" } }}
           >
             <Tabs
               orientation="vertical"
