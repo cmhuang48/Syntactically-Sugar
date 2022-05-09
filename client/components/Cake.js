@@ -67,13 +67,13 @@ class Cake extends React.Component {
 
     return (
       <>
-        <div className="cake-details">
-          <img src={cake.image} />
+        <div className="cake-details" >
+          <img src={cake.image}  style={{height:'650px', width:'650px'}}/>
           <div className="cake-add-to-cart">
             <h1>{cake.name} cake</h1>
-            <p>In Stock</p>
-            <p>Price: ${cake.price}</p>
-            <form onSubmit={onSubmit}>
+            <p style={{textAlign:'center'}}>In Stock</p>
+            <p style={{textAlign:'center'}}>Price: ${cake.price}</p>
+            <form onSubmit={onSubmit} style={{textAlign:'center'}}>
               <p>
                 Quantity: {}
                 <input

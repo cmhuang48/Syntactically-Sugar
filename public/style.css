@@ -146,6 +146,7 @@ li {
   margin: 0 auto;
   justify-content: center;
   flex-direction: column;
+  width: 70%
 }
 .cake-details > img {
   width: 80%;
@@ -190,18 +191,21 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0 auto;
   justify-content: space-around;
   background-color: #ffffff;
+  width:60%
 }
+
 h2 {
   font-family: "unica one";
   color: #f58d72;
   font-size: 20px;
-  float: left;
+  /* float: left; */
 }
+
 ul {
   list-style-type: symbols(#f4cbc182);
-  font-family: "unica one";
-  float: left;
+  font-family: "unica one"
 }
+
 input {
   font-family: "unica one";
   color: #f58d72;
@@ -292,11 +296,6 @@ small {
   font-size: 16px;
   font-family: "sofia";
   color: #f58d72;
-}
-
-.ordersList{
-  float:left;
-  clear:left
 }
 
 .productImage{
@@ -410,3 +409,7 @@ small {
   object-fit: contain;
 }
 
+.ordersul{
+  width:80%;
+  margin: 0 auto
+}
