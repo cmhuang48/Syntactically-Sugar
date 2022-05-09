@@ -337,11 +337,15 @@ small {
   font-family: 'Amatic SC', cursive;
 }
 
+.landingnavbar ul li a:hover{
+  color:white
+}
+
 .landingnavbar ul li::after{
   content: '';
   width:0%;
   height:3px;
-  background:pink;
+  background:white;
   display:block;
   margin:auto;
   transition: 0.5s;
@@ -370,6 +374,7 @@ small {
   font-weight: 100;
   text-align:center;
   font-family: 'Amatic SC', cursive;
+  font-style: italic
 }
 
 .shoplinkscontainer{
@@ -411,5 +416,6 @@ small {
 
 .ordersul{
   width:80%;
-  margin: 0 auto
+  margin: 0 auto;
+  padding-top:25px
 }
