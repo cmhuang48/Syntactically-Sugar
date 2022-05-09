@@ -35,7 +35,7 @@ class Cupcakes extends React.Component {
               <li key={cupcake.id}>
                 <Link to={`/cupcakes/${cupcake.id}`}>
                   <div className="cakeBox">
-                    <img className="cakeImage" src={cupcake.image} style={{height:'300px', width:'300px'}}/>
+                    <img className="cakeImage" src={cupcake.image} style={{height:'300px', width:'300px', border:"1px solid black"}}/>
                     <span className="product-title">{cupcake.name}</span>
                     <div>${cupcake.price}</div>
                   </div>
