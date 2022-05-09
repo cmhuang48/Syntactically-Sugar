@@ -22,13 +22,12 @@ class Cakes extends React.Component {
     return (
       <div style={{ display: 'flex', flexDirection: 'column'}}>
         <h1 className="font-effect-shadow-multiple">Cakes</h1>
-        <small style={{ color: "#666" }}>{cakes.length} results</small>
-        <select style={{ width: '10%' }} onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
+        <small style={{ color: "#666", marginRight: "3%" }}>{cakes.length} results</small>
+        <select style={{ width: '10%', marginLeft: "3%" }} onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
           <option value="">Sort By</option>
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
-        <Pagination className='pagination' count={Math.ceil(cakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
         <ul className="cakeContainer">
           {currentCakes.map((cake) => {
             return (

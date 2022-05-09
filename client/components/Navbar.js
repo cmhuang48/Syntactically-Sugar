@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
+import MiniCart from './MiniCart';
+
 import { loadLineItems, logout } from "../store";
-import Cart from './Cart'
 
 document.addEventListener('click', e=>{
     const isDropdownButton = e.target.matches('[data-dropdown-button]')
@@ -60,8 +61,8 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
               Cart <ShoppingCartIcon />
             </button>
             <div className = 'dropdown-menu'>
+              <MiniCart />
               <Link to="/cart">Go to Cart!</Link>
-              <Cart/>
             </div>
           </div>
           <Link to="/profile" className="dropdown" onClick={open}>
@@ -75,23 +76,23 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar">
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
-          <div className = 'dropdown' data-dropdown>
-            <button className = 'link' data-dropdown-button>
+          <div className='dropdown' data-dropdown>
+            <button className='link' data-dropdown-button>
               Products
             </button>
-            <div className = 'dropdown-menu'>
+            <div className='dropdown-menu'>
               <Link to="/cakes">Cakes</Link>
               <Link to="/cupcakes">Cupcakes</Link>
               <Link to="/custom">Customize!</Link>
             </div>
           </div>
-          <div className = 'dropdown' data-dropdown>
-            <button className = 'link' data-dropdown-button>
+          <div className='dropdown' data-dropdown>
+            <button className='link' data-dropdown-button>
               Cart <ShoppingCartIcon />
             </button>
-            <div className = 'dropdown-menu'>
+            <div className='dropdown-menu'>
+              <MiniCart />
               <Link to="/cart">Go to Cart!</Link>
-              <Cart/>
             </div>
           </div>
           <Link to="/login">Login</Link>

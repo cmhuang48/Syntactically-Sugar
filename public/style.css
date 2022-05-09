@@ -21,7 +21,7 @@ p {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 50%;
   margin: 0 auto;
 }
 .headerpic {
@@ -319,8 +319,9 @@ small {
   justify-content: space-between;
 }
 
-.logo{
-  width: 150px;
+.logo {
+  width: 25%;
+  margin: 20px 0 0px 20px;
 }
 
 .landingnavbar ul li{
@@ -418,4 +419,9 @@ small {
   width:80%;
   margin: 0 auto;
   padding-top:25px
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
 }
