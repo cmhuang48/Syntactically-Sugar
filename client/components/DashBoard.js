@@ -1,11 +1,9 @@
 import * as React from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
 import CreateNewProduct from "./CreateNewProduct";
 import AllUsers from "./AllUsers";
 import AllProducts from "./AllProducts";
@@ -79,6 +77,6 @@ function DashBoard({ history, match }) {
   );
 }
 
-export default connect()(DashBoard);
 
+export default connect()(DashBoard);
 

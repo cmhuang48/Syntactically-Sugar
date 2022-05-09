@@ -84,7 +84,7 @@ const LineItemInCart = ({
     return (
       <tr>
         <td className="cartImage">
-          <img src={lineItem.newProduct.image} />
+          <img src={lineItem.newProduct.image} style={{height:'150px', width:'150px', border:"1px solid black"}}/>
         </td>
         <td>{lineItem.newProduct.name}</td>
         <td>{lineItem.newProduct.category}</td>
@@ -98,16 +98,17 @@ const LineItemInCart = ({
     );
   }
 
-  if (!products.length) return null;
   const product = products.find(
     (product) => product.id === lineItem.productId * 1
   );
 
+  if(!product) return null
+  
   return (
     <tr key={product.id}>
       <td className="cartImage">
         <a href={`/${product.category}s/${product.id}`}>
-          <img src={product.image} />
+          <img src={product.image} style={{height:'150px', width:'150x', border:"1px solid black"}}/>
         </a>
       </td>
       <td>{product.name}</td>

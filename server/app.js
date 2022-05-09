@@ -1,7 +1,9 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+
 const app = express();
+
 module.exports = app;
 
 // logging middleware
@@ -9,7 +11,6 @@ app.use(morgan("dev"));
 
 // body parsing middleware
 app.use(express.json());
-
 // auth and api routes
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
