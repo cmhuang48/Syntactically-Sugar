@@ -78,5 +78,5 @@ function DashBoard({ history, match }) {
 }
 
 
-export default connect()(DashBoard);
+export default  DashBoard;
 
