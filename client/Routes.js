@@ -72,7 +72,7 @@ class Routes extends Component {
                   {/* <Route path="/users" component={AllUsers} />
                   <Route path="/allProducts" component={AllProducts} /> */}
                   <Route exact path="/products/:id/edit" component={UpdateProduct} />
-                  <Redirect to="/home"/>
+                  {/* <Redirect to="/home"/> */}
                 </Switch>
                 <Copyright/>
               </div>
@@ -100,7 +100,7 @@ class Routes extends Component {
                   <Route path="/checkout" component={Checkout} />
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={Signup} />
-                  <Redirect to="/home" />
+                  {/* <Redirect to="/home" /> */}
                 </Switch>
                 <Copyright/>
               </div>

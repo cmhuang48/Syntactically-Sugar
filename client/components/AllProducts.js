@@ -38,8 +38,8 @@ const AllProducts = ({ products, destroy, history }) => {
               <TableCell>Image</TableCell>
               <TableCell>Size</TableCell>
               <TableCell>Quantity In Stock</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              <TableCell>Delete</TableCell>
+              <TableCell>Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
