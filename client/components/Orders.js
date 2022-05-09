@@ -27,7 +27,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
                       total+= product.price*1 * lineItem.quantity
                       return (
                         <li key={lineItem.id} style={{display:'inline-block', padding:'20px'}}>
-                          <img src = {product.image} style={{height:'100px', width:'100px'}}/> 
+                          <img src = {product.image} style={{height:'100px', width:'100px', border:"1px solid black"}}/> 
                           <div>{product.name} {product.category} ({lineItem.quantity})</div>
                           <div>Price: ${(product.price * lineItem.quantity).toFixed(2)}</div>
                         </li>

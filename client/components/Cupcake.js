@@ -68,8 +68,8 @@ class Cupcake extends React.Component {
 
     return (
       <>
-        <div className="cake-details" style={{width:'70%'}}>
-          <img src={cupcake.image} style={{height:'650px', width:'650px'}}/>
+        <div className="cake-details" >
+          <img src={cupcake.image} style={{height:'650px', width:'650px', border:"1px solid black"}}/>
           <div className="cake-add-to-cart">
             <h1 >{cupcake.name} cupcake</h1>
             <p style={{textAlign:'center'}}>Price: ${cupcake.price}</p>
