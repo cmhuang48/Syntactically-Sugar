@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import MiniLineItemInCart from "./MiniLineItemInCart";
 
+import { loadLineItems } from "../store";
+
 const MiniCart = ({ auth, associatedLineItems, products }) => {
   let cart;
   const existingCart = JSON.parse(window.localStorage.getItem("cart"));
@@ -66,4 +68,12 @@ const mapState = ({ auth, orders, lineItems, products }) => {
   };
 };
 
-export default connect(mapState)(MiniCart);
+const mapDispatch = (dispatch) => {
+  return {
+    loadLineItems: () => {
+      dispatch(loadLineItems());
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(MiniCart);
