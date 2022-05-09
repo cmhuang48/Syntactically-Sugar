@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 import LineItemInCart from "./LineItemInCart";
+import { toast, ToastContainer } from "react-toastify";
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
 const Cart = ({ auth, associatedLineItems, products }) => {
   let cart;
@@ -15,6 +18,17 @@ const Cart = ({ auth, associatedLineItems, products }) => {
   } else {
     if (!existingCart.length) return <div>Empty Cart</div>;
     cart = existingCart;
+  }
+  async function handleToken(token) {
+    const response = await axios.post(
+      "http://localhost:8080/api/stripe/checkout",
+      { token, total}
+    );
+    if (response.status === 200) {
+      toast("Success! Check email for details", { type: "success" });
+    } else {
+      toast("Something went wrong", { type: "error" });
+    }
   }
   let total = 0;
   if (!products.length) return null;
@@ -58,6 +72,17 @@ const Cart = ({ auth, associatedLineItems, products }) => {
       <Link to="/checkout">
         <button className="cartCheckout">Continue To Checkout</button>
       </Link>
+      <br/>
+      <ToastContainer/>
+      <StripeCheckout
+        label="Pay with Stripe"
+        style={{right: 0}}
+        stripeKey="pk_test_51KwnUeGncdLk4YDTnQMc9RITFQq9l626PjwlLJ0Bg7rQyqOakEBSGsPy0RRDxigHDR2rLk3f83jifU6TGZuQeXnl00uW8UvyPQ"
+        token={handleToken}
+        amount={total * 100}
+        billingAddress
+        shippingAddress
+      />
     </div>
   );
 };
