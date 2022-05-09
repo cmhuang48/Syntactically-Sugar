@@ -1,9 +1,23 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+////material ui
+//tab function
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+//drawer function
+import Drawer from "@material-ui/core/Drawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+
+//react component
 import CreateNewProduct from "./CreateNewProduct";
 import AllUsers from "./AllUsers";
 import AllProducts from "./AllProducts";
@@ -43,40 +57,69 @@ function a11yProps(index) {
 
 function DashBoard({ history, match }) {
   const [value, setValue] = React.useState(0);
+  const [state, setState] = React.useState({
+    left: false,
+    top: false,
+    bottom: false,
+    right: false
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box
-      sx={{ flexGrow: 1, bgcolor: "inherit", display: "flex"}}
-    >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
-      >
-        <Tab label="Create Product" {...a11yProps(0)} />
-        <Tab label="Users" {...a11yProps(1)} />
-        <Tab label="Products" {...a11yProps(2)} />
-      </Tabs>
-      <TabPanel value={value} index={0} >
-        <CreateNewProduct history={history}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <AllUsers history={history} match={match} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <AllProducts history={history} />
-      </TabPanel>
-    </Box>
+    <div>
+      {["☰"].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <Button id="hamburger" onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Drawer
+            anchor='left'
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+          >
+            <Tabs
+              orientation="vertical"
+              variant="scrollable"
+              value={value}
+              onChange={handleChange}
+              aria-label="Vertical tabs example"
+              sx={{ borderRight: 1, borderColor: "divider" }}
+            >
+              <Tab label="Create Product" {...a11yProps(0)} />
+              <Tab label="Users" {...a11yProps(1)} />
+              <Tab label="Products" {...a11yProps(2)} />
+            </Tabs>
+          </Drawer>
+          <Box
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+          >
+            <TabPanel value={value} index={0}>
+              <CreateNewProduct history={history} />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <AllUsers history={history} match={match} />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <AllProducts history={history} />
+            </TabPanel>
+          </Box>
+        </React.Fragment>
+      ))}
+    </div>
   );
 }
 
-
 export default DashBoard;
-

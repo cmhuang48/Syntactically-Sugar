@@ -113,3 +113,9 @@ td {
   letter-spacing: 1px;
   padding: 0 20px!important;
 }
+
+
+#hamburger {
+  font-size: 24px;
+  color: #f58d72;
+}
