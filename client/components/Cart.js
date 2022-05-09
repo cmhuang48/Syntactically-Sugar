@@ -19,7 +19,6 @@ const Cart = ({ auth, associatedLineItems, products }) => {
     if (!existingCart.length) return <div>Empty Cart</div>;
     cart = existingCart;
   }
-
   async function handleToken(token) {
     const response = await axios.post(
       "http://localhost:8080/api/stripe/checkout",
@@ -31,14 +30,11 @@ const Cart = ({ auth, associatedLineItems, products }) => {
       toast("Something went wrong", { type: "error" });
     }
   }
-
-
   let total = 0;
-
   if (!products.length) return null;
 
   return (
-    <div style={{ marginBottom: "100%" }}>
+    <div>
       <h1 className="font-effect-shadow-multiple">Cart</h1>
       <div className="cartBox">
         <table>

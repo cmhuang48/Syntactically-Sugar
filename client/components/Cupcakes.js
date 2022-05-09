@@ -8,7 +8,7 @@ class Cupcakes extends React.Component {
     super();
     this.state = {
       page: 1,
-      amountPerPage: 12
+      amountPerPage: 10,
     };
   }
 
@@ -28,13 +28,14 @@ class Cupcakes extends React.Component {
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
+        <Pagination className='pagination' count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
         <ul className="cakeContainer">
           {currentCupcakes.map((cupcake) => {
             return (
               <li key={cupcake.id}>
                 <Link to={`/cupcakes/${cupcake.id}`}>
                   <div className="cakeBox">
-                    <img className="cakeImage" src={cupcake.image} />
+                    <img className="cakeImage" src={cupcake.image} style={{height:'300px', width:'300px', border:"1px solid black"}}/>
                     <span className="product-title">{cupcake.name}</span>
                     <div>${cupcake.price}</div>
                   </div>

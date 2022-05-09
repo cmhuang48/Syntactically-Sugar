@@ -613,20 +613,18 @@ async function seed() {
   console.log(`seeded ${orders.length} orders`);
 
   // Creating Line Items
-  const lineItems = [...Array(50)].map(lineItem => ({
-    quantity: Math.floor(Math.random()*(10-1)+1),
-    productId: cakes[Math.floor(Math.random()*(18-1)+1)].id,
-    orderId: orders[Math.floor(Math.random()*(100-1)+1)].id,
-  })).concat(
-    [...Array(50).map(lineItem => ({
-      quantity: Math.floor(Math.random()*(10-1)+1),
-      productId: cupcakes[Math.floor(Math.random()*(21-1)+1)].id,
-      orderId: orders[Math.floor(Math.random()*(100-1)+1)].id,
-    }))]);
-
-  await Promise.all(
-    lineItems.map(async (lineItem) => {
-      return await LineItem.create(lineItem);
+  const lineItems = await Promise.all(
+    [...orders].map(async (order) => {
+      await LineItem.create({
+        quantity: Math.floor(Math.random()*(10-1)+1),
+        productId: cakes[Math.floor(Math.random()*(18-1)+1)].id,
+        orderId: order.id,
+      })
+      return await LineItem.create({
+        quantity: Math.floor(Math.random()*(10-1)+1),
+        productId: cupcakes[Math.floor(Math.random()*(21-1)+1)].id,
+        orderId: order.id,
+      });
     })
   );
 
