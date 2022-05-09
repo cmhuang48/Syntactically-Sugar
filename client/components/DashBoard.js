@@ -78,5 +78,5 @@ function DashBoard({ history, match }) {
 }
 
 
-export default  DashBoard;
+export default DashBoard;
 
