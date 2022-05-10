@@ -1,8 +1,10 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Badge from "@material-ui/core/Badge";
+import { styled } from "@material-ui/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-
+import IconButton from "@material-ui/core/IconButton";
 import MiniCart from "./MiniCart";
 
 import { loadLineItems, logout } from "../store";
@@ -32,7 +34,21 @@ const open = (ev) => {
   }
 };
 
-const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 2,
+    backgroundColor: '#f58d72',
+    color: '#fff',
+    padding: '0',
+  },
+  '& .MuiSvgIcon-root': {
+    color: '#f58d72'
+  }
+}));
+
+
+const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }) => (
   <div>
     <Link to="/home">
       <img
@@ -58,12 +74,23 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           <Link to="/orders">Orders</Link>
           <div className="dropdown" data-dropdown>
             <button className="link" data-dropdown-button>
-              Cart <ShoppingCartIcon />
+              Cart 
+              {associatedLineItems.length ?
+                <IconButton aria-label="cart">
+                  <StyledBadge badgeContent={associatedLineItems.map(ele => ele.quantity)}>
+                    <ShoppingCartIcon />
+                  </StyledBadge>
+                </IconButton>
+              : 
+                <ShoppingCartIcon />
+              }
             </button>
             <div className="dropdown-menu">
-              <div style={{padding: '10px 15px'}}>
-              <MiniCart />
-              <Link id='action' to="/cart">Go to Cart!</Link>
+              <div style={{ padding: "10px 15px" }}>
+                <MiniCart />
+                <Link id="action" to="/cart">
+                  Go to Cart!
+                </Link>
               </div>
             </div>
           </div>
@@ -121,10 +148,17 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
 const mapState = (state) => {
   const username = state.auth.username;
   const auth = state.auth;
+  const orders = state.orders;
+  const lineItems = state.lineItems
+  const cart = orders.find((order) => order.status === "cart");
+  const associatedLineItems = lineItems.filter(
+    (lineItem) => lineItem.orderId === cart?.id
+  );
   return {
     isLoggedIn: !!state.auth.id,
     username,
     auth,
+    associatedLineItems
   };
 };
 
