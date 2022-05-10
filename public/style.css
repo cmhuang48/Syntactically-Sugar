@@ -113,7 +113,7 @@ li {
   border-radius: 10px;
   background-color: #ffffff;
   padding: 5px;
-  width:80vw
+  width: 80vw;
 }
 .info {
   display: flex;
@@ -146,7 +146,7 @@ li {
   margin: 0 auto;
   justify-content: center;
   flex-direction: column;
-  width: 70%
+  width: 70%;
 }
 .cake-details > img {
   width: 80%;
@@ -191,7 +191,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0 auto;
   justify-content: space-around;
   background-color: #ffffff;
-  width:60%
+  width: 60%;
 }
 
 h2 {
@@ -203,7 +203,7 @@ h2 {
 
 ul {
   list-style-type: symbols(#f4cbc182);
-  font-family: "unica one"
+  font-family: "unica one";
 }
 
 input {
@@ -270,28 +270,28 @@ small {
 .dropdown-menu {
   position: absolute;
   left: 0;
-  top: calc(100% + .25rem);
+  top: calc(100% + 0.25rem);
   background-color: white;
-  padding: .75rem;
-  border-radius: .25 rem;
+  padding: 0.75rem;
+  border-radius: 0.25 rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-10px);
-  transition: opacity 300ms ease-in-out transform 300ms ease-in-out
+  transition: opacity 300ms ease-in-out transform 300ms ease-in-out;
 }
 
 .dropdown.active > .link + .dropdown-menu {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-  border:1px solid;
+  border: 1px solid;
   border-radius: 25px;
 }
 
 .link {
-  border:none;
-  background:none;
+  border: none;
+  background: none;
   text-decoration: none;
   font-size: 16px;
   font-family: "sofia";
@@ -301,19 +301,20 @@ small {
   min-width: 150px;
 }
 
-.productImage{
-  width:80%
+.productImage {
+  width: 80%;
 }
 
-.banner{
+.banner {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("./images/cakeshop.jpeg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url("./images/cakeshop.jpeg");
   background-size: cover;
-  background-position:center
+  background-position: center;
 }
 
-.landingnavbar{
+.landingnavbar {
   width: 85%;
   margin: auto;
   padding: 35px 0;
@@ -327,104 +328,108 @@ small {
   margin: 20px 0 0px 20px;
 }
 
-.landingnavbar ul li{
+.landingnavbar ul li {
   list-style: none;
   display: inline-block;
   margin: 0 20px;
 }
 
-.landingnavbar ul li a{
+.landingnavbar ul li a {
   font-size: 30px;
   text-decoration: none;
   color: #f58d72;
   text-transform: uppercase;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
 }
 
-.landingnavbar ul li a:hover{
-  color:white
+.landingnavbar ul li a:hover {
+  color: white;
 }
 
-.landingnavbar ul li::after{
-  content: '';
-  width:0%;
-  height:3px;
-  background:white;
-  display:block;
-  margin:auto;
+.landingnavbar ul li::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background: white;
+  display: block;
+  margin: auto;
   transition: 0.5s;
 }
 
-.landingnavbar ul li:hover::after{
-  width:100%;
+.landingnavbar ul li:hover::after {
+  width: 100%;
 }
 
-.content{
+.content {
   width: 100%;
   position: absolute;
   top: 30%;
-  color:pink
+  color: pink;
 }
 
-.content h1{
+.content h1 {
   font-size: 70px;
   text-align: center;
-  color:#f58d72;
-  font-family: 'Amatic SC', cursive;
+  color: #f58d72;
+  font-family: "Amatic SC", cursive;
 }
 
 .content p {
   font-size: 40px;
   font-weight: 100;
-  text-align:center;
-  font-family: 'Amatic SC', cursive;
-  font-style: italic
+  text-align: center;
+  font-family: "Amatic SC", cursive;
+  font-style: italic;
 }
 
-.shoplinkscontainer{
-  text-align: center
+.shoplinkscontainer {
+  text-align: center;
 }
 
 .shoplinks {
   font-size: 35px;
-  display:inline-block;
+  display: inline-block;
   padding: 10px;
   margin: 45px;
   border: 1px solid pink;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
 }
 
-.shoplinks:hover{
+.shoplinks:hover {
   border: 1px solid white;
   color: white;
-  transition: 0.3s ease
+  transition: 0.3s ease;
 }
 
-.welcomebanner{
-  height:750px;
+.welcomebanner {
+  height: 750px;
 }
 
-.homepic{
-  height:600px;
+.homepic {
+  height: 600px;
   max-height: auto;
   max-width: 50%;
   object-fit: contain;
 }
 
-.aboutUs{
-  height:600px;
+.aboutUs {
+  height: 600px;
   max-height: auto;
   max-width: 50%;
   object-fit: contain;
 }
 
-.ordersul{
-  width:80%;
+.ordersul {
+  width: 80%;
   margin: 0 auto;
-  padding-top:25px
+  padding-top: 25px;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
+}
+
+.dropdown-menu #action {
+  margin: 0;
 }
