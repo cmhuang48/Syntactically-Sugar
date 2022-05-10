@@ -35,7 +35,6 @@ class UserProfile extends React.Component {
   onSubmit(ev) {
     const {id} = this.props.auth 
     ev.preventDefault();
-    console.log(this.state)
     this.props.updateUser({id:id,...this.state});
     this.setState({alert:true})
   }
