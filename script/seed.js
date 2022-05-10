@@ -100,7 +100,7 @@ async function seed() {
     expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
   }));
 
-  await Promise.all(
+  const createdUsers = await Promise.all(
     users.map(async (user) => {
       return await User.create(user);
     })
@@ -596,16 +596,17 @@ async function seed() {
 
   // Creating Carts
   const carts = await Promise.all(
-    [...users, ...admins].map(async (user) => {
+    [...createdUsers, ...admins].map(async (user) => {
       return await Order.create({ status: "cart", userId: user.id });
     })
   );
+
 
   console.log(`seeded ${carts.length} carts`);
 
   // Creating Orders
   const orders = await Promise.all(
-    [...users, ...admins].map(async (user) => {
+    [...createdUsers, ...admins].map(async (user) => {
       return await Order.create({ status: 'order', userId: user.id });
     })   
   );

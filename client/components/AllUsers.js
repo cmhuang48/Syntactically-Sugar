@@ -43,24 +43,25 @@ const AllUsers = ({ users, destroy, history, match }) => {
         <option value="first_name">First Name</option>
         <option value="last_name">Last Name</option>
       </select>
+      <Pagination className='pagination' count={Math.ceil(users.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
       <TableContainer component={Paper} style= {{width:'95%'}}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell style= {{minWidth:50, maxWidth: 50}}>ID</TableCell>
-              <TableCell>Admin</TableCell>
-              <TableCell>Username</TableCell>
-              <TableCell>First Name</TableCell>
-              <TableCell align="right">Last Name</TableCell>
-              <TableCell align="right">Address</TableCell>
-              <TableCell align="right">City</TableCell>
-              <TableCell align="right">State</TableCell>
-              <TableCell align="right">Zip</TableCell>
-              <TableCell align="right">Country</TableCell>
-              <TableCell align="right">Card Name</TableCell>
-              <TableCell align="right" style= {{minWidth:'50px', maxWidth: '50px'}}>Card Number</TableCell>
-              <TableCell align="right"></TableCell>
-              {/*<TableCell align="right"></TableCell>*/}
+              <TableCell align="center">Admin</TableCell>
+              <TableCell align="center">Username</TableCell>
+              <TableCell align="center">First Name</TableCell>
+              <TableCell align="center">Last Name</TableCell>
+              <TableCell align="center">Address</TableCell>
+              <TableCell align="center">City</TableCell>
+              <TableCell align="center">State</TableCell>
+              <TableCell align="center">Zip</TableCell>
+              <TableCell align="center">Country</TableCell>
+              <TableCell align="center">Card Name</TableCell>
+              <TableCell align="center" style= {{minWidth:'50px', maxWidth: '50px'}}>Card Number</TableCell>
+              <TableCell align="center"></TableCell>
+              {/*<TableCell align="center"></TableCell>*/}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -70,21 +71,21 @@ const AllUsers = ({ users, destroy, history, match }) => {
                   <TableCell component="th" scope="row" key={user.id}>
                     {user.id}
                   </TableCell>
-                  <TableCell align="right">{user.isAdmin.toString()}</TableCell>
-                  <TableCell align="right">{user.username}</TableCell>
-                  <TableCell align="right">{user.firstName}</TableCell>
-                  <TableCell align="right">{user.lastName}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">{user.isAdmin.toString()}</TableCell>
+                  <TableCell align="center">{user.username}</TableCell>
+                  <TableCell align="center">{user.firstName}</TableCell>
+                  <TableCell align="center">{user.lastName}</TableCell>
+                  <TableCell align="center">
                     {user.address1}
                     <br />
                     {user.address2}
                   </TableCell>
-                  <TableCell align="right">{user.city}</TableCell>
-                  <TableCell align="right">{user.state}</TableCell>
-                  <TableCell align="right">{user.zip}</TableCell>
-                  <TableCell align="right">{user.country}</TableCell>
-                  <TableCell align="right">{user.cardName}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">{user.city}</TableCell>
+                  <TableCell align="center">{user.state}</TableCell>
+                  <TableCell align="center">{user.zip}</TableCell>
+                  <TableCell align="center">{user.country}</TableCell>
+                  <TableCell align="center">{user.cardName}</TableCell>
+                  <TableCell align="center">
                     {"XXXXXXXXXXXX" + user.cardNumber.slice(-4)}
                   </TableCell>
                   <TableCell>
