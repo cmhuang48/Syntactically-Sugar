@@ -322,6 +322,7 @@ small {
 .logo {
   width: 40%;
   margin: 20px 0 0px 20px;
+  opacity: 0
 }
 
 .landingnavbar ul li{
@@ -364,7 +365,7 @@ small {
 }
 
 .content h1{
-  font-size: 90px;
+  font-size: 70px;
   text-align: center;
   color:#f58d72;
   font-family: 'Amatic SC', cursive;
@@ -424,12 +425,4 @@ small {
 .pagination {
   display: flex;
   justify-content: center;
-}
-
-td{
-  text-align:center
-}
-
-th{
-  text-align:center
 }

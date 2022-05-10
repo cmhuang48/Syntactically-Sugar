@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import Alert from '@material-ui/lab/Alert'
+import Box from "@material-ui/core/Box"
 
 class CustomCake extends React.Component {
   constructor() {
@@ -15,9 +17,18 @@ class CustomCake extends React.Component {
       price: 100,
       image:
         "https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg",
+      alert:false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidUpdate(){
+    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 2000)
+  }
+
+  componentWillUnmount(){
+    this.setState({alert:false})
   }
 
   onSubmit(ev) {
@@ -26,7 +37,7 @@ class CustomCake extends React.Component {
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     existingCart.push(newLineItem);
     window.localStorage.setItem("cart", JSON.stringify(existingCart));
-    window.alert("Added to cart!");
+    this.setState({alert:true});
   }
 
   onChange(ev) {
@@ -36,7 +47,7 @@ class CustomCake extends React.Component {
   }
 
   render() {
-    const { size, tiers, flavor, frosting, message } = this.state;
+    const { size, tiers, flavor, frosting, message, alert } = this.state;
     const { onChange, onSubmit } = this;
     return (
       <div className="custom-cake">
@@ -128,6 +139,10 @@ class CustomCake extends React.Component {
                 Add Custom Cake Order
               </button>
             </form>
+            {alert?
+            <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+              <Alert severity="success">Added to cart!</Alert>
+            </Box>:null}
           </div>
           <div className="examples">
             <h1 className="font-effect-shadow-multiple">
