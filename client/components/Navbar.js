@@ -1,25 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
-import MiniCart from './MiniCart';
+import MiniCart from "./MiniCart";
 
 import { loadLineItems, logout } from "../store";
 
-document.addEventListener('click', e=>{
-    const isDropdownButton = e.target.matches('[data-dropdown-button]')
-    if(!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
-    let currentDropdown
-    if(isDropdownButton){
-      currentDropdown = e.target.closest('[data-dropdown]')
-      currentDropdown.classList.toggle('active')
-    }
-    document.querySelectorAll('[data-dropdown].active').forEach(dropdown =>{
-      if(dropdown === currentDropdown) return
-      dropdown.classList.remove('active')
-    })
-})
+document.addEventListener("click", (e) => {
+  const isDropdownButton = e.target.matches("[data-dropdown-button]");
+  if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return;
+  let currentDropdown;
+  if (isDropdownButton) {
+    currentDropdown = e.target.closest("[data-dropdown]");
+    currentDropdown.classList.toggle("active");
+  }
+  document.querySelectorAll("[data-dropdown].active").forEach((dropdown) => {
+    if (dropdown === currentDropdown) return;
+    dropdown.classList.remove("active");
+  });
+});
 
 const open = (ev) => {
   if (ev.target.className === "dropdown") {
@@ -45,22 +45,22 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <div className = 'dropdown' data-dropdown>
-            <button className = 'link' data-dropdown-button>
+          <div className="dropdown" data-dropdown>
+            <button className="link" data-dropdown-button>
               Products
             </button>
-            <div className = 'dropdown-menu'>
+            <div className="dropdown-menu">
               <Link to="/cakes">Cakes</Link>
               <Link to="/cupcakes">Cupcakes</Link>
               <Link to="/custom">Customize!</Link>
             </div>
           </div>
           <Link to="/orders">Orders</Link>
-          <div className = 'dropdown' data-dropdown>
-            <button className = 'link' data-dropdown-button>
+          <div className="dropdown" data-dropdown>
+            <button className="link" data-dropdown-button>
               Cart <ShoppingCartIcon />
             </button>
-            <div className = 'dropdown-menu'>
+            <div className="dropdown-menu">
               <MiniCart />
               <Link to="/cart">Go to Cart!</Link>
             </div>
@@ -76,21 +76,21 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar">
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
-          <div className='dropdown' data-dropdown>
-            <button className='link' data-dropdown-button>
+          <div className="dropdown" data-dropdown>
+            <button className="link" data-dropdown-button>
               Products
             </button>
-            <div className='dropdown-menu'>
+            <div className="dropdown-menu">
               <Link to="/cakes">Cakes</Link>
               <Link to="/cupcakes">Cupcakes</Link>
               <Link to="/custom">Customize!</Link>
             </div>
           </div>
-          <div className='dropdown' data-dropdown>
-            <button className='link' data-dropdown-button>
+          <div className="dropdown" data-dropdown>
+            <button className="link" data-dropdown-button>
               Cart <ShoppingCartIcon />
             </button>
-            <div className='dropdown-menu'>
+            <div className="dropdown-menu">
               <MiniCart />
               <Link to="/cart">Go to Cart!</Link>
             </div>
