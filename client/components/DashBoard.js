@@ -17,6 +17,7 @@ import Button from "@material-ui/core/Button";
 import CreateNewProduct from "./CreateNewProduct";
 import AllUsers from "./AllUsers";
 import AllProducts from "./AllProducts";
+import AllOrders from "./AllOrders"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -97,6 +98,7 @@ function DashBoard({ history, match }) {
               <Tab label="Create Product" {...a11yProps(0)} />
               <Tab label="Users" {...a11yProps(1)} />
               <Tab label="Products" {...a11yProps(2)} />
+              <Tab label="Orders" {...a11yProps(3)} />
             </Tabs>
           </Drawer>
           <Box
@@ -111,6 +113,9 @@ function DashBoard({ history, match }) {
             </TabPanel>
             <TabPanel value={value} index={2}>
               <AllProducts history={history} />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+              <AllOrders history={history} />
             </TabPanel>
           </Box>
         </React.Fragment>

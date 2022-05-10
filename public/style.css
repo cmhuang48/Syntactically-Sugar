@@ -320,7 +320,7 @@ small {
 }
 
 .logo {
-  width: 25%;
+  width: 40%;
   margin: 20px 0 0px 20px;
 }
 
@@ -424,4 +424,12 @@ small {
 .pagination {
   display: flex;
   justify-content: center;
+}
+
+td{
+  text-align:center
+}
+
+th{
+  text-align:center
 }

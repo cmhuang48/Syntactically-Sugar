@@ -1,14 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
+import Pagination from '@material-ui/lab/Pagination';
 
-const Orders = ({ completedOrders, lineItems, products }) => {
+const Orders = ({ completedOrders, lineItems, products, users }) => {
   if (!completedOrders.length) return <div>No Orders</div>;
 
+  const [page, setPage] = React.useState(1);
+  const amountPerPage = 5;
+  const indexOfLastOrder = page * amountPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - amountPerPage;
+  const currentOrders = completedOrders.slice(indexOfFirstOrder, indexOfLastOrder);
   return (
-    <div className="orders">
-      <h1 className="font-effect-shadow-multiple">My Orders</h1>
+    <>
+      <Pagination className='pagination' count={Math.ceil(products.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
+      <div className="orders">
+      <h1 className="font-effect-shadow-multiple">Completed Orders</h1>
       <ul >
-        {completedOrders.map((order) => {
+        {currentOrders.map((order) => {
           const associatedLineItems = lineItems.filter(
             (lineItem) => lineItem.orderId === order.id
           );
@@ -18,6 +26,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
             <li key={order.id} className="ordersList">
               <div className ='orderulcontainer'>
                 <h2 className= 'ordersul'>Order ID: {order.id}</h2>
+                <h2>Order made by: Customer {users.find(user=> user.id === order.userId).username}</h2>
                 <ul className='ordersul'>
                   {associatedLineItems.map((lineItem) => {
                     const product = products.find(
@@ -42,16 +51,19 @@ const Orders = ({ completedOrders, lineItems, products }) => {
         })}
       </ul>
     </div>
+    <Pagination className='pagination' count={Math.ceil(products.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
+    </>
+    
   );
 };
 
-const mapState = ({ orders, lineItems, products, auth }) => {
+const mapState = ({ orders, lineItems, products, users}) => {
   let completedOrders = orders.filter((order) => order.status === "order");
-  if(auth.isAdmin) completedOrders = completedOrders.filter(order=> order.userId === auth.id)
   return {
     completedOrders,
     lineItems,
     products,
+    users
   };
 };
 

@@ -32,33 +32,33 @@ const AllProducts = ({ products, destroy, history }) => {
         <Table style={{width: '80vw'}}>
           <TableHead>
             <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Image</TableCell>
-              <TableCell>Size</TableCell>
-              <TableCell>Quantity In Stock</TableCell>
-              <TableCell>Delete</TableCell>
-              <TableCell>Edit</TableCell>
+              <TableCell align='center'>Category</TableCell>
+              <TableCell align='center'>Name</TableCell>
+              <TableCell align='center'>Price</TableCell>
+              <TableCell align='center'>Image</TableCell>
+              <TableCell align='center'>Size</TableCell>
+              <TableCell align='center'>Quantity In Stock</TableCell>
+              <TableCell align='center'>Delete</TableCell>
+              <TableCell align='center'>Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {currentProducts.map((product) => {
               return (
                 <TableRow>
-                  <TableCell component="th" scope="row" key={product.id}>
+                  <TableCell component="th" scope="row" key={product.id} align='center'>
                     {product.category}
                   </TableCell>
-                  <TableCell align="left">{product.name}</TableCell>
-                  <TableCell align="left">{product.price}</TableCell>
-                  <TableCell align="left">
+                  <TableCell align="center">{product.name}</TableCell>
+                  <TableCell align="center">{product.price}</TableCell>
+                  <TableCell align="center">
                     <img style={{ maxWidth: "100px" }} src={product.image} />
                   </TableCell>
-                  <TableCell align="left">{product.size}</TableCell>
+                  <TableCell align="center">{product.size}</TableCell>
                   <TableCell align="center">
                     {product.quantityInStock}
                   </TableCell>
-                  <TableCell>
+                  <TableCell align='center'>
                     <Button
                       classes={classes}
                       onClick={() => destroy(product, history)}
@@ -67,7 +67,7 @@ const AllProducts = ({ products, destroy, history }) => {
                       X
                     </Button>
                   </TableCell>
-                  <TableCell>
+                  <TableCell align='center'>
                     <Button classes={classes}>
                       <Link to={`/products/${product.id}/edit`}>&#x270D;</Link>
                     </Button>
