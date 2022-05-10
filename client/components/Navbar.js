@@ -61,8 +61,10 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
               Cart <ShoppingCartIcon />
             </button>
             <div className="dropdown-menu">
+              <div style={{padding: '10px 15px'}}>
               <MiniCart />
               <Link id='action' to="/cart">Go to Cart!</Link>
+              </div>
             </div>
           </div>
           <Link to="/profile" className="dropdown" onClick={open}>
