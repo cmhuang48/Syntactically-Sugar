@@ -73,18 +73,15 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           </div>
           <Link to="/orders">Orders</Link>
           <div className="dropdown" data-dropdown>
-            <button className="link" data-dropdown-button>
-              Cart 
-              {associatedLineItems.length ?
-                <IconButton aria-label="cart">
-                  <StyledBadge badgeContent={associatedLineItems.map(ele => ele.quantity)}>
-                    <ShoppingCartIcon />
-                  </StyledBadge>
-                </IconButton>
-              : 
-                <ShoppingCartIcon />
-              }
-            </button>
+            {associatedLineItems.length ?
+              <IconButton aria-label="cart" className="link">
+                <StyledBadge badgeContent={associatedLineItems.reduce((accum, ele) => accum + ele.quantity, 0)}>
+                  <ShoppingCartIcon data-dropdown-button />
+                </StyledBadge>
+              </IconButton>
+            : 
+              <ShoppingCartIcon data-dropdown-button />
+            }
             <div className="dropdown-menu">
               <div style={{ padding: "10px 15px" }}>
                 <MiniCart />
@@ -116,9 +113,15 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
             </div>
           </div>
           <div className="dropdown" data-dropdown>
-            <button className="link" data-dropdown-button>
-              Cart <ShoppingCartIcon />
-            </button>
+            {JSON.parse(window.localStorage.getItem("cart")).length ?
+              <IconButton aria-label="cart" className="link">
+                <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
+                  <ShoppingCartIcon data-dropdown-button />
+                </StyledBadge>
+              </IconButton>
+            : 
+              <ShoppingCartIcon data-dropdown-button />
+            }
             <div className="dropdown-menu">
               <MiniCart />
               <Link to="/cart">Go to Cart!</Link>
