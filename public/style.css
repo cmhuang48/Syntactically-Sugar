@@ -2,6 +2,8 @@ body {
   font-family: "unica one", sans-serif;
   color: #6b5049;
   background: #fff4ee;
+  margin: 0;
+  padding: 0;
 }
 p {
   font-size: 1.2em;
