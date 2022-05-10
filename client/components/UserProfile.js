@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import Alert from '@material-ui/lab/Alert'
+import Box from "@material-ui/core/Box"
 
 import { updateUser } from "../store";
 
@@ -16,14 +18,25 @@ class UserProfile extends React.Component {
       state: this.props.auth.state ? this.props.auth.state : "",
       zip: this.props.auth.zip ? this.props.auth.zip : "",
       country: this.props.auth.country ? this.props.auth.country : "",
+      alert:false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidUpdate(){
+    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 3000)
+  }
+
+  componentWillUnmount(){
+    this.setState({alert:false})
+  }
+
   onSubmit(ev) {
+    const {id} = this.props.auth 
     ev.preventDefault();
-    this.props.updateUser(this.state);
+    this.props.updateUser({id:id,...this.state});
+    this.setState({alert:true})
   }
 
   onChange(ev) {
@@ -43,6 +56,7 @@ class UserProfile extends React.Component {
       state,
       zip,
       country,
+      alert
     } = this.state;
     const { onChange, onSubmit } = this;
     return (
@@ -142,9 +156,13 @@ class UserProfile extends React.Component {
                 className="input1"
               />
             </p>
+            <button className="submitButton">Update</button>
           </form>
+          {alert?
+            <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+              <Alert severity="success">User information updated!</Alert>
+            </Box>:null}
           <br />
-          <button className="submitButton">Update</button>
         </div>
       </div>
     );

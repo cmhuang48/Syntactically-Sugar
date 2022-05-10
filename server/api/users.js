@@ -55,8 +55,9 @@ router.post("/", async (req, res, next) => {
 // update a user
 router.put("/:id", async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
-    res.json(await user.update(req.body));
+    const {username, firstName, lastName, address1, address2, city, state, zip, country} = req.body
+    const user = await User.findByPk(req.body.id);
+    res.json(await user.update({username, firstName, lastName, address1, address2, city, state, zip, country}));
   } catch (err) {
     next(err);
   }

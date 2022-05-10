@@ -1,15 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createLineItem, updateLineItem } from "../store";
+import Alert from '@material-ui/lab/Alert'
+import Box from "@material-ui/core/Box"
 
 class Cupcake extends React.Component {
   constructor() {
     super();
     this.state = {
       quantity: 1,
+      alert:false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidUpdate(){
+    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 2000)
+  }
+
+  componentWillUnmount(){
+    this.setState({alert:false})
   }
 
   onSubmit(ev) {
@@ -50,7 +61,7 @@ class Cupcake extends React.Component {
       }
       window.localStorage.setItem("cart", JSON.stringify(existingCart));
     }
-    window.alert("Added to cart!");
+    this.setState({alert:true});
   }
 
   onChange(ev) {
@@ -61,7 +72,7 @@ class Cupcake extends React.Component {
 
   render() {
     const { cupcake } = this.props;
-    const { quantity } = this.state;
+    const { quantity, alert } = this.state;
     const { onChange, onSubmit } = this;
 
     if (!cupcake) return null;
@@ -88,6 +99,10 @@ class Cupcake extends React.Component {
               </p>
               <button>Add to Cart</button>
             </form>
+            {alert?
+            <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+              <Alert severity="success">Added to cart!</Alert>
+            </Box>:null}
           </div>
         </div>
       </>

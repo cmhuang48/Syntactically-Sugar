@@ -8,6 +8,7 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
+    if(!user) return
     if(user.isAdmin){
       res.json(await Order.findAll())
     }else{
