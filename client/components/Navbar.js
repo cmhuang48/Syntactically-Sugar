@@ -41,8 +41,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <MenuListComposition title={
             <StyledBadge badgeContent={[...associatedLineItems, ...JSON.parse(window.localStorage.getItem("cart"))].reduce((accum, ele) => accum + ele.quantity, 0)}>
               <ShoppingCartIcon/>
-            </StyledBadge>} 
-          menuList={[<MiniCart/>]}/>
+            </StyledBadge>} />
           <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
           {auth.isAdmin ? <Link to="/dashboard">Dashboard</Link> : null }
           <a href="#" onClick={handleClick}>
@@ -57,8 +56,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <MenuListComposition title={
             <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
               <ShoppingCartIcon/>
-            </StyledBadge>} 
-          menuList={[<MiniCart/>]}/>
+            </StyledBadge>} />
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>

@@ -5,28 +5,27 @@ import Alert from '@material-ui/lab/Alert'
 import Box from "@material-ui/core/Box"
 
 class Cupcake extends React.Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
       quantity: 1,
-      alert:false
+      alert: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidUpdate(){
-    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 2000)
+  componentDidUpdate () {
+    if(this.state.alert) setTimeout(()=>this.setState({ alert: false }), 2000);
   }
 
-  componentWillUnmount(){
-    this.setState({alert:false})
+  componentWillUnmount () {
+    this.setState({ alert: false });
   }
 
-  onSubmit(ev) {
+  onSubmit (ev) {
     ev.preventDefault();
-    const { auth, cupcake, order, lineItem, createLineItem, updateLineItem } =
-      this.props;
+    const { auth, cupcake, order, lineItem, createLineItem, updateLineItem } = this.props;
     const { quantity } = this.state;
     if (auth.username) {
       if (lineItem) {
@@ -47,13 +46,10 @@ class Cupcake extends React.Component {
       }
     } else {
       let existingCart = JSON.parse(window.localStorage.getItem("cart"));
-      let existingLineItem = existingCart.find(
-        (obj) => obj.productId === cupcake.id
-      );
+      let existingLineItem = existingCart.find((obj) => obj.productId === cupcake.id);
       const idx = existingCart.indexOf(existingLineItem);
       if (existingLineItem) {
-        existingLineItem.quantity =
-          existingLineItem.quantity * 1 + quantity * 1;
+        existingLineItem.quantity = existingLineItem.quantity * 1 + quantity * 1;
         existingCart[idx] = existingLineItem;
       } else {
         existingLineItem = { productId: cupcake.id, quantity: quantity * 1 };
@@ -61,16 +57,16 @@ class Cupcake extends React.Component {
       }
       window.localStorage.setItem("cart", JSON.stringify(existingCart));
     }
-    this.setState({alert:true});
+    this.setState({ alert: true });
   }
 
-  onChange(ev) {
+  onChange (ev) {
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
   }
 
-  render() {
+  render () {
     const { cupcake } = this.props;
     const { quantity, alert } = this.state;
     const { onChange, onSubmit } = this;
@@ -78,52 +74,41 @@ class Cupcake extends React.Component {
     if (!cupcake) return null;
 
     return (
-      <>
-        <div className="cake-details" >
-          <img src={cupcake.image} style={{height:'650px', width:'650px', border:"1px solid black"}}/>
-          <div className="cake-add-to-cart">
-            <h1 >{cupcake.name} cupcake</h1>
-            <p style={{textAlign:'center'}}>Price: ${cupcake.price}</p>
-            <p style={{textAlign:'center'}}>In Stock: {cupcake.quantityInStock}</p>
-            <form onSubmit={onSubmit} style={{textAlign:'center'}}>
-              <p>
-                Quantity:{" "}
-                <input
-                  name="quantity"
-                  value={quantity}
-                  type="number"
-                  min="1"
-                  max="10"
-                  onChange={onChange}
-                />
-              </p>
-              <button>Add to Cart</button>
-            </form>
-            {alert?
-            <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
-              <Alert severity="success">Added to cart!</Alert>
-            </Box>:null}
-          </div>
+      <div className="cake-details" >
+        <img src={cupcake.image} style={{height:'650px', width:'650px', border:"1px solid black"}}/>
+        <div className="cake-add-to-cart">
+          <h1 >{cupcake.name} Cupcake</h1>
+          <p style={{textAlign:'center'}}>Price: ${cupcake.price}</p>
+          <p style={{textAlign:'center'}}>In Stock: {cupcake.quantityInStock}</p>
+          <form onSubmit={onSubmit} style={{textAlign:'center'}}>
+            <p>
+              Quantity:{" "}
+              <input
+                name="quantity"
+                value={quantity}
+                type="number"
+                min="1"
+                max="10"
+                onChange={onChange}
+              />
+            </p>
+            <button>Add to Cart</button>
+          </form>
+          {alert ?
+          <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+            <Alert severity="success">Added to cart!</Alert>
+          </Box> :
+          null}
         </div>
-      </>
+      </div>
     );
   }
-}
+};
 
-const mapState = (
-  { auth, products, orders, lineItems },
-  {
-    match: {
-      params: { id },
-    },
-  }
-) => {
+const mapState = ({ auth, products, orders, lineItems }, { match: { params: { id } } }) => {
   const cupcake = products.find((product) => product.id === id * 1);
   const order = orders.find((order) => order.status === "cart");
-  const lineItem = lineItems.find(
-    (lineItem) =>
-      lineItem.productId === cupcake?.id && lineItem.orderId === order?.id
-  );
+  const lineItem = lineItems.find((lineItem) => lineItem.productId === cupcake?.id && lineItem.orderId === order?.id);
   return {
     auth,
     cupcake,
