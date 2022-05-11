@@ -55,10 +55,7 @@ function a11yProps(index) {
 function DashBoard({ history, match }) {
   const [value, setValue] = React.useState(0);
   const [state, setState] = React.useState({
-    left: false,
-    top: false,
-    bottom: false,
-    right: false
+    left: false
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -85,7 +82,7 @@ function DashBoard({ history, match }) {
             anchor='left'
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
-            PaperProps={{ style: { marginTop: "22%", padding: "1%", height: "15vh" } }}
+            PaperProps={{ style: { marginTop: "32%", padding: "1%", height: "18vh" } }}
           >
             <Tabs
               orientation="vertical"

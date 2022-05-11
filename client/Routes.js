@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { withRouter, Route, Switch } from "react-router-dom";
 
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
@@ -50,7 +50,6 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route>
-              <div>
                 <Navbar/>
                 <Switch>
                   <Route path="/home" component={Home} />
@@ -69,13 +68,9 @@ class Routes extends Component {
                   <Route path="/profile" component={UserProfile} />
                   <Route exact path="/dashboard" component={DashBoard} />
                   <Route path="/dashboard/sort/:sort" component={DashBoard} />
-                  {/* <Route path="/users" component={AllUsers} />
-                  <Route path="/allProducts" component={AllProducts} /> */}
                   <Route exact path="/products/:id/edit" component={UpdateProduct} />
-                  {/* <Redirect to="/home"/> */}
                 </Switch>
                 <Copyright/>
-              </div>
             </Route>
           </Switch>
         ) : (
@@ -83,7 +78,6 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route>
-              <div>
               <Navbar/>
                 <Switch>
                   <Route path="/home" component={Home} />
@@ -100,10 +94,8 @@ class Routes extends Component {
                   <Route path="/checkout" component={Checkout} />
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={Signup} />
-                  {/* <Redirect to="/home" /> */}
                 </Switch>
                 <Copyright/>
-              </div>
             </Route>
           </Switch>
           </>

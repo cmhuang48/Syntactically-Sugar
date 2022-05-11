@@ -2,8 +2,8 @@ body {
   font-family: "unica one", sans-serif;
   color: #6b5049;
   background: #fff4ee;
-  margin:0;
-  padding:0
+  margin: 0;
+  padding: 0;
 }
 p {
   font-size: 1.2em;
@@ -17,14 +17,6 @@ p {
 .aboutUs {
   width: 50%;
   height: 50%;
-}
-.signUp {
-  background-size: cover;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  margin: 0 auto;
 }
 .headerpic {
   background-size: cover;
