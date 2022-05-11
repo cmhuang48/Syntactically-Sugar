@@ -10,17 +10,6 @@ import MenuListComposition from './Menu'
 
 import { loadLineItems, logout } from "../store";
 
-const open = (ev) => {
-  if (ev.target.className === "dropdown") {
-    const subNav = document.querySelector(".subNav");
-    if (subNav.style.display === "none") {
-      subNav.style.display = "block";
-    } else {
-      subNav.style.display = "none";
-    }
-  }
-};
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -35,7 +24,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 
-const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }) => (
+const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
   <div>
     <Link to="/home">
       <img
@@ -57,9 +46,14 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
               </StyledBadge>
             </IconButton>
           </div>
-          <Link to="/profile" className="dropdown" onClick={open}>
-            {username[0].toUpperCase() + username.slice(1)}'s Profile
-          </Link>
+          <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
+          {auth.isAdmin ? (
+            <div>
+              <Link to="/dashboard">Dashboard</Link>
+            </div>
+          ) : (
+            ""
+          )}
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -81,16 +75,6 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
         </div>
       )}
     </nav>
-    <hr />
-    <nav className="subNav">
-      {auth.isAdmin ? (
-        <div>
-          <Link to="/dashboard">Dashboard</Link>
-        </div>
-      ) : (
-        ""
-      )}
-    </nav>
   </div>
 );
 
@@ -103,14 +87,10 @@ const mapState = (state) => {
   const orders = state.orders;
   const lineItems = state.lineItems
   const cart = orders.find((order) => order.status === "cart");
-  const associatedLineItems = lineItems.filter(
-    (lineItem) => lineItem.orderId === cart?.id
-  );
   return {
     isLoggedIn: !!state.auth.id,
     username,
     auth,
-    associatedLineItems
   };
 };
 
