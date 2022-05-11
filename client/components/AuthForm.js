@@ -17,7 +17,7 @@ import { authenticate } from "../store";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: '100vh'
   },
   image: {
     backgroundImage: 'url("/../images/login.jpeg")',

@@ -25,7 +25,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
-  <div>
+  <div style={{backgroundColor: '#fff4ee'}}>
     <Link to="/home">
       <img
         src="https://64.media.tumblr.com/0247842009fe11e7313136833fde624d/23030b2c9b9bec6c-36/s1280x1920/2e54ad5f5b0299d2f0b5a8e27412d636d9d4089b.pnj"
@@ -59,7 +59,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
           </a>
         </div>
       ) : (
-        <div className="navbar">
+        <div className="navbar" style={{backgroundColor: '#fff4ee'}}>
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
           <MenuListComposition title={'Products'} menuList = {[<Link to="/cakes">Cakes</Link>, <Link to="/cupcakes">Cupcakes</Link>, <Link to="/custom">Customize!</Link>]}/>
