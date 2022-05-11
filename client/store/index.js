@@ -17,9 +17,11 @@ const reducer = combineReducers({
   newOrder,
   users,
 });
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
+
 const store = createStore(reducer, middleware);
 
 export default store;

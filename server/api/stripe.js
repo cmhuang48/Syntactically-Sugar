@@ -1,11 +1,10 @@
-require('dotenv').config();
-const SECRET_KEY = process.env.SECRET_KEY
+require("dotenv").config();
+const SECRET_KEY = process.env.SECRET_KEY;
 const router = require("express").Router();
 const cors = require("cors");
-const express = require('express')
+const express = require("express");
 const uuid = require("uuid").v4;
 const stripe = require("stripe")(SECRET_KEY);
-
 
 router.use(express.urlencoded({ extended: true }));
 router.use(cors());
@@ -14,25 +13,19 @@ router.post("/checkout", async (req, res) => {
   let error;
   let status;
   try {
-  const {token, total} = req.body
+    const { token, total, existingCart } = req.body;
     const idempotencyKey = uuid();
     const customer = await stripe.customers.create({
       email: token.email,
-      source: token.id
+      source: token.id,
     });
 
     const charge = await stripe.charges.create(
       {
-        amount: total*100,
+        amount: total * 100,
         currency: "usd",
         customer: customer.id,
         receipt_email: token.email,
-        lineItems: [
-        {
-          price: 'price_H5ggYwtDq4fbrJ', 
-          quantity: 2,
-        },
-      ],
         shipping: {
           name: token.card.name,
           address: {
@@ -48,7 +41,6 @@ router.post("/checkout", async (req, res) => {
         idempotencyKey,
       }
     );
-    console.log('charge', {charge})
     status = "success";
   } catch (err) {
     console.log(err);
@@ -56,6 +48,5 @@ router.post("/checkout", async (req, res) => {
   }
   res.json({ error, status });
 });
-
 
 module.exports = router;
