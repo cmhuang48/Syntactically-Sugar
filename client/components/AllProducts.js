@@ -36,7 +36,6 @@ const AllProducts = ({ products, destroy, history }) => {
               <TableCell align='center'>Name</TableCell>
               <TableCell align='center'>Price</TableCell>
               <TableCell align='center'>Image</TableCell>
-              <TableCell align='center'>Size</TableCell>
               <TableCell align='center'>Quantity In Stock</TableCell>
               <TableCell align='center'>Delete</TableCell>
               <TableCell align='center'>Edit</TableCell>
@@ -54,7 +53,6 @@ const AllProducts = ({ products, destroy, history }) => {
                   <TableCell align="center">
                     <img style={{ maxWidth: "100px" }} src={product.image} />
                   </TableCell>
-                  <TableCell align="center">{product.size}</TableCell>
                   <TableCell align="center">
                     {product.quantityInStock}
                   </TableCell>

@@ -128,7 +128,6 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
             </div>
           </div>
           <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
         </div>
       )}
     </nav>
