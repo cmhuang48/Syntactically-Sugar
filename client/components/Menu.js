@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -7,8 +8,6 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import MiniCart from './MiniCart';
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,23 +63,37 @@ export default function MenuListComposition(props) {
         >
           {props.title}
         </Button>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+              {props.menuList.length === 1 ? (
+                <div>
+                  {props.menuList[0]}
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    {props.menuList.map((item, idx) => <MenuItem onClick={handleClose} key ={idx}>{item}</MenuItem>)}
+                    <MenuItem component={Link} to='/cart' onClick={handleClose}>Go to Cart!</MenuItem>
                   </MenuList>
-                </ClickAwayListener>
-                {props.goToCart? props.goToCart:null}
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
+                </div>
+                ) : (
+                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      {props.menuList.map((item, idx) => {
+                        if (item === "Cakes" || item === "Cupcakes") { 
+                          return <MenuItem component={Link} to={`/${item}`} onClick={handleClose} key={idx}>{item}</MenuItem>;
+                        } else if (item === "Customize!") {
+                          return <MenuItem component={Link} to='/custom' onClick={handleClose} key={idx}>{item}</MenuItem>;
+                        } 
+                      })}
+                    </MenuList>
+                )}
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
       </div>
     </div>
   );
