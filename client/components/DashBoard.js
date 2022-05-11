@@ -55,10 +55,7 @@ function a11yProps(index) {
 function DashBoard({ history, match }) {
   const [value, setValue] = React.useState(0);
   const [state, setState] = React.useState({
-    left: false,
-    top: false,
-    bottom: false,
-    right: false
+    left: false
   });
 
   const toggleDrawer = (anchor, open) => (event) => {

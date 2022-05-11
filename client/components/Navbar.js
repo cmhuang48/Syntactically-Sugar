@@ -35,20 +35,25 @@ const open = (ev) => {
 };
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  '& .MuiBadge-badge': {
+  "& .MuiBadge-badge": {
     right: -3,
     top: 2,
-    backgroundColor: '#f58d72',
-    color: '#fff',
-    padding: '0',
+    backgroundColor: "#f58d72",
+    color: "#fff",
+    padding: "0",
   },
-  '& .MuiSvgIcon-root': {
-    color: '#f58d72'
-  }
+  "& .MuiSvgIcon-root": {
+    color: "#f58d72",
+  },
 }));
 
-
-const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }) => (
+const Navbar = ({
+  handleClick,
+  isLoggedIn,
+  username,
+  auth,
+  associatedLineItems,
+}) => (
   <div>
     <Link to="/home">
       <img
@@ -74,16 +79,22 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <Link to="/orders">Orders</Link>
           <div className="dropdown" data-dropdown>
             <button className="link" data-dropdown-button>
-              Cart 
-              {associatedLineItems.length ?
+              Cart
+              {associatedLineItems.length ? (
                 <IconButton aria-label="cart">
-                  <StyledBadge badgeContent={associatedLineItems.map(ele => ele.quantity)}>
+                  <StyledBadge
+                    overlap="rectangular"
+                    badgeContent={associatedLineItems.reduce(
+                      (acc, ele) => acc + ele.quantity,
+                      0
+                    )}
+                  >
                     <ShoppingCartIcon />
                   </StyledBadge>
                 </IconButton>
-              : 
+              ) : (
                 <ShoppingCartIcon />
-              }
+              )}
             </button>
             <div className="dropdown-menu">
               <div style={{ padding: "10px 15px" }}>
@@ -149,7 +160,7 @@ const mapState = (state) => {
   const username = state.auth.username;
   const auth = state.auth;
   const orders = state.orders;
-  const lineItems = state.lineItems
+  const lineItems = state.lineItems;
   const cart = orders.find((order) => order.status === "cart");
   const associatedLineItems = lineItems.filter(
     (lineItem) => lineItem.orderId === cart?.id
@@ -158,7 +169,7 @@ const mapState = (state) => {
     isLoggedIn: !!state.auth.id,
     username,
     auth,
-    associatedLineItems
+    associatedLineItems,
   };
 };
 
