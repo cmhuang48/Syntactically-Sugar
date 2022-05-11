@@ -20,7 +20,6 @@ p {
 }
 .headerpic {
   background-size: cover;
-  max-width: 750px;
   display: block;
   margin-left: auto;
   margin-right: auto;
