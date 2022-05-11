@@ -10,20 +10,6 @@ import MenuListComposition from './Menu'
 
 import { loadLineItems, logout } from "../store";
 
-document.addEventListener("click", (e) => {
-  const isDropdownButton = e.target.matches("[data-dropdown-button]");
-  if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return;
-  let currentDropdown;
-  if (isDropdownButton) {
-    currentDropdown = e.target.closest("[data-dropdown]");
-    currentDropdown.classList.toggle("active");
-  }
-  document.querySelectorAll("[data-dropdown].active").forEach((dropdown) => {
-    if (dropdown === currentDropdown) return;
-    dropdown.classList.remove("active");
-  });
-});
-
 const open = (ev) => {
   if (ev.target.className === "dropdown") {
     const subNav = document.querySelector(".subNav");
@@ -36,25 +22,20 @@ const open = (ev) => {
 };
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
+  '& .MuiBadge-badge': {
     right: -3,
     top: 2,
-    backgroundColor: "#f58d72",
-    color: "#fff",
-    padding: "0",
+    backgroundColor: '#f58d72',
+    color: '#fff',
+    padding: '0',
   },
-  "& .MuiSvgIcon-root": {
-    color: "#f58d72",
-  },
+  '& .MuiSvgIcon-root': {
+    color: '#f58d72'
+  }
 }));
 
-const Navbar = ({
-  handleClick,
-  isLoggedIn,
-  username,
-  auth,
-  associatedLineItems,
-}) => (
+
+const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }) => (
   <div>
     <Link to="/home">
       <img
@@ -67,16 +48,6 @@ const Navbar = ({
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          {/* <div className="dropdown" data-dropdown>
-            <button className="link" data-dropdown-button>
-              Products
-            </button>
-            <div className="dropdown-menu">
-              <Link to="/cakes">Cakes</Link>
-              <Link to="/cupcakes">Cupcakes</Link>
-              <Link to="/custom">Customize!</Link>
-            </div>
-          </div> */}
           <MenuListComposition title={'Products'} menuList = {[<Link to="/cakes">Cakes</Link>, <Link to="/cupcakes">Cupcakes</Link>, <Link to="/custom">Customize!</Link>]}/>
           <Link to="/orders">Orders</Link>
           <div>
@@ -105,11 +76,8 @@ const Navbar = ({
               </StyledBadge>
             </IconButton>
           </div>
-          {/* <div>
-            <MiniCart />
-            <Link to="/cart">Go to Cart!</Link>
-          </div> */}
           <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
       )}
     </nav>
@@ -133,7 +101,7 @@ const mapState = (state) => {
   const username = state.auth.username;
   const auth = state.auth;
   const orders = state.orders;
-  const lineItems = state.lineItems;
+  const lineItems = state.lineItems
   const cart = orders.find((order) => order.status === "cart");
   const associatedLineItems = lineItems.filter(
     (lineItem) => lineItem.orderId === cart?.id
@@ -142,7 +110,7 @@ const mapState = (state) => {
     isLoggedIn: !!state.auth.id,
     username,
     auth,
-    associatedLineItems,
+    associatedLineItems
   };
 };
 

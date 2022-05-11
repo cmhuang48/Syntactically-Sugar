@@ -73,7 +73,7 @@ export default function MenuListComposition(props) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    {props.menuList.map(item => <MenuItem onClick={handleClose}>{item}</MenuItem>)}
+                    {props.menuList.map((item, idx) => <MenuItem onClick={handleClose} key ={idx}>{item}</MenuItem>)}
                   </MenuList>
                 </ClickAwayListener>
                 {props.goToCart? props.goToCart:null}
