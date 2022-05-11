@@ -8,7 +8,6 @@ const LandingPage = ({auth, handleClick}) =>{
   return (
     <div className='banner'>
       <div className='landingnavbar'>
-        <Link to="/home"><img src="/../images/logo.jpeg" className='logo'/></Link>
         <ul>
           {auth.username?
           <li><a href="#" onClick={handleClick}>
@@ -21,9 +20,9 @@ const LandingPage = ({auth, handleClick}) =>{
         </ul>
       </div>
       <div className='content'>
-        <h1><Link to="/home">SYNTACTICALLY SUGAR</Link></h1>
-        <p><Link to="/home">Send some sugar!</Link></p>
         <div className = 'shoplinkscontainer'>
+        <Link to="/home"><img src="/../images/transparentlogo.png" className='logo'/></Link>
+        <br/>
           <Link to="/cakes" className='shoplinks'>Shop Cakes</Link>
           <Link to="/cupcakes" className='shoplinks'>Shop Cupcakes</Link>
         </div>
