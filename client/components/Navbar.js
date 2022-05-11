@@ -6,6 +6,7 @@ import { styled } from "@material-ui/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import MiniCart from "./MiniCart";
+import MenuListComposition from './Menu'
 
 import { loadLineItems, logout } from "../store";
 
@@ -66,7 +67,7 @@ const Navbar = ({
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <div className="dropdown" data-dropdown>
+          {/* <div className="dropdown" data-dropdown>
             <button className="link" data-dropdown-button>
               Products
             </button>
@@ -75,26 +76,15 @@ const Navbar = ({
               <Link to="/cupcakes">Cupcakes</Link>
               <Link to="/custom">Customize!</Link>
             </div>
-          </div>
+          </div> */}
+          <MenuListComposition title={'Products'} menuList = {[<Link to="/cakes">Cakes</Link>, <Link to="/cupcakes">Cupcakes</Link>, <Link to="/custom">Customize!</Link>]}/>
           <Link to="/orders">Orders</Link>
-          <div className="dropdown" data-dropdown>
-            {associatedLineItems.length ?
-              <IconButton aria-label="cart" className="link">
-                <StyledBadge badgeContent={associatedLineItems.reduce((accum, ele) => accum + ele.quantity, 0)}>
-                  <ShoppingCartIcon data-dropdown-button />
-                </StyledBadge>
-              </IconButton>
-            : 
-              <ShoppingCartIcon data-dropdown-button />
-            }
-            <div className="dropdown-menu">
-              <div style={{ padding: "10px 15px" }}>
-                <MiniCart />
-                <Link id="action" to="/cart">
-                  Go to Cart!
-                </Link>
-              </div>
-            </div>
+          <div>
+            <IconButton aria-label="cart" className="link">
+              <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
+                <MenuListComposition title={<ShoppingCartIcon/>} menuList ={[<MiniCart/>]} goToCart = {<Link to="/cart">Go to Cart!</Link>}/>
+              </StyledBadge>
+            </IconButton>
           </div>
           <Link to="/profile" className="dropdown" onClick={open}>
             {username[0].toUpperCase() + username.slice(1)}'s Profile
@@ -107,31 +97,18 @@ const Navbar = ({
         <div className="navbar">
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
-          <div className="dropdown" data-dropdown>
-            <button className="link" data-dropdown-button>
-              Products
-            </button>
-            <div className="dropdown-menu">
-              <Link to="/cakes">Cakes</Link>
-              <Link to="/cupcakes">Cupcakes</Link>
-              <Link to="/custom">Customize!</Link>
-            </div>
+          <MenuListComposition title={'Products'} menuList = {[<Link to="/cakes">Cakes</Link>, <Link to="/cupcakes">Cupcakes</Link>, <Link to="/custom">Customize!</Link>]}/>
+          <div>
+            <IconButton aria-label="cart" className="link">
+              <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
+                <MenuListComposition title={<ShoppingCartIcon/>} menuList = {[<MiniCart/>]} goToCart = {<Link to="/cart">Go to Cart!</Link>}/>
+              </StyledBadge>
+            </IconButton>
           </div>
-          <div className="dropdown" data-dropdown>
-            {JSON.parse(window.localStorage.getItem("cart")).length ?
-              <IconButton aria-label="cart" className="link">
-                <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
-                  <ShoppingCartIcon data-dropdown-button />
-                </StyledBadge>
-              </IconButton>
-            : 
-              <ShoppingCartIcon data-dropdown-button />
-            }
-            <div className="dropdown-menu">
-              <MiniCart />
-              <Link to="/cart">Go to Cart!</Link>
-            </div>
-          </div>
+          {/* <div>
+            <MiniCart />
+            <Link to="/cart">Go to Cart!</Link>
+          </div> */}
           <Link to="/login">Login</Link>
         </div>
       )}

@@ -101,7 +101,7 @@ class Cake extends React.Component {
             {alert?
             <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
               <Alert severity="success">Added to cart!</Alert>
-            </Box>:null}
+            </Box>:<div>{""}</div>}
           </div>
         </div>
       </>
