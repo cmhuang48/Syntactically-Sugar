@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 
-import { Login, Signup } from "./components/Login";
+import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import Cakes from "./components/Cakes";
 import Cake from "./components/Cake";
