@@ -2,6 +2,8 @@ body {
   font-family: "unica one", sans-serif;
   color: #6b5049;
   background: #fff4ee;
+  margin:0;
+  padding:0
 }
 p {
   font-size: 1.2em;
@@ -261,32 +263,6 @@ small {
     justify-content: center;
     align-items: center;
   }
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 0.25rem);
-  background-color: white;
-  padding: 0.75rem;
-  border-radius: 0.25 rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-10px);
-  transition: opacity 300ms ease-in-out transform 300ms ease-in-out;
-}
-
-.dropdown.active > .link + .dropdown-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-  border: 1px solid;
-  border-radius: 25px;
 }
 
 .link {
