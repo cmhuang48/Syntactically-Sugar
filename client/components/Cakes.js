@@ -28,6 +28,7 @@ class Cakes extends React.Component {
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
+        <Pagination className='pagination' count={Math.ceil(cakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />  
         <ul className="cakeContainer">
           {currentCakes.map((cake) => {
             return (
