@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box"
 import { updateUser } from "../store";
 
 class UserProfile extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       username: this.props.auth.username,
@@ -18,34 +18,34 @@ class UserProfile extends React.Component {
       state: this.props.auth.state ? this.props.auth.state : "",
       zip: this.props.auth.zip ? this.props.auth.zip : "",
       country: this.props.auth.country ? this.props.auth.country : "",
-      alert:false
+      alert: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidUpdate(){
-    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 3000)
+  componentDidUpdate () {
+    if(this.state.alert) setTimeout(()=>this.setState({ alert: false }), 3000);
   }
 
-  componentWillUnmount(){
-    this.setState({alert:false})
+  componentWillUnmount () {
+    this.setState({ alert: false });
   }
 
-  onSubmit(ev) {
+  onSubmit (ev) {
     const {id} = this.props.auth 
     ev.preventDefault();
     this.props.updateUser({id:id,...this.state});
-    this.setState({alert:true})
+    this.setState({ alert: true });
   }
 
-  onChange(ev) {
+  onChange (ev) {
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
   }
 
-  render() {
+  render () {
     const {
       username,
       firstName,
@@ -167,7 +167,7 @@ class UserProfile extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapState = ({ auth }) => ({ auth });
 

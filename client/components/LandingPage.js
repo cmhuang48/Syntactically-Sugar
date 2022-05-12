@@ -1,23 +1,25 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
-import {logout, loadLineItems} from '../store';
+import { logout, loadLineItems } from '../store';
 
-const LandingPage = ({auth, handleClick}) =>{
+const LandingPage = ({ auth, handleClick }) =>{
   return (
     <div className='banner'>
       <div className='landingnavbar'>
         <Link to="/home"><img src="/../images/logo.jpeg" className='logo'/></Link>
         <ul>
-          {auth.username?
-          <li><a href="#" onClick={handleClick}>
-          Logout</a></li>
-          :
-          <>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
-          </>}
+          {auth.username ? (
+            <li>
+              <a href="#" onClick={handleClick}>Logout</a>
+            </li>
+          ) : (
+            <>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/signup">Sign Up</Link></li>
+            </>
+          )}
         </ul>
       </div>
       <div className='content'>
@@ -37,7 +39,7 @@ const mapState = ({ auth })=> ({ auth });
 const mapDispatch = (dispatch) => {
   return {
     handleClick: () => {
-      dispatch(logout()), 
+      dispatch(logout());
       dispatch(loadLineItems());
     },
   };

@@ -255,7 +255,7 @@ function Checkout({
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 const mapState = ({ auth, orders, newOrder }) => {
   const cart = orders.find((order) => order.status === "cart");

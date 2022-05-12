@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import Alert from '@material-ui/lab/Alert'
-import Box from "@material-ui/core/Box"
+import Alert from '@material-ui/lab/Alert';
+import Box from "@material-ui/core/Box";
 
 class CustomCupcake extends React.Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
       category: "cupcake",
@@ -13,32 +13,31 @@ class CustomCupcake extends React.Component {
       frosting: "",
       message: "",
       price: 12,
-      image:
-        "https://images.creativemarket.com/0.1.0/ps/6337536/600/400/m2/fpnw/wm1/kyrxpus5cf11setgoakkc6bivngrm3dloqq5gotlosfroaknkr53xy8upaor8jtd-.jpg?1556962719&s=474ee12c8a3486dfbce8736c4a5cf584&fmt=webp",
-      alert:false
+      image: "https://images.creativemarket.com/0.1.0/ps/6337536/600/400/m2/fpnw/wm1/kyrxpus5cf11setgoakkc6bivngrm3dloqq5gotlosfroaknkr53xy8upaor8jtd-.jpg?1556962719&s=474ee12c8a3486dfbce8736c4a5cf584&fmt=webp",
+      alert: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidUpdate(){
-    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 2000)
+    if(this.state.alert) setTimeout(()=>this.setState({ alert: false }), 2000);
   }
 
   componentWillUnmount(){
-    this.setState({alert:false})
+    this.setState({ alert: false });
   }
 
-  onSubmit(ev) {
+  onSubmit (ev) {
     ev.preventDefault();
     const newLineItem = { quantity: 1, newProduct: this.state };
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     existingCart.push(newLineItem);
     window.localStorage.setItem("cart", JSON.stringify(existingCart));
-    this.setState({alert:true});
+    this.setState({ alert: true });
   }
 
-  onChange(ev) {
+  onChange (ev) {
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
@@ -146,7 +145,7 @@ class CustomCupcake extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapState = ({ orders }) => {
   const order = orders.find((order) => order.status === "cart");
