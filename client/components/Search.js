@@ -3,23 +3,26 @@ import { connect } from "react-redux";
 import { Box, TextField, InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import {searchProduct} from "../store";
-
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      search: [],
+      search: ''
     };
+
   }
 
-	componentDidUpdate(prevState) {
+	componentDidUpdate(prevProps) {
+		if(this.prevProps && this.props.products){
+				let result = this.state
+				let product = this.props.products.filter(ele => ele.name === result)
 
+			this.setState(this.props.history.push({ pathname: `/products/${product.id}` }))
+		}
 	}
 
   render() {
 		const { search } = this.state
-		const { searched } = this.props
-
     return (
 			<>
       <Box
@@ -47,11 +50,11 @@ class Search extends Component {
           }}
 					value={search}
           onChange={ev => this.setState({search: ev.target.value})}
-          onKeyDown={(e) => {
-            if (e.key !== "Escape") {
-              e.stopPropagation();
-            }
-          }}
+          //onKeyDown={(e) => {
+          //  if (e.key !== "Escape") {
+          //    e.stopPropagation();
+          //  }
+          //}}
         />
       </Box>
 		</>
@@ -59,16 +62,17 @@ class Search extends Component {
   }
 }
 
-const mapState = ({products}) => {
-	return (
+const mapState = ({products}, {match}) => {
+console.log(match)
+	return {
 		products
-	)
+	}
 }
 
 const  mapDispatch =(dispatch) => {
 	return {
-		searched: (products) => {
-			dispatch(searchProduct(products))	
+		searched: ({search}) => {
+			dispatch(searchProduct({type: 'SEARCH_PRODUCT', search }))	
 	}
 }
 }
