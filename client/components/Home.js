@@ -34,7 +34,8 @@ export const Home = (props) => {
   } else {
     return (
       <>
-      <OurFavorites products={products}/>
+        <OurFavorites products={products}/>
+        <Testimonials/>
         <div className = 'welcomebanner'>
         <img
           src="https://64.media.tumblr.com/253352d1d269deb475da054150d11385/d439913b40336189-ce/s1280x1920/402e16c5e579e2a7acda2a24a258d764825dc228.pnj"
