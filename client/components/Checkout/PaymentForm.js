@@ -82,4 +82,4 @@ export default function PaymentForm({ orderInfo, onChange }) {
       </Grid>
     </React.Fragment>
   );
-}
+};

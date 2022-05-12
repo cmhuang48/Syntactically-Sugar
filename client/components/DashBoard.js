@@ -1,19 +1,12 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-
-//// material ui
-
-// tab function
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
-// drawer function
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 
-// react component
 import CreateNewProduct from "./CreateNewProduct";
 import AllUsers from "./AllUsers";
 import AllProducts from "./AllProducts";
@@ -119,6 +112,6 @@ function DashBoard({ history, match }) {
       ))}
     </div>
   );
-}
+};
 
 export default DashBoard;

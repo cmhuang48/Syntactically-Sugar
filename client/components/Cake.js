@@ -93,7 +93,7 @@ class Cake extends React.Component {
                 onChange={onChange}
               />
             </p>
-            <button>Add to Cart</button>
+            <button className="submitButton">Add to Cart</button>
           </form>
           {alert ?
           <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { createProduct } from "../store";
 
 class CreateNewProduct extends React.Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
       category: "",
@@ -18,18 +18,18 @@ class CreateNewProduct extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(ev) {
+  handleSubmit (ev) {
     ev.preventDefault();
     this.props.createProduct({ ...this.state });
   }
 
-  handleChange(ev) {
+  handleChange (ev) {
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
   }
 
-  render() {
+  render () {
     const { category, name, price, quantityInStock, image } = this.state;
     const { handleChange, handleSubmit } = this;
     return (
@@ -85,7 +85,7 @@ class CreateNewProduct extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapDispatch = (dispatch, { history }) => {
   return {

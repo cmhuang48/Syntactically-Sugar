@@ -20,11 +20,9 @@ const Orders = ({ completedOrders, lineItems, products }) => {
                 <h2 className= 'ordersul'>Order ID: {order.id}</h2>
                 <ul className='ordersul'>
                   {associatedLineItems.map((lineItem) => {
-                    const product = products.find(
-                      (product) => product.id === lineItem.productId
-                    );
-                    if(product){
-                      total+= product.price*1 * lineItem.quantity
+                    const product = products.find((product) => product.id === lineItem.productId);
+                    if (product) {
+                      total += product.price * 1 * lineItem.quantity;
                       return (
                         <li key={lineItem.id} style={{display:'inline-block', padding:'20px'}}>
                           <img src = {product.image} style={{height:'100px', width:'100px', border:"1px solid black"}}/> 
@@ -35,7 +33,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
                     }
                   })}
                 </ul>
-                <div>Total price: ${total.toFixed(2)} </div>
+                <div>Total Price: ${total.toFixed(2)} </div>
               </div>
             </li>
           );
@@ -47,7 +45,7 @@ const Orders = ({ completedOrders, lineItems, products }) => {
 
 const mapState = ({ orders, lineItems, products, auth }) => {
   let completedOrders = orders.filter((order) => order.status === "order");
-  if(auth.isAdmin) completedOrders = completedOrders.filter(order=> order.userId === auth.id)
+  if (auth.isAdmin) completedOrders = completedOrders.filter(order=> order.userId === auth.id);
   return {
     completedOrders,
     lineItems,

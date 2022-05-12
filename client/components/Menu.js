@@ -100,4 +100,4 @@ export default function MenuListComposition(props) {
       </div>
     </div>
   );
-}
+};

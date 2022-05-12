@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import Alert from '@material-ui/lab/Alert';
+import Box from "@material-ui/core/Box";
+
 import { createLineItem, updateLineItem } from "../store";
-import Alert from '@material-ui/lab/Alert'
-import Box from "@material-ui/core/Box"
 
 class Cupcake extends React.Component {
   constructor () {
@@ -92,7 +93,7 @@ class Cupcake extends React.Component {
                 onChange={onChange}
               />
             </p>
-            <button>Add to Cart</button>
+            <button className="submitButton">Add to Cart</button>
           </form>
           {alert ?
           <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
