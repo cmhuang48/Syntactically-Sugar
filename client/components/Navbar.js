@@ -6,6 +6,7 @@ import { styled } from "@material-ui/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MiniCart from "./MiniCart";
 import MenuListComposition from './Menu'
+import Search from "./Search";
 
 import { loadLineItems, logout } from "../store";
 
@@ -36,6 +37,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
+          <Search/>
           <MenuListComposition title={'Products'} menuList={["Cakes", "Cupcakes", "Customize!"]}/>
           <Link to="/orders">Orders</Link>
           <MenuListComposition title={

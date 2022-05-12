@@ -7,13 +7,11 @@ const { Op } = require("sequelize");
 
 // get all products
 router.get("/", async (req, res, next) => {
-  console.log(req.query)
   try {
     const products = await Product.findAll({
       where: {
         name: {
           [Op.ne]: "Custom",
-          [Op.like]: '%' + result + '%',
         },
       },
     });
@@ -22,6 +20,23 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+
+//search
+router.get('/search', async(req, res, next) => {
+  let {result} = req.query
+  try {
+    const products = await Product.findAll({
+      where: {
+        name: {
+          [Op.like]: '%' + result + '%',
+        }
+      }
+    })
+    res.json(products);
+  } catch (error) {
+    next(error)
+  }
+})
 
 // get a product
 router.get("/:id", async (req, res, next) => {

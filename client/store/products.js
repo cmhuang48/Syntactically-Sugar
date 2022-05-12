@@ -5,6 +5,7 @@ const LOAD_PRODUCTS = "LOAD_PRODUCTS";
 const CREATE_PRODUCT = "CREATE_PRODUCT";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -58,6 +59,16 @@ export const updateProduct = (product, history) => {
   };
 };
 
+export const searchProduct = () => {
+  return async (dispatch) => {
+    const searchProduct = (await axios.get(`/api/products/search`)).data;
+    dispatch({
+      type: SEARCH_PRODUCT,
+      product: searchProduct,
+    })
+  };
+};
+
 
 // REDUCER
 export default function (state = [], action) {
@@ -72,6 +83,8 @@ export default function (state = [], action) {
       );
     case DELETE_PRODUCT:
       return state.filter((product) => product.id !== action.product.id);
+    case SEARCH_PRODUCT:
+      return action.products
     default:
       return state;
   }
