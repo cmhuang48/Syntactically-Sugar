@@ -7,11 +7,13 @@ const { Op } = require("sequelize");
 
 // get all products
 router.get("/", async (req, res, next) => {
+  console.log(req.query)
   try {
     const products = await Product.findAll({
       where: {
         name: {
           [Op.ne]: "Custom",
+          [Op.like]: '%' + result + '%',
         },
       },
     });

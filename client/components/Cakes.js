@@ -1,64 +1,79 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Pagination from '@material-ui/lab/Pagination';
-import {
-  Box,
-  TextField,
-  InputAdornment
-} from "@material-ui/core";
+import Pagination from "@material-ui/lab/Pagination";
+import { Box, TextField, InputAdornment } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 class Cakes extends React.Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
       page: 1,
       amountPerPage: 10,
+      searched: []
     };
+    this.setSearchText = this.setSearchText.bind(this)
   }
 
-  render () {
+  setSearchText(ev) {
+    const change = {}
+    change[ev.target.name] = ev.target.value;
+    this.setState(change);
+  }
+
+  render() {
     const { cakes, history } = this.props;
     const { page, amountPerPage } = this.state;
+    const { setSearchText } = this;
     const indexOfLastCake = page * amountPerPage;
     const indexOfFirstCake = indexOfLastCake - amountPerPage;
     const currentCakes = cakes.slice(indexOfFirstCake, indexOfLastCake);
-
     return (
-      <div style={{ display: 'flex', flexDirection: 'column'}}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <h1 className="font-effect-shadow-multiple">Cakes</h1>
-         <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { width: '20ch' },
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { width: "20ch" },
+          }}
+          noValidate
+          autoComplete="on"
+        >
+          <TextField
+            size="small"
+            autoFocus
+            placeholder="Type to search..."
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+              disableUnderline: true,
+              style: { fontFamily: "unica one", color: "#6b5049" },
             }}
-            noValidate
-            autoComplete="on"
-          >
-         <TextField
-              size="small"
-              autoFocus
-              placeholder="Type to search..."
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                )
-              }}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key !== "Escape") {
-                  // Prevents autoselecting item while typing (default Select behaviour)
-                  e.stopPropagation();
-                }
-              }}
-            />
+            onChange={setSearchText}
+            onKeyDown={(e) => {
+              if (e.key !== "Escape") {
+                // Prevents autoselecting item while typing (default Select behaviour)
+                e.stopPropagation();
+              }
+            }}
+          />
         </Box>
-        <small style={{ color: "#666", marginRight: "3%" }}>{cakes.length} results</small>
-        <select style={{ width: '10%', marginLeft: "3%" }} onChange={(ev) => history.push(ev.target.value ? `/cakes/sort/${ev.target.value}` : '/cakes')}>
+        <small style={{ color: "#666", marginRight: "3%" }}>
+          {cakes.length} results
+        </small>
+        <select
+          style={{ width: "10%", marginLeft: "3%" }}
+          onChange={(ev) =>
+            history.push(
+              ev.target.value ? `/cakes/sort/${ev.target.value}` : "/cakes"
+            )
+          }
+        >
           <option value="">Sort By</option>
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
@@ -69,7 +84,15 @@ class Cakes extends React.Component {
               <li key={cake.id}>
                 <Link to={`/cakes/${cake.id}`}>
                   <div className="cakeBox">
-                    <img className="cakeImage" src={cake.image} style={{height:'300px', width:'300px', border:"1px solid black"}}/>
+                    <img
+                      className="cakeImage"
+                      src={cake.image}
+                      style={{
+                        height: "300px",
+                        width: "300px",
+                        border: "1px solid black",
+                      }}
+                    />
                     <span className="product-title">{cake.name}</span>
                     <div>${cake.price}</div>
                   </div>
@@ -78,11 +101,15 @@ class Cakes extends React.Component {
             );
           })}
         </ul>
-        <Pagination className='pagination' count={Math.ceil(cakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
+        <Pagination
+          className="pagination"
+          count={Math.ceil(cakes.length / amountPerPage)}
+          onChange={(ev, page) => this.setState({ page })}
+        />
       </div>
     );
   }
-};
+}
 
 const mapState = ({ products }, { match }) => {
   const cakes = products.filter((product) => product.category === "cake");
