@@ -61,6 +61,7 @@ export default function MenuListComposition(props) {
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
+          style ={{fontFamily: 'sofia', color:'#f58d72', textTransform:'none', fontSize:'16px'}}
         >
           {props.title}
         </Button>

@@ -224,7 +224,7 @@ select {
 .navbar {
   padding: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   list-style-type: none;
   align-items: center;
 }
