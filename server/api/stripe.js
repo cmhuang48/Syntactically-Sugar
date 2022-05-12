@@ -27,12 +27,6 @@ router.post("/checkout", async (req, res) => {
         currency: "usd",
         customer: customer.id,
         receipt_email: token.email,
-        lineItems: [
-        {
-          price: 'price_H5ggYwtDq4fbrJ', 
-          quantity: 2,
-        },
-      ],
         shipping: {
           name: token.card.name,
           address: {
@@ -48,7 +42,6 @@ router.post("/checkout", async (req, res) => {
         idempotencyKey,
       }
     );
-    console.log('charge', {charge})
     status = "success";
   } catch (err) {
     console.log(err);

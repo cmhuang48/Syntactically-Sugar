@@ -69,6 +69,37 @@ export const checkout = (cart, orderInfo) => {
   };
 };
 
+export const stripeCheckout = (cart) => {
+  window.localStorage.setItem("cart", "[]");
+  return async (dispatch) => {
+    let newOrder = (
+      await axios.post("/api/orders", {
+        status: "order",
+      })
+    ).data;
+    for (let obj in cart) {
+      if (obj.newProduct) {
+        const newProduct = await axios.post("/api/products", obj.newProduct);
+        await axios.post("/api/lineItems", {
+          quantity: obj.quantity,
+          productId: newProduct.id,
+          orderId: newOrder.id,
+        }).data;
+      } else {
+        await axios.post("/api/lineItems", {
+          quantity: obj.quantity,
+          productId: obj.productId,
+          orderId: newOrder.id,
+        }).data;
+      }
+    }
+    dispatch({
+      type: CHECKOUT,
+      newOrder,
+    });
+  };
+};
+
 export const createCustom = (cart, cartId) => {
   const token = window.localStorage.getItem("token");
   if (token) {

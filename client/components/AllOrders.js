@@ -12,6 +12,7 @@ const Orders = ({ completedOrders, lineItems, products, users }) => {
   const currentOrders = completedOrders.slice(indexOfFirstOrder, indexOfLastOrder);
   return (
     <>
+      <Pagination className='pagination' count={Math.ceil(products.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
       <div className="orders">
         <h1 className="font-effect-shadow-multiple">Completed Orders</h1>
         <ul>
