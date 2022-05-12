@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const Orders = ({ completedOrders, lineItems, products }) => {
-  if (!completedOrders.length) return <div>No Orders</div>;
+  if (!completedOrders.length) return <div style={{textAlign:'center', fontSize:'32px', marginTop:'100px'}}>No Orders</div>;
 
   return (
     <div className="orders">
