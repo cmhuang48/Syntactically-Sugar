@@ -22,7 +22,7 @@ const LandingPage = ({ auth, handleClick }) =>{
         </ul>
       </div>
       <div className='content'>
-        <div className = 'shoplinkscontainer'>
+        <div className='shoplinkscontainer'>
         <Link to="/home"><img src="/../images/transparentlogo.png" className='logo'/></Link>
         <br/>
           <Link to="/cakes" className='shoplinks'>Shop Cakes</Link>
