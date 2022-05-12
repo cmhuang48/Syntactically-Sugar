@@ -279,7 +279,7 @@ small {
   width: 100%;
   height: 100vh;
   background-image:
-    url("https://cdn.wallpapersafari.com/69/10/hAuabD.jpg");
+    url("/images/landingpage.png");
   background-size: cover;
   background-position: center;
 }
@@ -289,14 +289,13 @@ small {
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .logo {
-  width: 40%;
+  width: 25%;
   align-items: center;
   justify-content: center;
-  
 }
 
 .landingnavbar ul li {
@@ -334,7 +333,7 @@ small {
 .content {
   width: 100%;
   position: absolute;
-  top: 30%;
+  top: 20%;
   color: pink;
 }
 
