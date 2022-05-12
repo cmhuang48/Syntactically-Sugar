@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import Alert from '@material-ui/lab/Alert'
-import Box from "@material-ui/core/Box"
+import Alert from '@material-ui/lab/Alert';
+import Box from "@material-ui/core/Box";
 
 class CustomCake extends React.Component {
-  constructor() {
+  constructor () {
     super();
     this.state = {
       category: "cake",
@@ -15,38 +15,37 @@ class CustomCake extends React.Component {
       frosting: "",
       message: "",
       price: 100,
-      image:
-        "https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg",
-      alert:false
+      image: "https://i.pinimg.com/originals/69/f6/86/69f686402cc4ea8d90857d12574d45cd.jpg",
+      alert: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidUpdate(){
-    if(this.state.alert) setTimeout(()=>this.setState({alert:false}), 2000)
+  componentDidUpdate () {
+    if(this.state.alert) setTimeout(()=>this.setState({ alert: false }), 2000);
   }
 
-  componentWillUnmount(){
-    this.setState({alert:false})
+  componentWillUnmount () {
+    this.setState({ alert: false });
   }
 
-  onSubmit(ev) {
+  onSubmit (ev) {
     ev.preventDefault();
     const newLineItem = { quantity: 1, newProduct: this.state };
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     existingCart.push(newLineItem);
     window.localStorage.setItem("cart", JSON.stringify(existingCart));
-    this.setState({alert:true});
+    this.setState({ alert: true });
   }
 
-  onChange(ev) {
+  onChange (ev) {
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
   }
 
-  render() {
+  render () {
     const { size, tiers, flavor, frosting, message, alert } = this.state;
     const { onChange, onSubmit } = this;
     return (
@@ -163,7 +162,7 @@ class CustomCake extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapState = ({ orders }) => {
   const order = orders.find((order) => order.status === "cart");

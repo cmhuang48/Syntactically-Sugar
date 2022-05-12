@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { updateProduct, deleteProduct } from "../store";
 
 class UpdateProduct extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       id: this.props.product.id ? this.props.product.id : "",
@@ -12,15 +12,13 @@ class UpdateProduct extends React.Component {
       name: this.props.product.id ? this.props.product.name : "",
       price: this.props.product.id ? this.props.product.price : "",
       image: this.props.product.id ? this.props.product.image : "",
-      quantityInStock: this.props.product.id
-        ? this.props.product.quantityInStock
-        : "",
+      quantityInStock: this.props.product.id ? this.props.product.quantityInStock : "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (!prevProps.product.id && this.props.product.id) {
       this.setState({
         id: this.props.product.id,
@@ -33,12 +31,12 @@ class UpdateProduct extends React.Component {
     }
   }
 
-  handleSubmit(ev) {
+  handleSubmit (ev) {
     ev.preventDefault();
     this.props.updateProduct(this.state);
   }
 
-  handleChange(ev) {
+  handleChange (ev) {
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
@@ -100,14 +98,7 @@ class UpdateProduct extends React.Component {
   }
 }
 
-const mapState = (
-  { products },
-  {
-    match: {
-      params: { id },
-    },
-  }
-) => {
+const mapState = ( { products }, { match: { params: { id } } }) => {
   const product = products.find((product) => product.id === id * 1);
   return {
     product,

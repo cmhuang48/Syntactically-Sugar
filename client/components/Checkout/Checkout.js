@@ -9,6 +9,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import Alert from '@material-ui/lab/Alert';
 
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
@@ -40,14 +41,15 @@ function Checkout({
     state: "",
     zip: "",
     country: "",
+    email: "",
     cardName: "",
     cardNumber: "",
     expDate: "",
     cvv: "",
-    email: "",
     saveAddress: false,
     saveCard: false,
   });
+  const [alert, setAlert] = React.useState(false);
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -60,19 +62,22 @@ function Checkout({
       !orderInfo.city ||
       !orderInfo.state ||
       !orderInfo.zip ||
-      !orderInfo.country
+      !orderInfo.country ||
+      !orderInfo.email
     ) {
-      window.alert("* must input");
+      setAlert(true);
       return setActiveStep(0);
     }
+    setAlert(false);
     setActiveStep(activeStep + 1);
   };
 
   const handleNextOnPaymentForm = () => {
-    if (!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.cvv) {
-      window.alert("* must input");
+    if (!orderInfo.cardName || !orderInfo.cardNumber || !orderInfo.expDate || !orderInfo.cvv) {
+      setAlert(true);
       return setActiveStep(1);
     }
+    setAlert(false);
     setActiveStep(activeStep + 1);
   };
 
@@ -92,13 +97,13 @@ function Checkout({
       state,
       zip,
       country,
+      email,
       cardName,
       cardNumber,
       expDate,
       cvv,
       saveAddress,
       saveCard,
-      email,
     } = orderInfo;
     const existingCart = JSON.parse(window.localStorage.getItem("cart"));
     if (auth.username) {
@@ -220,7 +225,6 @@ function Checkout({
                   )}
 
                   <Button
-                    // disabled={orderInfo.map(ele => ele === undefined)}
                     variant="contained"
                     onClick={handleNextOnPaymentForm}
                     sx={{ mt: 3, ml: 1 }}
@@ -228,6 +232,11 @@ function Checkout({
                     {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>
+                {alert ?
+                <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+                  <Alert severity="error">Please fill in all required fields.</Alert>
+                </Box> :
+                null}
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -240,7 +249,6 @@ function Checkout({
                   )}
 
                   <Button
-                    // disabled={orderInfo.map(ele => ele === undefined)}
                     variant="contained"
                     onClick={handleNextOnAddressForm}
                     sx={{ mt: 3, ml: 1 }}
@@ -248,6 +256,11 @@ function Checkout({
                     {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>
+                {alert ?
+                <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+                  <Alert severity="error">Please fill in all required fields.</Alert>
+                </Box> :
+                null}
               </React.Fragment>
             )}
           </React.Fragment>
@@ -255,7 +268,7 @@ function Checkout({
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 const mapState = ({ auth, orders, newOrder }) => {
   const cart = orders.find((order) => order.status === "cart");

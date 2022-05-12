@@ -133,6 +133,7 @@ const LineItemInCart = ({
 };
 
 const mapState = ({ auth, products }) => ({ auth, products });
+
 const mapDispatch = (dispatch) => {
   return {
     updateLineItem: (item) => {
