@@ -32,9 +32,17 @@ router.post("/", async (req, res, next) => {
     mailOptions = {
       ...mailOptions,
       to: data.email,
-      subject: `Order confirmation for Order #${data.orderId}`,
+      subject: `Order Confirmation #${data.orderId}`,
       text: data.message,
-      html: `<h1>${data.message}</h1>`,
+      html: `
+        <div style={{backgroundColor: '#fff4ee'}}>
+          <img
+            src="https://64.media.tumblr.com/0247842009fe11e7313136833fde624d/23030b2c9b9bec6c-36/s1280x1920/2e54ad5f5b0299d2f0b5a8e27412d636d9d4089b.pnj"
+            className="headerpic"
+          />
+          <h3>${data.message}</h3>
+        </div>
+      `,
     };
     await sendMail(mailOptions);
     res.sendStatus(200);
