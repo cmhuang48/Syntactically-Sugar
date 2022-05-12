@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {OurFavorites} from './Carousel.js'
-import Testimonials, {SimpleRating} from "./Testimonials.js";
+import Testimonials from "./Testimonials.js";
 
 /**
  * COMPONENT
