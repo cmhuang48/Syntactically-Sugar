@@ -38,6 +38,7 @@ export const authenticate =
       dispatch(me());
       dispatch(loadOrders());
       dispatch(loadLineItems());
+      history.push('/home')
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
