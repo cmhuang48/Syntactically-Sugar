@@ -44,6 +44,7 @@ router.post("/", async (req, res, next) => {
         </div>
       `,
     };
+    console.log(oAuth2Client)
     await sendMail(mailOptions);
     res.sendStatus(200);
   } catch (err) {
