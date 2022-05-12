@@ -28,6 +28,7 @@ const AllProducts = ({ products, destroy, history }) => {
 
   return (
     <>
+      <Pagination className='pagination' count={Math.ceil(products.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
       <TableContainer component={Paper} >
         <Table style={{width: '80vw'}}>
           <TableHead>

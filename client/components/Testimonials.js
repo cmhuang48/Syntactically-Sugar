@@ -5,37 +5,37 @@ import Box from '@material-ui/core/Box';
 
 export default function Testimonials(){
   return(
-    <div class = 'testimonials'>
-      <div class = 'inner'></div>
+    <div className = 'testimonials'>
+      <div className = 'inner'></div>
       <h1>Testimonials</h1>
-      <div class = 'border'></div>
-      <div class = 'row'>
-        <div class ='col'>
-          <div class='testimonial'>
+      <div className = 'border'></div>
+      <div className = 'row'>
+        <div className ='col'>
+          <div className='testimonial'>
             <img src = '/../images/unhappyman.jpeg'></img>
-            <div class='name'>Jim Smith</div>
-            <div class ='stars'></div>
-            <SimpleRating value ='1'/>
+            <div className='name'>Jim Smith</div>
+            <div className ='stars'></div>
+            <SimpleRating value ={1}/>
             <p>"I ordered a cake for my mom's 60th birthday and it was burnt!"</p>
           </div>
         </div>
 
-        <div class ='col'>
-          <div class='testimonial'>
+        <div className ='col'>
+          <div className='testimonial'>
             <img src = '/../images/angrywoman.jpeg'></img>
-            <div class='name'>Jane Doe</div>
-            <div class ='stars'></div>
-            <SimpleRating value='1'/>
+            <div className='name'>Jane Doe</div>
+            <div className ='stars'></div>
+            <SimpleRating value={1}/>
             <p>"My cupcake had mold in it!"</p>
           </div>
         </div>
 
-        <div class ='col'>
-          <div class='testimonial'>
+        <div className ='col'>
+          <div className='testimonial'>
             <img src = '/../images/shrugman.png'></img>
-            <div class='name'>Jack Something</div>
-            <div class ='stars'></div>
-            <SimpleRating value='2'/>
+            <div className='name'>Jack Something</div>
+            <div className ='stars'></div>
+            <SimpleRating value={2}/>
             <p>"I mean...it was edible I guess."</p>
           </div>
         </div>

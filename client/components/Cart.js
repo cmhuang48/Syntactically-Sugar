@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
+import LineItemInCart from "./LineItemInCart";
 import { toast, ToastContainer } from "react-toastify";
 import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
-import LineItemInCart from "./LineItemInCart";
+import {updateOrder, stripeCheckout, createCustom} from '../store'
 
-const Cart = ({ auth, associatedLineItems, products }) => {
+const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, myCart }) => {
   let cart;
   const existingCart = JSON.parse(window.localStorage.getItem("cart"));
 
@@ -28,6 +29,20 @@ const Cart = ({ auth, associatedLineItems, products }) => {
     );
     if (response.status === 200) {
       toast("Success! Check email for details", { type: "success" });
+      const existingCart = JSON.parse(window.localStorage.getItem("cart"));
+    if (auth.username) {
+      if (existingCart) {
+        // creates custom products and new lineItems
+        createCustom(existingCart, myCart.id);
+      }
+      updateOrder({
+        id: myCart.id,
+        userId: auth.id
+      });
+    } else {
+      // creates new user, new order, and new lineItems
+      stripeCheckout(existingCart);
+    }
     } else {
       toast("Something went wrong", { type: "error" });
     }
@@ -59,7 +74,7 @@ const Cart = ({ auth, associatedLineItems, products }) => {
               if (product)
                 total += Number((product.price * lineItem.quantity).toFixed(2));
 
-              return <LineItemInCart lineItem={lineItem} product={product} key = {lineItem.id}/>;
+              return <LineItemInCart lineItem={lineItem} product={product} key={lineItem.id}/>;
             })}
             <tr>
               <td></td>
@@ -99,7 +114,22 @@ const mapState = ({ auth, orders, lineItems, products }) => {
     auth,
     associatedLineItems,
     products,
+    myCart:cart
   };
 };
 
-export default connect(mapState)(Cart);
+const mapDispatch = (dispatch) => {
+  return {
+    stripeCheckout: (cart) => {
+      dispatch(stripeCheckout(cart));
+    },
+    createCustom: (cart, id) => {
+      dispatch(createCustom(cart, id));
+    },
+    updateOrder:(order)=>{
+      dispatch(updateOrder(order))
+    },
+  }
+};
+
+export default connect(mapState, mapDispatch)(Cart);
