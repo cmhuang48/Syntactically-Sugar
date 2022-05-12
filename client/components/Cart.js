@@ -15,10 +15,10 @@ const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, 
 
   if (auth.username) {
     if (!associatedLineItems.length && !existingCart.length)
-      return <div>Empty Cart</div>;
+      return <div style={{textAlign:'center', fontSize:'32px', marginTop:'100px'}}>Empty Cart</div>;
     cart = [...associatedLineItems, ...existingCart];
   } else {
-    if (!existingCart.length) return <div>Empty Cart</div>;
+    if (!existingCart.length) return <div style={{textAlign:'center', fontSize:'32px', marginTop:'100px'}}>Empty Cart</div>;
     cart = existingCart;
   }
   
@@ -73,7 +73,6 @@ const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, 
                   );
               if (product)
                 total += Number((product.price * lineItem.quantity).toFixed(2));
-
               return <LineItemInCart lineItem={lineItem} product={product} key={lineItem.id}/>;
             })}
             <tr>

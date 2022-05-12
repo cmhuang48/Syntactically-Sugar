@@ -20,6 +20,7 @@ class Cupcakes extends React.Component {
     const currentCupcakes = cupcakes.slice(indexOfFirstCupcake, indexOfLastCupcake);
 
     return (
+      
       <div style={{ display: 'flex', flexDirection: 'column'}}> 
         <h1 className="font-effect-shadow-multiple">Cupcakes</h1>
         <small style={{ color: "#666", marginRight: "3%" }}>{cupcakes.length} results</small>
@@ -28,6 +29,7 @@ class Cupcakes extends React.Component {
           <option value="price_asc">Price (low - high)</option>
           <option value="price_desc">Price (high - low)</option>
         </select>
+        <Pagination className='pagination' count={Math.ceil(cupcakes.length / amountPerPage)} onChange={(ev, page) => this.setState({ page })} />
         <ul className="cakeContainer">
           {currentCupcakes.map((cupcake) => {
             return (
