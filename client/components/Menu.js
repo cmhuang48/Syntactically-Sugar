@@ -62,11 +62,11 @@ export default function MenuListComposition(props) {
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
-          style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none' }}
+          style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none'}}
         >
           {props.title}
         </Button>
-          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal style={{zIndex:'10'}}>
             {({ TransitionProps, placement }) => (
               <Grow
                 {...TransitionProps}

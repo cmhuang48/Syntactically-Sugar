@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import {OurFavorites} from './Carousel.js'
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
-  const { username} = props;
+  const { username, products} = props;
 
   if (username) {
     return (
@@ -14,6 +15,7 @@ export const Home = (props) => {
         <h3 className="font-effect-shadow-multiple">
           Welcome, {username[0].toUpperCase() + username.slice(1)}!
         </h3>
+        <OurFavorites products={products}/>
         <div className = 'homeimgcontainer'>
           <img
             src="https://64.media.tumblr.com/253352d1d269deb475da054150d11385/d439913b40336189-ce/s1280x1920/402e16c5e579e2a7acda2a24a258d764825dc228.pnj"
@@ -29,7 +31,9 @@ export const Home = (props) => {
     );
   } else {
     return (
-      <div className = 'welcomebanner'>
+      <>
+      <OurFavorites products={products}/>
+        <div className = 'welcomebanner'>
         <img
           src="https://64.media.tumblr.com/253352d1d269deb475da054150d11385/d439913b40336189-ce/s1280x1920/402e16c5e579e2a7acda2a24a258d764825dc228.pnj"
           className="homepic"
@@ -39,6 +43,7 @@ export const Home = (props) => {
           className="aboutUs"
         />
       </div>
+      </>
     );
   }
 };
@@ -48,7 +53,8 @@ export const Home = (props) => {
  */
 const mapState = (state) => {
   return {
-    username: state.auth.username
+    username: state.auth.username,
+    products: state.products
   };
 };
 
