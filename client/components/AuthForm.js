@@ -100,8 +100,8 @@ const AuthForm = (props) => {
             >
               {displayName}
             </Button>
-            {error && error.response && <div> {error.response.data} </div>}
-            { name === "login" ?
+            {error && error.response && <div>{error.response.data}</div>}
+            {name === "login" ? (
               <Grid container>
                 <Grid item>
                   <Link to="/signup" variant="body2">
@@ -114,14 +114,15 @@ const AuthForm = (props) => {
                   />
                 </Grid>
               </Grid>
-              : <Grid container>
-                  <Grid item>
-                    <Link to="/login" variant="body2">
-                      {"Already have an account? Login"}
-                    </Link>
-                  </Grid>
+              ) : (
+              <Grid container>
+                <Grid item>
+                  <Link to="/login" variant="body2">
+                    {"Already have an account? Login"}
+                  </Link>
                 </Grid>
-            }
+              </Grid>
+              )}
           </form>
         </div>
       </Grid>
@@ -154,7 +155,7 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit(evt) {
+    handleSubmit: (evt) => {
       evt.preventDefault();
       const formName = evt.target.name;
       const username = evt.target.username.value;

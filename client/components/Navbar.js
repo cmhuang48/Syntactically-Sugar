@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Badge from "@material-ui/core/Badge";
 import { styled } from "@material-ui/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import MiniCart from "./MiniCart";
 import MenuListComposition from './Menu'
 
 import { loadLineItems, logout } from "../store";
@@ -21,7 +20,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     color: '#f58d72'
   }
 }));
-
 
 const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }) => (
   <div style={{backgroundColor: '#fff4ee'}}>
@@ -40,8 +38,9 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <Link to="/orders">Orders</Link>
           <MenuListComposition title={
             <StyledBadge badgeContent={[...associatedLineItems, ...JSON.parse(window.localStorage.getItem("cart"))].reduce((accum, ele) => accum + ele.quantity, 0)}>
-              <ShoppingCartIcon/>
-            </StyledBadge>} />
+              <ShoppingCartIcon />
+            </StyledBadge>} 
+          />
           <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
           {auth.isAdmin ? <Link to="/dashboard">Dashboard</Link> : null }
           <a href="#" onClick={handleClick}>
@@ -55,8 +54,9 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <MenuListComposition title={'Products'} menuList={["Cakes", "Cupcakes", "Customize!"]}/>
           <MenuListComposition title={
             <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
-              <ShoppingCartIcon/>
-            </StyledBadge>} />
+              <ShoppingCartIcon />
+            </StyledBadge>} 
+          />
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
