@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Badge from "@material-ui/core/Badge";
 import { styled } from "@material-ui/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import IconButton from "@material-ui/core/IconButton";
 import MiniCart from "./MiniCart";
 import MenuListComposition from './Menu'
 
@@ -24,7 +23,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 
-const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
+const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }) => (
   <div style={{backgroundColor: '#fff4ee'}}>
     <Link to="/home">
       <img
@@ -37,23 +36,15 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <MenuListComposition title={'Products'} menuList = {[<Link to="/cakes">Cakes</Link>, <Link to="/cupcakes">Cupcakes</Link>, <Link to="/custom">Customize!</Link>]}/>
+          <MenuListComposition title={'Products'} menuList={["Cakes", "Cupcakes", "Customize!"]}/>
           <Link to="/orders">Orders</Link>
-          <div>
-            <IconButton aria-label="cart" className="link">
-              <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
-                <MenuListComposition title={<ShoppingCartIcon/>} menuList ={[<MiniCart/>]} goToCart = {<Link to="/cart">Go to Cart!</Link>}/>
-              </StyledBadge>
-            </IconButton>
-          </div>
+          <MenuListComposition title={
+            <StyledBadge badgeContent={[...associatedLineItems, ...JSON.parse(window.localStorage.getItem("cart"))].reduce((accum, ele) => accum + ele.quantity, 0)}>
+              <ShoppingCartIcon/>
+            </StyledBadge>} 
+          menuList={[<MiniCart/>]}/>
           <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
-          {auth.isAdmin ? (
-            <div>
-              <Link to="/dashboard">Dashboard</Link>
-            </div>
-          ) : (
-            ""
-          )}
+          {auth.isAdmin ? <Link to="/dashboard">Dashboard</Link> : null }
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -62,14 +53,12 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth }) => (
         <div className="navbar" style={{backgroundColor: '#fff4ee'}}>
           {/* The navbar will show these links before you log in */}
           <Link to="/home">Home</Link>
-          <MenuListComposition title={'Products'} menuList = {[<Link to="/cakes">Cakes</Link>, <Link to="/cupcakes">Cupcakes</Link>, <Link to="/custom">Customize!</Link>]}/>
-          <div>
-            <IconButton aria-label="cart" className="link">
-              <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
-                <MenuListComposition title={<ShoppingCartIcon/>} menuList = {[<MiniCart/>]} goToCart = {<Link to="/cart">Go to Cart!</Link>}/>
-              </StyledBadge>
-            </IconButton>
-          </div>
+          <MenuListComposition title={'Products'} menuList={["Cakes", "Cupcakes", "Customize!"]}/>
+          <MenuListComposition title={
+            <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
+              <ShoppingCartIcon/>
+            </StyledBadge>} 
+          menuList={[<MiniCart/>]}/>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
@@ -87,10 +76,14 @@ const mapState = (state) => {
   const orders = state.orders;
   const lineItems = state.lineItems
   const cart = orders.find((order) => order.status === "cart");
+  const associatedLineItems = lineItems.filter(
+    (lineItem) => lineItem.orderId === cart?.id
+  );
   return {
     isLoggedIn: !!state.auth.id,
     username,
     auth,
+    associatedLineItems,
   };
 };
 
