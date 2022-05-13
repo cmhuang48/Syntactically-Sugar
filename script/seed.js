@@ -84,7 +84,23 @@ async function seed() {
   console.log(`seeded ${admins.length} admins`);
 
   // Creating Users
-  const users = [...Array(100)].map(user => ({
+  const cody = {
+    username: "cody",
+    password: "123",
+    firstName: "Cody",
+    lastName: faker.name.lastName(),
+    address1: faker.address.streetAddress(),
+    address2: faker.address.secondaryAddress(),
+    city: faker.address.city(),
+    zip: faker.address.zipCodeByState(),
+    state: faker.address.stateAbbr(),
+    country: faker.address.countryCode(),
+    cardName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    cardNumber: faker.finance.creditCardNumber(),
+    expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
+  }
+
+  const users = [cody, ...Array(100)].map(user => ({
     username: faker.internet.userName(),
     password: "123",
     firstName: faker.name.firstName(),

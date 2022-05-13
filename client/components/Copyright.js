@@ -8,7 +8,7 @@ export default function Copyright() {
     <Container style={{position:'fixed', bottom:'0', width: '100%'}}>
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="https://syntactically-sugar.herokuapp.com/">
+        <Link color="inherit" href="https://mui.com/">
           Syntactically Sugar
         </Link>{" "}
         {new Date().getFullYear()}
