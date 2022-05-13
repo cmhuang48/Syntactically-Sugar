@@ -30,6 +30,7 @@ const AllProducts = ({ products, destroy, history }) => {
     <>
       <Pagination className='pagination' count={Math.ceil(products.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
       <TableContainer component={Paper} >
+        <h1 className="font-effect-shadow-multiple">All Products</h1>
         <Table style={{width: '80vw'}}>
           <TableHead>
             <TableRow>

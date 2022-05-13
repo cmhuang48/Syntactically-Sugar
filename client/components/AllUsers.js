@@ -45,6 +45,7 @@ const AllUsers = ({ users, destroy, history, match }) => {
       </select>
       <Pagination className='pagination' count={Math.ceil(users.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
       <TableContainer component={Paper}>
+      <h1 className="font-effect-shadow-multiple">All Users</h1>
         <Table>
           <TableHead>
             <TableRow>
