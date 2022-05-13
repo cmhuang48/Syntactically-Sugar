@@ -5,11 +5,12 @@ import Box from '@material-ui/core/Box';
 
 export default function Testimonials(){
   return(
+
     <div class = 'testimonials'>
       <div class = 'inner'></div>
       <h1 className="font-effect-shadow-multiple">Testimonials</h1>
       <div class = 'border'></div>
-      <div class = 'row'>
+      <div class = 'trow'>
       <div class ='col'>
           <div class='testimonial'>
             <img src = '/../images/happy.jpeg'></img>
