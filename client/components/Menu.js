@@ -62,7 +62,7 @@ export default function MenuListComposition(props) {
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
-          style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none'}}
+          style={{ fontFamily: 'sofia', fontSize: '16px', color: '#8c5041', textTransform: 'none'}}
         >
           {props.title}
         </Button>
@@ -78,17 +78,17 @@ export default function MenuListComposition(props) {
                 <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                   {props.menuList.map((item, idx) => {
                     if (item === "Cakes" || item === "Cupcakes") { 
-                      return <MenuItem key={idx} component={Link} to={`/${item}`} onClick={handleClose} style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none' }}>{item}</MenuItem>;
+                      return <MenuItem key={idx} component={Link} to={`/${item}`} onClick={handleClose} style={{ fontFamily: 'sofia', fontSize: '16px', color: '#8c5041', textTransform: 'none' }}>{item}</MenuItem>;
                     } else if (item === "Customize!") {
-                      return <MenuItem key={idx} component={Link} to='/custom' onClick={handleClose} style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none' }}>{item}</MenuItem>;
+                      return <MenuItem key={idx} component={Link} to='/custom' onClick={handleClose} style={{ fontFamily: 'sofia', fontSize: '16px', color: '#8c5041', textTransform: 'none' }}>{item}</MenuItem>;
                     } 
                   })}
                 </MenuList>
               ) : (
                 <div>
-                  <MiniCart />
+                  <MiniCart/>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem component={Link} to='/cart' onClick={handleClose} style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none' }}>Go to Cart!</MenuItem>
+                    <MenuItem component={Link} to='/cart' onClick={handleClose} style={{ fontFamily: 'sofia', fontSize: '16px', color: '#8c5041', textTransform: 'none' }}>Go to Cart!</MenuItem>
                   </MenuList>
                 </div>
               )}
