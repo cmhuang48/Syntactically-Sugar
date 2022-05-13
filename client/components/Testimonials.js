@@ -9,7 +9,7 @@ export default function Testimonials(){
       <div className = 'inner'></div>
       <h1>Testimonials</h1>
       <div className = 'border'></div>
-      <div className = 'row'>
+      <div className = 'trow'>
         <div className ='col'>
           <div className='testimonial'>
             <img src = '/../images/unhappyman.jpeg'></img>
