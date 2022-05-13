@@ -38,7 +38,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <Link to="/orders">Orders</Link>
           <MenuListComposition title={
             <StyledBadge badgeContent={[...associatedLineItems, ...JSON.parse(window.localStorage.getItem("cart"))].reduce((accum, ele) => accum + ele.quantity, 0)}>
-              <ShoppingCartIcon />
+              <ShoppingCartIcon style={{color:'#8c5041'}}/>
             </StyledBadge>} 
           />
           <Link to="/profile">{username[0].toUpperCase() + username.slice(1)}'s Profile</Link>
@@ -54,7 +54,7 @@ const Navbar = ({ handleClick, isLoggedIn, username, auth, associatedLineItems }
           <MenuListComposition title={'Products'} menuList={["Cakes", "Cupcakes", "Customize!"]}/>
           <MenuListComposition title={
             <StyledBadge badgeContent={JSON.parse(window.localStorage.getItem("cart")).reduce((accum, ele) => accum + ele.quantity, 0)}>
-              <ShoppingCartIcon />
+              <ShoppingCartIcon style={{color:'#8c5041'}}/>
             </StyledBadge>} 
           />
           <Link to="/login">Login</Link>

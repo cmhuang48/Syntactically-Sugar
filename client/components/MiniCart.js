@@ -10,10 +10,10 @@ const MiniCart = ({ auth, associatedLineItems, products }) => {
   const existingCart = JSON.parse(window.localStorage.getItem("cart"));
 
   if (auth.username) {
-    if (!associatedLineItems.length && !existingCart.length) return <div style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none' }}>Empty Cart</div>;
+    if (!associatedLineItems.length && !existingCart.length) return <div style={{ fontFamily: 'sofia', fontSize: '16px', color: '#8c5041', textTransform: 'none' }}>Empty Cart</div>;
     cart = [...associatedLineItems, ...existingCart];
   } else {
-    if (!existingCart.length) return <div style={{ fontFamily: 'sofia', fontSize: '16px', color: '#f58d72', textTransform: 'none' }}>Empty Cart</div>;
+    if (!existingCart.length) return <div style={{ fontFamily: 'sofia', fontSize: '16px', color: '#8c5041', textTransform: 'none' }}>Empty Cart</div>;
     cart = existingCart;
   }
 
