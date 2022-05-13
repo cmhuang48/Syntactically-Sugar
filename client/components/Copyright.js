@@ -5,10 +5,10 @@ import Link from "@material-ui/core/Link";
 
 export default function Copyright() {
   return (
-    <Container style={{position:'fixed', bottom:'0', width: '100%'}}>
+    <Container style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="https://mui.com/">
+        <Link color="inherit" href="https://syntactically-sugar.herokuapp.com/home">
           Syntactically Sugar
         </Link>{" "}
         {new Date().getFullYear()}

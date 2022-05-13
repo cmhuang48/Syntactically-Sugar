@@ -47,7 +47,6 @@ class Routes extends Component {
     return (
       <div>
         {isLoggedIn ? (
-          <>
           <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route>
@@ -75,9 +74,7 @@ class Routes extends Component {
                 <Copyright/>
             </Route>
           </Switch>
-          </>
         ) : (
-          <>
           <Switch>
             <Route exact path="/" component={LandingPage}/>
             <Route>
@@ -102,7 +99,6 @@ class Routes extends Component {
                 <Copyright/>
             </Route>
           </Switch>
-          </>
         )}
       </div>
     );
