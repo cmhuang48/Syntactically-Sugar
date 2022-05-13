@@ -100,7 +100,7 @@ async function seed() {
     expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
   }
 
-  const users = [cody, ...Array(100)].map(user => ({
+  const users = [cody, ...Array(100).map(user => ({
     username: faker.internet.userName(),
     password: "123",
     firstName: faker.name.firstName(),
@@ -114,7 +114,7 @@ async function seed() {
     cardName: `${faker.name.firstName()} ${faker.name.lastName()}`,
     cardNumber: faker.finance.creditCardNumber(),
     expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
-  }));
+  }))];
 
   const createdUsers = await Promise.all(
     users.map(async (user) => {
