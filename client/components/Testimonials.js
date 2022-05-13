@@ -5,40 +5,42 @@ import Box from '@material-ui/core/Box';
 
 export default function Testimonials(){
   return(
-    <div className = 'testimonials'>
-      <div className = 'inner'></div>
-      <h1>Testimonials</h1>
-      <div className = 'border'></div>
-      <div className = 'row'>
-        <div className ='col'>
-          <div className='testimonial'>
+    <div class = 'testimonials'>
+      <div class = 'inner'></div>
+      <h1 className="font-effect-shadow-multiple">Testimonials</h1>
+      <div class = 'border'></div>
+      <div class = 'row'>
+      <div class ='col'>
+          <div class='testimonial'>
+            <img src = '/../images/happy.jpeg'></img>
+            <div class='name'>Cee Essess</div>
+            <div class ='stars'></div>
+            <SimpleRating value='4'/>
+            <p>"The staff is not only incredibly knowledgeable, but so friendly and kind! So good looking too, not relevant but just icing on the cake. Ha! See what I did there!"</p>
+          </div>
+        </div>
+       
+        <div class ='col'>
+          <div class='testimonial'>
+            <img src = '/../images/prof.jpeg'></img>
+            <div class='name'>Prof (Probably)</div>
+            <div class ='stars'></div>
+            <SimpleRating value='5'/>
+            <p>"This is very good and I am very impressed with you all. A+"</p>
+          </div>
+        </div>
+
+        <div class ='col'>
+          <div class='testimonial'>
             <img src = '/../images/unhappyman.jpeg'></img>
-            <div className='name'>Jim Smith</div>
-            <div className ='stars'></div>
-            <SimpleRating value ={1}/>
-            <p>"I ordered a cake for my mom's 60th birthday and it was burnt!"</p>
+            <div class='name'>Al Gorithm</div>
+            <div class ='stars'></div>
+            <SimpleRating value ='1'/>
+            <p>"I had a cake from here made when my girlfriend graduated Fullstack Academy. It said " git add "6 months of hard work" git commit -m "finished bootcamp" git push" I don't get it."</p>
           </div>
         </div>
 
-        <div className ='col'>
-          <div className='testimonial'>
-            <img src = '/../images/angrywoman.jpeg'></img>
-            <div className='name'>Jane Doe</div>
-            <div className ='stars'></div>
-            <SimpleRating value={1}/>
-            <p>"My cupcake had mold in it!"</p>
-          </div>
-        </div>
-
-        <div className ='col'>
-          <div className='testimonial'>
-            <img src = '/../images/shrugman.png'></img>
-            <div className='name'>Jack Something</div>
-            <div className ='stars'></div>
-            <SimpleRating value={2}/>
-            <p>"I mean...it was edible I guess."</p>
-          </div>
-        </div>
+        
       </div>
     </div>
   )

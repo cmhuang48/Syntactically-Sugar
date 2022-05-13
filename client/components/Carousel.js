@@ -10,7 +10,6 @@ export function OurFavorites(props)
   const items = products.slice(0,5)
   return (
     <div style={{width:'75vw', marginRight:'auto', marginLeft:'auto'}}>
-      <div style={{fontSize:'32px', textAlign:'center', marginTop:"32px"}}>Try some of our favorites!</div>
       <Carousel NextIcon={<ArrowForwardIos/>} PrevIcon={<ArrowBackIos/>} navButtonsAlwaysVisible='true' >
         {items.map( (item, i) => <Item key={i} item={item} /> )}
       </Carousel>
@@ -23,7 +22,7 @@ export function Item(props)
   return (
     <>
       <Paper style={{textAlign:'center'}}>
-          <h2 style={{textAlign:'center', fontSize:'25px'}}>{props.item.name} {props.item.category}</h2>
+          <h2 style={{textAlign:'center',  fontFamily:"crafty girls", fontSize:'25px'}}>{props.item.name} {props.item.category}</h2>
           <Link to={`/cakes/${props.item.id}`}><img src ={props.item.image} style={{height:'400px', width:'400px', display:'block', marginLeft:'auto', marginRight:'auto', border:"1px solid black"}}/></Link>
           <Link to={`/cakes/${props.item.id}`} style={{fontSize:'25px'}}>Check it out!</Link>
       </Paper>
