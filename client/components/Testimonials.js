@@ -13,8 +13,8 @@ export default function Testimonials(){
       <div className = 'trow'>
       <div className ='col'>
           <div className='testimonial'>
-            <img src = '/../images/happy.jpeg'></img>
-            <div className='name'>Cee Essess</div>
+            <img src = '/../images/stanley.png'></img>
+            <div className='name'>Stanley Lim</div>
             <div className ='stars'></div>
             <SimpleRating value='4'/>
             <p>"The staff is not only incredibly knowledgeable, but so friendly and kind! So good looking too, not relevant but just icing on the cake. Ha! See what I did there!"</p>
