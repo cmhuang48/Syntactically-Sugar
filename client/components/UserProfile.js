@@ -60,110 +60,108 @@ class UserProfile extends React.Component {
     } = this.state;
     const { onChange, onSubmit } = this;
     return (
-      <div className="row">
+      <div className="borderinfo">
         <h1 className="font-effect-shadow-multiple" >
-          {username[0].toUpperCase() + username.slice(1)}'s info
+          {username[0].toUpperCase() + username.slice(1)}'s Info
         </h1>
-        <div className="borderinfo">
-          <form onSubmit={onSubmit}>
-            <p>
-              Username: {}
-              <input
-                name="username"
-                value={username}
-                placeholder="Enter username"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              First Name: {}
-              <input
-                name="firstName"
-                value={firstName}
-                placeholder="Enter first name"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              Last Name: {}
-              <input
-                name="lastName"
-                value={lastName}
-                placeholder="Enter lastName"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              Address: {}
-              <input
-                name="address1"
-                value={address1}
-                placeholder="Enter address1"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              Address 2: {}
-              <input
-                name="address2"
-                value={address2}
-                placeholder="Enter address2"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              City: {}
-              <input
-                name="city"
-                value={city}
-                placeholder="Enter city"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              State: {}
-              <input
-                name="state"
-                value={state}
-                placeholder="Enter state"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              Zip: {}
-              <input
-                name="zip"
-                value={zip}
-                placeholder="Enter zip"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <p>
-              Country: {}
-              <input
-                name="country"
-                value={country}
-                placeholder="Enter country"
-                onChange={onChange}
-                className="input1"
-              />
-            </p>
-            <button className="submitButton">Update</button>
-          </form>
-          {alert?
-            <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
-              <Alert severity="success">User information updated!</Alert>
-            </Box>:null}
-          <br />
-        </div>
+        <form onSubmit={onSubmit}>
+          <p>
+            Username: {}
+            <input
+              name="username"
+              value={username}
+              placeholder="Enter username"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            First Name: {}
+            <input
+              name="firstName"
+              value={firstName}
+              placeholder="Enter first name"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            Last Name: {}
+            <input
+              name="lastName"
+              value={lastName}
+              placeholder="Enter lastName"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            Address: {}
+            <input
+              name="address1"
+              value={address1}
+              placeholder="Enter address1"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            Address 2: {}
+            <input
+              name="address2"
+              value={address2}
+              placeholder="Enter address2"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            City: {}
+            <input
+              name="city"
+              value={city}
+              placeholder="Enter city"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            State: {}
+            <input
+              name="state"
+              value={state}
+              placeholder="Enter state"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            Zip: {}
+            <input
+              name="zip"
+              value={zip}
+              placeholder="Enter zip"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <p>
+            Country: {}
+            <input
+              name="country"
+              value={country}
+              placeholder="Enter country"
+              onChange={onChange}
+              className="input1"
+            />
+          </p>
+          <button className="submitButton">Update</button>
+        </form>
+        {alert?
+          <Box sx={{ width: '100%', display:'flex', justifyContent:'center', alignItems:'center', marginTop:'10px' }} spacing={2}>
+            <Alert severity="success">User information updated!</Alert>
+          </Box>:null}
+        <br />
       </div>
     );
   }

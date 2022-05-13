@@ -34,7 +34,7 @@ class CreateNewProduct extends React.Component {
     const { handleChange, handleSubmit } = this;
     return (
       <div className="borderinfo">
-        <h1 className="font-effect-shadow-multiple">Add a new product</h1>
+        <h1 className="font-effect-shadow-multiple">Add A New Product</h1>
         <form id="createProductForm" onSubmit={handleSubmit}>
           <p htmlFor="category">Category</p>
           <select name="category" value={category} onChange={handleChange}>

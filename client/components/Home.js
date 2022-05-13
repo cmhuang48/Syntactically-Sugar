@@ -11,32 +11,28 @@ export const Home = (props) => {
 
   if (username) {
     return (
-      <>
-        <div className = 'welcomebanner'>
-        <h3 className="font-effect-shadow-multiple">
-          Welcome, {username[0].toUpperCase() + username.slice(1)}!
-        </h3>
         <div>
-        <img src="/../images/summerprod.png" className="welcomepic" />
-        </div>
-        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>Some of your past favorites:</div>
-        <OurFavorites products={products}/>
-        <Testimonials/>
-        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About us:</div>
-        <img src = "/../images/aboutus.jpg"/>
+          <h3 className="font-effect-shadow-multiple">
+            Welcome, {username[0].toUpperCase() + username.slice(1)}!
+          </h3>
+          <img src="/../images/summerprod.png" className="welcomepic" />
+          <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>Some of your past favorites:</div>
+          <OurFavorites products={products}/>
+          <Testimonials/>
+          <div className="font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About Us:</div>
+          <img src="/../images/aboutus.jpg"/>
       </div>
-      </>
     );
   } else {
     return (
-      <>
+      <div>
        <img src="/../images/pride.png"/>
        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>Try some of our favorites:</div>
         <OurFavorites products={products}/>
         <Testimonials/>
-        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About us:</div>
-        <img src = "/../images/aboutus.jpg"/>
-      </>
+        <div className="font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About Us:</div>
+        <img src="/../images/aboutus.jpg"/>
+      </div>
     );
   }
 };

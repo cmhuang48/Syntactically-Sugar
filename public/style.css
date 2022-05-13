@@ -384,10 +384,6 @@ small {
   transition: 0.3s ease;
 }
 
-.welcomebanner {
-  height: 750px;
-}
-
 .homepic {
   height: 600px;
   max-height: auto;
@@ -411,6 +407,7 @@ small {
 .pagination {
   display: flex;
   justify-content: center;
+  padding: 10px;
 }
 
 .dropdown-menu #action {
