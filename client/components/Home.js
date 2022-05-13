@@ -22,7 +22,7 @@ export const Home = (props) => {
         <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>Some of your past favorites:</div>
         <OurFavorites products={products}/>
         <Testimonials/>
-        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About us:</div>
+        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About Us:</div>
         <img src = "/../images/aboutus.jpg"/>
       </div>
       </>
@@ -34,7 +34,7 @@ export const Home = (props) => {
        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>Try some of our favorites:</div>
         <OurFavorites products={products}/>
         <Testimonials/>
-        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About us:</div>
+        <div className= "font-effect-shadow-multiple" style={{fontFamily:"beth ellen", fontSize:'32px', textAlign:'center', marginTop:"32px"}}>About Us:</div>
         <img src = "/../images/aboutus.jpg"/>
       </>
     );
