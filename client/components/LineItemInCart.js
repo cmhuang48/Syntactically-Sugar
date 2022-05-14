@@ -88,9 +88,7 @@ const LineItemInCart = ({
         </td>
         <td>{lineItem.newProduct.name}</td>
         <td>{lineItem.newProduct.category}</td>
-        <td>
-          {lineItem.quantity}
-        </td>
+        <td>{lineItem.quantity}</td>
         <td>
           <button className="deleteBtn" onClick={destroyCustom}>
             Remove Item
