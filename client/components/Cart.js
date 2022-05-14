@@ -65,7 +65,7 @@ const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, 
               <th></th>
               <th style={{ width: "50px" }}>Price</th>
             </tr>
-            {cart.map((lineItem) => {
+            {cart.map((lineItem, idx) => {
               const product = lineItem.newProduct
                 ? lineItem.newProduct
                 : products.find(
@@ -73,7 +73,7 @@ const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, 
                   );
               if (product)
                 total += Number((product.price * lineItem.quantity).toFixed(2));
-              return <LineItemInCart lineItem={lineItem} product={product} key={lineItem.id}/>;
+              return <LineItemInCart lineItem={lineItem} product={product} key={lineItem.id || idx}/>;
             })}
             <tr>
               <td></td>
