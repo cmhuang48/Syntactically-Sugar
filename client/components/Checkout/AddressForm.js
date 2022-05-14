@@ -145,7 +145,7 @@ export default function AddressForm({ orderInfo, onChange }) {
                 onChange={onChange}
               />
             }
-            label="Use this address for payment details"
+            label="Remember address details for next time"
           />
         </Grid>
       </Grid>

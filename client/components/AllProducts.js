@@ -28,13 +28,13 @@ const AllProducts = ({ products, destroy, history }) => {
 
   return (
     <>
-      <TableContainer component={Paper} >
+      <TableContainer component={Paper}>
         <h1 className="font-effect-shadow-multiple">All Products</h1>
         <Table style={{width: '80vw'}}>
           <TableHead>
             <TableRow>
-              <TableCell align='center'>Category</TableCell>
               <TableCell align='center'>Name</TableCell>
+              <TableCell align='center'>Category</TableCell>
               <TableCell align='center'>Price</TableCell>
               <TableCell align='center'>Image</TableCell>
               <TableCell align='center'>Quantity In Stock</TableCell>
@@ -46,10 +46,10 @@ const AllProducts = ({ products, destroy, history }) => {
             {currentProducts.map((product) => {
               return (
                 <TableRow>
+                  <TableCell align="center">{product.name}</TableCell>
                   <TableCell component="th" scope="row" key={product.id} align='center'>
                     {product.category}
                   </TableCell>
-                  <TableCell align="center">{product.name}</TableCell>
                   <TableCell align="center">{product.price}</TableCell>
                   <TableCell align="center">
                     <img style={{ maxWidth: "100px" }} src={product.image} />

@@ -75,7 +75,7 @@ function DashBoard({ history, match }) {
             anchor='left'
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
-            PaperProps={{ style: { marginTop: "32%", padding: "1%", height: "18vh" } }}
+            PaperProps={{ style: { marginTop: "10%", padding: "1%", height: "30vh" } }}
           >
             <Tabs
               orientation="vertical"

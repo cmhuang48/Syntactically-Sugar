@@ -26,7 +26,7 @@ const Orders = ({ completedOrders, lineItems, products, users }) => {
               <li key={order.id} className="ordersList">
                 <div className ='orderulcontainer'>
                   <h2 className= 'ordersul'>Order ID: {order.id}</h2>
-                  <h2>Order made by: Customer {users.find(user=> user.id === order.userId).username}</h2>
+                  <h2>Order made by: {users.find(user=> user.id === order.userId).username}</h2>
                   <ul className='ordersul'>
                     {associatedLineItems.map((lineItem) => {
                       const product = products.find(

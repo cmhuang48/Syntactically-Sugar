@@ -108,21 +108,17 @@ export const createCustom = (cart, cartId) => {
       const newLineItems = [];
       for (let obj in cart) {
         const newProduct = await axios.post("/api/products", obj.newProduct);
-        newLineItems.push(
-          (
-            await axios.post("/api/lineItems", {
-              quantity: obj.quantity,
-              productId: newProduct.productId,
-              orderId: cartId,
-            })
-          ).data
-        );
-      }
+        newLineItems.push((await axios.post("/api/lineItems", {
+          quantity: obj.quantity,
+          productId: newProduct.productId,
+          orderId: cartId,
+        })).data);
+      };
       dispatch({
         type: CREATE_CUSTOM,
         newLineItems,
       });
-    }
+    };
   };
 };
 

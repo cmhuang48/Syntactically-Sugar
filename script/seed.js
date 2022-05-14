@@ -100,7 +100,7 @@ async function seed() {
     expDate: `${Math.floor(Math.random()*(12-1)+1)}/${Math.floor(Math.random()*(30-22)+22)}`,
   }
 
-  const users = [cody, ...Array(100).map(user => ({
+  const users = [cody, ...[...Array(100)].map(user => ({
     username: faker.internet.userName(),
     password: "123",
     firstName: faker.name.firstName(),

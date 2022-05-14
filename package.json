@@ -34,7 +34,7 @@
     "css-loader": "^6.7.1",
     "dotenv": "^16.0.0",
     "express": "^4.16.4",
-    "faker": "^5.5.3",
+    "faker": "^5.1.0",
     "googleapis": "^100.0.0",
     "history": "^4.9.0",
     "jsonwebtoken": "^8.5.1",
