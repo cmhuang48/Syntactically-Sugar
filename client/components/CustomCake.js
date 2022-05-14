@@ -66,9 +66,9 @@ class CustomCake extends React.Component {
               <p>Tiers:</p>
               <select name="tiers" value={tiers} onChange={onChange} className='select1'>
                 <option value="">Select Number of Tiers</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="1">1 tier</option>
+                <option value="2">2 tiers</option>
+                <option value="3">3 tiers</option>
               </select>
               <br />
               <p>Flavor:</p>

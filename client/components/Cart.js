@@ -30,19 +30,19 @@ const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, 
     if (response.status === 200) {
       toast("Success! Check email for details", { type: "success" });
       const existingCart = JSON.parse(window.localStorage.getItem("cart"));
-    if (auth.username) {
-      if (existingCart) {
-        // creates custom products and new lineItems
-        createCustom(existingCart, myCart.id);
+      if (auth.username) {
+        if (existingCart) {
+          // creates custom products and new lineItems
+          createCustom(existingCart, myCart.id);
+        }
+        updateOrder({
+          id: myCart.id,
+          userId: auth.id
+        });
+      } else {
+        // creates new user, new order, and new lineItems
+        stripeCheckout(existingCart);
       }
-      updateOrder({
-        id: myCart.id,
-        userId: auth.id
-      });
-    } else {
-      // creates new user, new order, and new lineItems
-      stripeCheckout(existingCart);
-    }
     } else {
       toast("Something went wrong", { type: "error" });
     }
