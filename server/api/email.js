@@ -17,7 +17,6 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
-
 let mailOptions = {
   from: "ORDER CONFIRMATION <syntacticallysugarconfirmation@gmail.com>",
   to: "",
@@ -55,7 +54,6 @@ router.post("/", async (req, res, next) => {
 async function sendMail(mailOptions) {
   try {
     const accessToken = await oAuth2Client.getAccessToken();
-
     const transport = nodemailer.createTransport({
       service: "gmail",
       auth: {

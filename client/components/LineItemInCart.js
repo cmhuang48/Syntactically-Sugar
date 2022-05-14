@@ -89,6 +89,9 @@ const LineItemInCart = ({
         <td>{lineItem.newProduct.name}</td>
         <td>{lineItem.newProduct.category}</td>
         <td>
+          {lineItem.quantity}
+        </td>
+        <td>
           <button className="deleteBtn" onClick={destroyCustom}>
             Remove Item
           </button>
@@ -103,7 +106,6 @@ const LineItemInCart = ({
   );
 
   if(!product) return null
-  
   return (
     <tr key={product.id}>
       <td className="cartImage">
