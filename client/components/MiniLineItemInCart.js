@@ -91,6 +91,7 @@ const MiniLineItemInCart = ({
             Remove Item
           </button>
         </td>
+        <td>{lineItem.quantity}</td>
         <td>${(lineItem.newProduct.price * lineItem.quantity).toFixed(2)}</td>
       </tr>
     );
