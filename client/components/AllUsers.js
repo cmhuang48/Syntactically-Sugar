@@ -43,7 +43,6 @@ const AllUsers = ({ users, destroy, history, match }) => {
         <option value="first_name">First Name</option>
         <option value="last_name">Last Name</option>
       </select>
-      <Pagination className='pagination' count={Math.ceil(users.length / amountPerPage)} onChange={(ev, page) => setPage(page)} />
       <TableContainer component={Paper}>
       <h1 className="font-effect-shadow-multiple">All Users</h1>
         <Table>

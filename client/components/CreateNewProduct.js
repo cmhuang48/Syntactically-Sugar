@@ -75,7 +75,7 @@ class CreateNewProduct extends React.Component {
           <br />
           <button
             disabled={
-              !category || !name || !price || !quantityInStock || !image
+              !category || !name || !price || !quantityInStock
             }
             className="submitButton"
           >

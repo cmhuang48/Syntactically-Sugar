@@ -30,7 +30,7 @@ export const createProduct = (product, history) => {
       type: CREATE_PRODUCT,
       product: newProduct,
     });
-    history.push(`/${newProduct.category}s`);
+    history.push(`/${newProduct.category}s/${newProduct.id}`);
   };
 };
 
