@@ -37,14 +37,14 @@ const AllUsers = ({ users, destroy, history, match }) => {
 
   return (
     <>
-      <select style={{ width: '10%' }} onChange={(ev) => history.push(ev.target.value ? `/dashboard/sort/${ev.target.value}` : '/dashboard')}>
+      <TableContainer component={Paper}>
+      <h1 className="font-effect-shadow-multiple">All Users</h1>
+      <select style={{ width: '10%', margin: "10px" }} onChange={(ev) => history.push(ev.target.value ? `/dashboard/sort/${ev.target.value}` : '/dashboard')}>
         <option value="">Sort By</option>
         <option value="id">ID</option>
         <option value="first_name">First Name</option>
         <option value="last_name">Last Name</option>
       </select>
-      <TableContainer component={Paper}>
-      <h1 className="font-effect-shadow-multiple">All Users</h1>
         <Table>
           <TableHead>
             <TableRow>

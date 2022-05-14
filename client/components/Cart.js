@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
-import LineItemInCart from "./LineItemInCart";
 import { toast, ToastContainer } from "react-toastify";
-import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css";
 
-import {updateOrder, stripeCheckout, createCustom} from '../store'
+import LineItemInCart from "./LineItemInCart";
+
+import {updateOrder, stripeCheckout, createCustom} from '../store';
 
 const Cart = ({ auth, associatedLineItems, products, updateOrder, createCustom, myCart }) => {
   let cart;

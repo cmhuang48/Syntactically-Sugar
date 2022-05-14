@@ -7,13 +7,12 @@ const Orders = ({ completedOrders, lineItems, products }) => {
   return (
     <div className="orders">
       <h1 className="font-effect-shadow-multiple">My Orders</h1>
-      <ul >
+      <ul>
         {completedOrders.map((order) => {
-          const associatedLineItems = lineItems.filter(
-            (lineItem) => lineItem.orderId === order.id
-          );
+          const associatedLineItems = lineItems.filter((lineItem) => lineItem.orderId === order.id);
           
-          let total=0
+          let total = 0;
+
           return (
             <li key={order.id} className="ordersList">
               <div className ='orderulcontainer'>
